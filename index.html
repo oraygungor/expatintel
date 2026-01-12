@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expat Intel | AI News Agent</title>
+    <title>Expat Intel | Multi-Link Analyzer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -39,7 +39,6 @@
     <style>
         body { background-color: #050505; color: #ffffff; }
         
-        /* Glass Effect */
         .glass-panel {
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(12px);
@@ -47,7 +46,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -72,7 +70,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-x-hidden">
+<body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
 
     <!-- Background Decoration -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -81,14 +79,14 @@
     </div>
 
     <!-- Main Container -->
-    <main class="w-full max-w-3xl animate-fade-in">
+    <main class="w-full max-w-6xl animate-fade-in mb-20">
         
         <!-- Header -->
-        <div class="text-center mb-10">
+        <div class="text-center mb-10 mt-10">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
-                Expat<span class="gradient-text">Intel</span>
+                Expat<span class="gradient-text">Intel</span> Batch
             </h1>
-            <p class="text-gray-500 font-light">AI Destekli Haber Analiz & JSON Dönüştürücü</p>
+            <p class="text-gray-500 font-light">Çoklu Haber Analiz & Tek JSON Çıktısı</p>
         </div>
 
         <!-- Configuration Panel -->
@@ -109,146 +107,138 @@
                         <i class="fas fa-robot absolute left-3 top-3.5 text-gray-600 text-sm"></i>
                         <select id="modelSelect" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm appearance-none cursor-pointer">
                             <option value="gpt-5-nano">GPT-5 Nano (En Ucuz - $0.05/M)</option>
-                            <option value="gpt-4o-mini">GPT-4o Mini (Ekonomik - $0.15/M)</option>
-                            <option value="gpt-5">GPT-5 (Fiyat/Perf. - $1.25/M)</option>
-                            <option value="gpt-5.2">GPT-5.2 (Yüksek Zeka - $1.75/M)</option>
-                            <option value="gpt-4o">GPT-4o (Klasik - $2.50/M)</option>
+                            <option value="gpt-4o-mini" selected>GPT-4o Mini (Önerilen)</option>
+                            <option value="gpt-5">GPT-5 (Fiyat/Perf.)</option>
+                            <option value="gpt-4o">GPT-4o (Standart)</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- URL Input -->
+            <!-- URL Input Area -->
             <div class="mb-6">
-                <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAĞI (URL)</label>
-                <div class="flex flex-col md:flex-row gap-3">
-                    <input type="url" id="newsUrl" placeholder="https://nyidanmark.dk/en-GB/News..." class="input-dark flex-1 rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono">
+                <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
+                <div class="flex flex-col gap-3">
+                    <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/2026/...\nhttps://skat.dk/researcher-tax...\nhttps://cphpost.dk/news/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
                     
-                    <button onclick="analyzeNews()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                        <span>ANALİZ ET</span>
-                        <i class="fas fa-bolt"></i>
-                    </button>
-                </div>
-                <p class="text-[10px] text-gray-600 mt-2 font-mono ml-1"><i class="fas fa-info-circle mr-1"></i>URL içeriği GPT tarafından tahmin edilir. Kesin sonuç için haber metnini de yapıştırabilirsiniz.</p>
-            </div>
-
-            <!-- Loading Indicator -->
-            <div id="loading" class="hidden py-8 text-center">
-                <div class="inline-block relative w-16 h-16">
-                    <div class="absolute top-0 left-0 w-full h-full border-4 border-gray-800 rounded-full"></div>
-                    <div class="absolute top-0 left-0 w-full h-full border-4 border-neon-blue rounded-full animate-spin border-t-transparent"></div>
-                </div>
-                <p class="text-neon-blue font-mono text-xs mt-4 animate-pulse">VERİLER İŞLENİYOR...</p>
-            </div>
-        </div>
-
-        <!-- Result Card -->
-        <div id="resultCard" class="hidden transform transition-all duration-500 ease-out translate-y-4 opacity-0">
-            
-            <!-- Visual Card -->
-            <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 relative group">
-                <!-- Decorative Glow behind card -->
-                <div class="absolute -inset-1 bg-gradient-to-r from-neon-purple to-neon-blue opacity-20 blur group-hover:opacity-40 transition duration-1000 -z-10"></div>
-
-                <div class="p-8">
-                    <div class="flex justify-between items-start gap-4 mb-6">
-                        <div>
-                            <div class="flex flex-wrap items-center gap-2 mb-3">
-                                <span id="outSource" class="inline-block py-1 px-3 rounded-full bg-blue-900/20 border border-blue-500/30 text-[10px] font-mono text-blue-400 tracking-wider uppercase hidden"></span>
-                            </div>
-                            <h2 id="outHeadline" class="text-2xl md:text-3xl font-bold text-white leading-tight"></h2>
-                        </div>
-                        
-                        <!-- Score Circle -->
-                        <div class="flex flex-col items-center flex-shrink-0">
-                            <div class="relative w-20 h-20 flex items-center justify-center">
-                                <!-- SVG for Circle Progress -->
-                                <svg class="w-full h-full transform -rotate-90">
-                                    <circle cx="40" cy="40" r="36" stroke="#1f1f1f" stroke-width="6" fill="transparent"></circle>
-                                    <circle id="scoreCircle" cx="40" cy="40" r="36" stroke="#00F0FF" stroke-width="6" fill="transparent" stroke-dasharray="226" stroke-dashoffset="226" class="transition-all duration-1000 ease-out"></circle>
-                                </svg>
-                                <span id="outScore" class="absolute text-2xl font-bold font-mono">0</span>
-                            </div>
-                            <span class="text-[10px] font-mono text-gray-500 mt-2 uppercase tracking-widest">Önem</span>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <!-- Summary -->
-                        <div>
-                            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-mono flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-neon-blue"></span> Özet
-                            </h3>
-                            <p id="outSummary" class="text-gray-300 leading-relaxed text-lg font-light"></p>
-                        </div>
-
-                        <!-- Significance -->
-                        <div class="bg-gray-900/50 border-l-2 border-neon-purple p-4 rounded-r-lg">
-                            <h3 class="text-xs font-bold text-neon-purple uppercase tracking-widest mb-2 font-mono">Expat Etkisi</h3>
-                            <p id="outSignificance" class="text-gray-300 italic"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer / JSON Toggle -->
-                <div class="bg-black/40 px-8 py-4 border-t border-gray-800 flex justify-between items-center">
-                    <div class="flex items-center gap-2 text-xs text-gray-500 font-mono">
-                        <i class="fas fa-code"></i>
-                        <span>JSON Output</span>
-                    </div>
-                    <button onclick="toggleJson()" class="text-xs text-neon-blue hover:text-white transition font-mono hover:underline">
-                        GÖSTER / GİZLE
-                    </button>
-                </div>
-            </div>
-
-            <!-- JSON Code Block -->
-            <div id="jsonContainer" class="hidden mt-4">
-                <div class="glass-panel rounded-xl p-0 overflow-hidden border border-gray-800">
-                    <div class="bg-[#0a0a0a] p-4 overflow-x-auto">
-                        <pre class="font-mono text-xs text-green-400 leading-relaxed"><code id="jsonOutput"></code></pre>
-                    </div>
-                    <div class="bg-gray-900 px-4 py-2 flex justify-end">
-                        <button onclick="copyJson()" class="text-xs text-gray-400 hover:text-white flex items-center gap-2 transition">
-                            <i class="far fa-copy"></i> Kopyala
+                    <div class="flex justify-between items-center">
+                        <span id="statusText" class="text-xs font-mono text-neon-blue hidden"><i class="fas fa-sync fa-spin mr-2"></i><span id="progressCount">0/0</span> İşleniyor...</span>
+                        <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ml-auto">
+                            <span>HEPSİNİ ANALİZ ET</span>
+                            <i class="fas fa-layer-group"></i>
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- Results Grid -->
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 hidden">
+            <!-- Cards will be injected here via JS -->
+        </div>
+
+        <!-- Combined JSON Output Section -->
+        <div id="jsonSection" class="hidden">
+            <div class="glass-panel rounded-xl overflow-hidden border border-gray-800">
+                <div class="bg-black/40 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-xs text-neon-green font-mono">
+                        <i class="fas fa-database"></i>
+                        <span>BİRLEŞTİRİLMİŞ JSON ÇIKTISI (TÜM LİNKLER)</span>
+                    </div>
+                    <button onclick="copyCombinedJson()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-white transition font-mono flex items-center gap-2">
+                        <i class="far fa-copy"></i> Kopyala
+                    </button>
+                </div>
+                <div class="bg-[#0a0a0a] p-4 overflow-x-auto max-h-96">
+                    <pre class="font-mono text-xs text-green-400 leading-relaxed"><code id="combinedJsonOutput">[]</code></pre>
+                </div>
+            </div>
         </div>
 
     </main>
 
     <script>
-        async function analyzeNews() {
+        // Global array to store all results
+        let globalResults = [];
+
+        async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
             const model = document.getElementById('modelSelect').value;
-            const url = document.getElementById('newsUrl').value;
+            const textInput = document.getElementById('newsUrls').value;
             
             const btn = document.getElementById('analyzeBtn');
-            const loading = document.getElementById('loading');
-            const resultCard = document.getElementById('resultCard');
-            const resultCardInner = resultCard.firstElementChild; // Animation target
+            const statusText = document.getElementById('statusText');
+            const progressCount = document.getElementById('progressCount');
+            const grid = document.getElementById('resultsGrid');
+            const jsonSection = document.getElementById('jsonSection');
 
             if (!apiKey) { alert("Lütfen API Key giriniz."); return; }
-            if (!url) { alert("Lütfen bir URL giriniz."); return; }
+            if (!textInput.trim()) { alert("Lütfen en az bir URL giriniz."); return; }
 
-            // UI Loading State
+            // 1. Prepare URLs
+            const urls = textInput.split('\n').filter(url => url.trim() !== '');
+            
+            // 2. Reset UI
+            globalResults = []; // Clear previous data
+            grid.innerHTML = ''; // Clear cards
+            grid.classList.remove('hidden');
+            jsonSection.classList.add('hidden');
+            
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
-            loading.classList.remove('hidden');
-            resultCard.classList.add('hidden', 'translate-y-4', 'opacity-0');
-            resultCard.classList.remove('block');
+            statusText.classList.remove('hidden');
+            
+            let completed = 0;
+            progressCount.textContent = `${completed}/${urls.length}`;
 
-            // System Prompt
+            // 3. Process URLs Concurrently
+            // Using Promise.all to fire requests in parallel
+            const promises = urls.map(async (url, index) => {
+                try {
+                    const result = await analyzeSingleUrl(url, apiKey, model);
+                    
+                    // Add result to global array
+                    globalResults.push({
+                        input_url: url,
+                        analysis: result
+                    });
+
+                    // Create Card immediately
+                    createResultCard(result, url);
+
+                } catch (error) {
+                    console.error(`Error analyzing ${url}:`, error);
+                    createErrorCard(url, error.message);
+                    globalResults.push({
+                        input_url: url,
+                        error: error.message
+                    });
+                } finally {
+                    completed++;
+                    progressCount.textContent = `${completed}/${urls.length}`;
+                }
+            });
+
+            // Wait for all to finish
+            await Promise.all(promises);
+
+            // 4. Finalize
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            statusText.textContent = "Analiz Tamamlandı ✅";
+            
+            // Update and show Combined JSON
+            updateCombinedJson();
+        }
+
+        async function analyzeSingleUrl(url, apiKey, model) {
             const systemPrompt = `
             You are a smart, savvy expat news assistant for people living in Denmark.
             User will provide a URL.
             Analyze the content (infer from URL if browsing is unavailable) and generate a JSON response in Turkish.
 
             STYLE GUIDELINES:
-            - Tone: Engaging, conversational but professional, smart, and direct. Avoid overly bureaucratic or robotic language.
+            - Tone: Engaging, conversational but professional, smart, and direct.
             - Focus: Highlight exactly "what's in it for the expat".
             - Language: Turkish (Türkçe).
 
@@ -259,101 +249,118 @@
             JSON STRUCTURE:
             {
                 "headline": "A catchy, click-worthy (but accurate) headline in Turkish. Do not use emojis.",
-                "source": "Name of the news source derived from URL (e.g. 'Nyidanmark', 'Skat.dk', 'The Local').",
-                "summary": "A 2-3 sentence summary in Turkish that captures the essence. Write it like you are telling a friend key info. Not too formal.",
+                "source": "Name of the news source derived from URL (e.g. 'Nyidanmark', 'Skat.dk').",
+                "summary": "A 2-3 sentence summary in Turkish that captures the essence. Not too formal.",
                 "expat_significance": "One strong sentence explaining exactly why this matters for an expat's wallet, visa, or daily life.",
                 "score": Integer (1-10) based on impact on expat life.
             }
             `;
 
-            const userMessage = `Analyze this link: ${url}`;
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [
+                        { role: "system", content: systemPrompt },
+                        { role: "user", content: `Analyze this link: ${url}` }
+                    ]
+                })
+            });
 
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: model,
-                        messages: [
-                            { role: "system", content: systemPrompt },
-                            { role: "user", content: userMessage }
-                        ]
-                        // temperature removed to avoid errors with strict models (like o1 or gpt-5 beta)
-                    })
-                });
+            const data = await response.json();
+            if (data.error) throw new Error(data.error.message);
 
-                const data = await response.json();
-
-                if (data.error) throw new Error(data.error.message);
-
-                let content = data.choices[0].message.content;
-                // Clean markdown if present
-                content = content.replace(/```json/g, '').replace(/```/g, '').trim();
-                
-                const parsedData = JSON.parse(content);
-                renderResult(parsedData);
-
-            } catch (error) {
-                alert("Hata: " + error.message);
-                console.error(error);
-            } finally {
-                btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                loading.classList.add('hidden');
-            }
+            let content = data.choices[0].message.content;
+            content = content.replace(/```json/g, '').replace(/```/g, '').trim();
+            return JSON.parse(content);
         }
 
-        function renderResult(data) {
-            // Text Content
-            document.getElementById('outHeadline').textContent = data.headline;
+        function createResultCard(data, url) {
+            const card = document.createElement('div');
+            card.className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in";
             
-            // Source Name Logic
-            const sourceEl = document.getElementById('outSource');
-            if (data.source) {
-                sourceEl.textContent = data.source;
-                sourceEl.classList.remove('hidden');
-            } else {
-                sourceEl.classList.add('hidden');
+            // Determine Color based on score
+            let colorClass = "text-neon-blue";
+            let borderColor = "border-neon-blue";
+            let circleColor = "#00F0FF";
+            
+            if (data.score >= 8) {
+                colorClass = "text-neon-red";
+                borderColor = "border-neon-red";
+                circleColor = "#FF0055";
+            } else if (data.score >= 5) {
+                colorClass = "text-yellow-400";
+                borderColor = "border-yellow-400";
+                circleColor = "#Facc15";
             }
 
-            document.getElementById('outSummary').textContent = data.summary;
-            document.getElementById('outSignificance').textContent = data.expat_significance;
-            document.getElementById('outScore').textContent = data.score;
-            document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 4);
-
-            // Circular Progress Animation
-            const circle = document.getElementById('scoreCircle');
-            const circumference = 2 * Math.PI * 36; // r=36
+            // Calculate Dash offset for circle
+            const circumference = 2 * Math.PI * 26; // r=26
             const offset = circumference - (data.score / 10) * circumference;
-            
-            // Set Color based on score
-            if (data.score >= 8) circle.setAttribute('stroke', '#FF0055'); // Neon Red
-            else if (data.score >= 5) circle.setAttribute('stroke', '#Facc15'); // Yellow
-            else circle.setAttribute('stroke', '#00F0FF'); // Neon Blue
 
-            // Show Card
-            const card = document.getElementById('resultCard');
-            card.classList.remove('hidden');
+            card.innerHTML = `
+                <div class="flex justify-between items-start gap-3 mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                             ${data.source ? `<span class="inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase">${data.source}</span>` : ''}
+                        </div>
+                        <h3 class="text-lg font-bold text-white leading-tight hover:text-blue-300 transition"><a href="${url}" target="_blank">${data.headline}</a></h3>
+                    </div>
+                    <div class="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle cx="28" cy="28" r="26" stroke="#1f1f1f" stroke-width="4" fill="transparent"></circle>
+                            <circle cx="28" cy="28" r="26" stroke="${circleColor}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
+                        </svg>
+                        <span class="absolute text-sm font-bold font-mono">${data.score}</span>
+                    </div>
+                </div>
+                
+                <p class="text-gray-400 text-sm mb-4 leading-relaxed">${data.summary}</p>
+                
+                <div class="bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md">
+                    <p class="text-xs text-gray-300 italic"><span class="${colorClass} font-bold text-[10px] uppercase block mb-1">Expat Notu:</span> ${data.expat_significance}</p>
+                </div>
+                
+                <div class="mt-4 pt-3 border-t border-gray-800 flex justify-end">
+                    <a href="${url}" target="_blank" class="text-xs text-gray-500 hover:text-white flex items-center gap-1 transition">
+                        Kaynağa Git <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            `;
             
-            // Trigger CSS Transition
-            setTimeout(() => {
-                card.classList.remove('translate-y-4', 'opacity-0');
-                circle.style.strokeDashoffset = offset;
-            }, 50);
+            document.getElementById('resultsGrid').appendChild(card);
         }
 
-        function toggleJson() {
-            const container = document.getElementById('jsonContainer');
-            container.classList.toggle('hidden');
+        function createErrorCard(url, msg) {
+            const card = document.createElement('div');
+            card.className = "glass-panel rounded-xl border border-red-900/50 p-6 opacity-80";
+            card.innerHTML = `
+                <div class="flex items-center gap-2 mb-2 text-red-500">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3 class="font-bold text-sm">Analiz Hatası</h3>
+                </div>
+                <p class="text-xs text-gray-500 break-all mb-2">${url}</p>
+                <p class="text-xs text-red-400 font-mono">${msg}</p>
+            `;
+            document.getElementById('resultsGrid').appendChild(card);
         }
 
-        function copyJson() {
-            const text = document.getElementById('jsonOutput').textContent;
+        function updateCombinedJson() {
+            const jsonSection = document.getElementById('jsonSection');
+            const codeBlock = document.getElementById('combinedJsonOutput');
+            
+            codeBlock.textContent = JSON.stringify(globalResults, null, 4);
+            jsonSection.classList.remove('hidden');
+        }
+
+        function copyCombinedJson() {
+            const text = document.getElementById('combinedJsonOutput').textContent;
             navigator.clipboard.writeText(text).then(() => {
-                alert('JSON kopyalandı!');
+                alert('Tüm JSON verisi kopyalandı!');
             });
         }
     </script>
