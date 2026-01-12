@@ -164,6 +164,14 @@
         // Global array to store all results
         let globalResults = [];
 
+        // Sayfa yüklendiğinde LocalStorage kontrolü
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedKey = localStorage.getItem('openai_api_key');
+            if (savedKey) {
+                document.getElementById('apiKey').value = savedKey;
+            }
+        });
+
         async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
             const model = document.getElementById('modelSelect').value;
@@ -177,6 +185,9 @@
 
             if (!apiKey) { alert("Lütfen API Key giriniz."); return; }
             if (!textInput.trim()) { alert("Lütfen en az bir URL giriniz."); return; }
+
+            // API Key'i LocalStorage'a kaydet
+            localStorage.setItem('openai_api_key', apiKey);
 
             // 1. Prepare URLs
             const urls = textInput.split('\n').filter(url => url.trim() !== '');
