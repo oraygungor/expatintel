@@ -69,6 +69,12 @@
             border-color: #00F0FF;
             outline: none;
         }
+        /* Disabled state styles */
+        .disabled-area {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
@@ -105,19 +111,24 @@
                         <input type="password" id="apiKey" placeholder="sk-..." class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono placeholder-gray-700">
                     </div>
                 </div>
-                <!-- Server URL (Hidden mostly but configurable) -->
+                <!-- Server URL (Connection Check Added) -->
                 <div>
                     <label class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
-                    <div class="relative">
-                        <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
-                        <!-- VALUE kısmına Hugging Face linkini yapıştır (sonunda / olmasın) -->
-                        <input type="text" id="serverUrl" value="https://expatintel.onrender.com" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
+                    <div class="relative flex gap-2">
+                        <div class="relative flex-1">
+                            <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
+                            <input type="text" id="serverUrl" value="https://expatintel.onrender.com" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
+                        </div>
+                        <button onclick="connectToServer()" id="connectBtn" class="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-xs font-mono transition border border-gray-700 whitespace-nowrap flex items-center gap-2">
+                            <i class="fas fa-plug"></i> <span id="connectBtnText">Bağlan</span>
+                        </button>
                     </div>
+                    <p id="connectionStatus" class="text-[10px] mt-2 font-mono h-4 text-gray-500 pl-1"></p>
                 </div>
             </div>
 
-            <!-- URL Input Area -->
-            <div class="mb-6">
+            <!-- URL Input Area (Wrapped for Disabling) -->
+            <div id="analysisSection" class="mb-6 transition-all duration-500 disabled-area">
                 <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
                 <div class="flex flex-col gap-3">
                     <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/...\nhttps://skat.dk/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
@@ -125,7 +136,7 @@
                     <div class="flex justify-between items-center">
                         <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
                         <div class="ml-auto flex gap-3 items-center">
-                            <!-- Model Select Mini (Güncellendi) -->
+                            <!-- Model Select Mini -->
                             <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1 max-w-[150px]">
                                 <option value="gpt-5-nano">GPT-5 Nano ($0.05)</option>
                                 <option value="gpt-4o-mini" selected>GPT-4o Mini ($0.15)</option>
@@ -176,11 +187,71 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedKey = localStorage.getItem('openai_api_key');
             if (savedKey) document.getElementById('apiKey').value = savedKey;
+            
+            // Auto-check stored server URL on load (optional, but good UX)
+            // const savedUrl = localStorage.getItem('backend_url');
+            // if (savedUrl) document.getElementById('serverUrl').value = savedUrl;
         });
+
+        // --- Connection Logic ---
+        async function connectToServer() {
+            const serverUrlInput = document.getElementById('serverUrl');
+            const connectBtn = document.getElementById('connectBtn');
+            const btnText = document.getElementById('connectBtnText');
+            const statusEl = document.getElementById('connectionStatus');
+            const analysisSection = document.getElementById('analysisSection');
+            
+            const url = serverUrlInput.value.replace(/\/$/, '');
+            if (!url) {
+                statusEl.textContent = "Lütfen bir URL girin.";
+                statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
+                return;
+            }
+
+            // UI Loading State
+            connectBtn.disabled = true;
+            btnText.textContent = "Bağlanıyor...";
+            statusEl.textContent = "Sunucu uyandırılıyor (50-60sn sürebilir)...";
+            statusEl.className = "text-[10px] mt-2 font-mono h-4 text-yellow-500 pl-1 animate-pulse";
+            
+            try {
+                // Fetch FastAPI openapi.json as a health check
+                // This is lightweight and usually exists on standard FastAPI deployments
+                const response = await fetch(`${url}/openapi.json`, { 
+                    method: 'GET',
+                    // Short timeout initially, but Render needs more time for cold boot
+                    signal: AbortSignal.timeout(60000) 
+                });
+
+                if (response.ok) {
+                    // Success!
+                    statusEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Sunucu Aktif ve Hazır!';
+                    statusEl.className = "text-[10px] mt-2 font-mono h-4 text-neon-green pl-1";
+                    
+                    connectBtn.className = "bg-green-900/30 border border-green-700 text-green-400 px-4 rounded-lg text-xs font-mono transition whitespace-nowrap flex items-center gap-2 cursor-default";
+                    btnText.textContent = "Bağlı";
+                    
+                    // Enable Analysis Area
+                    analysisSection.classList.remove('disabled-area');
+                    
+                    // Save successful URL
+                    localStorage.setItem('backend_url', url);
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.error(error);
+                statusEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin veya sunucu uyuyor olabilir.';
+                statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
+                
+                connectBtn.disabled = false;
+                btnText.textContent = "Tekrar Dene";
+            }
+        }
 
         async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
-            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, ''); // remove trailing slash
+            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
             const model = document.getElementById('modelSelect').value;
             const textInput = document.getElementById('newsUrls').value;
             
@@ -197,12 +268,6 @@
             // 1. Prepare
             const urls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
             
-            // Check Server Health (Optional but good UX)
-            try {
-                // Simple fetch to see if server exists (usually expects 404 or 405 on GET root, but connection refused is the key)
-                // Skip for now to keep it fast, rely on first request failure.
-            } catch(e) {}
-
             // 2. Reset UI
             globalResults = new Array(urls.length).fill(null);
             grid.innerHTML = '';
