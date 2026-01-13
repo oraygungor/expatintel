@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-requests
-beautifulsoup4
+httpx
+trafilatura
 openai
 pydantic
+beautifulsoup4
