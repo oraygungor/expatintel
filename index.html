@@ -110,7 +110,8 @@
                     <label class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
                     <div class="relative">
                         <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
-                        <input type="text" id="serverUrl" value="https://expatintel.onrender.com" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
+                        <!-- VALUE kısmına Hugging Face linkini yapıştır (sonunda / olmasın) -->
+                        <input type="text" id="serverUrl" value="https://huggingface-kullaniciadin-spaceadin.hf.space" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
                     </div>
                 </div>
             </div>
@@ -124,10 +125,15 @@
                     <div class="flex justify-between items-center">
                         <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
                         <div class="ml-auto flex gap-3 items-center">
-                            <!-- Model Select Mini -->
-                            <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1">
-                                <option value="gpt-4o-mini">GPT-4o Mini</option>
-                                <option value="gpt-4o">GPT-4o</option>
+                            <!-- Model Select Mini (Güncellendi) -->
+                            <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1 max-w-[150px]">
+                                <option value="gpt-5-nano">GPT-5 Nano ($0.05)</option>
+                                <option value="gpt-4o-mini" selected>GPT-4o Mini ($0.15)</option>
+                                <option value="gpt-5-mini">GPT-5 Mini ($0.25)</option>
+                                <option value="gpt-5">GPT-5 ($1.25)</option>
+                                <option value="gpt-5.1">GPT-5.1 ($1.25)</option>
+                                <option value="gpt-5.2">GPT-5.2 ($1.75)</option>
+                                <option value="gpt-4o">GPT-4o ($2.50)</option>
                             </select>
                             
                             <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
