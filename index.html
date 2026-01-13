@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expat Intel | Multi-Link Analyzer</title>
+    <title>Expat Intel | Server-Side Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -33,11 +33,16 @@
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
                         }
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'shimmer': 'shimmer 2s infinite linear'
                     }
                 }
             }
@@ -45,25 +50,15 @@
     </script>
     <style>
         body { background-color: #050505; color: #ffffff; }
-        
         .glass-panel {
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-
-        .gradient-text {
-            background: linear-gradient(to right, #00F0FF, #7000FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .skeleton-bg {
+            background: linear-gradient(to right, #1f1f1f 4%, #2a2a2a 25%, #1f1f1f 36%);
+            background-size: 1000px 100%;
         }
-
         .input-dark {
             background-color: #0A0A0A;
             border: 1px solid #262626;
@@ -72,14 +67,13 @@
         }
         .input-dark:focus {
             border-color: #00F0FF;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
             outline: none;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
 
-    <!-- Background Decoration -->
+    <!-- Background -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-neon-purple opacity-10 blur-[100px] rounded-full"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-neon-blue opacity-10 blur-[100px] rounded-full"></div>
@@ -91,16 +85,19 @@
         <!-- Header -->
         <div class="text-center mb-10 mt-10">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
-                Expat<span class="gradient-text">Intel</span> Batch
+                Expat<span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple">Intel</span>
             </h1>
-            <p class="text-gray-500 font-light">Secure & Concurrent News Analyzer</p>
+            <p class="text-gray-500 font-light flex items-center justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
+                Server-Side Scraping Edition
+            </p>
         </div>
 
         <!-- Configuration Panel -->
         <div class="glass-panel rounded-2xl p-6 md:p-8 shadow-2xl mb-8">
             
-            <!-- API Key & Model Row -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <!-- API Key -->
                 <div class="md:col-span-2">
                     <label class="block text-xs font-mono text-gray-400 mb-2">OPENAI API KEY</label>
                     <div class="relative">
@@ -108,19 +105,12 @@
                         <input type="password" id="apiKey" placeholder="sk-..." class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono placeholder-gray-700">
                     </div>
                 </div>
+                <!-- Server URL (Hidden mostly but configurable) -->
                 <div>
-                    <label class="block text-xs font-mono text-gray-400 mb-2">MODEL</label>
+                    <label class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
                     <div class="relative">
-                        <i class="fas fa-robot absolute left-3 top-3.5 text-gray-600 text-sm"></i>
-                        <select id="modelSelect" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm appearance-none cursor-pointer">
-                            <option value="gpt-5-nano">GPT-5 Nano ($0.05/M - En Ucuz)</option>
-                            <option value="gpt-4o-mini" selected>GPT-4o Mini ($0.15/M - Ekonomik)</option>
-                            <option value="gpt-5-mini">GPT-5 Mini ($0.25/M)</option>
-                            <option value="gpt-5">GPT-5 ($1.25/M - Yeni Standart)</option>
-                            <option value="gpt-5.1">GPT-5.1 ($1.25/M)</option>
-                            <option value="gpt-5.2">GPT-5.2 ($1.75/M - Yüksek Zeka)</option>
-                            <option value="gpt-4.1">GPT-4.1 ($2.00/M)</option>
-                        </select>
+                        <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
+                        <input type="text" id="serverUrl" value="https://expatintel.onrender.com" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
                     </div>
                 </div>
             </div>
@@ -129,31 +119,37 @@
             <div class="mb-6">
                 <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
                 <div class="flex flex-col gap-3">
-                    <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/2026/...\nhttps://skat.dk/researcher-tax...\nhttps://cphpost.dk/news/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
+                    <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/...\nhttps://skat.dk/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
                     
                     <div class="flex justify-between items-center">
-                        <span id="statusText" class="text-xs font-mono text-neon-blue hidden"><i class="fas fa-sync fa-spin mr-2"></i><span id="progressCount">0/0</span> İşleniyor...</span>
-                        <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 ml-auto">
-                            <span>HEPSİNİ ANALİZ ET</span>
-                            <i class="fas fa-layer-group"></i>
-                        </button>
+                        <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
+                        <div class="ml-auto flex gap-3 items-center">
+                            <!-- Model Select Mini -->
+                            <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1">
+                                <option value="gpt-4o-mini">GPT-4o Mini</option>
+                                <option value="gpt-4o">GPT-4o</option>
+                            </select>
+                            
+                            <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                                <span>GERÇEK ANALİZ ET</span>
+                                <i class="fas fa-bolt"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Results Grid -->
-        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 hidden">
-            <!-- Cards will be injected here via JS -->
-        </div>
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 hidden"></div>
 
-        <!-- Combined JSON Output Section -->
+        <!-- JSON Output -->
         <div id="jsonSection" class="hidden">
             <div class="glass-panel rounded-xl overflow-hidden border border-gray-800">
                 <div class="bg-black/40 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
                     <div class="flex items-center gap-2 text-xs text-neon-green font-mono">
                         <i class="fas fa-database"></i>
-                        <span>BİRLEŞTİRİLMİŞ JSON ÇIKTISI (TÜM LİNKLER)</span>
+                        <span>BİRLEŞTİRİLMİŞ JSON</span>
                     </div>
                     <button onclick="copyCombinedJson()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-white transition font-mono flex items-center gap-2">
                         <i class="far fa-copy"></i> Kopyala
@@ -168,20 +164,17 @@
     </main>
 
     <script>
-        // Global array to store all results (indexed to preserve order)
         let globalResults = [];
-        const CONCURRENCY_LIMIT = 3; // Max active requests to avoid 429 errors
+        const CONCURRENCY_LIMIT = 3; 
 
-        // Initialize LocalStorage
         window.addEventListener('DOMContentLoaded', () => {
             const savedKey = localStorage.getItem('openai_api_key');
-            if (savedKey) {
-                document.getElementById('apiKey').value = savedKey;
-            }
+            if (savedKey) document.getElementById('apiKey').value = savedKey;
         });
 
         async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
+            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, ''); // remove trailing slash
             const model = document.getElementById('modelSelect').value;
             const textInput = document.getElementById('newsUrls').value;
             
@@ -196,284 +189,237 @@
             localStorage.setItem('openai_api_key', apiKey);
 
             // 1. Prepare
-            const urls = textInput.split('\n').filter(url => url.trim() !== '');
+            const urls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
             
+            // Check Server Health (Optional but good UX)
+            try {
+                // Simple fetch to see if server exists (usually expects 404 or 405 on GET root, but connection refused is the key)
+                // Skip for now to keep it fast, rely on first request failure.
+            } catch(e) {}
+
             // 2. Reset UI
-            globalResults = new Array(urls.length).fill(null); // Pre-fill with null to maintain order
+            globalResults = new Array(urls.length).fill(null);
             grid.innerHTML = '';
             grid.classList.remove('hidden');
             jsonSection.classList.add('hidden');
             
+            urls.forEach((url, index) => {
+                grid.appendChild(createSkeletonCard(index, url));
+            });
+
             statusText.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i><span id="progressCount">0/0</span> İşleniyor...';
             statusText.classList.remove('hidden');
             const progressCount = document.getElementById('progressCount');
             
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            // 3. Process with Concurrency Limit
+
+            // 3. Process Queue
             let completed = 0;
             progressCount.textContent = `0/${urls.length}`;
 
-            // Helper to process tasks with limited concurrency
             async function processQueue() {
-                const results = [];
-                const executing = [];
+                const executing = new Set();
+                const allTasks = [];
 
                 for (let i = 0; i < urls.length; i++) {
                     const url = urls[i];
-                    
-                    // Create a promise for each task
-                    const p = analyzeSingleUrl(url, apiKey, model)
+                    const cardId = `card-${i}`;
+
+                    const p = analyzeViaServer(url, apiKey, model, serverUrl)
                         .then(result => {
-                            // On Success
-                            globalResults[i] = { // Maintain index
-                                input_url: url,
-                                analysis: result
-                            };
-                            // Safe DOM creation
-                            const card = createResultCard(result, url);
-                            // Insert card into grid at correct position is hard with concurrency, 
-                            // appending is UX friendly as they finish.
-                            grid.appendChild(card); 
+                            globalResults[i] = { input_url: url, analysis: result };
+                            const oldCard = document.getElementById(cardId);
+                            const newCard = createResultCard(result, url);
+                            if(oldCard) oldCard.replaceWith(newCard);
                         })
                         .catch(error => {
-                            // On Error
-                            console.error(`Error analyzing ${url}:`, error);
-                            const errCard = createErrorCard(url, error.message);
-                            grid.appendChild(errCard);
-                            globalResults[i] = {
-                                input_url: url,
-                                error: error.message
-                            };
+                            console.error(`Error on ${url}:`, error);
+                            const oldCard = document.getElementById(cardId);
+                            
+                            // Check for Connection Refused
+                            let msg = error.message;
+                            if(msg.includes('Failed to fetch')) msg = "Sunucuya bağlanılamadı. Python backend çalışıyor mu?";
+
+                            const errCard = createErrorCard(url, msg);
+                            if(oldCard) oldCard.replaceWith(errCard);
+                            globalResults[i] = { input_url: url, error: msg };
                         })
                         .finally(() => {
                             completed++;
                             if (progressCount) progressCount.textContent = `${completed}/${urls.length}`;
+                            executing.delete(p);
                         });
 
-                    results.push(p);
+                    allTasks.push(p);
+                    executing.add(p);
 
-                    // Logic to limit concurrency
-                    const e = p.then(() => executing.splice(executing.indexOf(e), 1));
-                    executing.push(e);
-
-                    if (executing.length >= CONCURRENCY_LIMIT) {
+                    if (executing.size >= CONCURRENCY_LIMIT) {
                         await Promise.race(executing);
                     }
                 }
-                return Promise.all(results);
+                return Promise.all(allTasks);
             }
 
             await processQueue();
 
-            // 4. Finalize
             btn.disabled = false;
             btn.classList.remove('opacity-50', 'cursor-not-allowed');
             statusText.innerHTML = '<i class="fas fa-check-circle mr-2 text-neon-green"></i> Analiz Tamamlandı';
-            
             updateCombinedJson();
         }
 
-        async function analyzeSingleUrl(url, apiKey, model) {
-            const systemPrompt = `
-            You are a helpful assistant for expats in Denmark.
-            User will provide a URL.
-            
-            TASK:
-            1. If you have browsing capabilities enabled, use them to read the URL.
-            2. If you cannot browse, infer the content from the URL structure.
-            3. Generate a JSON response in Turkish.
-
-            JSON STRUCTURE (Strict):
-            {
-                "headline": "Headline in Turkish",
-                "source": "Source Name (e.g. Nyidanmark)",
-                "summary": "2-3 sentences summary in Turkish",
-                "expat_significance": "Why it matters for expats",
-                "score": Integer (1-10)
-            }
-            `;
-
+        async function analyzeViaServer(url, apiKey, model, serverUrl) {
+            // Validate URL Protocol
             try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: model,
-                        messages: [
-                            { role: "system", content: systemPrompt },
-                            { role: "user", content: `Analyze this link: ${url}` }
-                        ],
-                        // Key Change: Enforce JSON Object to prevent parsing errors
-                        response_format: { type: "json_object" }
-                    })
-                });
-
-                if (!response.ok) {
-                    const errData = await response.json();
-                    throw new Error(errData.error?.message || `HTTP ${response.status}`);
-                }
-
-                const data = await response.json();
-                let content = data.choices[0].message.content;
-                
-                // Redundant safety parse, though response_format handles most cases
-                return JSON.parse(content);
-
-            } catch (error) {
-                throw error;
+                const u = new URL(url);
+                if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error("Invalid Protocol");
+            } catch(e) {
+                throw new Error("Geçersiz URL formatı");
             }
+
+            // Call Python Backend
+            const response = await fetch(`${serverUrl}/analyze`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    url: url,
+                    api_key: apiKey,
+                    model: model
+                })
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                let errMsg = `HTTP ${response.status}`;
+                try {
+                    const jsonErr = JSON.parse(errText);
+                    if(jsonErr.detail) errMsg = jsonErr.detail;
+                } catch(e) {}
+                throw new Error(errMsg);
+            }
+
+            return await response.json();
         }
 
-        // Secure DOM Creation to prevent XSS (replaces template literals)
+        // --- DOM Helpers ---
+        function createSkeletonCard(index, url) {
+            const div = document.createElement('div');
+            div.id = `card-${index}`;
+            div.className = "glass-panel rounded-xl border border-gray-800 p-6 mb-4 animate-pulse";
+            div.innerHTML = `
+                <div class="flex gap-4 mb-4">
+                    <div class="flex-1 space-y-3">
+                        <div class="h-2 w-16 bg-gray-800 rounded"></div>
+                        <div class="h-4 w-3/4 skeleton-bg animate-shimmer rounded"></div>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-gray-800"></div>
+                </div>
+            `;
+            const urlDiv = document.createElement('div');
+            urlDiv.className = "text-[10px] text-gray-600 truncate font-mono";
+            urlDiv.textContent = url;
+            div.appendChild(urlDiv);
+            return div;
+        }
+
         function createResultCard(data, url) {
             const card = document.createElement('div');
-            card.className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in mb-4"; // added mb-4 for spacing if needed
-
-            // --- Logic for Color & Score ---
-            const scoreVal = parseInt(data.score) || 0; // Type safety
-            let colorClass = "text-neon-blue";
-            let borderColor = "border-neon-blue";
-            let circleColor = "#00F0FF";
+            card.className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in mb-4"; 
             
-            if (scoreVal >= 8) {
-                colorClass = "text-neon-red";
-                borderColor = "border-neon-red";
-                circleColor = "#FF0055";
-            } else if (scoreVal >= 5) {
-                colorClass = "text-yellow-400";
-                borderColor = "border-yellow-400";
-                circleColor = "#Facc15";
-            }
+            let scoreVal = Math.max(1, Math.min(10, parseInt(data.score) || 0));
+            let color = scoreVal >= 8 ? "#FF0055" : (scoreVal >= 5 ? "#Facc15" : "#00F0FF");
+            let borderColor = scoreVal >= 8 ? "border-neon-red" : (scoreVal >= 5 ? "border-yellow-400" : "border-neon-blue");
+            let textColor = scoreVal >= 8 ? "text-neon-red" : (scoreVal >= 5 ? "text-yellow-400" : "text-neon-blue");
 
             const circumference = 2 * Math.PI * 26; 
             const offset = circumference - (scoreVal / 10) * circumference;
 
-            // --- DOM Construction ---
+            // DOM Construction
+            const header = document.createElement('div');
+            header.className = "flex justify-between items-start gap-3 mb-4";
             
-            // Header Row
-            const headerDiv = document.createElement('div');
-            headerDiv.className = "flex justify-between items-start gap-3 mb-4";
+            const left = document.createElement('div');
+            left.className = "flex-1";
             
-            // Left Side (Source + Headline)
-            const leftDiv = document.createElement('div');
-            leftDiv.className = "flex-1";
-
-            // Source Badge
-            if (data.source) {
-                const sourceBadge = document.createElement('span');
-                sourceBadge.className = "inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase mb-2";
-                sourceBadge.textContent = data.source; // Safe
-                leftDiv.appendChild(sourceBadge);
+            if(data.source) {
+                const badge = document.createElement('span');
+                badge.className = "inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase mb-2";
+                badge.textContent = data.source;
+                left.appendChild(badge);
             }
 
-            // Headline Link
             const h3 = document.createElement('h3');
             h3.className = "text-lg font-bold text-white leading-tight hover:text-blue-300 transition";
-            const link = document.createElement('a');
-            link.href = url; // Browsers safely handle href, but could sanitize protocol if being ultra-paranoid
-            link.target = "_blank";
-            link.textContent = data.headline; // Safe text
-            h3.appendChild(link);
-            leftDiv.appendChild(h3);
+            const a = document.createElement('a');
+            a.href = url; a.target = "_blank"; a.textContent = data.headline;
+            h3.appendChild(a);
+            left.appendChild(h3);
+            header.appendChild(left);
 
-            headerDiv.appendChild(leftDiv);
-
-            // Right Side (Circle) - SVG is complex to build via DOM API, innerHTML is okay for static SVG structure if values are safe
-            // We use template literal ONLY for the SVG structure where variables are numbers.
-            const rightDiv = document.createElement('div');
-            rightDiv.className = "relative w-14 h-14 flex items-center justify-center flex-shrink-0";
-            rightDiv.innerHTML = `
+            const right = document.createElement('div');
+            right.className = "relative w-14 h-14 flex items-center justify-center flex-shrink-0";
+            right.innerHTML = `
                 <svg class="w-full h-full transform -rotate-90">
                     <circle cx="28" cy="28" r="26" stroke="#1f1f1f" stroke-width="4" fill="transparent"></circle>
-                    <circle cx="28" cy="28" r="26" stroke="${circleColor}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
+                    <circle cx="28" cy="28" r="26" stroke="${color}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
                 </svg>
                 <span class="absolute text-sm font-bold font-mono">${scoreVal}</span>
             `;
-            headerDiv.appendChild(rightDiv);
-            card.appendChild(headerDiv);
+            header.appendChild(right);
+            card.appendChild(header);
 
-            // Summary
-            const pSummary = document.createElement('p');
-            pSummary.className = "text-gray-400 text-sm mb-4 leading-relaxed";
-            pSummary.textContent = data.summary; // Safe
-            card.appendChild(pSummary);
+            const pSum = document.createElement('p');
+            pSum.className = "text-gray-400 text-sm mb-4 leading-relaxed";
+            pSum.textContent = data.summary;
+            card.appendChild(pSum);
 
-            // Expat Significance Box
             const sigBox = document.createElement('div');
             sigBox.className = `bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md`;
-            
             const sigTitle = document.createElement('span');
-            sigTitle.className = `${colorClass} font-bold text-[10px] uppercase block mb-1`;
+            sigTitle.className = `${textColor} font-bold text-[10px] uppercase block mb-1`;
             sigTitle.textContent = "Expat Notu:";
-            
-            const sigText = document.createElement('p');
-            sigText.className = "text-xs text-gray-300 italic";
-            sigText.appendChild(sigTitle);
-            sigText.appendChild(document.createTextNode(data.expat_significance)); // Safe
-            
-            sigBox.appendChild(sigText);
+            const sigP = document.createElement('p');
+            sigP.className = "text-xs text-gray-300 italic";
+            sigP.appendChild(sigTitle);
+            sigP.appendChild(document.createTextNode(data.expat_significance));
+            sigBox.appendChild(sigP);
             card.appendChild(sigBox);
-
-            // Footer Link
-            const footerDiv = document.createElement('div');
-            footerDiv.className = "mt-4 pt-3 border-t border-gray-800 flex justify-end";
-            
-            const footerLink = document.createElement('a');
-            footerLink.href = url;
-            footerLink.target = "_blank";
-            footerLink.className = "text-xs text-gray-500 hover:text-white flex items-center gap-1 transition";
-            footerLink.innerHTML = 'Kaynağa Git <i class="fas fa-external-link-alt"></i>'; // Static HTML safe
-            
-            footerDiv.appendChild(footerLink);
-            card.appendChild(footerDiv);
 
             return card;
         }
 
         function createErrorCard(url, msg) {
-            const card = document.createElement('div');
-            card.className = "glass-panel rounded-xl border border-red-900/50 p-6 opacity-80 animate-fade-in";
+            const div = document.createElement('div');
+            div.className = "glass-panel rounded-xl border border-red-900/50 p-6 opacity-80 animate-fade-in mb-4";
             
-            const header = document.createElement('div');
-            header.className = "flex items-center gap-2 mb-2 text-red-500";
-            header.innerHTML = '<i class="fas fa-exclamation-triangle"></i><h3 class="font-bold text-sm">Analiz Hatası</h3>';
-            
-            const urlP = document.createElement('p');
-            urlP.className = "text-xs text-gray-500 break-all mb-2";
-            urlP.textContent = url;
-            
-            const msgP = document.createElement('p');
-            msgP.className = "text-xs text-red-400 font-mono";
-            msgP.textContent = msg;
+            const head = document.createElement('div');
+            head.className = "flex items-center gap-2 mb-2 text-red-500";
+            head.innerHTML = '<i class="fas fa-exclamation-triangle"></i><h3 class="font-bold text-sm">Hata</h3>';
+            div.appendChild(head);
 
-            card.appendChild(header);
-            card.appendChild(urlP);
-            card.appendChild(msgP);
-            
-            return card;
+            const pUrl = document.createElement('p');
+            pUrl.className = "text-xs text-gray-500 break-all mb-2";
+            pUrl.textContent = url;
+            div.appendChild(pUrl);
+
+            const pMsg = document.createElement('p');
+            pMsg.className = "text-xs text-red-400 font-mono";
+            pMsg.textContent = msg;
+            div.appendChild(pMsg);
+
+            return div;
         }
 
         function updateCombinedJson() {
-            const jsonSection = document.getElementById('jsonSection');
-            const codeBlock = document.getElementById('combinedJsonOutput');
-            
-            // Remove nulls if any weird race condition happened (though array is pre-filled)
-            const cleanResults = globalResults.filter(r => r !== null);
-            
-            codeBlock.textContent = JSON.stringify(cleanResults, null, 4);
-            jsonSection.classList.remove('hidden');
+            const clean = globalResults.filter(r => r !== null);
+            document.getElementById('combinedJsonOutput').textContent = JSON.stringify(clean, null, 4);
+            document.getElementById('jsonSection').classList.remove('hidden');
         }
 
         function copyCombinedJson() {
-            const text = document.getElementById('combinedJsonOutput').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Tüm JSON verisi kopyalandı!');
-            });
+            navigator.clipboard.writeText(document.getElementById('combinedJsonOutput').textContent)
+                .then(() => alert('Kopyalandı!'));
         }
     </script>
 </body>
