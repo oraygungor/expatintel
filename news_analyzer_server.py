@@ -5,7 +5,7 @@ import json
 import socket
 import ipaddress
 from io import BytesIO
-from typing import List
+from typing import List, Optional
 from urllib.parse import urlparse, urljoin
 
 import trafilatura
@@ -51,7 +51,7 @@ class AnalyzeResponse(BaseModel):
     summary: str
     expat_significance: str
     score: int
-    final_url: str  # Redirect sonrası gidilen son URL
+    final_url: Optional[str] = None  # Redirect sonrası gidilen son URL
 
 
 class ExportItem(BaseModel):
@@ -59,11 +59,12 @@ class ExportItem(BaseModel):
     analysis: AnalyzeResponse
 
 
-# --- Word Hyperlink Helper ---
+# --- Word Hyperlink Helper (GÜNCELLENDİ) ---
 def add_hyperlink(paragraph, text: str, url: str):
     """
-    paragraph içine tıklanabilir hyperlink ekler.
-    Word'de sadece `text` görünür, URL görünmez.
+    Paragraph içine tıklanabilir hyperlink ekler.
+    Word stil dosyasına güvenmek yerine, XML seviyesinde manuel olarak
+    MAVİ RENK ve ALTI ÇİZGİ ekler, böylece link olduğu kesin belli olur.
     """
     part = paragraph.part
     r_id = part.relate_to(url, RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
@@ -74,13 +75,18 @@ def add_hyperlink(paragraph, text: str, url: str):
     new_run = OxmlElement("w:r")
     rPr = OxmlElement("w:rPr")
 
-    # Word hyperlink style (mavi + altı çizili) - Word default
-    rStyle = OxmlElement("w:rStyle")
-    rStyle.set(qn("w:val"), "Hyperlink")
-    rPr.append(rStyle)
+    # 1. Renk: Standart Link Mavisi (0563C1)
+    color = OxmlElement('w:color')
+    color.set(qn('w:val'), '0563C1')
+    rPr.append(color)
+
+    # 2. Altı Çizili (Single Underline)
+    u = OxmlElement('w:u')
+    u.set(qn('w:val'), 'single')
+    rPr.append(u)
 
     new_run.append(rPr)
-
+    
     t = OxmlElement("w:t")
     t.text = text
     new_run.append(t)
@@ -101,11 +107,6 @@ def ensure_sentence_ends(text: str) -> str:
 
 # --- SSRF & DNS Protection Logic ---
 def validate_url_security(url: str):
-    """
-    SSRF koruması:
-    - Sadece http/https
-    - DNS çözümleyip private/loopback/reserved IP engeller
-    """
     try:
         parsed = urlparse(url)
     except Exception:
@@ -118,7 +119,6 @@ def validate_url_security(url: str):
     if not hostname:
         raise HTTPException(status_code=400, detail="Host bulunamadı.")
 
-    # IP literal ise
     try:
         ip = ipaddress.ip_address(hostname)
         if (ip.is_private or ip.is_loopback or ip.is_link_local or
@@ -128,7 +128,6 @@ def validate_url_security(url: str):
     except ValueError:
         pass
 
-    # DNS çözümleme
     try:
         addr_info = socket.getaddrinfo(hostname, None)
         for res in addr_info:
@@ -138,6 +137,8 @@ def validate_url_security(url: str):
                 ip.is_multicast or ip.is_reserved):
                 raise HTTPException(status_code=403, detail=f"Erişim engellendi: Yasaklı IP çözümlendi ({ip_str}).")
     except socket.gaierror:
+        # DNS çözümlenemedi ama bazen local development veya özel setup'larda olabilir.
+        # Yine de production güvenliği için hata fırlatıyoruz.
         raise HTTPException(status_code=400, detail="DNS çözümlenemedi.")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Güvenlik kontrolü hatası: {str(e)}")
@@ -145,10 +146,6 @@ def validate_url_security(url: str):
 
 # --- Async Content Fetching (Secure) ---
 async def fetch_url_content(url: str) -> tuple[str, str]:
-    """
-    httpx ile URL içeriği çeker.
-    Redirectleri MANUEL takip eder ve her adımda SSRF kontrolü yapar.
-    """
     current_url = url
 
     async with httpx.AsyncClient(timeout=TIMEOUT, verify=True) as client:
@@ -157,7 +154,6 @@ async def fetch_url_content(url: str) -> tuple[str, str]:
 
             try:
                 async with client.stream("GET", current_url, follow_redirects=False) as response:
-                    # Redirect
                     if response.status_code in (301, 302, 303, 307, 308):
                         location = response.headers.get("Location")
                         if not location:
@@ -167,13 +163,11 @@ async def fetch_url_content(url: str) -> tuple[str, str]:
 
                     response.raise_for_status()
 
-                    # Content-Type kontrolü
                     ct = response.headers.get("content-type", "").lower()
                     allowed_types = ["text/", "html", "xml", "json", "application/xhtml+xml", "application/xml"]
                     if not any(t in ct for t in allowed_types):
                         raise HTTPException(status_code=400, detail=f"Desteklenmeyen içerik tipi: {ct}")
 
-                    # Body download + size limit
                     data = bytearray()
                     async for chunk in response.aiter_bytes():
                         data.extend(chunk)
@@ -216,7 +210,6 @@ async def analyze_news(request: AnalyzeRequest):
 
     clean_text = await run_in_threadpool(extract_main_text, html_content)
 
-    # Fallback: BeautifulSoup
     if not clean_text or len(clean_text) < 50:
         from bs4 import BeautifulSoup
         soup = BeautifulSoup(html_content, "html.parser")
@@ -254,7 +247,6 @@ async def analyze_news(request: AnalyzeRequest):
     }
 
     try:
-        # Structured Output
         try:
             completion = await client.chat.completions.create(
                 model=request.model,
@@ -267,14 +259,11 @@ async def analyze_news(request: AnalyzeRequest):
 
             content = completion.choices[0].message.content
             data = json.loads(content)
-
-            # response_model final_url bekliyor
             data["final_url"] = final_url
             return data
 
         except Exception as schema_error:
             print(f"Schema failed, retrying with JSON mode: {schema_error}")
-
             completion = await client.chat.completions.create(
                 model=request.model,
                 messages=[
@@ -283,7 +272,6 @@ async def analyze_news(request: AnalyzeRequest):
                 ],
                 response_format={"type": "json_object"},
             )
-
             content = completion.choices[0].message.content
             data = json.loads(content)
 
@@ -311,9 +299,6 @@ async def analyze_news(request: AnalyzeRequest):
 async def export_docx(items: List[ExportItem]):
     """
     Frontend'den gelen globalResults listesi -> Word (.docx) indir.
-    Format:
-    - Header 3: "XYZ (title)"
-    - Normal: "xyz (summary). (Kaynak: DR)"  -> DR tıklanabilir link, URL görünmez
     """
     if not items:
         raise HTTPException(status_code=400, detail="Boş liste gönderildi.")
@@ -336,13 +321,19 @@ async def export_docx(items: List[ExportItem]):
             p.add_run("")
 
         p.add_run("(Kaynak: ")
+        
         source_label = (a.source or "Kaynak").strip()
+        
+        # Link'i belirle: Backend'den gelen final_url varsa onu, yoksa user'ın girdiği input_url'i kullan.
         link = (a.final_url or item.input_url or "").strip()
+
         if not link:
             # Link yoksa fallback: sadece yaz
             p.add_run(source_label)
         else:
+            # Varsa Mavi ve Altı Çizili Hyperlink ekle
             add_hyperlink(p, source_label, link)
+            
         p.add_run(")")
 
         # Boş satır
