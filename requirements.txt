@@ -5,3 +5,4 @@ trafilatura
 openai
 pydantic
 beautifulsoup4
+python-docx
