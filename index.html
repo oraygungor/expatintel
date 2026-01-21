@@ -75,6 +75,11 @@
             pointer-events: none;
             filter: grayscale(100%);
         }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; rounded: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
@@ -135,6 +140,12 @@
                     
                     <div class="flex justify-between items-center">
                         <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
+                        
+                        <!-- Utility Buttons for Input -->
+                        <div class="flex gap-2">
+                            <button onclick="document.getElementById('newsUrls').value = ''" class="text-xs text-gray-500 hover:text-white underline">Temizle</button>
+                        </div>
+
                         <div class="ml-auto flex gap-3 items-center">
                             <!-- Model Select Mini -->
                             <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1 max-w-[150px]">
@@ -148,8 +159,8 @@
                             </select>
                             
                             <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                                <span>GERÇEK ANALİZ ET</span>
-                                <i class="fas fa-bolt"></i>
+                                <span>LİSTEYE EKLE VE ANALİZ ET</span>
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -157,8 +168,25 @@
             </div>
         </div>
 
+        <!-- Results Toolbar -->
+        <div id="resultsToolbar" class="flex justify-between items-center mb-4 hidden px-2">
+            <h2 class="text-xl font-bold text-white">Sonuçlar <span id="resultCount" class="text-sm font-normal text-gray-500 ml-2">(0)</span></h2>
+            
+            <div class="flex gap-3">
+                <!-- Export to Word Button -->
+                <button id="exportBtn" onclick="exportToDocx()" class="text-xs text-neon-blue hover:text-white flex items-center gap-2 border border-neon-blue/30 bg-neon-blue/10 hover:bg-neon-blue/20 px-4 py-2 rounded-md transition font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">
+                    <i class="fas fa-file-word"></i> Word'e Aktar
+                </button>
+                
+                <!-- Clear All Button -->
+                <button onclick="clearAllResults()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 border border-red-900/30 bg-red-900/10 hover:bg-red-900/20 px-4 py-2 rounded-md transition">
+                    <i class="fas fa-trash-alt"></i> Tümünü Temizle
+                </button>
+            </div>
+        </div>
+
         <!-- Results Grid -->
-        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 hidden"></div>
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"></div>
 
         <!-- JSON Output -->
         <div id="jsonSection" class="hidden">
@@ -181,6 +209,8 @@
     </main>
 
     <script>
+        // Global state to store all results.
+        // Structure: { id: string, url: string, status: 'pending'|'success'|'error', data: object|null, errorMsg: string|null }
         let globalResults = [];
         const CONCURRENCY_LIMIT = 3; 
 
@@ -188,9 +218,7 @@
             const savedKey = localStorage.getItem('openai_api_key');
             if (savedKey) document.getElementById('apiKey').value = savedKey;
             
-            // Auto-check stored server URL on load (optional, but good UX)
-            // const savedUrl = localStorage.getItem('backend_url');
-            // if (savedUrl) document.getElementById('serverUrl').value = savedUrl;
+            // Restore session if needed? For now, start fresh.
         });
 
         // --- Connection Logic ---
@@ -216,140 +244,386 @@
             
             try {
                 // Fetch FastAPI openapi.json as a health check
-                // This is lightweight and usually exists on standard FastAPI deployments
                 const response = await fetch(`${url}/openapi.json`, { 
                     method: 'GET',
-                    // Short timeout initially, but Render needs more time for cold boot
                     signal: AbortSignal.timeout(60000) 
                 });
 
                 if (response.ok) {
-                    // Success!
                     statusEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Sunucu Aktif ve Hazır!';
                     statusEl.className = "text-[10px] mt-2 font-mono h-4 text-neon-green pl-1";
                     
                     connectBtn.className = "bg-green-900/30 border border-green-700 text-green-400 px-4 rounded-lg text-xs font-mono transition whitespace-nowrap flex items-center gap-2 cursor-default";
                     btnText.textContent = "Bağlı";
                     
-                    // Enable Analysis Area
                     analysisSection.classList.remove('disabled-area');
-                    
-                    // Save successful URL
                     localStorage.setItem('backend_url', url);
                 } else {
                     throw new Error(`HTTP ${response.status}`);
                 }
             } catch (error) {
                 console.error(error);
-                statusEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin veya sunucu uyuyor olabilir.';
+                statusEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin.';
                 statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
-                
                 connectBtn.disabled = false;
                 btnText.textContent = "Tekrar Dene";
             }
         }
 
+        // --- Core Logic ---
+
         async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
-            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
-            const model = document.getElementById('modelSelect').value;
             const textInput = document.getElementById('newsUrls').value;
-            
             const btn = document.getElementById('analyzeBtn');
-            const statusText = document.getElementById('statusText');
-            const grid = document.getElementById('resultsGrid');
-            const jsonSection = document.getElementById('jsonSection');
 
             if (!apiKey) { alert("Lütfen API Key giriniz."); return; }
             if (!textInput.trim()) { alert("Lütfen en az bir URL giriniz."); return; }
 
             localStorage.setItem('openai_api_key', apiKey);
 
-            // 1. Prepare
-            const urls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
+            // 1. Parse Input
+            const rawUrls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
             
-            // 2. Reset UI
-            globalResults = new Array(urls.length).fill(null);
-            grid.innerHTML = '';
-            grid.classList.remove('hidden');
-            jsonSection.classList.add('hidden');
-            
-            urls.forEach((url, index) => {
-                grid.appendChild(createSkeletonCard(index, url));
+            // 2. Filter duplicates (Only add URLs that aren't already in globalResults)
+            const newUrls = rawUrls.filter(url => {
+                const exists = globalResults.some(item => item.url === url);
+                return !exists;
             });
 
-            statusText.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i><span id="progressCount">0/0</span> İşleniyor...';
-            statusText.classList.remove('hidden');
-            const progressCount = document.getElementById('progressCount');
-            
-            btn.disabled = true;
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-
-            // 3. Process Queue
-            let completed = 0;
-            progressCount.textContent = `0/${urls.length}`;
-
-            async function processQueue() {
-                const executing = new Set();
-                const allTasks = [];
-
-                for (let i = 0; i < urls.length; i++) {
-                    const url = urls[i];
-                    const cardId = `card-${i}`;
-
-                    const p = analyzeViaServer(url, apiKey, model, serverUrl)
-                        .then(result => {
-                            globalResults[i] = { input_url: url, analysis: result };
-                            const oldCard = document.getElementById(cardId);
-                            const newCard = createResultCard(result, url);
-                            if(oldCard) oldCard.replaceWith(newCard);
-                        })
-                        .catch(error => {
-                            console.error(`Error on ${url}:`, error);
-                            const oldCard = document.getElementById(cardId);
-                            
-                            // Check for Connection Refused
-                            let msg = error.message;
-                            if(msg.includes('Failed to fetch')) msg = "Sunucuya bağlanılamadı. Python backend çalışıyor mu?";
-
-                            const errCard = createErrorCard(url, msg);
-                            if(oldCard) oldCard.replaceWith(errCard);
-                            globalResults[i] = { input_url: url, error: msg };
-                        })
-                        .finally(() => {
-                            completed++;
-                            if (progressCount) progressCount.textContent = `${completed}/${urls.length}`;
-                            executing.delete(p);
-                        });
-
-                    allTasks.push(p);
-                    executing.add(p);
-
-                    if (executing.size >= CONCURRENCY_LIMIT) {
-                        await Promise.race(executing);
-                    }
-                }
-                return Promise.all(allTasks);
+            if (newUrls.length === 0 && rawUrls.length > 0) {
+                // If user entered URLs but they are all already processed
+                alert("Girdiğiniz linklerin hepsi zaten listede mevcut. Yeniden analiz için ilgili karttaki 'Yenile' butonunu kullanın.");
+                return;
             }
 
-            await processQueue();
+            // 3. Add placeholders to State and DOM
+            newUrls.forEach(url => {
+                const id = 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+                
+                const item = {
+                    id: id,
+                    url: url,
+                    status: 'pending',
+                    data: null,
+                    errorMsg: null
+                };
+                
+                globalResults.push(item);
+                renderItem(item); // Create Skeleton
+            });
 
-            btn.disabled = false;
-            btn.classList.remove('opacity-50', 'cursor-not-allowed');
-            statusText.innerHTML = '<i class="fas fa-check-circle mr-2 text-neon-green"></i> Analiz Tamamlandı';
+            updateUIHeader();
+            
+            // 4. Process only the pending items
+            const pendingItems = globalResults.filter(i => i.status === 'pending');
+            if (pendingItems.length > 0) {
+                await processQueue(pendingItems);
+            }
+            
+            // Clear input after adding
+            document.getElementById('newsUrls').value = '';
+        }
+
+        async function processQueue(itemsToProcess) {
+            const apiKey = document.getElementById('apiKey').value;
+            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
+            const model = document.getElementById('modelSelect').value;
+            const statusText = document.getElementById('statusText');
+            
+            statusText.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i> İşleniyor...';
+            statusText.classList.remove('hidden');
+
+            const executing = new Set();
+            
+            for (const item of itemsToProcess) {
+                const p = processSingleItem(item, apiKey, model, serverUrl)
+                    .finally(() => executing.delete(p));
+                
+                executing.add(p);
+                
+                if (executing.size >= CONCURRENCY_LIMIT) {
+                    await Promise.race(executing);
+                }
+            }
+            
+            await Promise.all(executing);
+            
+            statusText.innerHTML = '';
+            statusText.classList.add('hidden');
             updateCombinedJson();
         }
 
+        async function processSingleItem(item, apiKey, model, serverUrl) {
+            try {
+                // Re-render as skeleton just in case (useful for retries)
+                item.status = 'pending';
+                renderItem(item);
+
+                const data = await analyzeViaServer(item.url, apiKey, model, serverUrl);
+                
+                // Success
+                item.status = 'success';
+                item.data = data;
+                item.errorMsg = null;
+            } catch (error) {
+                // Error
+                console.error(`Error processing ${item.url}:`, error);
+                item.status = 'error';
+                item.data = null;
+                
+                let msg = error.message;
+                if(msg.includes('Failed to fetch')) msg = "Sunucuya erişilemedi.";
+                item.errorMsg = msg;
+            } finally {
+                renderItem(item); // Re-render with final state
+                updateCombinedJson();
+            }
+        }
+
+        // Triggered by the "Retry" button on a card
+        async function retryItem(id) {
+            const item = globalResults.find(r => r.id === id);
+            if (!item) return;
+
+            const apiKey = document.getElementById('apiKey').value;
+            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
+            const model = document.getElementById('modelSelect').value;
+
+            if (!apiKey) { alert("API Key eksik."); return; }
+
+            // Process just this one item
+            await processSingleItem(item, apiKey, model, serverUrl);
+        }
+
+        // Triggered by the "Delete" button on a card
+        function deleteItem(id) {
+            // Remove from array
+            globalResults = globalResults.filter(r => r.id !== id);
+            
+            // Remove from DOM with animation
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(0.9)';
+                setTimeout(() => el.remove(), 300);
+            }
+            
+            updateUIHeader();
+            updateCombinedJson();
+        }
+
+        function clearAllResults() {
+            if(!confirm("Tüm sonuçlar silinecek. Emin misiniz?")) return;
+            globalResults = [];
+            document.getElementById('resultsGrid').innerHTML = '';
+            updateUIHeader();
+            updateCombinedJson();
+        }
+
+        // --- EXPORT FUNCTION ---
+        async function exportToDocx() {
+            // Filter only successful items
+            const successItems = globalResults
+                .filter(r => r.status === 'success' && r.data)
+                .map(r => ({
+                    input_url: r.url,
+                    analysis: r.data
+                }));
+
+            if (successItems.length === 0) {
+                alert("Dışa aktarılacak başarılı sonuç bulunamadı.");
+                return;
+            }
+
+            const exportBtn = document.getElementById('exportBtn');
+            const originalText = exportBtn.innerHTML;
+            
+            // Loading State
+            exportBtn.disabled = true;
+            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...';
+            exportBtn.classList.add('opacity-75');
+
+            try {
+                const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
+                
+                // POST to backend
+                const response = await fetch(`${serverUrl}/export-docx`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(successItems)
+                });
+
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`Export Failed: ${errText}`);
+                }
+
+                // Convert response to Blob and download
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `expatintel_${new Date().toISOString().slice(0,10)}.docx`;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                window.URL.revokeObjectURL(url);
+                a.remove();
+
+            } catch (error) {
+                console.error("Export Error:", error);
+                alert("Word dosyası oluşturulurken hata oluştu:\n" + error.message);
+            } finally {
+                // Restore Button
+                exportBtn.disabled = false;
+                exportBtn.innerHTML = originalText;
+                exportBtn.classList.remove('opacity-75');
+            }
+        }
+
+        // --- Render Logic ---
+
+        function renderItem(item) {
+            const grid = document.getElementById('resultsGrid');
+            let card = document.getElementById(item.id);
+            
+            // Determine content based on status
+            let contentHTML = '';
+            let className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in transition-all duration-300";
+
+            if (item.status === 'pending') {
+                // Skeleton
+                contentHTML = `
+                    <div class="flex gap-4 mb-4">
+                        <div class="flex-1 space-y-3">
+                            <div class="h-2 w-16 bg-gray-800 rounded"></div>
+                            <div class="h-4 w-3/4 skeleton-bg animate-shimmer rounded"></div>
+                            <div class="h-4 w-1/2 skeleton-bg animate-shimmer rounded"></div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-gray-800 animate-pulse"></div>
+                    </div>
+                    <div class="text-[10px] text-gray-600 truncate font-mono mt-4 flex justify-between items-center">
+                        <span>${item.url}</span>
+                        <i class="fas fa-circle-notch fa-spin text-neon-blue"></i>
+                    </div>
+                `;
+            } else if (item.status === 'error') {
+                // Error Card
+                className += " border-red-900/50";
+                contentHTML = `
+                    <div class="flex items-center gap-2 mb-2 text-red-500">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3 class="font-bold text-sm">Hata</h3>
+                    </div>
+                    <p class="text-xs text-gray-500 break-all mb-4 font-mono">${item.url}</p>
+                    <p class="text-xs text-red-400 font-mono mb-4 bg-red-900/10 p-2 rounded">${item.errorMsg}</p>
+                    
+                    ${getToolbarHTML(item.id)}
+                `;
+            } else if (item.status === 'success' && item.data) {
+                // Success Card
+                const data = item.data;
+                let scoreVal = Math.max(1, Math.min(10, parseInt(data.score) || 0));
+                let color = scoreVal >= 8 ? "#FF0055" : (scoreVal >= 5 ? "#Facc15" : "#00F0FF");
+                let borderColor = scoreVal >= 8 ? "border-neon-red" : (scoreVal >= 5 ? "border-yellow-400" : "border-neon-blue");
+                let textColor = scoreVal >= 8 ? "text-neon-red" : (scoreVal >= 5 ? "text-yellow-400" : "text-neon-blue");
+
+                const circumference = 2 * Math.PI * 26;
+                const offset = circumference - (scoreVal / 10) * circumference;
+
+                contentHTML = `
+                    <div class="flex justify-between items-start gap-3 mb-4">
+                        <div class="flex-1">
+                            ${data.source ? `<span class="inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase mb-2">${data.source}</span>` : ''}
+                            <h3 class="text-lg font-bold text-white leading-tight hover:text-blue-300 transition">
+                                <a href="${item.url}" target="_blank">${data.headline}</a>
+                            </h3>
+                        </div>
+                        <div class="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="28" cy="28" r="26" stroke="#1f1f1f" stroke-width="4" fill="transparent"></circle>
+                                <circle cx="28" cy="28" r="26" stroke="${color}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
+                            </svg>
+                            <span class="absolute text-sm font-bold font-mono">${scoreVal}</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">${data.summary}</p>
+                    
+                    <div class="bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md mb-4">
+                        <span class="${textColor} font-bold text-[10px] uppercase block mb-1">Expat Notu:</span>
+                        <p class="text-xs text-gray-300 italic">${data.expat_significance}</p>
+                    </div>
+
+                    ${getToolbarHTML(item.id)}
+                `;
+            }
+
+            if (!card) {
+                // Create new
+                card = document.createElement('div');
+                card.id = item.id;
+                grid.appendChild(card);
+            }
+
+            card.className = className;
+            card.innerHTML = contentHTML;
+        }
+
+        function getToolbarHTML(id) {
+            return `
+                <div class="flex justify-end gap-2 border-t border-gray-800 pt-3 mt-auto">
+                    <button onclick="retryItem('${id}')" class="text-xs text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded transition flex items-center gap-1">
+                        <i class="fas fa-sync-alt"></i> Yenile
+                    </button>
+                    <button onclick="deleteItem('${id}')" class="text-xs text-red-400 hover:text-red-200 bg-red-900/10 hover:bg-red-900/30 px-3 py-1.5 rounded transition flex items-center gap-1">
+                        <i class="fas fa-trash"></i> Sil
+                    </button>
+                </div>
+            `;
+        }
+
+        function updateUIHeader() {
+            const count = globalResults.length;
+            const toolbar = document.getElementById('resultsToolbar');
+            document.getElementById('resultCount').textContent = `(${count})`;
+            
+            if (count > 0) toolbar.classList.remove('hidden');
+            else toolbar.classList.add('hidden');
+        }
+
+        function updateCombinedJson() {
+            // Only export successful results to the final JSON
+            const successItems = globalResults
+                .filter(r => r.status === 'success' && r.data)
+                .map(r => ({
+                    input_url: r.url,
+                    analysis: r.data
+                }));
+            
+            const jsonSection = document.getElementById('jsonSection');
+            if (successItems.length > 0) {
+                document.getElementById('combinedJsonOutput').textContent = JSON.stringify(successItems, null, 4);
+                jsonSection.classList.remove('hidden');
+            } else {
+                jsonSection.classList.add('hidden');
+            }
+        }
+
+        function copyCombinedJson() {
+            navigator.clipboard.writeText(document.getElementById('combinedJsonOutput').textContent)
+                .then(() => alert('Kopyalandı!'));
+        }
+
+        // --- API Helper ---
         async function analyzeViaServer(url, apiKey, model, serverUrl) {
-            // Validate URL Protocol
             try {
                 const u = new URL(url);
                 if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error("Invalid Protocol");
-            } catch(e) {
-                throw new Error("Geçersiz URL formatı");
-            }
+            } catch(e) { throw new Error("Geçersiz URL formatı"); }
 
-            // Call Python Backend
             const response = await fetch(`${serverUrl}/analyze`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -371,126 +645,6 @@
             }
 
             return await response.json();
-        }
-
-        // --- DOM Helpers ---
-        function createSkeletonCard(index, url) {
-            const div = document.createElement('div');
-            div.id = `card-${index}`;
-            div.className = "glass-panel rounded-xl border border-gray-800 p-6 mb-4 animate-pulse";
-            div.innerHTML = `
-                <div class="flex gap-4 mb-4">
-                    <div class="flex-1 space-y-3">
-                        <div class="h-2 w-16 bg-gray-800 rounded"></div>
-                        <div class="h-4 w-3/4 skeleton-bg animate-shimmer rounded"></div>
-                    </div>
-                    <div class="w-12 h-12 rounded-full bg-gray-800"></div>
-                </div>
-            `;
-            const urlDiv = document.createElement('div');
-            urlDiv.className = "text-[10px] text-gray-600 truncate font-mono";
-            urlDiv.textContent = url;
-            div.appendChild(urlDiv);
-            return div;
-        }
-
-        function createResultCard(data, url) {
-            const card = document.createElement('div');
-            card.className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in mb-4"; 
-            
-            let scoreVal = Math.max(1, Math.min(10, parseInt(data.score) || 0));
-            let color = scoreVal >= 8 ? "#FF0055" : (scoreVal >= 5 ? "#Facc15" : "#00F0FF");
-            let borderColor = scoreVal >= 8 ? "border-neon-red" : (scoreVal >= 5 ? "border-yellow-400" : "border-neon-blue");
-            let textColor = scoreVal >= 8 ? "text-neon-red" : (scoreVal >= 5 ? "text-yellow-400" : "text-neon-blue");
-
-            const circumference = 2 * Math.PI * 26; 
-            const offset = circumference - (scoreVal / 10) * circumference;
-
-            // DOM Construction
-            const header = document.createElement('div');
-            header.className = "flex justify-between items-start gap-3 mb-4";
-            
-            const left = document.createElement('div');
-            left.className = "flex-1";
-            
-            if(data.source) {
-                const badge = document.createElement('span');
-                badge.className = "inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase mb-2";
-                badge.textContent = data.source;
-                left.appendChild(badge);
-            }
-
-            const h3 = document.createElement('h3');
-            h3.className = "text-lg font-bold text-white leading-tight hover:text-blue-300 transition";
-            const a = document.createElement('a');
-            a.href = url; a.target = "_blank"; a.textContent = data.headline;
-            h3.appendChild(a);
-            left.appendChild(h3);
-            header.appendChild(left);
-
-            const right = document.createElement('div');
-            right.className = "relative w-14 h-14 flex items-center justify-center flex-shrink-0";
-            right.innerHTML = `
-                <svg class="w-full h-full transform -rotate-90">
-                    <circle cx="28" cy="28" r="26" stroke="#1f1f1f" stroke-width="4" fill="transparent"></circle>
-                    <circle cx="28" cy="28" r="26" stroke="${color}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
-                </svg>
-                <span class="absolute text-sm font-bold font-mono">${scoreVal}</span>
-            `;
-            header.appendChild(right);
-            card.appendChild(header);
-
-            const pSum = document.createElement('p');
-            pSum.className = "text-gray-400 text-sm mb-4 leading-relaxed";
-            pSum.textContent = data.summary;
-            card.appendChild(pSum);
-
-            const sigBox = document.createElement('div');
-            sigBox.className = `bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md`;
-            const sigTitle = document.createElement('span');
-            sigTitle.className = `${textColor} font-bold text-[10px] uppercase block mb-1`;
-            sigTitle.textContent = "Expat Notu:";
-            const sigP = document.createElement('p');
-            sigP.className = "text-xs text-gray-300 italic";
-            sigP.appendChild(sigTitle);
-            sigP.appendChild(document.createTextNode(data.expat_significance));
-            sigBox.appendChild(sigP);
-            card.appendChild(sigBox);
-
-            return card;
-        }
-
-        function createErrorCard(url, msg) {
-            const div = document.createElement('div');
-            div.className = "glass-panel rounded-xl border border-red-900/50 p-6 opacity-80 animate-fade-in mb-4";
-            
-            const head = document.createElement('div');
-            head.className = "flex items-center gap-2 mb-2 text-red-500";
-            head.innerHTML = '<i class="fas fa-exclamation-triangle"></i><h3 class="font-bold text-sm">Hata</h3>';
-            div.appendChild(head);
-
-            const pUrl = document.createElement('p');
-            pUrl.className = "text-xs text-gray-500 break-all mb-2";
-            pUrl.textContent = url;
-            div.appendChild(pUrl);
-
-            const pMsg = document.createElement('p');
-            pMsg.className = "text-xs text-red-400 font-mono";
-            pMsg.textContent = msg;
-            div.appendChild(pMsg);
-
-            return div;
-        }
-
-        function updateCombinedJson() {
-            const clean = globalResults.filter(r => r !== null);
-            document.getElementById('combinedJsonOutput').textContent = JSON.stringify(clean, null, 4);
-            document.getElementById('jsonSection').classList.remove('hidden');
-        }
-
-        function copyCombinedJson() {
-            navigator.clipboard.writeText(document.getElementById('combinedJsonOutput').textContent)
-                .then(() => alert('Kopyalandı!'));
         }
     </script>
 </body>
