@@ -235,7 +235,7 @@ async def analyze_news(request: AnalyzeRequest):
         "schema": {
             "type": "object",
             "properties": {
-                "headline": {"type": "string", "description": "İlgi çekici Türkçe başlık."},
+                "headline": {"type": "string", "description": "İlgi çekici Türkçe başlık. Başlığın başına konuya istinaden bir Emoji ekle"},
                 "source": {"type": "string", "description": "Haber kaynağının adı."},
                 "summary": {"type": "string", "description": "Türkçe özet (2-3 cümle)."},
                 "expat_significance": {"type": "string", "description": "Expatlar için neden önemli?"},
