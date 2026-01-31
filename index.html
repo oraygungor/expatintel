@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expat Intel | Server-Side Edition</title>
+    <title>Expat Intel | Pro Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -17,11 +17,6 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        dark: {
-                            bg: '#050505',
-                            card: '#0F0F0F',
-                            border: '#1F1F1F'
-                        },
                         neon: {
                             blue: '#00F0FF',
                             purple: '#7000FF',
@@ -29,20 +24,14 @@
                             red: '#FF0055'
                         }
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
                     keyframes: {
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-1000px 0' },
-                            '100%': { backgroundPosition: '1000px 0' }
                         }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'fade-in': 'fadeIn 0.5s ease-out forwards',
-                        'shimmer': 'shimmer 2s infinite linear'
                     }
                 }
             }
@@ -55,596 +44,429 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .skeleton-bg {
-            background: linear-gradient(to right, #1f1f1f 4%, #2a2a2a 25%, #1f1f1f 36%);
-            background-size: 1000px 100%;
-        }
         .input-dark {
             background-color: #0A0A0A;
             border: 1px solid #262626;
             color: #E5E5E5;
             transition: all 0.3s ease;
         }
-        .input-dark:focus {
-            border-color: #00F0FF;
-            outline: none;
-        }
-        /* Disabled state styles */
-        .disabled-area {
-            opacity: 0.5;
-            pointer-events: none;
-            filter: grayscale(100%);
-        }
-        /* Scrollbar styling */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; rounded: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .input-dark:focus { border-color: #00F0FF; outline: none; }
+        .tab-active { border-bottom: 2px solid #00F0FF; color: #fff; }
+        .tab-inactive { border-bottom: 2px solid transparent; color: #666; }
+        .tag-item { transition: all 0.2s; }
+        .tag-item:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
 
-    <!-- Background -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-neon-purple opacity-10 blur-[100px] rounded-full"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-neon-blue opacity-10 blur-[100px] rounded-full"></div>
     </div>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-6xl animate-fade-in mb-20">
+    <main class="w-full max-w-6xl animate-fade-in mb-20 mt-10">
         
-        <!-- Header -->
-        <div class="text-center mb-10 mt-10">
+        <div class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
                 Expat<span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple">Intel</span>
             </h1>
-            <p class="text-gray-500 font-light flex items-center justify-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
-                Server-Side Scraping Edition
-            </p>
+            <p class="text-gray-500 font-light text-sm">Server-Side Scraping & Categorization Edition</p>
         </div>
 
-        <!-- Configuration Panel -->
-        <div class="glass-panel rounded-2xl p-6 md:p-8 shadow-2xl mb-8">
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <!-- API Key -->
-                <div class="md:col-span-2">
+        <div class="glass-panel rounded-2xl p-6 mb-8 shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
                     <label class="block text-xs font-mono text-gray-400 mb-2">OPENAI API KEY</label>
-                    <div class="relative">
-                        <i class="fas fa-key absolute left-3 top-3.5 text-gray-600 text-sm"></i>
-                        <input type="password" id="apiKey" placeholder="sk-..." class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono placeholder-gray-700">
-                    </div>
+                    <input type="password" id="apiKey" class="input-dark w-full rounded-lg py-2 px-3 text-sm font-mono">
                 </div>
-                <!-- Server URL (Connection Check Added) -->
                 <div>
                     <label class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
-                    <div class="relative flex gap-2">
-                        <div class="relative flex-1">
-                            <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
-                            <input type="text" id="serverUrl" value="https://expatintel.onrender.com" class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono text-gray-400">
-                        </div>
-                        <button onclick="connectToServer()" id="connectBtn" class="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-xs font-mono transition border border-gray-700 whitespace-nowrap flex items-center gap-2">
-                            <i class="fas fa-plug"></i> <span id="connectBtnText">Bağlan</span>
-                        </button>
-                    </div>
-                    <p id="connectionStatus" class="text-[10px] mt-2 font-mono h-4 text-gray-500 pl-1"></p>
+                    <input type="text" id="serverUrl" value="http://127.0.0.1:8000" class="input-dark w-full rounded-lg py-2 px-3 text-sm font-mono text-gray-400">
                 </div>
             </div>
 
-            <!-- URL Input Area (Wrapped for Disabling) -->
-            <div id="analysisSection" class="mb-6 transition-all duration-500 disabled-area">
-                <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
-                <div class="flex flex-col gap-3">
-                    <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/...\nhttps://skat.dk/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
-                    
-                    <div class="flex justify-between items-center">
-                        <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
-                        
-                        <!-- Utility Buttons for Input -->
-                        <div class="flex gap-2">
-                            <button onclick="document.getElementById('newsUrls').value = ''" class="text-xs text-gray-500 hover:text-white underline">Temizle</button>
-                        </div>
+            <hr class="border-gray-800 mb-6">
 
-                        <div class="ml-auto flex gap-3 items-center">
-                            <!-- Model Select Mini -->
-                            <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1 max-w-[150px]">
-                                <option value="gpt-5-nano">GPT-5 Nano ($0.05)</option>
-                                <option value="gpt-4o-mini" selected>GPT-4o Mini ($0.15)</option>
-                                <option value="gpt-5-mini">GPT-5 Mini ($0.25)</option>
-                                <option value="gpt-5">GPT-5 ($1.25)</option>
-                                <option value="gpt-5.1">GPT-5.1 ($1.25)</option>
-                                <option value="gpt-5.2">GPT-5.2 ($1.75)</option>
-                                <option value="gpt-4o">GPT-4o ($2.50)</option>
-                            </select>
-                            
-                            <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                                <span>LİSTEYE EKLE VE ANALİZ ET</span>
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
+            <div class="mb-2">
+                <label class="block text-xs font-mono text-neon-green mb-2">KATEGORİ TANIMLARI (Etiketler)</label>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" id="newCategoryInput" placeholder="Örn: Ekonomi, Vize, Kültür..." class="input-dark flex-1 rounded-lg py-2 px-3 text-sm" onkeypress="handleCatEnter(event)">
+                    <button onclick="addCategory()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-xs font-bold transition">EKLE</button>
                 </div>
+                <div id="categoryList" class="flex flex-wrap gap-2 min-h-[30px]">
+                    </div>
             </div>
         </div>
 
-        <!-- Results Toolbar -->
-        <div id="resultsToolbar" class="flex justify-between items-center mb-4 hidden px-2">
-            <h2 class="text-xl font-bold text-white">Sonuçlar <span id="resultCount" class="text-sm font-normal text-gray-500 ml-2">(0)</span></h2>
+        <div class="glass-panel rounded-2xl p-6 mb-8 relative">
             
-            <div class="flex gap-3">
-                <!-- Export to Word Button -->
-                <button id="exportBtn" onclick="exportToDocx()" class="text-xs text-neon-blue hover:text-white flex items-center gap-2 border border-neon-blue/30 bg-neon-blue/10 hover:bg-neon-blue/20 px-4 py-2 rounded-md transition font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">
-                    <i class="fas fa-file-word"></i> Word'e Aktar
-                </button>
+            <div class="flex gap-6 mb-4 border-b border-gray-800 pb-2">
+                <button onclick="switchTab('url')" id="tabUrl" class="text-sm font-bold pb-2 tab-active transition">URL LİSTESİ</button>
+                <button onclick="switchTab('manual')" id="tabManual" class="text-sm font-bold pb-2 tab-inactive transition">MANUEL GİRİŞ</button>
+            </div>
+
+            <div id="viewUrl" class="block">
+                <textarea id="newsUrls" rows="4" placeholder="https://..." class="input-dark w-full rounded-lg px-4 py-3 text-sm font-mono mb-3"></textarea>
+            </div>
+
+            <div id="viewManual" class="hidden flex-col gap-3">
+                <input type="text" id="manualSourceLink" placeholder="Kaynak Linki (Referans için)" class="input-dark w-full rounded-lg px-4 py-2 text-sm font-mono">
+                <textarea id="manualContent" rows="6" placeholder="Haber metnini buraya yapıştırın..." class="input-dark w-full rounded-lg px-4 py-3 text-sm font-mono"></textarea>
+            </div>
+
+            <div class="flex justify-between items-center mt-4">
+                <div class="flex items-center gap-3">
+                    <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1">
+                        <option value="gpt-4o-mini" selected>GPT-4o Mini</option>
+                        <option value="gpt-4o">GPT-4o</option>
+                    </select>
+                    <span id="statusText" class="text-xs font-mono text-neon-blue hidden animate-pulse">İşleniyor...</span>
+                </div>
                 
-                <!-- Clear All Button -->
-                <button onclick="clearAllResults()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 border border-red-900/30 bg-red-900/10 hover:bg-red-900/20 px-4 py-2 rounded-md transition">
-                    <i class="fas fa-trash-alt"></i> Tümünü Temizle
+                <button onclick="startAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform active:scale-95 flex items-center gap-2 text-sm">
+                    <span>LİSTEYE EKLE & ANALİZ ET</span>
+                    <i class="fas fa-bolt"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Results Grid -->
-        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"></div>
-
-        <!-- JSON Output -->
-        <div id="jsonSection" class="hidden">
-            <div class="glass-panel rounded-xl overflow-hidden border border-gray-800">
-                <div class="bg-black/40 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                    <div class="flex items-center gap-2 text-xs text-neon-green font-mono">
-                        <i class="fas fa-database"></i>
-                        <span>BİRLEŞTİRİLMİŞ JSON</span>
-                    </div>
-                    <button onclick="copyCombinedJson()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-white transition font-mono flex items-center gap-2">
-                        <i class="far fa-copy"></i> Kopyala
-                    </button>
-                </div>
-                <div class="bg-[#0a0a0a] p-4 overflow-x-auto max-h-96">
-                    <pre class="font-mono text-xs text-green-400 leading-relaxed"><code id="combinedJsonOutput">[]</code></pre>
-                </div>
+        <div id="resultsToolbar" class="flex justify-between items-center mb-4 hidden px-2">
+            <h2 class="text-xl font-bold text-white">Sonuçlar <span id="resultCount" class="text-sm font-normal text-gray-500"></span></h2>
+            <div class="flex gap-3">
+                <button onclick="exportToDocx()" class="text-xs text-neon-blue hover:text-white border border-neon-blue/30 bg-neon-blue/10 px-4 py-2 rounded-md transition font-bold">
+                    <i class="fas fa-file-word mr-1"></i> Word İndir
+                </button>
+                <button onclick="clearAllResults()" class="text-xs text-red-400 border border-red-900/30 bg-red-900/10 px-4 py-2 rounded-md transition">
+                    <i class="fas fa-trash-alt mr-1"></i> Temizle
+                </button>
             </div>
         </div>
+
+        <div id="resultsGrid" class="grid grid-cols-1 gap-4 mb-8"></div>
 
     </main>
 
     <script>
-        // Global state to store all results.
-        // Structure: { id: string, url: string, status: 'pending'|'success'|'error', data: object|null, errorMsg: string|null }
-        let globalResults = [];
-        const CONCURRENCY_LIMIT = 3; 
+        let globalResults = []; // Stores {id, url, status, data, errorMsg, manualText}
+        let categories = ["Ekonomi", "Vize/Oturum", "Sağlık", "Eğitim", "Sosyal Yaşam", "Politika"];
+        let currentMode = 'url'; // 'url' or 'manual'
 
+        // --- Init ---
         window.addEventListener('DOMContentLoaded', () => {
             const savedKey = localStorage.getItem('openai_api_key');
-            if (savedKey) document.getElementById('apiKey').value = savedKey;
-            
-            // Restore session if needed? For now, start fresh.
+            if(savedKey) document.getElementById('apiKey').value = savedKey;
+
+            const savedCats = JSON.parse(localStorage.getItem('user_categories'));
+            if(savedCats) categories = savedCats;
+            renderCategories();
         });
 
-        // --- Connection Logic ---
-        async function connectToServer() {
-            const serverUrlInput = document.getElementById('serverUrl');
-            const connectBtn = document.getElementById('connectBtn');
-            const btnText = document.getElementById('connectBtnText');
-            const statusEl = document.getElementById('connectionStatus');
-            const analysisSection = document.getElementById('analysisSection');
-            
-            const url = serverUrlInput.value.replace(/\/$/, '');
-            if (!url) {
-                statusEl.textContent = "Lütfen bir URL girin.";
-                statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
-                return;
-            }
+        // --- Category Logic ---
+        function renderCategories() {
+            const container = document.getElementById('categoryList');
+            container.innerHTML = '';
+            categories.forEach(cat => {
+                const tag = document.createElement('span');
+                tag.className = "tag-item bg-gray-800 text-gray-300 text-[10px] px-2 py-1 rounded border border-gray-700 flex items-center gap-2 cursor-default";
+                tag.innerHTML = `${cat} <button onclick="removeCategory('${cat}')" class="hover:text-red-400 text-gray-500 font-bold">×</button>`;
+                container.appendChild(tag);
+            });
+            localStorage.setItem('user_categories', JSON.stringify(categories));
+        }
 
-            // UI Loading State
-            connectBtn.disabled = true;
-            btnText.textContent = "Bağlanıyor...";
-            statusEl.textContent = "Sunucu uyandırılıyor (50-60sn sürebilir)...";
-            statusEl.className = "text-[10px] mt-2 font-mono h-4 text-yellow-500 pl-1 animate-pulse";
-            
-            try {
-                // Fetch FastAPI openapi.json as a health check
-                const response = await fetch(`${url}/openapi.json`, { 
-                    method: 'GET',
-                    signal: AbortSignal.timeout(60000) 
-                });
-
-                if (response.ok) {
-                    statusEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Sunucu Aktif ve Hazır!';
-                    statusEl.className = "text-[10px] mt-2 font-mono h-4 text-neon-green pl-1";
-                    
-                    connectBtn.className = "bg-green-900/30 border border-green-700 text-green-400 px-4 rounded-lg text-xs font-mono transition whitespace-nowrap flex items-center gap-2 cursor-default";
-                    btnText.textContent = "Bağlı";
-                    
-                    analysisSection.classList.remove('disabled-area');
-                    localStorage.setItem('backend_url', url);
-                } else {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-            } catch (error) {
-                console.error(error);
-                statusEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin.';
-                statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
-                connectBtn.disabled = false;
-                btnText.textContent = "Tekrar Dene";
+        function addCategory() {
+            const input = document.getElementById('newCategoryInput');
+            const val = input.value.trim();
+            if(val && !categories.includes(val)) {
+                categories.push(val);
+                renderCategories();
+                input.value = '';
             }
         }
 
-        // --- Core Logic ---
+        function removeCategory(cat) {
+            categories = categories.filter(c => c !== cat);
+            renderCategories();
+        }
 
-        async function startBatchAnalysis() {
+        function handleCatEnter(e) {
+            if(e.key === 'Enter') addCategory();
+        }
+
+        // --- Tabs Logic ---
+        function switchTab(mode) {
+            currentMode = mode;
+            const tabUrl = document.getElementById('tabUrl');
+            const tabManual = document.getElementById('tabManual');
+            const viewUrl = document.getElementById('viewUrl');
+            const viewManual = document.getElementById('viewManual');
+
+            if(mode === 'url') {
+                tabUrl.className = "text-sm font-bold pb-2 tab-active transition";
+                tabManual.className = "text-sm font-bold pb-2 tab-inactive transition";
+                viewUrl.classList.remove('hidden');
+                viewManual.classList.add('hidden');
+                viewManual.classList.remove('flex');
+            } else {
+                tabUrl.className = "text-sm font-bold pb-2 tab-inactive transition";
+                tabManual.className = "text-sm font-bold pb-2 tab-active transition";
+                viewUrl.classList.add('hidden');
+                viewManual.classList.remove('hidden');
+                viewManual.classList.add('flex');
+            }
+        }
+
+        // --- Analysis Logic ---
+        async function startAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
-            const textInput = document.getElementById('newsUrls').value;
-            const btn = document.getElementById('analyzeBtn');
-
-            if (!apiKey) { alert("Lütfen API Key giriniz."); return; }
-            if (!textInput.trim()) { alert("Lütfen en az bir URL giriniz."); return; }
-
+            if (!apiKey) { alert("API Key giriniz."); return; }
             localStorage.setItem('openai_api_key', apiKey);
 
-            // 1. Parse Input
-            const rawUrls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
-            
-            // 2. Filter duplicates (Only add URLs that aren't already in globalResults)
-            const newUrls = rawUrls.filter(url => {
-                const exists = globalResults.some(item => item.url === url);
-                return !exists;
-            });
+            let newItems = [];
 
-            if (newUrls.length === 0 && rawUrls.length > 0) {
-                // If user entered URLs but they are all already processed
-                alert("Girdiğiniz linklerin hepsi zaten listede mevcut. Yeniden analiz için ilgili karttaki 'Yenile' butonunu kullanın.");
-                return;
+            if (currentMode === 'url') {
+                const text = document.getElementById('newsUrls').value;
+                if (!text.trim()) return;
+                
+                const urls = text.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
+                
+                // Filter Duplicates
+                const uniqueUrls = urls.filter(u => !globalResults.some(r => r.url === u));
+                if(uniqueUrls.length === 0 && urls.length > 0) { alert('Linkler zaten listede.'); return; }
+
+                uniqueUrls.forEach(url => {
+                    newItems.push({
+                        id: 'id-' + Date.now() + Math.random(),
+                        url: url,
+                        manualText: null, // Scrape edilecek
+                        status: 'pending'
+                    });
+                });
+                document.getElementById('newsUrls').value = ''; // Temizle
+
+            } else {
+                // Manual Mode
+                const link = document.getElementById('manualSourceLink').value.trim() || "Manuel Giriş";
+                const content = document.getElementById('manualContent').value.trim();
+
+                if(!content) { alert("Lütfen içerik yapıştırın."); return; }
+
+                newItems.push({
+                    id: 'id-' + Date.now() + Math.random(),
+                    url: link, // Referans için
+                    manualText: content, // Hazır içerik
+                    status: 'pending'
+                });
+
+                document.getElementById('manualSourceLink').value = '';
+                document.getElementById('manualContent').value = '';
             }
 
-            // 3. Add placeholders to State and DOM
-            newUrls.forEach(url => {
-                const id = 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-                
-                const item = {
-                    id: id,
-                    url: url,
-                    status: 'pending',
-                    data: null,
-                    errorMsg: null
-                };
-                
-                globalResults.push(item);
-                renderItem(item); // Create Skeleton
-            });
+            // State güncelle ve UI oluştur (En tepeye ekle)
+            // Reverse iteration so the first item in input ends up at the very top visually if strictly prepending
+            // But usually user expects batch order 1,2,3. 
+            // Let's add them to globalResults and DOM one by one.
+            
+            for(let item of newItems) {
+                globalResults.unshift(item); // Arrayin başına ekle
+                renderItem(item, true); // true = prepend
+            }
 
             updateUIHeader();
-            
-            // 4. Process only the pending items
-            const pendingItems = globalResults.filter(i => i.status === 'pending');
-            if (pendingItems.length > 0) {
-                await processQueue(pendingItems);
-            }
-            
-            // Clear input after adding
-            document.getElementById('newsUrls').value = '';
+            await processQueue(newItems);
         }
 
-        async function processQueue(itemsToProcess) {
+        async function processQueue(items) {
             const apiKey = document.getElementById('apiKey').value;
             const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
             const model = document.getElementById('modelSelect').value;
             const statusText = document.getElementById('statusText');
             
-            statusText.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i> İşleniyor...';
             statusText.classList.remove('hidden');
 
-            const executing = new Set();
-            
-            for (const item of itemsToProcess) {
-                const p = processSingleItem(item, apiKey, model, serverUrl)
-                    .finally(() => executing.delete(p));
-                
-                executing.add(p);
-                
-                if (executing.size >= CONCURRENCY_LIMIT) {
-                    await Promise.race(executing);
-                }
-            }
-            
-            await Promise.all(executing);
-            
-            statusText.innerHTML = '';
-            statusText.classList.add('hidden');
-            updateCombinedJson();
-        }
-
-        async function processSingleItem(item, apiKey, model, serverUrl) {
-            try {
-                // Re-render as skeleton just in case (useful for retries)
+            for (const item of items) {
+                // Set UI to loading
                 item.status = 'pending';
-                renderItem(item);
+                renderItem(item, false); // Re-render existing element
 
-                const data = await analyzeViaServer(item.url, apiKey, model, serverUrl);
-                
-                // Success
-                item.status = 'success';
-                item.data = data;
-                item.errorMsg = null;
-            } catch (error) {
-                // Error
-                console.error(`Error processing ${item.url}:`, error);
-                item.status = 'error';
-                item.data = null;
-                
-                let msg = error.message;
-                if(msg.includes('Failed to fetch')) msg = "Sunucuya erişilemedi.";
-                item.errorMsg = msg;
-            } finally {
-                renderItem(item); // Re-render with final state
-                updateCombinedJson();
-            }
-        }
-
-        // Triggered by the "Retry" button on a card
-        async function retryItem(id) {
-            const item = globalResults.find(r => r.id === id);
-            if (!item) return;
-
-            const apiKey = document.getElementById('apiKey').value;
-            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
-            const model = document.getElementById('modelSelect').value;
-
-            if (!apiKey) { alert("API Key eksik."); return; }
-
-            // Process just this one item
-            await processSingleItem(item, apiKey, model, serverUrl);
-        }
-
-        // Triggered by the "Delete" button on a card
-        function deleteItem(id) {
-            // Remove from array
-            globalResults = globalResults.filter(r => r.id !== id);
-            
-            // Remove from DOM with animation
-            const el = document.getElementById(id);
-            if (el) {
-                el.style.opacity = '0';
-                el.style.transform = 'scale(0.9)';
-                setTimeout(() => el.remove(), 300);
-            }
-            
-            updateUIHeader();
-            updateCombinedJson();
-        }
-
-        function clearAllResults() {
-            if(!confirm("Tüm sonuçlar silinecek. Emin misiniz?")) return;
-            globalResults = [];
-            document.getElementById('resultsGrid').innerHTML = '';
-            updateUIHeader();
-            updateCombinedJson();
-        }
-
-        // --- EXPORT FUNCTION ---
-        async function exportToDocx() {
-            // Filter only successful items
-            const successItems = globalResults
-                .filter(r => r.status === 'success' && r.data)
-                .map(r => ({
-                    input_url: r.url,
-                    analysis: r.data
-                }));
-
-            if (successItems.length === 0) {
-                alert("Dışa aktarılacak başarılı sonuç bulunamadı.");
-                return;
-            }
-
-            const exportBtn = document.getElementById('exportBtn');
-            const originalText = exportBtn.innerHTML;
-            
-            // Loading State
-            exportBtn.disabled = true;
-            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...';
-            exportBtn.classList.add('opacity-75');
-
-            try {
-                const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
-                
-                // POST to backend
-                const response = await fetch(`${serverUrl}/export-docx`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(successItems)
-                });
-
-                if (!response.ok) {
-                    const errText = await response.text();
-                    throw new Error(`Export Failed: ${errText}`);
+                try {
+                    const data = await analyzeViaServer(item, apiKey, model, serverUrl);
+                    item.status = 'success';
+                    item.data = data;
+                } catch (error) {
+                    console.error(error);
+                    item.status = 'error';
+                    item.errorMsg = error.message;
                 }
-
-                // Convert response to Blob and download
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `expatintel_${new Date().toISOString().slice(0,10)}.docx`;
-                document.body.appendChild(a);
-                a.click();
                 
-                // Cleanup
-                window.URL.revokeObjectURL(url);
-                a.remove();
-
-            } catch (error) {
-                console.error("Export Error:", error);
-                alert("Word dosyası oluşturulurken hata oluştu:\n" + error.message);
-            } finally {
-                // Restore Button
-                exportBtn.disabled = false;
-                exportBtn.innerHTML = originalText;
-                exportBtn.classList.remove('opacity-75');
+                renderItem(item, false); // Show result
             }
-        }
-
-        // --- Render Logic ---
-
-        function renderItem(item) {
-            const grid = document.getElementById('resultsGrid');
-            let card = document.getElementById(item.id);
             
-            // Determine content based on status
-            let contentHTML = '';
-            let className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in transition-all duration-300";
+            statusText.classList.add('hidden');
+        }
 
-            if (item.status === 'pending') {
-                // Skeleton
-                contentHTML = `
-                    <div class="flex gap-4 mb-4">
-                        <div class="flex-1 space-y-3">
-                            <div class="h-2 w-16 bg-gray-800 rounded"></div>
-                            <div class="h-4 w-3/4 skeleton-bg animate-shimmer rounded"></div>
-                            <div class="h-4 w-1/2 skeleton-bg animate-shimmer rounded"></div>
-                        </div>
-                        <div class="w-12 h-12 rounded-full bg-gray-800 animate-pulse"></div>
-                    </div>
-                    <div class="text-[10px] text-gray-600 truncate font-mono mt-4 flex justify-between items-center">
-                        <span>${item.url}</span>
-                        <i class="fas fa-circle-notch fa-spin text-neon-blue"></i>
-                    </div>
-                `;
-            } else if (item.status === 'error') {
-                // Error Card
-                className += " border-red-900/50";
-                contentHTML = `
-                    <div class="flex items-center gap-2 mb-2 text-red-500">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3 class="font-bold text-sm">Hata</h3>
-                    </div>
-                    <p class="text-xs text-gray-500 break-all mb-4 font-mono">${item.url}</p>
-                    <p class="text-xs text-red-400 font-mono mb-4 bg-red-900/10 p-2 rounded">${item.errorMsg}</p>
-                    
-                    ${getToolbarHTML(item.id)}
-                `;
-            } else if (item.status === 'success' && item.data) {
-                // Success Card
-                const data = item.data;
-                let scoreVal = Math.max(1, Math.min(10, parseInt(data.score) || 0));
-                let color = scoreVal >= 8 ? "#FF0055" : (scoreVal >= 5 ? "#Facc15" : "#00F0FF");
-                let borderColor = scoreVal >= 8 ? "border-neon-red" : (scoreVal >= 5 ? "border-yellow-400" : "border-neon-blue");
-                let textColor = scoreVal >= 8 ? "text-neon-red" : (scoreVal >= 5 ? "text-yellow-400" : "text-neon-blue");
+        async function analyzeViaServer(item, apiKey, model, serverUrl) {
+            const payload = {
+                url: item.url,
+                api_key: apiKey,
+                model: model,
+                available_categories: categories // Backend'e kategorileri gönder
+            };
 
-                const circumference = 2 * Math.PI * 26;
-                const offset = circumference - (scoreVal / 10) * circumference;
-
-                contentHTML = `
-                    <div class="flex justify-between items-start gap-3 mb-4">
-                        <div class="flex-1">
-                            ${data.source ? `<span class="inline-block py-0.5 px-2 rounded-md bg-gray-800 text-[9px] font-mono text-gray-400 border border-gray-700 uppercase mb-2">${data.source}</span>` : ''}
-                            <h3 class="text-lg font-bold text-white leading-tight hover:text-blue-300 transition">
-                                <a href="${item.url}" target="_blank">${data.headline}</a>
-                            </h3>
-                        </div>
-                        <div class="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-full h-full transform -rotate-90">
-                                <circle cx="28" cy="28" r="26" stroke="#1f1f1f" stroke-width="4" fill="transparent"></circle>
-                                <circle cx="28" cy="28" r="26" stroke="${color}" stroke-width="4" fill="transparent" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" class="transition-all duration-1000"></circle>
-                            </svg>
-                            <span class="absolute text-sm font-bold font-mono">${scoreVal}</span>
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">${data.summary}</p>
-                    
-                    <div class="bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md mb-4">
-                        <span class="${textColor} font-bold text-[10px] uppercase block mb-1">Expat Notu:</span>
-                        <p class="text-xs text-gray-300 italic">${data.expat_significance}</p>
-                    </div>
-
-                    ${getToolbarHTML(item.id)}
-                `;
+            if(item.manualText) {
+                payload.raw_text = item.manualText;
             }
-
-            if (!card) {
-                // Create new
-                card = document.createElement('div');
-                card.id = item.id;
-                grid.appendChild(card);
-            }
-
-            card.className = className;
-            card.innerHTML = contentHTML;
-        }
-
-        function getToolbarHTML(id) {
-            return `
-                <div class="flex justify-end gap-2 border-t border-gray-800 pt-3 mt-auto">
-                    <button onclick="retryItem('${id}')" class="text-xs text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded transition flex items-center gap-1">
-                        <i class="fas fa-sync-alt"></i> Yenile
-                    </button>
-                    <button onclick="deleteItem('${id}')" class="text-xs text-red-400 hover:text-red-200 bg-red-900/10 hover:bg-red-900/30 px-3 py-1.5 rounded transition flex items-center gap-1">
-                        <i class="fas fa-trash"></i> Sil
-                    </button>
-                </div>
-            `;
-        }
-
-        function updateUIHeader() {
-            const count = globalResults.length;
-            const toolbar = document.getElementById('resultsToolbar');
-            document.getElementById('resultCount').textContent = `(${count})`;
-            
-            if (count > 0) toolbar.classList.remove('hidden');
-            else toolbar.classList.add('hidden');
-        }
-
-        function updateCombinedJson() {
-            // Only export successful results to the final JSON
-            const successItems = globalResults
-                .filter(r => r.status === 'success' && r.data)
-                .map(r => ({
-                    input_url: r.url,
-                    analysis: r.data
-                }));
-            
-            const jsonSection = document.getElementById('jsonSection');
-            if (successItems.length > 0) {
-                document.getElementById('combinedJsonOutput').textContent = JSON.stringify(successItems, null, 4);
-                jsonSection.classList.remove('hidden');
-            } else {
-                jsonSection.classList.add('hidden');
-            }
-        }
-
-        function copyCombinedJson() {
-            navigator.clipboard.writeText(document.getElementById('combinedJsonOutput').textContent)
-                .then(() => alert('Kopyalandı!'));
-        }
-
-        // --- API Helper ---
-        async function analyzeViaServer(url, apiKey, model, serverUrl) {
-            try {
-                const u = new URL(url);
-                if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error("Invalid Protocol");
-            } catch(e) { throw new Error("Geçersiz URL formatı"); }
 
             const response = await fetch(`${serverUrl}/analyze`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    url: url,
-                    api_key: apiKey,
-                    model: model
-                })
+                body: JSON.stringify(payload)
             });
 
             if (!response.ok) {
-                const errText = await response.text();
-                let errMsg = `HTTP ${response.status}`;
-                try {
-                    const jsonErr = JSON.parse(errText);
-                    if(jsonErr.detail) errMsg = jsonErr.detail;
-                } catch(e) {}
-                throw new Error(errMsg);
+                const txt = await response.text();
+                let msg = `HTTP ${response.status}`;
+                try { msg = JSON.parse(txt).detail || msg; } catch(e){}
+                throw new Error(msg);
             }
 
             return await response.json();
+        }
+
+        // --- Rendering ---
+        function renderItem(item, isNew = false) {
+            const grid = document.getElementById('resultsGrid');
+            let card = document.getElementById(item.id);
+
+            let html = '';
+            let classes = "glass-panel rounded-xl overflow-hidden border border-gray-800 p-5 transition-all duration-500 mb-4";
+
+            if(item.status === 'pending') {
+                html = `
+                    <div class="flex items-center gap-4 animate-pulse">
+                        <div class="w-10 h-10 bg-gray-800 rounded-full"></div>
+                        <div class="flex-1 space-y-2">
+                            <div class="h-3 bg-gray-800 rounded w-1/4"></div>
+                            <div class="h-2 bg-gray-800 rounded w-3/4"></div>
+                        </div>
+                        <i class="fas fa-circle-notch fa-spin text-neon-blue"></i>
+                    </div>
+                `;
+            } else if (item.status === 'error') {
+                classes += " border-red-900/50";
+                html = `
+                    <div class="flex justify-between items-start">
+                        <div class="text-red-400 text-xs font-mono">
+                            <i class="fas fa-exclamation-triangle mr-1"></i> ${item.url}
+                        </div>
+                        <button onclick="deleteItem('${item.id}')" class="text-gray-500 hover:text-white"><i class="fas fa-times"></i></button>
+                    </div>
+                    <p class="text-sm text-red-500 mt-2">${item.errorMsg}</p>
+                `;
+            } else if (item.status === 'success') {
+                const d = item.data;
+                const cat = d.category || 'Genel';
+                const score = d.score;
+                
+                // Color logic
+                let color = score >= 8 ? "text-neon-red border-neon-red" : (score >= 5 ? "text-yellow-400 border-yellow-400" : "text-neon-blue border-neon-blue");
+                
+                html = `
+                    <div class="flex flex-col md:flex-row gap-4 relative">
+                        <div class="hidden md:flex flex-col items-center justify-center w-16 text-center border-r border-gray-800 pr-4">
+                            <span class="text-2xl font-bold ${color.split(' ')[0]}">${score}</span>
+                            <span class="text-[9px] text-gray-500 uppercase">Puan</span>
+                        </div>
+
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-1">
+                                <div class="flex gap-2 items-center">
+                                    <span class="bg-gray-800 text-gray-300 text-[9px] px-2 py-0.5 rounded border border-gray-700 uppercase font-mono tracking-wide">${cat}</span>
+                                    <span class="text-[10px] text-gray-500">${d.source}</span>
+                                </div>
+                                <div class="flex gap-2">
+                                     <button onclick="deleteItem('${item.id}')" class="text-gray-600 hover:text-red-400 transition text-xs"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white mb-2 hover:text-blue-300 transition">
+                                <a href="${d.final_url || item.url}" target="_blank">${d.headline}</a>
+                            </h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-3">${d.summary}</p>
+                            
+                            <div class="flex items-start gap-2 bg-gray-900/30 p-2 rounded border-l-2 ${color.split(' ')[1]}">
+                                <i class="fas fa-info-circle ${color.split(' ')[0]} text-xs mt-0.5"></i>
+                                <p class="text-xs text-gray-300 italic">${d.expat_significance}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if(!card) {
+                card = document.createElement('div');
+                card.id = item.id;
+                // --- İŞTE BURASI DEĞİŞTİ ---
+                // Listenin en başına eklemek için prepend:
+                grid.prepend(card);
+            }
+            
+            card.className = classes;
+            card.innerHTML = html;
+        }
+
+        // --- Helpers ---
+        function deleteItem(id) {
+            const el = document.getElementById(id);
+            if(el) el.remove();
+            globalResults = globalResults.filter(x => x.id !== id);
+            updateUIHeader();
+        }
+
+        function clearAllResults() {
+            if(confirm("Tüm sonuçlar silinsin mi?")) {
+                globalResults = [];
+                document.getElementById('resultsGrid').innerHTML = '';
+                updateUIHeader();
+            }
+        }
+
+        function updateUIHeader() {
+            const count = globalResults.length;
+            document.getElementById('resultCount').textContent = count > 0 ? `(${count})` : '';
+            if(count > 0) document.getElementById('resultsToolbar').classList.remove('hidden');
+            else document.getElementById('resultsToolbar').classList.add('hidden');
+        }
+
+        async function exportToDocx() {
+            const successItems = globalResults
+                .filter(r => r.status === 'success' && r.data)
+                .map(r => ({ input_url: r.url, analysis: r.data }));
+
+            if(successItems.length === 0) { alert('İndirilecek veri yok.'); return; }
+
+            const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
+            
+            try {
+                const res = await fetch(`${serverUrl}/export-docx`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(successItems)
+                });
+                
+                if(!res.ok) throw new Error("Export failed");
+
+                const blob = await res.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `ExpatIntel_Grouped_${new Date().toLocaleDateString()}.docx`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } catch(e) {
+                alert("Hata: " + e.message);
+            }
         }
     </script>
 </body>
