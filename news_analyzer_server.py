@@ -159,14 +159,16 @@ async def analyze_news(request: AnalyzeRequest):
     client = AsyncOpenAI(api_key=request.api_key)
 
     # Prompt Güncellemesi: Emojinin başlığın başında olduğundan emin oluyoruz.
-    system_prompt = f"""
-    Sen Danimarka'daki expat'lar için uzman bir haber asistanısın.
+ system_prompt = f"""
+    Sen Danimarka'da yaşayan Türk expat'lar (Türkiye'den gelip Danimarka'da çalışan profesyoneller, göçmenler ve öğrenciler) için içerik üreten kıdemli bir haber analisti ve editörsün.
     
-    GÖREVLER:
-    1. Metni oku ve anla.
-    2. Expat'lar için önemini değerlendir.
-    3. {categories_str}
-    4. JSON formatında Türkçe çıktı ver.
+    GÖREV TANIMI VE KURALLAR:
+    1. İÇERİK ANALİZİ: Metni oku ve özellikle Türk vatandaşlarının (ve genel olarak AB dışı vatandaşların) Danimarka'daki yaşam, çalışma, vize, oturum veya yasal durumlarına olan etkisini stratejik olarak değerlendir.
+    2. BAŞLIK VE ÖZET AYRIMI (KRİTİK KURAL): 'headline' (başlık) ve 'summary' (özet) içerikleri birbirini tekrar etmemelidir. Başlık kısa ve dikkat çekici bir kanca olmalı; özet ise başlıkta kullanılan kelimeleri veya kalıpları kopyalamadan, haberin detaylarını bağımsız bir şekilde açıklamalıdır.
+    3. TÜRK EXPAT ODAKLI PUANLAMA (ÖNEMLİ): Haberin Türkleri doğrudan veya dolaylı olarak ne kadar ilgilendirdiğini analiz et. Türk vatandaşlarını doğrudan etkileyen yasal değişiklikler, AB dışı (Non-EU) vize/oturum güncellemeleri veya Türkiye-Danimarka bağlamındaki haberlere çok daha yüksek puan (score) ver. Sadece AB vatandaşlarını ilgilendiren veya yerel/küçük çaplı Danimarka haberlerine düşük puan ver.
+    4. KATEGORİZASYON: Haberi şu kategorilerden en uygun olanına ata: {categories_str}
+    5. TON VE DİL: Profesyonel, nesnel, net ve kolay anlaşılır bir Türkçe kullan.
+    6. ÇIKTI FORMATI: Sadece belirtilen JSON şemasına kesin olarak uyan yapılandırılmış veri üret.
     """
 
     news_schema = {
@@ -175,12 +177,30 @@ async def analyze_news(request: AnalyzeRequest):
         "schema": {
             "type": "object",
             "properties": {
-                "headline": {"type": "string", "description": "İlgi çekici Türkçe başlık. Başlığın en başına mutlaka konuyla ilgili bir Emoji koy."},
-                "source": {"type": "string", "description": "Haber kaynağı adı"},
-                "summary": {"type": "string", "description": "Türkçe özet (2-3 cümle)"},
-                "expat_significance": {"type": "string", "description": "Expatlar için önemi"},
-                "score": {"type": "integer", "description": "Önem puanı (1-10)"},
-                "category": {"type": "string", "description": "Seçilen kategori"}
+                "headline": {
+                    "type": "string", 
+                    "description": "Dikkat çekici, vurucu ve kısa Türkçe başlık. Başlığın en başına konuyu yansıtan tek bir emoji koy. (Özetteki cümle yapısını ve kelimeleri tekrar etme)."
+                },
+                "source": {
+                    "type": "string", 
+                    "description": "Haberin alındığı kurumun veya platformun orijinal adı (Örn: DR, The Local Denmark, Ny i Danmark)."
+                },
+                "summary": {
+                    "type": "string", 
+                    "description": "Haberin ana hatlarını ve detaylarını aktaran 2-3 cümlelik profesyonel Türkçe özet. Başlıktaki ifadeleri tekrar etmeden haberin temel bağlamını ver."
+                },
+                "expat_significance": {
+                    "type": "string", 
+                    "description": "Bu haberin bir Türk expat'ın hayatını doğrudan nasıl etkileyeceğine dair 1-2 cümlelik nokta atışı analiz (Örn: 'Türk vatandaşları için çalışma izni süreçlerini hızlandırabilir', 'Sadece AB vatandaşlarını kapsıyor, Türkleri etkilemiyor')."
+                },
+                "score": {
+                    "type": "integer", 
+                    "description": "Haberin Türk expatlar için kritiklik seviyesi (1: Çok düşük ilgi/Sadece AB vatandaşlarını ilgilendiren haber, 10: Türkleri doğrudan etkileyen acil ve hayati değişiklik)."
+                },
+                "category": {
+                    "type": "string", 
+                    "description": "Sunulan listeden seçilmiş en isabetli kategori adı."
+                }
             },
             "required": ["headline", "source", "summary", "expat_significance", "score", "category"],
             "additionalProperties": False,
