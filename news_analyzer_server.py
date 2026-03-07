@@ -55,7 +55,7 @@ class AnalyzeResponse(BaseModel):
     expat_significance: str
     score: int
     category: str
-    final_url: Optional[str] = None 
+    final_url: Optional[str] = None
 
 
 class ExportItem(BaseModel):
@@ -156,7 +156,7 @@ async def analyze_news(request: AnalyzeRequest):
     else:
         categories_str = "Kategori olarak 'Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam' gibi genel bir başlık seç."
 
- client = AsyncOpenAI(api_key=request.api_key)
+    client = AsyncOpenAI(api_key=request.api_key)
 
     # Prompt Güncellemesi: Emojinin başlığın başında olduğundan emin oluyoruz.
     system_prompt = f"""
