@@ -156,10 +156,10 @@ async def analyze_news(request: AnalyzeRequest):
     else:
         categories_str = "Kategori olarak 'Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam' gibi genel bir başlık seç."
 
-    client = AsyncOpenAI(api_key=request.api_key)
+ client = AsyncOpenAI(api_key=request.api_key)
 
     # Prompt Güncellemesi: Emojinin başlığın başında olduğundan emin oluyoruz.
- system_prompt = f"""
+    system_prompt = f"""
     Sen Danimarka'da yaşayan Türk expat'lar (Türkiye'den gelip Danimarka'da çalışan profesyoneller, göçmenler ve öğrenciler) için içerik üreten kıdemli bir haber analisti ve editörsün.
     
     GÖREV TANIMI VE KURALLAR:
