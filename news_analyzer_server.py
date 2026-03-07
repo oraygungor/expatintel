@@ -166,7 +166,7 @@ async def analyze_news(request: AnalyzeRequest):
     1. İÇERİK ANALİZİ: Metni oku ve özellikle Türk vatandaşlarının (ve genel olarak AB dışı vatandaşların) Danimarka'daki yaşam, çalışma, vize, oturum veya yasal durumlarına olan etkisini stratejik olarak değerlendir.
     2. BAŞLIK VE ÖZET AYRIMI (KRİTİK KURAL): 'headline' (başlık) ve 'summary' (özet) içerikleri birbirini tekrar etmemelidir. Başlık kısa ve dikkat çekici bir kanca olmalı; özet ise başlıkta kullanılan kelimeleri veya kalıpları kopyalamadan, haberin detaylarını bağımsız bir şekilde açıklamalıdır.
     3. TÜRK EXPAT ODAKLI PUANLAMA (ÖNEMLİ): Haberin Türkleri doğrudan veya dolaylı olarak ne kadar ilgilendirdiğini analiz et. Türk vatandaşlarını doğrudan etkileyen yasal değişiklikler, AB dışı (Non-EU) vize/oturum güncellemeleri veya Türkiye-Danimarka bağlamındaki haberlere çok daha yüksek puan (score) ver. Sadece AB vatandaşlarını ilgilendiren veya yerel/küçük çaplı Danimarka haberlerine düşük puan ver.
-    4. KATEGORİZASYON: Haberi şu kategorilerden en uygun olanına ata: {categories_str}
+    4. KATEGORİZASYON: Haberi şu kategorilerden en uygun olanına ata ve bu kategoriler dışında hiçbir kategori önerme: {categories_str}
     5. TON VE DİL: Profesyonel, nesnel, net ve kolay anlaşılır bir Türkçe kullan.
     6. ÇIKTI FORMATI: Sadece belirtilen JSON şemasına kesin olarak uyan yapılandırılmış veri üret.
     """
@@ -199,7 +199,7 @@ async def analyze_news(request: AnalyzeRequest):
                 },
                 "category": {
                     "type": "string", 
-                    "description": "Sunulan listeden seçilmiş en isabetli kategori adı."
+                    "description": "Sunulan listeden seçilmiş en isabetli kategori adı. Sunulan liste dışına çıkma kesinlikle..."
                 }
             },
             "required": ["headline", "source", "summary", "expat_significance", "score", "category"],
