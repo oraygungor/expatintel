@@ -14,7 +14,8 @@ API_KEY = os.getenv("OPENAI_API_KEY")
 RSS_FEEDS = [
     # Global & İngilizce Danimarka Haberleri
     "https://feeds.thelocal.com/rss/dk",
-    "https://news.google.com/rss/search?q=Denmark+when:7d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=da&gl=DK&ceid=DK:da",
     
     # Ulusal Danimarka Kaynakları (Danca)
     "https://www.dr.dk/nyheder/service/feeds/allenyheder",
