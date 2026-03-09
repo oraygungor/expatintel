@@ -2,7 +2,10 @@ fastapi
 uvicorn
 httpx
 trafilatura
-openai
 pydantic
 beautifulsoup4
 python-docx
+feedparser
+openai
+googlenewsdecoder
+requests
