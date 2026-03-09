@@ -3,7 +3,7 @@ name: Daily Expat News Bot
 on:
   schedule:
     # Her gün Türkiye saatiyle sabah 11:00'de çalışır (08:00 UTC)
-    - cron: '0 8 * * *'
+    - cron: '0 */8 * * *'
   workflow_dispatch: # Manuel olarak "Actions" sekmesinden başlatabilmen için
 
 permissions:
