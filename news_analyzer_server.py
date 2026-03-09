@@ -43,7 +43,7 @@ MAX_REDIRECTS = 5
 class AnalyzeRequest(BaseModel):
     url: str
     api_key: str
-    model: str = "gpt-4o-mini"
+    model: str = "gpt-5.4"
     raw_text: Optional[str] = None
     available_categories: Optional[List[str]] = None
 
