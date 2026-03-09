@@ -1,0 +1,38 @@
+name: Daily Expat News Bot
+
+on:
+  schedule:
+    # Her gün sabah 08:00'de çalışır (UTC)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Manuel olarak başlatabilmek için
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run News Bot
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python news_bot.py
+
+      - name: Commit and Push JSON
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add daily_news.json
+          git commit -m "Daily news update: $(date +'%d-%m-%Y')" || exit 0
+          git push
