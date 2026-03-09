@@ -112,13 +112,13 @@ def filter_with_ai(news_list):
 
     # Talep ettiğin model versiyonu talimatı eklendi
     prompt = f"""
-    Aşağıdaki haberlerden Danimarka'daki expat'ları, hatta özellikle Türk expatları ilgilendirenleri seç.
+    Aşağıdaki haberlerden Danimarka'daki expat'ları, hatta özellikle Türk expatları ilgilendirenleri seç. 
     
     ÖNEMLİ KURALLAR:
     1. Sonuçları TÜRKÇE olarak dön.
     2. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: 09.03.2026).
     3. ASLA "tarih mevcut değil" gibi cümleler kurma. Eğer tarih yoksa bugünün tarihini ({datetime.now().strftime("%d.%m.%Y")}) kullan.
-    4. Puanı 7 ve üzeri olanları seç.
+    4. Puanı 8 ve üzeri olanları seç.
 
     JSON FORMATI:
     {{
