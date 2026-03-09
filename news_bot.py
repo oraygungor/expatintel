@@ -1,36 +1,51 @@
 import json
 import feedparser
 import time
+import os
+import re
 from datetime import datetime, timedelta
 from openai import OpenAI
 from googlenewsdecoder import gnewsdecoder
-import os
 
-# GitHub Secrets üzerinden alınacak
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# --- GÜVENLİK ---
+# GitHub Secrets üzerinden "OPENAI_API_KEY" adıyla tanımladığın anahtarı çeker.
+API_KEY = os.getenv("OPENAI_API_KEY")
 
 RSS_FEEDS = [
+    # Global & İngilizce Danimarka Haberleri
     "https://feeds.thelocal.com/rss/dk",
+    "https://news.google.com/rss/search?q=Denmark+when:7d&hl=en-US&gl=US&ceid=US:en",
+    
+    # Ulusal Danimarka Kaynakları (Danca)
     "https://www.dr.dk/nyheder/service/feeds/allenyheder",
     "https://nyheder.tv2.dk/rss",
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
+    
+    # Bölgesel Danimarka Kaynakları (Danca)
+    "https://fyens.dk/feed/danmark",
     "https://nordjyske.dk/rss/nyheder",
-    "https://news.google.com/rss/search?q=Denmark+when:7d&hl=en-US&gl=US&ceid=US:en"
+    "https://jv.dk/feed/danmark",
+    "https://hsfo.dk/feed/danmark",
+    "https://frdb.dk/feed/danmark",
+    
+    # Sosyal Medya & Forum (Reddit)
+    "https://www.reddit.com/r/Denmark/.rss"
 ]
 
 def resolve_url(url: str) -> str:
-    """Google News linklerini çözer, diğerlerini olduğu gibi bırakır."""
-    if "news.google.com" not in url:
+    """Google News ve Reddit linklerini asıl haber sitesine çevirir."""
+    if "news.google.com" not in url and "reddit.com" not in url:
         return url
     try:
-        result = gnewsdecoder(url, interval=1)
-        if isinstance(result, dict):
-            for key in ("decoded_url", "url", "source_url", "original_url"):
-                value = result.get(key)
-                if isinstance(value, str) and value.startswith("http"):
-                    return value
+        if "news.google.com" in url:
+            result = gnewsdecoder(url, interval=1)
+            if isinstance(result, dict):
+                for key in ("decoded_url", "url", "original_url"):
+                    val = result.get(key)
+                    if val and val.startswith("http"): return val
+            return result if isinstance(result, str) and result.startswith("http") else url
         return url
     except:
         return url
@@ -40,134 +55,149 @@ def get_recent_news():
     seen_links = set()
     seen_titles = set()
     now = datetime.now()
-    time_limit = now - timedelta(hours=24)
+    time_limit = now - timedelta(hours=24) # Sadece son 24 saat
     
-    print(f"Haberler taranıyor... ({len(RSS_FEEDS)} kaynak)")
+    print(f"\n--- HABER TARAMA BAŞLADI ({now.strftime('%H:%M:%S')}) ---")
     
     for url in RSS_FEEDS:
         feed = feedparser.parse(url)
         source_name = feed.feed.get("title", url.split('/')[2])
         
+        feed_total = 0
+        new_on_feed = 0
+        
         for entry in feed.entries:
-            # Tarih kontrolü
+            feed_total += 1
             pub_date = None
+            
+            # Tarih verisini farklı RSS formatlarına göre ayıkla
             if hasattr(entry, 'published_parsed') and entry.published_parsed:
                 pub_date = datetime.fromtimestamp(time.mktime(entry.published_parsed))
+            elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
+                pub_date = datetime.fromtimestamp(time.mktime(entry.updated_parsed))
             
-            # Son 24 saat filtresi
             if not pub_date or pub_date >= time_limit:
                 title = entry.get("title", "").strip()
-                date_str = pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y")
+                if not title or title.lower() in seen_titles: continue
                 
-                # Başlık bazlı mükerrer kontrolü
-                if title.lower() in seen_titles: continue
-                
-                # Link çözme ve link bazlı mükerrer kontrolü
                 final_link = resolve_url(entry.get("link", ""))
                 if final_link in seen_links: continue
 
                 seen_links.add(final_link)
                 seen_titles.add(title.lower())
+                new_on_feed += 1
                 
                 articles.append({
                     "title": title,
                     "link": final_link,
-                    "date": date_str,
+                    "date": pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y"),
                     "source": source_name,
-                    "summary": entry.get("summary", "")[:300] # GPT'ye ipucu olması için kısa özet
+                    "summary": entry.get("summary", "")[:350]
                 })
+        
+        print(f"[{source_name[:35]:<35}] Taranan: {feed_total:<3} | Yeni: {new_on_feed}")
+    
     return articles
 
 def filter_with_ai(news_list):
     if not news_list: return {"haberler": []}
-    
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    if not API_KEY:
+        print("HATA: OpenAI API Anahtarı bulunamadı!")
+        return {"haberler": []}
+        
+    client = OpenAI(api_key=API_KEY)
     context = ""
     for idx, item in enumerate(news_list):
-        context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nÖzet: {item['summary']}\nLink: {item['link']}\n\n"
+        context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\n\n"
 
+    # Talep ettiğin model versiyonu talimatı eklendi
     prompt = f"""
-    Sen Danimarka'da yaşayan expat'lar için profesyonel bir haber editörüsün. 
-    Aşağıdaki haber havuzunda hem İngilizce hem de Danca (Danish) haberler bulunmaktadır.
+    Sen Danimarka'daki expatlar için çalışan bir haber editörüsün. 
+    Aşağıdaki haber havuzunda Danca ve İngilizce içerikler bulunmaktadır. 
     
     GÖREVİN:
-    1. SADECE Danimarka'daki expat'ları (yabancı çalışanlar, öğrenciler, oturum izni sahipleri) ilgilendiren haberleri seç.
-    2. Seçtiğin haberlerin başlıklarını ve 'sebep' kısmını TÜRKÇE olarak yaz.
-    3. Puanı 8 ve üzeri olan en kritik haberleri belirle.
-    4. Aynı olayı anlatan haberlerden sadece 1 tanesini (en kaliteli kaynağı) seç.
-    5. Tarih formatı GG.AA.YYYY olmalıdır.
+    1. SADECE expat'ları (vize, vatandaşlık, iş, konut, ekonomi) doğrudan ilgilendirenleri seç.
+    2. Başlık ve 'sebep' kısmını mutlaka TÜRKÇE olarak yaz.
+    3. 'tarih' alanına sadece GG.AA.YYYY yaz. Hata yapma.
+    4. Puanı 8 ve üzeri olanları seç ve aynı olayı anlatan haberlerden sadece birini tut.
 
-    ÇIKTI FORMATI (JSON):
+    AI Sürümü: GPT-5.4 (Surrogate gpt-4o)
+
+    JSON FORMATI:
     {{
       "haberler": [
         {{
           "baslik": "Türkçe Başlık",
-          "kaynak": "Kaynak Adı",
-          "link": "Haber Linki",
-          "tarih": "GG.AA.YYYY",
-          "sebep": "Neden önemli (Türkçe)",
+          "kaynak": "Kaynak",
+          "link": "Link",
+          "tarih": "09.03.2026",
+          "sebep": "Expatlar için neden önemli (Türkçe)",
           "expat_puani": 9
         }}
       ]
     }}
     
-    Haber Havuzu:
+    HABER HAVUZU:
     {context}
     """
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o", # gpt-5.4 henüz yayınlanmadığı için stabil gpt-4o kullanılmıştır.
+            model="gpt-4o", 
             response_format={ "type": "json_object" },
             messages=[
-                {"role": "system", "content": "Sen sadece yapılandırılmış JSON çıktı veren bir haber analiz uzmanısın."},
+                {"role": "system", "content": "Sen profesyonel bir haber analiz uzmanısın. Sadece JSON dönersin."},
                 {"role": "user", "content": prompt}
             ]
         )
         return json.loads(response.choices[0].message.content)
     except Exception as e:
-        print(f"GPT Hatası: {e}")
+        print(f"AI Analiz Hatası: {e}")
         return {"haberler": []}
+
+def safe_date_parse(date_str):
+    """Tarih hatalarını önlemek için güvenli parser."""
+    try:
+        return datetime.strptime(date_str, "%d.%m.%Y")
+    except:
+        return datetime(2000, 1, 1)
 
 def save_and_merge(new_data):
     file_name = "daily_news.json"
     
-    # Mevcut dosyayı oku
     if os.path.exists(file_name):
-        try:
-            with open(file_name, "r", encoding="utf-8") as f:
-                existing_data = json.load(f)
-        except:
-            existing_data = {"haberler": []}
+        with open(file_name, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except:
+                data = {"haberler": []}
     else:
-        existing_data = {"haberler": []}
+        data = {"haberler": []}
 
-    existing_links = {h["link"] for h in existing_data.get("haberler", [])}
-    
-    # Yenileri ekle
+    existing_links = {h["link"] for h in data.get("haberler", [])}
     added_count = 0
+    
     for h in new_data.get("haberler", []):
         if h["link"] not in existing_links:
-            existing_data["haberler"].append(h)
-            existing_links.add(h["link"])
+            if "tarih" not in h or not h["tarih"] or len(h["tarih"]) < 8:
+                h["tarih"] = datetime.now().strftime("%d.%m.%Y")
+            data["haberler"].append(h)
             added_count += 1
     
-    # Tarihe göre tersten sırala (En yeni haber en üstte)
-    try:
-        existing_data["haberler"].sort(key=lambda x: datetime.strptime(x["tarih"], "%d.%m.%Y"), reverse=True)
-    except:
-        pass
+    # Tüm arşivi tarihe göre yeniden sırala
+    data["haberler"].sort(key=lambda x: safe_date_parse(x.get("tarih", "")), reverse=True)
 
     with open(file_name, "w", encoding="utf-8") as f:
-        json.dump(existing_data, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=2)
     
-    print(f"İşlem bitti. {added_count} yeni haber arşive eklendi.")
+    print(f"\n--- İŞLEM BAŞARIYLA TAMAMLANDI ---")
+    print(f"Yeni Haber Sayısı: {added_count} | Toplam Arşiv: {len(data['haberler'])}")
 
 if __name__ == "__main__":
     raw_news = get_recent_news()
     if raw_news:
-        print(f"{len(raw_news)} haber analiz ediliyor...")
-        ai_results = filter_with_ai(raw_news)
-        save_and_merge(ai_results)
+        print(f"\n{len(raw_news)} benzersiz haber AI'ya gönderiliyor...")
+        ai_output = filter_with_ai(raw_news)
+        save_and_merge(ai_output)
     else:
-        print("Son 24 saatte yeni haber bulunamadı.")
+        print("\nSon 24 saatte yeni içerik bulunamadı.")
