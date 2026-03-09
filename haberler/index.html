@@ -25,7 +25,6 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
-        /* Tarih inputu için karanlık mod stili */
         input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
         }
@@ -93,7 +92,10 @@
     </div>
 
     <script>
-        let allNews = []; // Tüm haberleri tutacak global değişken
+        // DOSYA YOLU GÜNCELLENDİ: GitHub Pages üzerinden veri çekiliyor
+        const JSON_FILE_PATH = 'https://oraygungor.github.io/expatintel/daily_news.json'; 
+
+        let allNews = [];
 
         const fallbackData = {
             "haberler": [
@@ -132,7 +134,6 @@
             }
         }
 
-        // "DD.MM.YYYY" formatını Date objesine çevirir
         function parseTurkishDate(dateStr) {
             const parts = dateStr.split('.');
             if (parts.length === 3) {
@@ -147,22 +148,18 @@
 
             const filtered = allNews.filter(haber => {
                 const haberDate = parseTurkishDate(haber.tarih);
-                
                 if (startDate) {
                     const start = new Date(startDate);
                     start.setHours(0,0,0,0);
                     if (haberDate < start) return false;
                 }
-                
                 if (endDate) {
                     const end = new Date(endDate);
                     end.setHours(23,59,59,999);
                     if (haberDate > end) return false;
                 }
-                
                 return true;
             });
-
             renderNews(filtered);
         }
 
@@ -177,27 +174,21 @@
             let plainLinks = '';
             
             if (newsItems.length === 0) {
-                container.innerHTML = '<p class="text-center text-slate-500 py-10">Belirtilen kriterlerde haber bulunamadı.</p>';
+                container.innerHTML = '<p class="text-center text-slate-500 py-10">Kriterlere uygun haber bulunamadı.</p>';
                 markdownContainer.textContent = '';
                 return;
             }
 
             newsItems.forEach(haber => {
-                // Sadece link (Markdown sekmesi için)
                 plainLinks += `${haber.link}\n`;
-
-                // Görsel kart
                 const card = document.createElement('div');
                 card.className = 'news-card bg-slate-800/50 border border-slate-700 p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4';
-                
                 const scoreColor = haber.puan >= 10 ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400';
 
                 card.innerHTML = `
                     <div class="flex-1">
                         <div class="flex items-center gap-3 mb-2">
-                            <span class="${scoreColor} px-2 py-0.5 rounded text-[10px] font-bold uppercase">
-                                PUAN: ${haber.puan}
-                            </span>
+                            <span class="${scoreColor} px-2 py-0.5 rounded text-[10px] font-bold uppercase">PUAN: ${haber.puan}</span>
                             <span class="text-slate-500 text-xs">${haber.tarih}</span>
                         </div>
                         <h2 class="text-md font-semibold text-slate-100 hover:text-blue-400 transition-colors">
@@ -205,10 +196,7 @@
                         </h2>
                     </div>
                     <div class="flex items-center">
-                        <a href="${haber.link}" target="_blank" rel="noopener noreferrer" 
-                           class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">
-                            Habere Git
-                        </a>
+                        <a href="${haber.link}" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-4 py-2 rounded-lg text-sm transition-colors">Habere Git</a>
                     </div>
                 `;
                 container.appendChild(card);
@@ -234,21 +222,19 @@
                     copyBtn.innerHTML = originalContent;
                     copyBtn.classList.replace('bg-emerald-600', 'bg-slate-700');
                 }, 2000);
-            } catch (err) {
-                console.error('Kopyalama başarısız', err);
-            }
+            } catch (err) { console.error(err); }
             document.body.removeChild(textArea);
         }
 
         async function init() {
             try {
-                const response = await fetch('daily_news.json');
+                const response = await fetch(JSON_FILE_PATH);
                 if (!response.ok) throw new Error('Dosya bulunamadı');
                 const data = await response.json();
                 allNews = data.haberler;
                 renderNews(allNews);
             } catch (error) {
-                console.warn("daily_news.json okunamadı, örnek veri kullanılıyor.");
+                console.warn(`Veri okunamadı (${JSON_FILE_PATH}), örnek veri kullanılıyor.`);
                 allNews = fallbackData.haberler;
                 renderNews(allNews);
             }
