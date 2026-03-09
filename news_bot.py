@@ -19,7 +19,6 @@ RSS_FEEDS = [
     
     # Ulusal Danimarka Kaynakları (Danca)
     "https://www.dr.dk/nyheder/service/feeds/allenyheder",
-    "https://nyheder.tv2.dk/rss",
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
