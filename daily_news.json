@@ -1,6 +1,38 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da enflasyon biraz daha geriledi",
+      "kaynak": "TradingView",
+      "link": "https://www.tradingview.com/news/te_news:532154:0-denmark-inflation-eases-further/",
+      "tarih": "10.03.2026",
+      "sebep": "Enflasyondaki değişim kira, market, ulaşım ve genel yaşam maliyetini etkilediği için expatlar açısından önemlidir. Türk expatlar için maaşların alım gücü ve bütçe planlaması açısından yakından takip edilmesi gereken bir gelişme.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Düşen süt fiyatları enflasyonun hafif gerilemesine katkı sağladı",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/business/lavere-priser-paa-maelk-faar-inflationen-til-at-falde-en-anelse?referrer=RSS",
+      "tarih": "10.03.2026",
+      "sebep": "Temel tüketim fiyatlarındaki değişim Danimarka’daki günlük yaşam bütçesini etkiler. Özellikle çocuklu aileler ve sabit gelirle yaşayan Türk expatlar için alım gücü açısından pratik öneme sahip.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "SAS, petrol fiyatlarındaki artış sonrası yakıt ek ücreti getiriyor",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/sas-indfoerer-braendstoftillaeg-efter-prishop-paa-olie",
+      "tarih": "10.03.2026",
+      "sebep": "Türkiye-Danimarka arasında sık seyahat eden expatlar için uçuş maliyetlerinin artması doğrudan etkili. Aile ziyareti, iş seyahati ve acil dönüş planları açısından özellikle Türk expatlar için önemli bir ulaşım haberi.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Artan petrol fiyatları SAS’ın yakıt ek ücreti uygulamasına yol açtı",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/business/stigende-oliepris-faar-sas-til-at-indfoere-braendstoftillæg?referrer=RSS",
+      "tarih": "10.03.2026",
+      "sebep": "Danimarka’dan yurt dışına uçuş yapan expatlar için bilet fiyatlarının yükselmesi anlamına geliyor. Türkiye ile bağlantılı seyahat eden Türk expatlar için tatil, aile ziyareti ve iş amaçlı uçuşların maliyetini artırabilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'da vatandaşlık başvuruları neredeyse tamamen askıya alındı",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260309/denmark-suspends-almost-all-citizenship-applications",
