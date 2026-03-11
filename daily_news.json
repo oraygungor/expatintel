@@ -1,6 +1,46 @@
 {
   "haberler": [
     {
+      "baslik": "Vatandaşlık başvuruları dondurulan yüzlerce uluslararası kişi arasında yıllardır Danimarka’da yaşayanlar da var",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-11/life-in-denmark/i-never-want-to-be-afraid-of-being-sent-home-rachel-has-been-here-for-years-but-her-citizenship-application-was-frozen-along-with-hundreds-of-other-internationals/",
+      "tarih": "11.03.2026",
+      "sebep": "Bu haber expatlar için çok kritik çünkü uzun süreli oturum, vatandaşlık planı ve hukuki statü güvencesi doğrudan etkileniyor. Özellikle Türk expatlar için gelecekte kalıcılık, aile birleşimi ve aidiyet açısından yüksek önem taşıyor.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Lübnanlıların Danimarka’dan ayrılma süresi ertelendi",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/flygtningenaevnet-udsaetter-udrejsefrist-libanesere",
+      "tarih": "11.03.2026",
+      "sebep": "Göç ve sınır dışı süreçlerine dair bu karar, Danimarka’daki yabancıların hukuki durumunun nasıl değişebileceğini göstermesi açısından önemli. Türk expatlar için de genel göç politikalarının sertliği veya esnekliği hakkında güçlü bir sinyal niteliğinde.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Yeni hemşire sözleşmesi daha yüksek emeklilik hakkı sağlıyor",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/ny-overenskomst-til-sygeplejerskerne-sikrer-hoejere-pension",
+      "tarih": "11.03.2026",
+      "sebep": "Sağlık sektöründe çalışan expatlar için maaş dışı haklar, emeklilik birikimi ve uzun vadeli çalışma koşulları açısından doğrudan önemli. Danimarka’da hemşire veya sağlık çalışanı olan Türk expatlar için somut maddi etki yaratabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Sosyal Demokratlar göç politikasına paketlenmiş tartışmalı bir öneri sundu",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/politik/video-s-pakker-kontroversielt-forslag-ind-i-udlaendingepolitik-men-de-har-ikke-tal-der-beviser-problemet?referrer=RSS",
+      "tarih": "11.03.2026",
+      "sebep": "Udlændingepolitik yani yabancılar politikası doğrudan expatların oturum, entegrasyon ve toplumsal kabul koşullarını etkiler. Türk expatlar için seçim döneminde göç konusunun yeniden sertleşmesi özel önem taşır.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Orta Doğu’daki hava sahası aksaklıkları ve kriz, seyahatleri etkiliyor",
+      "kaynak": "Scandasia",
+      "link": "https://scandasia.com/airspace-disruptions-in-middle-east-worry-thai-tourism-sector/",
+      "tarih": "11.03.2026",
+      "sebep": "Türkiye ve Orta Doğu bağlantılı uçuşları kullanan expatlar için rota, gecikme ve bilet maliyeti açısından önemli. Türk expatlar aile ziyaretleri ve transit seyahatlerde doğrudan etkilenebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka’da enflasyon biraz daha geriledi",
       "kaynak": "TradingView",
       "link": "https://www.tradingview.com/news/te_news:532154:0-denmark-inflation-eases-further/",
@@ -151,6 +191,22 @@
       "tarih": "10.03.2026",
       "sebep": "Göç ve yabancılar politikası, Danimarka'daki tüm expatlar için en hassas başlıklardan biridir. Oturum, aile birleşimi, entegrasyon ve vatandaşlık ortamını etkileyebileceği için özellikle Türk expatlar açısından yüksek öneme sahiptir.",
       "expat_puani": 10
+    },
+    {
+      "baslik": "DSB gecikmeler için özür diledi",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10762496/DSB-undskylder-for-forsinkelser",
+      "tarih": "10.03.2026",
+      "sebep": "Toplu taşıma aksaklıkları işe gidiş geliş, okul ve günlük yaşamı doğrudan etkilediği için expatlar açısından pratik öneme sahip. Özellikle özel araç kullanmayan ve tren ağına bağımlı yabancılar için günlük hayat maliyetini ve zaman yönetimini etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Bir diğer Danimarka havalimanında dronlar nedeniyle tüm uçuşlar durduruldu",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-nz/news/other/another-airport-in-denmark-is-forced-to-ground-all-flights-after-several-drones-were-spotted/ar-AA1NeYSB?cvid=13f7726e13e44e1f8df4ebd954ce5fc9&ocid=sf2&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "10.03.2026",
+      "sebep": "Uçuşların durması expatlar için seyahat, dönüş, aktarma ve iş planlarını doğrudan aksatır. Özellikle sık seyahat eden veya yurtdışında ailesi bulunan Türk expatlar için pratik etkisi yüksek.",
+      "expat_puani": 8
     },
     {
       "baslik": "Danimarka'da vatandaşlık başvuruları neredeyse tamamen askıya alındı",
