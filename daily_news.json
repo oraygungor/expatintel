@@ -1,6 +1,30 @@
 {
   "haberler": [
     {
+      "baslik": "Yakıt krizi Danimarka’da uzaktan çalışmayı yeniden gündeme taşıyor",
+      "kaynak": "Scandasia",
+      "link": "https://scandasia.com/fuel-crisis-pushes-denmark-and-asian-countries-to-promote-remote-work/",
+      "tarih": "13.03.2026",
+      "sebep": "Uzaktan çalışma uygulamalarının yaygınlaşması, expatlar için ulaşım masrafı, iş-yaşam dengesi ve iş düzeni açısından önemli. Beyaz yaka çalışan Türk expatlar için özellikle relevant.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Raylardaki arıza S-tren seferlerini gün boyu etkiliyor",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/fejl-paa-skinne-paavirker-s-togstrafikken-hele-dagen",
+      "tarih": "13.03.2026",
+      "sebep": "Kopenhag ve çevresinde toplu taşımaya bağımlı expatlar için günlük işe gidiş-geliş ve okul ulaşımını doğrudan etkileyen bir gelişme. Yeni gelen expatlar toplu taşımaya daha çok bağlı olduğu için kritik.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da 20 bin plazma donörü açığı var",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/danmark-mangler-20-000-plasmadonorer",
+      "tarih": "13.03.2026",
+      "sebep": "Sağlık sistemi ve gönüllü bağış süreçleriyle ilgili bu gelişme, Danimarka’da uzun süre yaşayan expatların toplumsal katılımı ve sağlık hizmetleri farkındalığı açısından önemli. Özellikle sisteme entegre olmak isteyen expatlar için dikkat çekici.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka, Katar’dan ortak bir İskandinav tahliye otobüsü üzerinde çalışıyor",
       "kaynak": "The Copenhagen Post",
       "link": "https://cphpost.dk/2026-03-12/news/round-up/denmark-works-on-joint-nordic-bus-from-qatar/",
