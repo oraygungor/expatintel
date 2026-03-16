@@ -1,6 +1,54 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da Coop, salmonella şüphesiyle et ürünlerini geri çağırdı",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/coop-tilbagekalder-koed-efter-salmonella-mistanke",
+      "tarih": "16.03.2026",
+      "sebep": "Danimarka’da yaşayan expatlar için doğrudan gıda güvenliği ve günlük alışverişi ilgilendiriyor. Türk expatlar da marketten aldıkları ürünleri kontrol etmek zorunda kalabilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Öresund Köprüsü’nde araç yangını nedeniyle Danimarka yönünde şerit kapandı",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/bil-i-brand-spaerrer-oeresundsbroen-i-retning-mod-danmark",
+      "tarih": "16.03.2026",
+      "sebep": "İsveç-Danimarka arasında işe gidip gelen veya seyahat eden expatlar için ulaşımı doğrudan etkiliyor. Özellikle Kopenhag çevresinde yaşayanlar için önemli bir trafik ve planlama sorunu yaratabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kystbanen’de ray arızası iptal ve gecikmelere yol açtı",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/skinnebrud-giver-aflysninger-og-forsinkelser-paa-kystbanen",
+      "tarih": "16.03.2026",
+      "sebep": "Toplu taşıma kullanan expatlar için işe gidiş-geliş ve günlük yaşamı doğrudan etkileyen bir gelişme. Kuzey Zelanda-Kopenhag hattında yaşayan Türk expatlar açısından da pratik öneme sahip.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Øresund Köprüsü’nde araç yangını Danimarka yönünü kapattı",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10767966/Bilbrand-lukkede-%C3%98resundsbroen-i-retning-mod-Danmark",
+      "tarih": "16.03.2026",
+      "sebep": "Sınır ötesi ulaşım, havaalanı bağlantıları ve bölgesel seyahat açısından expatlar için önemli. Özellikle Malmö-Kopenhag hattında yaşayanlar için ciddi aksama yaratabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Helsingør yakınındaki ray kırığı DSB’de iptallere neden oldu",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10767937/Brud-p%C3%A5-togskinner-ved-Helsing%C3%B8r-giver-aflysninger-hos-DSB",
+      "tarih": "16.03.2026",
+      "sebep": "DSB kullanan expatlar için ulaşım planlarını ve işe erişimi doğrudan etkileyen bir haber. Günlük yaşamı etkileyen somut altyapı sorunu olduğu için yüksek önemde.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Taşımacılık devi dizel fiyat şokuna tepki gösterdi",
+      "kaynak": "RESPONSYS - Danmark",
+      "link": "https://jv.dk/kolding/transportgigant-reagerer-paa-dieselchok-det-er-mildest-talt-en-katastrofe-for-os?rss",
+      "tarih": "16.03.2026",
+      "sebep": "Yakıt fiyatlarındaki artış, ulaşım ve lojistik maliyetleri üzerinden expatların günlük harcamalarını ve yaşam maliyetini etkileyebilir. Araç kullanan veya tedarik zincirine bağlı işlerde çalışan expatlar için önemli.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Schengen bölgesinde 2026'ya kadar yeni Giriş/Çıkış Sistemi uygulanacak",
       "kaynak": "\"Denmark when:1d\" - Google News",
       "link": "https://www.travelandtourworld.com/news/article/france-joins-spain-germany-italy-denmark-netherlands-portugal-and-more-eu-countries-in-implementing-the-revolutionary-entry-exit-system-by-2026-enhancing-border-security-and-efficiency-across-t/",
