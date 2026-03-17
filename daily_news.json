@@ -1,6 +1,30 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka e-fatura sistemini modernize ediyor",
+      "kaynak": "\"Denmark when:1d\" - Google News",
+      "link": "https://www.vatcalc.com/denmark/denmark-modernises-e-invoicing/",
+      "tarih": "17.03.2026",
+      "sebep": "Danimarka’da şirket sahibi, serbest çalışan veya danışman olarak çalışan expatlar için faturalama ve vergi uyumu süreçlerini etkileyebilecek pratik bir gelişme. Türk girişimciler için özellikle önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’da sekiz yeni otele ret verildi",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/otte-nye-hoteller-faar-nej-i-koebenhavn",
+      "tarih": "17.03.2026",
+      "sebep": "Kopenhag’daki konaklama kapasitesi ve şehir planlaması, yeni gelen expatlar ile kısa dönemli geçiş yapan çalışanları etkileyebilir. Konut ve geçici barınma baskısına dair dolaylı ama önemli bir gösterge.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Nordea yaklaşık 1500 pozisyonu kapatmayı planlıyor",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/business/nordea-har-planer-om-at-nedlaegge-cirka-1500-stillinger?referrer=RSS",
+      "tarih": "17.03.2026",
+      "sebep": "Bankacılık ve finans sektöründe çalışan expatlar için istihdam piyasasını etkileyebilecek önemli bir gelişme. Türk expatlar arasında beyaz yaka çalışanlar ve iş arayanlar açısından yüksek önemde.",
+      "expat_puani": 9
+    },
+    {
       "baslik": "Danimarka’da Coop, salmonella şüphesiyle et ürünlerini geri çağırdı",
       "kaynak": "Kort nyt | DR",
       "link": "https://www.dr.dk/nyheder/seneste/coop-tilbagekalder-koed-efter-salmonella-mistanke",
@@ -127,6 +151,22 @@
       "tarih": "16.03.2026",
       "sebep": "Uluslararası uçuş kapasitesindeki artış, Danimarka’daki expatlar için memlekete seyahat, aktarmalı uçuş seçenekleri ve bilet erişimi açısından önemlidir. Türkiye bağlantılı seyahat planları yapan Türk expatlar için de pratik değer taşır.",
       "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka 2026 seçimlerinde hangi siyasi partiler yarışıyor?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260316/who-are-the-political-parties-running-in-the-2026-danish-election",
+      "tarih": "16.03.2026",
+      "sebep": "Danimarka’daki expatlar için yaklaşan seçimlerin siyasi yönü; göç, çalışma izni, vergi ve entegrasyon politikalarını etkileyebilir. Türk expatlar açısından da ülkedeki genel siyasi iklimi anlamak önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Özel kiralık konut piyasasına geri dönüş",
+      "kaynak": "Nyheder fra Information.dk",
+      "link": "https://www.information.dk/2026/03/tilbage-paa-private-udlejningsmarked",
+      "tarih": "16.03.2026",
+      "sebep": "Konut piyasası Danimarka’daki expatların en temel sorunlarından biri. Kiralık konut piyasasına dair gelişmeler, özellikle yeni taşınan veya ev arayan Türk expatlar için doğrudan önem taşır.",
+      "expat_puani": 9
     },
     {
       "baslik": "Schengen bölgesinde 2026'ya kadar yeni Giriş/Çıkış Sistemi uygulanacak",
