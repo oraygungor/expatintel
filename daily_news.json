@@ -1,6 +1,38 @@
 {
   "haberler": [
     {
+      "baslik": "SAS, yakıt fiyatlarındaki artış nedeniyle en az bin uçuşu iptal edecek",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260318/scandinavian-airline-sas-to-cancel-thousands-of-flights-after-fuel-prices-surge",
+      "tarih": "18.03.2026",
+      "sebep": "Türkiye-Danimarka arasında seyahat eden veya sık uçan expat’lar için ulaşım planları, bilet maliyetleri ve tatil/iş seyahatleri açısından doğrudan etkili.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da istihdam şansı en yüksek olan ülkeler açıklandı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-18/business-education/career/who-has-the-highest-chance-of-being-employed-in-denmark-here-is-the-full-list-of-employment-rates-country-by-country/",
+      "tarih": "18.03.2026",
+      "sebep": "Yabancıların iş bulma olasılığına dair ülke bazlı veriler, Türk expatlar için iş piyasasındaki konumlarını ve fırsatlarını anlamada çok faydalı.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Wolt, tüketicileri yanıltmak suçlamasıyla polise şikâyet edildi",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/wolt-politianmeldes-have-vildledt-forbrugere",
+      "tarih": "18.03.2026",
+      "sebep": "Danimarka’da yaygın kullanılan bir teslimat platformunu ilgilendirdiği için günlük yaşam, fiyatlandırma şeffaflığı ve tüketici hakları bakımından expat’lar için önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Helsingør’daki ray kırığı tren sorunlarını sürdürüyor",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/skinnebrud-i-helsingoer-giver-fortsat-togproblemer",
+      "tarih": "18.03.2026",
+      "sebep": "İşe gidiş-geliş yapan expat’lar için toplu taşıma aksaklıkları günlük yaşamı, işe erişimi ve seyahat planlamasını doğrudan etkiliyor.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka e-fatura sistemini modernize ediyor",
       "kaynak": "\"Denmark when:1d\" - Google News",
       "link": "https://www.vatcalc.com/denmark/denmark-modernises-e-invoicing/",
@@ -110,6 +142,14 @@
       "link": "https://physicsworld.com/a/international-scientists-head-into-the-fast-lane-of-denmarks-burgeoning-quantum-ecosystem/",
       "tarih": "17.03.2026",
       "sebep": "Araştırma, teknoloji ve akademi alanında Danimarka’ya taşınmayı düşünen expatlar için ülkenin yetenek çekmeye devam ettiğini gösteriyor. Türk akademisyenler, mühendisler ve yüksek vasıflı çalışanlar için önemli bir sinyal.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Dışişleri Bakanlığı Danimarkalılara çağrısını yineledi: Lübnan’ı hemen terk edin",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/udenrigsministeriet-gentager-opfordring-til-danskere-forlad-libanon-nu",
+      "tarih": "17.03.2026",
+      "sebep": "Danimarka’da yaşayan ve Orta Doğu ile aile veya iş bağlantısı olan expat’lar için güvenlik, seyahat planı ve konsolosluk takibi açısından önemli bir uyarı.",
       "expat_puani": 8
     },
     {
