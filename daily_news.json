@@ -57,6 +57,62 @@
       "expat_puani": 8
     },
     {
+      "baslik": "Danimarka’daki aşırı sağ parti, yabancıların kalıcı oturumunu geri almayı istiyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260319/danish-far-right-party-wants-to-strip-permanent-residency-from-foreign-nationals",
+      "tarih": "19.03.2026",
+      "sebep": "Kalıcı oturum hakkına doğrudan etkisi olduğu için Danimarka’daki expatlar ve özellikle Türk göçmenler açısından çok kritik. Oturum güvenliği, uzun vadeli yaşam planı ve hukuki statü üzerinde doğrudan risk yaratabilir.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Kızıl bir hükümet, Danimarka’daki uluslararasılar için hayatı nasıl değiştirir?",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-19/news/politics/how-will-a-red-government-change-your-life-as-an-international-in-denmark/",
+      "tarih": "19.03.2026",
+      "sebep": "Haberde uluslararasıların yaşamını etkileyebilecek siyasi değişimlerin ele alındığı anlaşılıyor. Vergi, çalışma hayatı, entegrasyon, kamu hizmetleri ve göç politikaları açısından expatlar için doğrudan önemli.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "2026 Danimarka genel seçiminde sağ ve sol bloklar arasında başa baş yarış",
+      "kaynak": "YouGov",
+      "link": "https://yougov.com/en-gb/articles/54360-2026-danish-general-election-first-yougov-lss-election-model-shows-close-race-between-left-and-right-blocs",
+      "tarih": "19.03.2026",
+      "sebep": "Seçim dengesi, göçmenlik, oturum, vatandaşlık, çalışma izni ve sosyal haklar üzerinde etkili olabilecek yeni politika yönelimlerini işaret ediyor. Danimarka’daki expatlar için siyasi tabloyu okumak açısından önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Seçim öncesi bir Danimarka şehri, ülkenin temel sorunlarını yansıtıyor",
+      "kaynak": "Barron's",
+      "link": "https://www.barrons.com/news/ahead-of-election-danish-city-mirrors-country-s-challenges-8310dae7?gaa_at=eafs&gaa_n=AWEtsqcNkJKLB4dwk7XCBpqh0VD_k5HORNMbfdvjOEHaVk82uZ_Rxvafoeva&gaa_ts=69bc2b7b&gaa_sig=KpzA-6aPambFY0s9xwrpGrwBy0zO9or6qadItVQIzFx1FWBWb9Nn6pM9_snSlKL0aTsBOvLglXL7A9BakC5Bgg%3D%3D",
+      "tarih": "19.03.2026",
+      "sebep": "Konut, kamu hizmetleri, yaşam maliyeti ve yerel siyasi öncelikler gibi başlıklar expatların günlük hayatını doğrudan etkileyebilir. Özellikle yerleşik Türk expatlar için toplumsal atmosfer ve seçim gündemi açısından değerli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "ECB’ye göre İran savaşı Avrupa’da enflasyonu artıracak",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/ecb-krig-i-iran-vil-puste-til-inflationen-i-europa",
+      "tarih": "19.03.2026",
+      "sebep": "Enflasyon artışı Danimarka’daki kira, gıda, ulaşım ve enerji maliyetlerini etkileyebilir. Özellikle bütçe planlaması yapan expatlar ve Türkiye ile para transferi yapan Türk expatlar için ekonomik açıdan önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Enerji tesislerine saldırılar petrol ve gaz fiyatlarını yükseltti",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/angreb-mod-energianlaeg-sender-olie-og-gaspriser-i-vejret",
+      "tarih": "19.03.2026",
+      "sebep": "Enerji fiyatlarındaki yükseliş, ulaşım ve ısınma giderleri başta olmak üzere Danimarka’daki yaşam maliyetini artırabilir. Expatlar için doğrudan bütçe ve yaşam standardı etkisi taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "OK’da dizel litre fiyatı son beş yılın en yüksek seviyesine çıktı",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/literprisen-paa-diesel-hos-ok-er-den-hoejeste-i-fem-aar",
+      "tarih": "19.03.2026",
+      "sebep": "Araç kullanan expatlar için doğrudan ulaşım maliyeti artışı anlamına geliyor. Banliyölerde yaşayan ya da işe arabayla giden Türk expatlar için günlük harcamaları etkileyebilecek somut bir gelişme.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "SAS, yakıt fiyatlarındaki artış nedeniyle en az bin uçuşu iptal edecek",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260318/scandinavian-airline-sas-to-cancel-thousands-of-flights-after-fuel-prices-surge",
