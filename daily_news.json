@@ -1,6 +1,110 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da 2026 seçim günü nasıl işleyecek ve sonuçlar ne zaman belli olacak?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260320/what-happens-on-election-day-2026-in-denmark-and-when-will-we-get-a-result",
+      "tarih": "20.03.2026",
+      "sebep": "Danimarka’daki expatlar için seçim günü süreçleri, siyasi atmosfer ve olası hükümet değişiminin oturum, vergi, sosyal haklar ve göç politikalarına etkisi açısından çok önemli.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Avrupa’da yüzlerce uçuş iptal edilirken bilmeniz gerekenler",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260320/what-you-need-to-know-as-european-airlines-cancel-hundreds-of-flights",
+      "tarih": "20.03.2026",
+      "sebep": "Danimarka’da yaşayan expatlar, özellikle Türkiye ile seyahat edenler için uçuş iptalleri doğrudan ulaşım, tatil planı, iş seyahati ve aile ziyaretlerini etkileyebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "İtalya ve Danimarka, İran savaşı nedeniyle göç dalgası riskine karşı uyardı",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260320/italy-and-denmark-warn-iran-war-could-trigger-migrant-influx",
+      "tarih": "20.03.2026",
+      "sebep": "Göç ve sınır politikaları Danimarka’daki yabancıları doğrudan etkileyebilir; özellikle Türk expatlar açısından siyasi söylem, iltica ve yabancılar politikasındaki sertleşme ihtimali önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka yeni parlamentosunu seçiyor: seçim Trump gölgesinde geçiyor",
+      "kaynak": "Reuters",
+      "link": "https://www.reuters.com/world/europe/denmark-elect-new-parliament-vote-clouded-by-trump-2026-03-20/",
+      "tarih": "20.03.2026",
+      "sebep": "Parlamento seçimi, Danimarka’da yaşayan expatların günlük hayatını etkileyen oturum, vatandaşlık, çalışma izni, vergi ve entegrasyon politikalarının yönünü belirleyebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Trump’ın Greenland baskısı Danimarka seçimlerinin üzerinde",
+      "kaynak": "Reuters",
+      "link": "https://www.reuters.com/world/trumps-push-greenland-hangs-over-danish-election-2026-03-20/",
+      "tarih": "20.03.2026",
+      "sebep": "Seçim gündemini belirleyen dış politika ve güvenlik tartışmaları, göç ve ulusal kimlik eksenli siyaseti de etkileyerek expatlar için daha sert veya daha kapsayıcı politikaların önünü açabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Sağa yakın bir koalisyon Danimarka’yı nasıl yönetebilir?",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-20/news/politics/vote-denmark-back-this-is-how-a-right-wing-coalition-could-run-denmark/",
+      "tarih": "20.03.2026",
+      "sebep": "Sağ koalisyon ihtimali, yabancılar hukuku, aile birleşimi, vatandaşlık ve entegrasyon kurallarında değişiklik anlamına gelebileceği için expatlar açısından yüksek öneme sahip.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Folketing, oy hakkı olmayan 13 bin kişiye yanlışlıkla oy kullanma çağrısı yaptı",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/folketinget-opfordrer-ved-en-fejl-13-000-uden-stemmeret-til-stemme",
+      "tarih": "20.03.2026",
+      "sebep": "Bu haber, Danimarka’daki yabancıların ve expatların seçim hakları, belediye-genel seçim ayrımı ve resmi bildirimlere güven açısından doğrudan önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Bugün mektupla oy kullanmak için son gün",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/i-dag-er-sidste-mulighed-brevstemme",
+      "tarih": "20.03.2026",
+      "sebep": "Oy kullanma hakkı olan AB vatandaşı ve diğer uygun yabancılar için seçim prosedürleri pratik önem taşır; Danimarka’daki expatlar için zaman kritik bir duyurudur.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kriz günlük hayatınızı ve cüzdanınızı nasıl etkileyecek?",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/internationalt/art10774432/S%C3%A5dan-kommer-krisen-til-at-p%C3%A5virke-din-hverdag-og-pengepung",
+      "tarih": "20.03.2026",
+      "sebep": "Yaşam maliyeti, enerji ve temel harcamalardaki artış Danimarka’daki expatların bütçesini doğrudan etkiler; özellikle yeni gelenler için ekonomik baskı büyük önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Skagen işgücü arıyor ama Dasha gibi daha az kişiye sahip olma riski taşıyor",
+      "kaynak": "Nordjyske - Nyheder",
+      "link": "https://nordjyske.dk/nyheder/nordjylland/skagen-mangler-mennesker-men-risikerer-at-faa-faerre-som-dasha/5954882?utm_source=nyheder&utm_medium=rss&utm_campaign=nyheder",
+      "tarih": "20.03.2026",
+      "sebep": "Bu haber işgücü açığı, yabancı çalışan ihtiyacı ve göçmen/emek piyasası politikalarıyla ilgili olduğu için Danimarka’daki expatlar ve özellikle çalışmak isteyen Türkler açısından çok alakalı.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Reddit: Uzmanlara göre Liberal Alliance’ın önerisi kiraları binlerce kron artırabilir",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1ryp00m/eksperter_forslag_fra_liberal_alliance_vil_gøre/",
+      "tarih": "20.03.2026",
+      "sebep": "Kira piyasasındaki olası artışlar expatlar için en kritik başlıklardan biridir; özellikle büyük şehirlerde yaşayan Türk expatlar için barınma maliyeti doğrudan etkilenir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Reddit: Yabancılara erken emeklilik maaşı sayısı Mette döneminde hızla arttı iddiası",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1ryp23a/førtidspension_til_udlændinge_på_himmelflugt/",
+      "tarih": "20.03.2026",
+      "sebep": "Yabancılarla ilgili sosyal yardım ve siyasi tartışmalar, Danimarka’daki göçmen topluluklara yönelik kamuoyu ve politika değişimlerini etkileyebileceği için Türk expatlar açısından dikkatle izlenmeli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Reddit: Yabancılarla ilgili 3 iddia inceleniyor; etnik Danimarkalılar 70 yıl içinde azınlık olur mu?",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1ryxz6n/vi_efterprøver_3_påstande_om_udlændinge_kommer/",
+      "tarih": "20.03.2026",
+      "sebep": "Göçmenler ve demografi etrafındaki tartışmalar, Türk expatlar dahil tüm yabancı toplulukların toplumsal algısını ve gelecekteki entegrasyon politikalarını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Birçok uluslararası çalışan neden Danimarka’ya uyum sağlamakta zorlanıyor?",
       "kaynak": "The Copenhagen Post",
       "link": "https://cphpost.dk/2026-03-19/life-in-denmark/what-would-it-take-to-feel-not-just-grateful-but-genuinely-proud-to-be-here-gus-guerrero-seeks-to-understand-why-many-internationals-struggle-to-settle-even-when-they-do-everything-right/",
