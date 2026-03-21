@@ -1,6 +1,54 @@
 {
   "haberler": [
     {
+      "baslik": "Yabancılarla iletişim kurarken Danimarkalılar için yapılması ve yapılmaması gerekenler",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-21/life-in-denmark/dos-and-donts-for-danes-dealing-with-foreigners/",
+      "tarih": "21.03.2026",
+      "sebep": "Toplumsal uyum, işyeri iletişimi ve günlük hayatta kültürel yanlış anlamaları azaltma açısından expatlar, özellikle de yeni gelen Türkler için oldukça ilgili bir içerik.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "MitID sorunları çözüldü, artık yıllık vergi beyanınızı kontrol edebilirsiniz",
+      "kaynak": "Kort nyt | DR",
+      "link": "https://www.dr.dk/nyheder/seneste/mens-tusindvis-vil-tjekke-aarsopgoerelsen-er-der-store-problemer-med-mitid",
+      "tarih": "21.03.2026",
+      "sebep": "MitID, Danimarka’da bankacılık, resmi işlemler ve vergi erişimi için temel dijital sistemdir. Expatlar için özellikle vergi sezonunda kritik öneme sahiptir.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "MitID giriş sistemi sorun yaşadı: 100 binden fazla kişi vergi dökümünü kontrol etmek için sırada",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/oekonomi/privatoekonomi/art10775976/Login-bag-MitID-er-ramt-af-problemer-%E2%80%93-over-100.000-er-i-k%C3%B8-til-at-tjekke-%C3%A5rsopg%C3%B8relse",
+      "tarih": "21.03.2026",
+      "sebep": "Vergi iadesi veya ek vergi durumunu öğrenmek isteyen yabancılar için MitID erişim sorunları doğrudan günlük finansal planlamayı etkiler.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "500 binden fazla kişi yıllık vergi dökümünü şimdiden kontrol etti",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/danmark/over-500000-har-allerede-tjekket-aarsopgoerelsen?referrer=RSS",
+      "tarih": "21.03.2026",
+      "sebep": "Vergi dönemi Danimarka’daki tüm çalışanlar için önemli; expatlar açısından iade, borç ve gelir kayıtlarının doğruluğunu zamanında kontrol etmek kritik.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "MitID giriş sistemi sorun yaşadı",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/danmark/login-bag-mitid-er-ramt-af-problemer?referrer=RSS",
+      "tarih": "21.03.2026",
+      "sebep": "Dijital kimlik sistemi Danimarka’daki yabancılar için banka, vergi, belediye ve sağlık işlemlerinin merkezinde yer aldığı için bu kesinti doğrudan yaşamı etkiler.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Bolig sahipleri gelecek yıl 3 milyar kronu aşan ek vergi ödeyebilir",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/dine-penge/nu-falder-hammeren-boligejere-staar-til-at-betale-over-tre-milliarder-kroner-mere-i-skat-naeste-aar?referrer=RSS",
+      "tarih": "21.03.2026",
+      "sebep": "Danimarka’da ev sahibi olan veya olmayı planlayan Türk expatlar için konut maliyetleri ve emlak vergileri bütçe planlamasında belirleyici olabilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka’da 2026 seçim günü nasıl işleyecek ve sonuçlar ne zaman belli olacak?",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260320/what-happens-on-election-day-2026-in-denmark-and-when-will-we-get-a-result",
@@ -127,6 +175,30 @@
       "tarih": "20.03.2026",
       "sebep": "SAS ve bölgesel havalimanlarını kullanan expatlar için ciddi seyahat aksaklığı riski taşıyor. Türkiye’ye gidip gelen, iş seyahati yapan veya oturum işlemleri için seyahat planlayan Türk expatlar için yüksek öneme sahip.",
       "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka seçimleri için temel rehber",
+      "kaynak": "Atlantic Council",
+      "link": "https://www.atlanticcouncil.org/content-series/eye-on-europes-elections/your-primer-on-denmarks-snap-parliamentary-elections/",
+      "tarih": "20.03.2026",
+      "sebep": "Seçimlerin arka planını ve olası sonuçlarını anlamak, Danimarka’daki yabancıların ülkenin siyasi yönünü ve buna bağlı yaşam koşullarını değerlendirmesine yardımcı olur.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka seçimleri öncesi Grönland ile ilişki tartışma konusu",
+      "kaynak": "AP News",
+      "link": "https://apnews.com/article/denmark-parliament-election-greenland-c6951fa94fc601efa1401318112a3a04",
+      "tarih": "20.03.2026",
+      "sebep": "Ulusal güvenlik ve dış politika gündemi seçimleri şekillendirirken, bunun iç politikaya ve yabancıların yaşadığı ekonomik-sosyal ortama etkisi olabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ve İtalya, İran savaşı nedeniyle olası göç dalgasına karşı AB’den hazırlık istedi",
+      "kaynak": "InfoMigrants",
+      "link": "https://www.infomigrants.net/en/post/70472/denmark-italy-urge-eu-to-provide-aid-and-prepare-for-migrant-arrivals-amid-iran-war",
+      "tarih": "20.03.2026",
+      "sebep": "Göç ve sınır politikalarındaki değişimler, Danimarka’daki yabancı topluluklar ve özellikle göç tartışmalarından daha fazla etkilenebilen Türk expatlar için önemli bir politika sinyali taşır.",
+      "expat_puani": 8
     },
     {
       "baslik": "Birçok uluslararası çalışan neden Danimarka’ya uyum sağlamakta zorlanıyor?",
