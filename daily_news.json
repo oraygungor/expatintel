@@ -1,6 +1,54 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka Başbakanı Frederiksen’in göç konusundaki sert çizgisi gündemde",
+      "kaynak": "\"Denmark when:1d\" - Google News",
+      "link": "https://www.barrons.com/news/denmark-s-pm-mette-frederiksen-tenacious-and-tough-on-migration-0b5b5377?gaa_at=eafs&gaa_n=AWEtsqcOTjcv6YTNyY9p4KUbeB39OwMSL_vlHZiBJ4C5l9wIct-uGbUTSFEp&gaa_ts=69c38c70&gaa_sig=_IE0ZEZSD1Ep3g63odCfbvh8ZdFJV2BOldrGA0Z0dQmcAFprBB4VKj6QKZGsiholtYwvsYof4Wv3hBasVsgiZg%3D%3D",
+      "tarih": "25.03.2026",
+      "sebep": "Göç politikaları, oturum ve aile birleşimi gibi başlıklar Türk expatlar dahil tüm yabancılar için kritik. Başbakanın bu konudaki yaklaşımı gelecekteki yasal düzenlemelerin yönünü işaret edebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Yeni hükümetin kurulması zaman alabilir, ancak büyük bir fatura şimdilik önlenebilir",
+      "kaynak": "Nordjyske - Nyheder",
+      "link": "https://nordjyske.dk/nyheder/samfund/analyse-forbered-dig-paa-at-der-gaar-lang-tid-foer-vi-faar-en-regering-men-maaske-slipper-du-for-en-stor-regning/5968912?utm_source=nyheder&utm_medium=rss&utm_campaign=nyheder",
+      "tarih": "25.03.2026",
+      "sebep": "Hükümet kurma sürecinin uzaması, vergi, kamu harcamaları ve olası yeni ekonomik düzenlemelerin gecikmesi anlamına gelebilir. Bu durum Danimarka’da çalışan ve yaşayan expatların bütçe planlamasını etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka seçiminde çoğunluk çıkmadı: koalisyon görüşmeleri başlıyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260324/get-all-the-results-and-reaction-to-the-2026-danish-election",
+      "tarih": "24.03.2026",
+      "sebep": "Seçim sonucu Danimarka’da kurulacak yeni hükümetin göç, oturum, çalışma izni, vergi ve sosyal haklar politikalarını etkileyebilir. Bu nedenle expatlar ve özellikle Türk expatlar için doğrudan önem taşır.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Avrupa’da yabancı nüfus oranı en yüksek olan ülkeler hangileri?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260324/which-countries-in-europe-have-the-biggest-share-of-foreign-residents",
+      "tarih": "24.03.2026",
+      "sebep": "Danimarka’daki yabancı nüfusun konumu ve Avrupa karşılaştırması, expatların entegrasyon, barınma, kamu hizmetleri ve sosyal algı açısından durumunu anlaması için önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka seçiminde yaşam maliyeti ve Greenland krizi öne çıktı",
+      "kaynak": "\"Denmark when:1d\" - Google News",
+      "link": "https://www.reuters.com/video/watch/idRW678424032026RP1/",
+      "tarih": "24.03.2026",
+      "sebep": "Yaşam maliyeti konusu, kira, gıda, enerji ve günlük harcamalar nedeniyle Danimarka’daki expatların doğrudan gündemidir. Özellikle yeni gelen veya bütçe hassasiyeti yüksek Türk expatlar için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Elon Musk’ın Starlink interneti artık SAS yolcularına daha hızlı bağlantı sunuyor",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/rejser/art10780771/Elon-Musks-Starlink-giver-nu-SAS-passagerer-hurtigt-internet",
+      "tarih": "24.03.2026",
+      "sebep": "Türkiye-Danimarka arasında seyahat eden veya iş için sık uçan expatlar açısından SAS uçuşlarında daha iyi internet erişimi pratik fayda sağlar. Özellikle uzaktan çalışanlar ve sık seyahat eden Türk expatlar için değerli bir gelişme.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Yabancılarla iletişim kurarken Danimarkalılar için yapılması ve yapılmaması gerekenler",
       "kaynak": "The Copenhagen Post",
       "link": "https://cphpost.dk/2026-03-21/life-in-denmark/dos-and-donts-for-danes-dealing-with-foreigners/",
