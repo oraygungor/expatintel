@@ -110,15 +110,16 @@ def filter_with_ai(news_list):
     for idx, item in enumerate(news_list):
         context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\n\n"
 
-    # Talep ettiğin model versiyonu talimatı eklendi
+    # Güncellenmiş AI Talimatları
     prompt = f"""
-    Aşağıdaki haberlerden Danimarka'daki expat'ları, hatta özellikle Türk expatları ilgilendirenleri seç. 
+    Aşağıdaki haberlerden Danimarka'daki expat'ları, özellikle Türk expatları ilgilendirenleri seç. 
     
     ÖNEMLİ KURALLAR:
     1. Sonuçları TÜRKÇE olarak dön.
-    2. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: 09.03.2026).
-    3. ASLA "tarih mevcut değil" gibi cümleler kurma. Eğer tarih yoksa bugünün tarihini ({datetime.now().strftime("%d.%m.%Y")}) kullan.
-    4. Puanı 8 ve üzeri olanları seç.
+    2. Seçilen her haber için Türkçe bir başlık ata ("baslik" alanı).
+    3. Haberin özetini tam olarak 2 cümle halinde, en kritik bilgileri verecek şekilde Türkçe yaz ("ozet" alanı).
+    4. Habere önem derecesine göre bir "expat_puani" ver (1-10 arası). Bu puanı, Danimarka'da yaşayan Türkleri özellikle ne kadar ilgilendirdiğine (yasal düzenlemeler, göçmenlik, vergiler, Türkiye-Danimarka ilişkileri vb.) göre belirle. Sadece puanı 8 ve üzeri olan haberleri seç.
+    5. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: {datetime.now().strftime("%d.%m.%Y")}). ASLA "tarih mevcut değil" gibi cümleler kurma. Eğer tarih yoksa bugünün tarihini ({datetime.now().strftime("%d.%m.%Y")}) kullan.
 
     JSON FORMATI:
     {{
@@ -127,8 +128,8 @@ def filter_with_ai(news_list):
           "baslik": "Türkçe Başlık",
           "kaynak": "Kaynak",
           "link": "Link",
-          "tarih": "09.03.2026",
-          "sebep": "Neden önemli",
+          "tarih": "{datetime.now().strftime("%d.%m.%Y")}",
+          "ozet": "Haberin 2 cümlelik, en kritik bilgileri içeren Türkçe özeti.",
           "expat_puani": 9
         }}
       ]
@@ -171,6 +172,17 @@ def save_and_merge(new_data):
     else:
         data = {"haberler": []}
 
+    # --- 14 Günden Eski Haberleri Temizle ---
+    two_weeks_ago = datetime.now() - timedelta(days=14)
+    filtered_haberler = [
+        h for h in data.get("haberler", [])
+        if safe_date_parse(h.get("tarih", "")) >= two_weeks_ago
+    ]
+    
+    silinen_sayisi = len(data.get("haberler", [])) - len(filtered_haberler)
+    data["haberler"] = filtered_haberler
+    # ----------------------------------------
+
     existing_links = {h["link"] for h in data.get("haberler", [])}
     added_count = 0
     
@@ -188,6 +200,8 @@ def save_and_merge(new_data):
         json.dump(data, f, ensure_ascii=False, indent=2)
     
     print(f"\n--- İŞLEM BAŞARIYLA TAMAMLANDI ---")
+    if silinen_sayisi > 0:
+        print(f"Temizlenen Eski Haber Sayısı (>14 gün): {silinen_sayisi}")
     print(f"Yeni Haber Sayısı: {added_count} | Toplam Arşiv: {len(data['haberler'])}")
 
 if __name__ == "__main__":
