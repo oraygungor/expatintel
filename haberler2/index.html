@@ -1,120 +1,247 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expat Haber Bülteni</title>
+    <title>Danimarka Expat Haber Bülteni</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
     <style>
         body {
-            background-color: #0f172a;
-            color: #f1f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .news-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease-in-out;
         }
         .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.15);
+        }
+        .dark .news-card:hover {
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
         }
         .tab-active {
             border-bottom: 2px solid #3b82f6;
             color: #3b82f6;
+        }
+        .dark .tab-active {
+            color: #60a5fa;
         }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
         }
         input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+        }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8">
-    <div class="max-w-4xl mx-auto">
-        <header class="mb-6 text-center">
-            <h1 class="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+<body class="min-h-screen p-4 md:p-8 selection:bg-blue-500/30 bg-slate-50 text-slate-800 dark:bg-[#0f172a] dark:text-[#f1f5f9]">
+    <div class="max-w-4xl mx-auto relative">
+        
+        <!-- Tema Değiştirme Butonu -->
+        <button onclick="toggleTheme()" class="absolute top-0 right-0 p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 shadow-sm transition-colors" title="Temayı Değiştir">
+            <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Moon Icon -->
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Sun Icon -->
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        </button>
+
+        <header class="mb-8 text-center pt-2">
+            <div class="inline-flex items-center justify-center p-1.5 bg-white dark:bg-slate-800/50 rounded-xl mb-3 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                <span class="text-xl mr-2">🇩🇰</span>
+                <span class="text-xs font-semibold tracking-widest text-slate-600 dark:text-slate-300 uppercase pr-2">Danimarka</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-blue-600 to-emerald-500 dark:from-blue-400 dark:via-indigo-400 dark:to-emerald-400 bg-clip-text text-transparent pb-1">
                 Expat Haber Bülteni
             </h1>
-            <p id="status-text" class="text-slate-500 text-sm italic">Haberler yükleniyor...</p>
+            <p id="status-text" class="text-slate-500 dark:text-slate-400 text-xs font-medium flex items-center justify-center gap-2">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                </span>
+                Güncel veriler yükleniyor...
+            </p>
         </header>
 
         <!-- Filtreleme Alanı -->
-        <div class="bg-slate-800/40 border border-slate-700 rounded-xl p-4 mb-6">
-            <div class="flex flex-col md:flex-row items-end justify-center gap-4">
-                <div class="w-full md:w-auto">
-                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Başlangıç Tarihi</label>
-                    <input type="date" id="start-date" onchange="applyFilters()" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+        <div class="bg-white dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200 dark:border-slate-700/80 rounded-xl p-4 mb-6 shadow-sm">
+            <div class="flex flex-col md:flex-row items-end justify-between gap-4">
+                <div class="flex-1 w-full grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Başlangıç</label>
+                        <input type="date" id="start-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-slate-800 dark:text-white transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Bitiş</label>
+                        <input type="date" id="end-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-slate-800 dark:text-white transition-all">
+                    </div>
                 </div>
-                <div class="w-full md:w-auto">
-                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Bitiş Tarihi</label>
-                    <input type="date" id="end-date" onchange="applyFilters()" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
-                </div>
-                <button onclick="resetFilters()" class="w-full md:w-auto px-4 py-2 text-sm bg-slate-600 hover:bg-slate-500 rounded-lg transition-colors">
+                <button onclick="resetFilters()" class="w-full md:w-auto h-[38px] px-5 text-sm font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:hover:text-white rounded-lg transition-all shadow-sm">
                     Sıfırla
                 </button>
             </div>
         </div>
 
         <!-- Sekme Navigasyonu -->
-        <div class="flex border-b border-slate-700 mb-6 justify-center">
-            <button id="tab-visual-btn" class="px-6 py-2 font-medium transition-colors tab-active" onclick="switchTab('visual')">
+        <div class="flex border-b border-slate-200 dark:border-slate-700/50 mb-6 justify-center gap-2">
+            <button id="tab-visual-btn" class="px-4 py-2 font-semibold transition-colors tab-active text-sm uppercase tracking-wide" onclick="switchTab('visual')">
                 Görsel Liste
             </button>
-            <button id="tab-markdown-btn" class="px-6 py-2 font-medium text-slate-400 hover:text-slate-200 transition-colors" onclick="switchTab('markdown')">
+            <button id="tab-markdown-btn" class="px-4 py-2 font-semibold text-slate-500 hover:text-slate-800 dark:text-slate-500 dark:hover:text-slate-300 transition-colors text-sm uppercase tracking-wide" onclick="switchTab('markdown')">
                 Link Listesi
             </button>
         </div>
 
         <!-- Görsel Liste Sekmesi -->
-        <div id="tab-visual" class="space-y-4">
-            <div id="news-container">
-                <div class="flex justify-center items-center py-20">
-                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div id="tab-visual">
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="col-span-1 md:col-span-2 flex justify-center items-center py-20">
+                    <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
                 </div>
             </div>
         </div>
 
         <!-- Markdown (Saf Link) Sekmesi -->
         <div id="tab-markdown" class="hidden">
-            <div class="bg-slate-900 border border-slate-700 rounded-xl p-6 relative">
-                <button onclick="copyToClipboard()" class="absolute top-4 right-4 bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1 rounded transition-colors flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <div class="bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl p-5 relative shadow-inner">
+                <button onclick="copyToClipboard()" class="absolute top-3 right-3 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-white text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-none transition-colors flex items-center gap-1.5 font-medium shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     Kopyala
                 </button>
-                <pre id="markdown-container" class="text-slate-300 font-mono text-sm leading-relaxed"></pre>
+                <pre id="markdown-container" class="text-slate-700 dark:text-slate-300 font-mono text-sm leading-relaxed mt-6"></pre>
             </div>
         </div>
 
-        <footer class="mt-12 text-center text-slate-600 text-xs">
-            <p>&copy; 2026 Haber İzleyici - Veriler daily_news.json üzerinden senkronize edilir.</p>
+        <footer class="mt-12 text-center border-t border-slate-200 dark:border-slate-800 pt-6 pb-4">
+            <p class="text-slate-500 dark:text-slate-500 text-xs">
+                &copy; 2026 Haber İzleyici Botu<br>
+                <span class="mt-1 block opacity-75">Haberler otomatik filtrelenip JSON üzerinden senkronize edilmektedir.</span>
+            </p>
         </footer>
+    </div>
+
+    <!-- Haber Özeti Modalı -->
+    <div id="summary-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <!-- Arka plan overlay -->
+        <div class="absolute inset-0 bg-slate-900/40 dark:bg-slate-900/70 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop" onclick="closeModal()"></div>
+        
+        <!-- Modal İçeriği -->
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl p-6 max-w-lg w-full relative z-10 transform scale-95 opacity-0 transition-all duration-200 shadow-2xl flex flex-col max-h-[90vh]" id="modal-content-wrapper">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 dark:hover:text-white bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 p-1.5 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div id="modal-content" class="overflow-y-auto pr-2 custom-scrollbar">
+                <!-- İçerik JS ile buraya yüklenecek -->
+            </div>
+        </div>
     </div>
 
     <script>
         // Veri kaynağı
         const JSON_FILE_PATH = 'https://oraygungor.github.io/expatintel/daily_news.json'; 
 
-        // DOM Element Değişkenleri (Hata buradaydı, tanımlanmamışlardı)
+        // DOM Elementleri
         const container = document.getElementById('news-container');
         const markdownContainer = document.getElementById('markdown-container');
         const statusText = document.getElementById('status-text');
-
+        
         let allNews = [];
+        let currentFilteredNews = []; 
+        let deletedLinks = JSON.parse(localStorage.getItem('deletedNews') || '[]');
 
-        // Yedek veri (Yükleme hatası durumunda)
-        const fallbackData = {
-            "haberler": [
-                {
-                    "baslik": "Danimarka'da vatandaşlık başvuruları neredeyse tamamen askıya alındı",
-                    "kaynak": "The Local Denmark",
-                    "link": "https://www.thelocal.dk/20260309/denmark-suspends-almost-all-citizenship-applications",
-                    "tarih": "09.03.2026",
-                    "sebep": "Danimarka'da vatandaşlık işlemlerinin durdurulması, ülkede yaşayan expat'lar için vatandaşlık alma süreçlerini etkileyebilir.",
-                    "expat_puani": 9
-                }
-            ]
-        };
+        // --- TEMA (DARK/LIGHT) YÖNETİMİ ---
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+            updateThemeIcon();
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            const lightIcon = document.getElementById('theme-icon-light');
+            
+            if (isDark) {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden'); // Koyu temadaysa güneş ikonu (açık temaya geçiş) göster
+            } else {
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden'); // Açık temadaysa ay ikonu (koyu temaya geçiş) göster
+            }
+        }
+
+        // --- HABER SİLME YÖNETİMİ ---
+        function deleteNews(link, event) {
+            event.stopPropagation(); // Modalın açılmasını engelle
+            
+            if (!deletedLinks.includes(link)) {
+                deletedLinks.push(link);
+                localStorage.setItem('deletedNews', JSON.stringify(deletedLinks));
+            }
+            
+            // Veriyi diziden çıkar ve ekranı yenile
+            allNews = allNews.filter(haber => haber.link !== link);
+            applyFilters();
+        }
 
         function switchTab(tab) {
             const visualTab = document.getElementById('tab-visual');
@@ -126,16 +253,16 @@
                 visualTab.classList.remove('hidden');
                 markdownTab.classList.add('hidden');
                 visualBtn.classList.add('tab-active');
-                visualBtn.classList.remove('text-slate-400');
+                visualBtn.classList.remove('text-slate-500', 'dark:text-slate-500');
                 markdownBtn.classList.remove('tab-active');
-                markdownBtn.classList.add('text-slate-400');
+                markdownBtn.classList.add('text-slate-500', 'dark:text-slate-500');
             } else {
                 visualTab.classList.add('hidden');
                 markdownTab.classList.remove('hidden');
                 markdownBtn.classList.add('tab-active');
-                markdownBtn.classList.remove('text-slate-400');
+                markdownBtn.classList.remove('text-slate-500', 'dark:text-slate-500');
                 visualBtn.classList.remove('tab-active');
-                visualBtn.classList.add('text-slate-400');
+                visualBtn.classList.add('text-slate-500', 'dark:text-slate-500');
             }
         }
 
@@ -175,66 +302,162 @@
             renderNews(allNews);
         }
 
-        function renderNews(newsItems) {
-            if (!container) return; // Güvenlik kontrolü
+        // Modal İşlemleri
+        function openSummary(index) {
+            const haber = currentFilteredNews[index];
+            if (!haber) return;
+
+            const modal = document.getElementById('summary-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+            const contentWrapper = document.getElementById('modal-content-wrapper');
+            const content = document.getElementById('modal-content');
             
+            const score = haber.expat_puani !== undefined ? haber.expat_puani : (haber.puan || 0);
+            const scoreColor = score >= 9 ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400';
+
+            content.innerHTML = `
+                <div class="flex flex-wrap items-center gap-2 mb-4 pr-10">
+                    <span class="${scoreColor} px-2 py-1 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">PUAN: ${score}</span>
+                    <span class="bg-slate-100 text-slate-700 dark:bg-slate-700/60 dark:text-slate-200 px-2.5 py-1 rounded-md shadow-sm text-xs font-semibold">${haber.kaynak || 'Kaynak'}</span>
+                    <span class="text-slate-500 ml-auto font-medium text-[10px] uppercase tracking-wider mt-1 md:mt-0">${haber.tarih || ''}</span>
+                </div>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">${haber.baslik}</h2>
+                
+                ${haber.ozet ? `
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50 mb-6 relative">
+                        <div class="absolute -top-3 -left-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-full p-1.5 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                            </svg>
+                        </div>
+                        <p class="text-slate-700 dark:text-slate-200 text-sm leading-relaxed mt-1">${haber.ozet}</p>
+                    </div>
+                ` : ''}
+                
+                <div class="flex justify-end pt-2">
+                    <a href="${haber.link}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
+                        Orijinal Haberi Oku
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                backdrop.classList.add('opacity-100');
+                
+                contentWrapper.classList.remove('opacity-0', 'scale-95');
+                contentWrapper.classList.add('opacity-100', 'scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('summary-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+            const contentWrapper = document.getElementById('modal-content-wrapper');
+
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            
+            contentWrapper.classList.remove('opacity-100', 'scale-100');
+            contentWrapper.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 200); 
+        }
+
+        function renderNews(newsItems) {
+            if (!container) return; 
+            
+            currentFilteredNews = newsItems; 
             container.innerHTML = '';
             let plainLinks = '';
             
             if (newsItems.length === 0) {
-                container.innerHTML = '<p class="text-center text-slate-500 py-10">Kriterlere uygun haber bulunamadı.</p>';
-                if (markdownContainer) markdownContainer.textContent = '';
+                container.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2');
+                container.innerHTML = `
+                    <div class="text-center bg-white dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 rounded-xl py-12 px-4 w-full shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-slate-400 dark:text-slate-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 2v4h4" />
+                        </svg>
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-1">Haber Bulunamadı</h3>
+                        <p class="text-sm text-slate-500">Kriterlere uygun veri yok veya tümünü gizlediniz.</p>
+                    </div>`;
+                if (markdownContainer) markdownContainer.textContent = 'Veri bulunamadı.';
                 return;
             }
 
-            newsItems.forEach(haber => {
+            container.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2');
+
+            newsItems.forEach((haber, index) => {
                 const score = haber.expat_puani !== undefined ? haber.expat_puani : (haber.puan || 0);
-                
                 plainLinks += `${haber.link}\n`;
-                const card = document.createElement('div');
-                card.className = 'news-card bg-slate-800/50 border border-slate-700 p-6 rounded-xl flex flex-col gap-4 mb-4';
                 
-                const scoreColor = score >= 9 ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400';
+                const isHighPriority = score >= 9;
+                const scoreColor = isHighPriority ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400';
+                
+                const card = document.createElement('div');
+                card.className = 'news-card bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 p-5 rounded-xl flex flex-col justify-between cursor-pointer group relative overflow-hidden shadow-sm dark:shadow-none';
+                
+                card.onclick = () => openSummary(index);
 
                 card.innerHTML = `
-                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                        <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-2 mb-3">
-                                <span class="${scoreColor} px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tight">
-                                    EXPAT PUANI: ${score}
-                                </span>
-                                <span class="bg-slate-700/50 text-slate-300 px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-tight">
-                                    ${haber.kaynak || 'Kaynak Belirtilmemiş'}
-                                </span>
-                                <span class="text-slate-500 text-xs ml-auto">${haber.tarih || 'Tarih Belirtilmemiş'}</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-slate-100 mb-2 leading-tight">
-                                <a href="${haber.link}" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">
-                                    ${haber.baslik || 'Başlıksız Haber'}
-                                </a>
-                            </h2>
-                            ${haber.sebep ? `
-                                <div class="bg-slate-900/40 border-l-2 border-blue-500/50 p-3 mt-3">
-                                    <p class="text-sm text-slate-400 italic font-light">
-                                        <span class="text-blue-400 font-semibold not-italic text-xs uppercase mr-1">Neden önemli:</span> 
-                                        ${haber.sebep}
-                                    </p>
-                                </div>
-                            ` : ''}
+                    <!-- Sil Butonu -->
+                    <button onclick="deleteNews('${haber.link}', event)" class="absolute top-3 right-3 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-red-600 bg-slate-100/80 hover:bg-red-100 dark:text-slate-400 dark:bg-slate-700/50 dark:hover:bg-red-500/20 dark:hover:text-red-400 rounded transition-colors z-20" title="Haberi Gizle">
+                        SİL
+                    </button>
+
+                    <div class="pr-12"> <!-- Butonun altından metin taşmasını önlemek için padding -->
+                        <div class="flex flex-wrap items-center gap-2 mb-3">
+                            <span class="${scoreColor} px-2 py-1 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">
+                                Puan: ${score}
+                            </span>
+                            <span class="bg-slate-100 text-slate-700 dark:bg-slate-700/60 dark:text-slate-200 px-2.5 py-1 rounded-md shadow-sm text-xs font-semibold">
+                                ${haber.kaynak || 'Kaynak'}
+                            </span>
+                            <span class="text-slate-500 ml-auto font-medium text-[10px] uppercase tracking-wider mt-1 md:mt-0">
+                                ${haber.tarih || ''}
+                            </span>
                         </div>
-                        <div class="flex items-center md:self-center">
-                            <a href="${haber.link}" target="_blank" rel="noopener noreferrer" 
-                               class="w-full md:w-auto text-center bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-blue-900/20">
-                                Haberi Oku
-                            </a>
-                        </div>
+                        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                            ${haber.baslik || 'Başlıksız Haber'}
+                        </h2>
+                    </div>
+                    
+                    <div class="mt-3 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-3">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Özeti Gör
+                        </span>
+                        
+                        <a href="${haber.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Orijinal Habere Git" class="p-1.5 text-slate-500 hover:text-white hover:bg-blue-600 dark:text-slate-400 dark:hover:text-white dark:hover:bg-blue-600 rounded-md transition-colors bg-slate-100 dark:bg-slate-700/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
                     </div>
                 `;
                 container.appendChild(card);
             });
 
             if (markdownContainer) markdownContainer.textContent = plainLinks.trim();
-            if (statusText) statusText.textContent = `${newsItems.length} haber listeleniyor`;
+            if (statusText) {
+                statusText.innerHTML = `
+                    <span class="text-emerald-500 dark:text-emerald-400 font-bold">${newsItems.length}</span> adet haber listeleniyor
+                `;
+            }
         }
 
         function copyToClipboard() {
@@ -248,27 +471,57 @@
                 document.execCommand('copy');
                 const copyBtn = document.querySelector('#tab-markdown button');
                 const originalContent = copyBtn.innerHTML;
-                copyBtn.textContent = 'Kopyalandı!';
-                copyBtn.classList.replace('bg-slate-700', 'bg-emerald-600');
+                copyBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Kopyalandı!
+                `;
+                copyBtn.classList.replace('bg-white', 'bg-emerald-100');
+                copyBtn.classList.replace('text-slate-700', 'text-emerald-700');
+                copyBtn.classList.replace('dark:bg-slate-700', 'dark:bg-emerald-600');
+                copyBtn.classList.replace('dark:text-white', 'dark:text-white');
+                
                 setTimeout(() => {
                     copyBtn.innerHTML = originalContent;
-                    copyBtn.classList.replace('bg-emerald-600', 'bg-slate-700');
+                    copyBtn.className = "absolute top-3 right-3 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-white text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-none transition-colors flex items-center gap-1.5 font-medium shadow-sm";
                 }, 2000);
             } catch (err) { console.error(err); }
             document.body.removeChild(textArea);
         }
 
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('summary-modal');
+                if (!modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            }
+        });
+
         async function init() {
+            initTheme(); // Tema ayarını yükle
+            
             try {
-                const response = await fetch(JSON_FILE_PATH);
+                const response = await fetch(JSON_FILE_PATH, { cache: "no-store" });
                 if (!response.ok) throw new Error('Dosya bulunamadı');
                 const data = await response.json();
-                allNews = data.haberler || [];
+                
+                if (data.haberler && data.haberler.length > 0) {
+                    // Silinmiş haberleri filtrele
+                    allNews = data.haberler.filter(h => !deletedLinks.includes(h.link));
+                } else {
+                    allNews = [];
+                }
                 renderNews(allNews);
             } catch (error) {
-                console.warn(`Veri okunamadı, yedek veri yükleniyor.`);
-                allNews = fallbackData.haberler;
+                console.warn(`Veri okunamadı veya dosya boş.`);
+                allNews = [];
                 renderNews(allNews);
+                
+                if (statusText) {
+                    statusText.innerHTML = `
+                        <span class="text-slate-500 dark:text-slate-400">Şu an gösterilecek güncel haber bulunmuyor.</span>
+                    `;
+                }
             }
         }
 
