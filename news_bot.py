@@ -80,7 +80,7 @@ def get_recent_news():
                     "link": final_link,
                     "date": pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y"),
                     "source": source_name,
-                    "summary": entry.get("summary", "")[:500] # Analiz için biraz daha uzun özet alıyoruz
+                    "summary": entry.get("summary", "")[:600] # Analiz için yeterli uzunlukta özet alıyoruz
                 })
         
         print(f"[{source_name[:35]:<35}] Taranan: {feed_total:<3} | Yeni: {new_on_feed}")
@@ -95,13 +95,12 @@ def filter_with_ai(news_list):
         
     client = OpenAI(api_key=API_KEY)
     
-    # Haberleri daha sonra orijinal özetleriyle eşleştirmek için bir sözlük oluşturuyoruz
     news_dict = {item['link']: item for item in news_list}
     context = ""
     for idx, item in enumerate(news_list):
-        context += f"Kaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\n\n"
+        context += f"Kaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\nİçerik/Özet: {item['summary']}\n\n"
 
-    # --- 1. AŞAMA: HABERLERİ FİLTRELEME ---
+    # --- 1. AŞAMA: HABERLERİ FİLTRELEME VE PUANLAMA ---
     prompt_1 = f"""
     Aşağıdaki haberlerden Danimarka'daki expat'ları, özellikle Türk expatları ilgilendirenleri seç. 
     
@@ -144,11 +143,9 @@ def filter_with_ai(news_list):
         print(f"AI Aşama 1 Hatası: {e}")
         return {"haberler": []}
 
-    # --- 2. AŞAMA: HER BİR HABER İÇİN DERİNLEMESİNE ETKİ ANALİZİ ---
+    # --- 2. AŞAMA: HER BİR HABER İÇİN ÖZET VE ETKİ ANALİZİ ---
     final_news = []
     
-    # Güvenlik Kontrolü: AI'ın yanlışlıkla düşük puanlı getirdiklerini ele. 
-    # Sadece puanı 8 ve üzeri olanları analize sok.
     valid_news = []
     for h in selected_news:
         try:
@@ -161,7 +158,7 @@ def filter_with_ai(news_list):
         print("AI Aşama 1: 8 puan ve üzeri expat haberi bulunamadı. 2. aşama atlanıyor.")
         return {"haberler": []}
 
-    print(f"AI Aşama 2: Kriterleri geçen {len(valid_news)} haber için etki analizi yapılıyor...")
+    print(f"AI Aşama 2: Kriterleri geçen {len(valid_news)} haber için özet ve etki analizi yapılıyor...")
     
     for haber in valid_news:
         link = haber.get("link", "")
@@ -170,35 +167,41 @@ def filter_with_ai(news_list):
         orijinal_baslik = orijinal_haber.get("title", "")
         
         prompt_2 = f"""
-        Aşağıdaki Danimarka haberi için, Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar) yönelik derinlemesine bir etki analizi yap.
+        Aşağıdaki Danimarka haberi için iki farklı metin oluştur:
+        1. Haberin tamamen tarafsız, sade bir dille yazılmış, net ve anlaşılır bir özeti (En fazla 2 cümle).
+        2. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar vb.) yönelik yakın ve ileri vadeli olası etkilerinin analizi (En fazla 3 cümle, profesyonel, akıcı ve öngörüsel bir dille).
         
         Türkçe Başlık: {haber.get('baslik')}
         Orijinal Başlık: {orijinal_baslik}
         Haberin Ham Özeti/İçeriği: {orijinal_ozet}
         
-        GÖREV:
-        Bu gelişmenin Danimarka'daki Türkler için şu anki ve gelecekteki olası etkilerini iyi bir araştırma/mantık süzgecinden geçirerek yorumla.
-        Tam olarak 2 veya en fazla 3 cümlelik, çok net, profesyonel ve öngörüsel bir yorum yaz.
-        Kesinlikle "Bu haberin etkisi şu olabilir:" gibi giriş cümleleri kullanma, doğrudan analizi ver.
-        
-        SADECE 2-3 CÜMLELİK ANALİZ METNİNİ DÖNDÜR, BAŞKA HİÇBİR ŞEY YAZMA.
+        Lütfen SADECE aşağıdaki JSON formatında yanıt ver:
+        {{
+          "ozet": "Haberin tarafsız ve sade özeti buraya yazılacak...",
+          "ai_analiz": "Türk expatlara potansiyel etkisi buraya yazılacak..."
+        }}
         """
         
         try:
             response_2 = client.chat.completions.create(
                 model="gpt-5.4",
+                response_format={ "type": "json_object" },
                 messages=[
-                    {"role": "system", "content": "Sen stratejik bir göçmenlik, sosyo-ekonomik etki ve politika analistisin."},
+                    {"role": "system", "content": "Sen stratejik bir haber özetleyici ve sosyo-ekonomik etki analistisin. Sadece JSON dönersin."},
                     {"role": "user", "content": prompt_2}
                 ]
             )
-            etki_analizi = response_2.choices[0].message.content.strip()
-            haber["ozet"] = etki_analizi # HTML'i değiştirmemek için "ozet" key'ine kaydediyoruz
+            analiz_sonucu = json.loads(response_2.choices[0].message.content)
+            
+            haber["ozet"] = analiz_sonucu.get("ozet", "Özet oluşturulamadı.")
+            haber["ai_analiz"] = analiz_sonucu.get("ai_analiz", "Etki analizi oluşturulamadı.")
             final_news.append(haber)
-            print(f" - Analiz tamamlandı: {haber.get('baslik')[:30]}...")
+            
+            print(f" - Özet ve Analiz tamamlandı: {haber.get('baslik')[:30]}...")
         except Exception as e:
             print(f"AI Aşama 2 Hatası ({link}): {e}")
-            haber["ozet"] = "Bu haberin etki analizi oluşturulurken bir hata oluştu."
+            haber["ozet"] = "Özet oluşturulurken bir hata oluştu."
+            haber["ai_analiz"] = "Bu haberin etki analizi oluşturulurken bir hata oluştu."
             final_news.append(haber)
 
     return {"haberler": final_news}
@@ -221,7 +224,6 @@ def save_and_merge(new_data):
     else:
         data = {"haberler": []}
 
-    # --- 14 Günden Eski Haberleri Temizle ---
     two_weeks_ago = datetime.now() - timedelta(days=14)
     filtered_haberler = [
         h for h in data.get("haberler", [])
@@ -252,7 +254,6 @@ def save_and_merge(new_data):
     print(f"Yeni Eklenen Haber: {added_count} | Toplam Arşiv: {len(data['haberler'])}")
 
 if __name__ == "__main__":
-    # Daha önce JSON'a eklenmiş haberleri tekrar AI'ya göndermemek için önceden okuyoruz
     existing_links = set()
     if os.path.exists("daily_news.json"):
         try:
@@ -264,7 +265,6 @@ if __name__ == "__main__":
 
     raw_news = get_recent_news()
     
-    # Sadece daha önce hiç analiz edilmemiş YENİ haberleri filtrele
     new_raw_news = [n for n in raw_news if n["link"] not in existing_links]
     
     if new_raw_news:
