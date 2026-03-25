@@ -19,14 +19,15 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .news-card {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .news-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
         }
         .dark .news-card:hover {
-            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.6);
+            border-color: #475569;
         }
         .tab-active {
             border-bottom: 2px solid #3b82f6;
@@ -34,6 +35,7 @@
         }
         .dark .tab-active {
             color: #60a5fa;
+            border-color: #60a5fa;
         }
         pre {
             white-space: pre-wrap;
@@ -49,7 +51,7 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f5f9; 
+            background: #f8fafc; 
         }
         .dark ::-webkit-scrollbar-track {
             background: #0f172a; 
@@ -67,78 +69,76 @@
         .dark ::-webkit-scrollbar-thumb:hover {
             background: #475569; 
         }
-        .line-clamp-2 {
+        .line-clamp-3 {
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 selection:bg-blue-500/30 bg-slate-50 text-slate-800 dark:bg-[#0f172a] dark:text-[#f1f5f9]">
+<body class="min-h-screen p-3 md:p-8 selection:bg-blue-500/30 bg-[#f8fafc] text-slate-800 dark:bg-[#0b1120] dark:text-[#f1f5f9]">
     <div class="max-w-4xl mx-auto relative">
         
         <!-- Tema Değiştirme Butonu -->
-        <button onclick="toggleTheme()" class="absolute top-0 right-0 p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 shadow-sm transition-colors" title="Temayı Değiştir">
-            <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <!-- Moon Icon -->
+        <button onclick="toggleTheme()" class="absolute top-0 right-0 p-2.5 rounded-full bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-500 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 shadow-sm transition-all hover:scale-105" title="Temayı Değiştir">
+            <svg id="theme-icon-dark" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
-            <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <!-- Sun Icon -->
+            <svg id="theme-icon-light" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
         </button>
 
-        <header class="mb-8 text-center pt-2">
-            <div class="inline-flex items-center justify-center p-1.5 bg-white dark:bg-slate-800/50 rounded-xl mb-3 border border-slate-200 dark:border-slate-700/50 shadow-sm">
-                <span class="text-xl mr-2">🇩🇰</span>
-                <span class="text-xs font-semibold tracking-widest text-slate-600 dark:text-slate-300 uppercase pr-2">Danimarka</span>
+        <header class="mb-8 text-center pt-4 md:pt-2">
+            <div class="inline-flex items-center justify-center p-1.5 bg-white dark:bg-slate-800/50 rounded-lg mb-4 border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                <span class="text-lg mr-2 leading-none">🇩🇰</span>
+                <span class="text-[10px] font-bold tracking-[0.2em] text-slate-600 dark:text-slate-300 uppercase pr-2">Danimarka</span>
             </div>
-            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-blue-600 to-emerald-500 dark:from-blue-400 dark:via-indigo-400 dark:to-emerald-400 bg-clip-text text-transparent pb-1">
+            <h1 class="text-3xl md:text-5xl font-black mb-3 tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 dark:from-blue-400 dark:via-indigo-400 dark:to-teal-400 bg-clip-text text-transparent pb-1">
                 Expat Haber Bülteni
             </h1>
-            <p id="status-text" class="text-slate-500 dark:text-slate-400 text-xs font-medium flex items-center justify-center gap-2">
-                <span class="relative flex h-2.5 w-2.5">
+            <p id="status-text" class="text-slate-500 dark:text-slate-400 text-xs font-medium flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800/50 py-1.5 px-4 rounded-full inline-flex w-auto mx-auto border border-slate-200 dark:border-slate-700/50">
+                <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
                 Güncel veriler yükleniyor...
             </p>
         </header>
 
         <!-- Filtreleme Alanı -->
-        <div class="bg-white dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200 dark:border-slate-700/80 rounded-xl p-4 mb-6 shadow-sm">
+        <div class="bg-white dark:bg-slate-800/40 backdrop-blur-md border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 mb-6 shadow-sm">
             <div class="flex flex-col md:flex-row items-end justify-between gap-4">
-                <div class="flex-1 w-full grid grid-cols-2 gap-3">
+                <div class="flex-1 w-full grid grid-cols-2 gap-3 md:gap-4">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Başlangıç</label>
-                        <input type="date" id="start-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-slate-800 dark:text-white transition-all">
+                        <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1.5 uppercase tracking-wider pl-1">Başlangıç</label>
+                        <input type="date" id="start-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-slate-800 dark:text-white transition-all shadow-inner">
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Bitiş</label>
-                        <input type="date" id="end-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-slate-800 dark:text-white transition-all">
+                        <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1.5 uppercase tracking-wider pl-1">Bitiş</label>
+                        <input type="date" id="end-date" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-slate-800 dark:text-white transition-all shadow-inner">
                     </div>
                 </div>
-                <button onclick="resetFilters()" class="w-full md:w-auto h-[38px] px-5 text-sm font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:hover:text-white rounded-lg transition-all shadow-sm">
+                <button onclick="resetFilters()" class="w-full md:w-auto h-[42px] px-6 text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/80 dark:hover:bg-slate-600 dark:hover:text-white rounded-xl transition-all shadow-sm border border-slate-200 dark:border-slate-600/50 uppercase tracking-wider">
                     Sıfırla
                 </button>
             </div>
         </div>
 
         <!-- Sekme Navigasyonu -->
-        <div class="flex border-b border-slate-200 dark:border-slate-700/50 mb-6 justify-center gap-2">
-            <button id="tab-visual-btn" class="px-4 py-2 font-semibold transition-colors tab-active text-sm uppercase tracking-wide" onclick="switchTab('visual')">
+        <div class="flex border-b border-slate-200 dark:border-slate-800 mb-8 justify-center gap-2 md:gap-6">
+            <button id="tab-visual-btn" class="px-2 md:px-4 py-3 font-bold transition-all tab-active text-[11px] md:text-xs uppercase tracking-widest" onclick="switchTab('visual')">
                 Görsel Liste
             </button>
-            <button id="tab-markdown-btn" class="px-4 py-2 font-semibold text-slate-500 hover:text-slate-800 dark:text-slate-500 dark:hover:text-slate-300 transition-colors text-sm uppercase tracking-wide" onclick="switchTab('markdown')">
+            <button id="tab-markdown-btn" class="px-2 md:px-4 py-3 font-bold text-slate-400 hover:text-slate-800 dark:text-slate-500 dark:hover:text-slate-300 transition-all text-[11px] md:text-xs uppercase tracking-widest" onclick="switchTab('markdown')">
                 Link Listesi
             </button>
         </div>
 
         <!-- Görsel Liste Sekmesi -->
         <div id="tab-visual">
-            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                 <div class="col-span-1 md:col-span-2 flex justify-center items-center py-20">
                     <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
                 </div>
@@ -147,46 +147,41 @@
 
         <!-- Markdown (Saf Link) Sekmesi -->
         <div id="tab-markdown" class="hidden">
-            <div class="bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl p-5 relative shadow-inner">
-                <button onclick="copyToClipboard()" class="absolute top-3 right-3 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-white text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-none transition-colors flex items-center gap-1.5 font-medium shadow-sm">
+            <div class="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 relative shadow-sm">
+                <button onclick="copyToClipboard()" class="absolute top-4 right-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-1.5 shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     Kopyala
                 </button>
-                <pre id="markdown-container" class="text-slate-700 dark:text-slate-300 font-mono text-sm leading-relaxed mt-6"></pre>
+                <pre id="markdown-container" class="text-slate-700 dark:text-slate-400 font-mono text-[11px] md:text-xs leading-relaxed mt-8 overflow-x-auto"></pre>
             </div>
         </div>
 
-        <footer class="mt-12 text-center border-t border-slate-200 dark:border-slate-800 pt-6 pb-4">
-            <p class="text-slate-500 dark:text-slate-500 text-xs">
+        <footer class="mt-16 text-center border-t border-slate-200 dark:border-slate-800/60 pt-8 pb-6">
+            <p class="text-slate-400 dark:text-slate-500 text-[10px] md:text-xs font-medium">
                 &copy; 2026 Haber İzleyici Botu<br>
-                <span class="mt-1 block opacity-75">Haberler otomatik filtrelenip JSON üzerinden senkronize edilmektedir.</span>
+                <span class="mt-1.5 block opacity-70">Haberler otomatik filtrelenip JSON üzerinden senkronize edilmektedir.</span>
             </p>
         </footer>
     </div>
 
     <!-- Haber Özeti Modalı -->
-    <div id="summary-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
-        <!-- Arka plan overlay -->
-        <div class="absolute inset-0 bg-slate-900/40 dark:bg-slate-900/70 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop" onclick="closeModal()"></div>
+    <div id="summary-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4">
+        <div class="absolute inset-0 bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-md transition-opacity opacity-0" id="modal-backdrop" onclick="closeModal()"></div>
         
-        <!-- Modal İçeriği -->
-        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl p-6 max-w-lg w-full relative z-10 transform scale-95 opacity-0 transition-all duration-200 shadow-2xl flex flex-col max-h-[90vh]" id="modal-content-wrapper">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 dark:hover:text-white bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 p-1.5 rounded-full transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-3xl p-5 md:p-8 max-w-lg w-full relative z-10 transform scale-95 opacity-0 transition-all duration-200 shadow-2xl flex flex-col max-h-[90vh]" id="modal-content-wrapper">
+            <button onclick="closeModal()" class="absolute top-4 right-4 md:top-5 md:right-5 text-slate-400 hover:text-slate-800 dark:hover:text-white bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 p-2 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <div id="modal-content" class="overflow-y-auto pr-2 custom-scrollbar">
+            <div id="modal-content" class="overflow-y-auto pr-1 md:pr-2 custom-scrollbar">
                 <!-- İçerik JS ile buraya yüklenecek -->
             </div>
         </div>
     </div>
 
     <script>
-        // Veri kaynağı
         const JSON_FILE_PATH = 'https://oraygungor.github.io/expatintel/daily_news.json'; 
-
-        // DOM Elementleri
         const container = document.getElementById('news-container');
         const markdownContainer = document.getElementById('markdown-container');
         const statusText = document.getElementById('status-text');
@@ -195,7 +190,27 @@
         let currentFilteredNews = []; 
         let deletedLinks = JSON.parse(localStorage.getItem('deletedNews') || '[]');
 
-        // --- TEMA (DARK/LIGHT) YÖNETİMİ ---
+        const fallbackData = {
+            "haberler": [
+                {
+                    "baslik": "Danimarka hükümeti, yabancı uzmanlar için vergi indirimini uzatmayı planlıyor",
+                    "kaynak": "The Local Denmark",
+                    "link": "https://www.thelocal.dk/dummy-link-1",
+                    "tarih": "25.03.2026",
+                    "ozet": "Expat vergi şemasının 7 yıldan daha uzun bir süreye çıkarılması meclis gündeminde. Bu yasa değişikliği, ülkede çalışan yüksek nitelikli Türk mühendisleri ve doktorları doğrudan olumlu etkileyecek.",
+                    "expat_puani": 10
+                },
+                {
+                    "baslik": "Vatandaşlık testinde sürpriz değişiklik: Yeni tarih ve değerler soruları eklendi",
+                    "kaynak": "DR Nyheder",
+                    "link": "https://www.dr.dk/dummy-link-2",
+                    "tarih": "24.03.2026",
+                    "ozet": "Danimarka Vatandaşlık Sınavı (Indfødsretsprøven) 2026 müfredatı güncellendi. Adayların artık Danimarka'nın yakın siyasi tarihi hakkında daha fazla soru yanıtlaması gerekecek.",
+                    "expat_puani": 9
+                }
+            ]
+        };
+
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -222,23 +237,19 @@
             
             if (isDark) {
                 darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden'); // Koyu temadaysa güneş ikonu (açık temaya geçiş) göster
+                lightIcon.classList.remove('hidden');
             } else {
                 lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden'); // Açık temadaysa ay ikonu (koyu temaya geçiş) göster
+                darkIcon.classList.remove('hidden'); 
             }
         }
 
-        // --- HABER SİLME YÖNETİMİ ---
         function deleteNews(link, event) {
-            event.stopPropagation(); // Modalın açılmasını engelle
-            
+            event.stopPropagation(); 
             if (!deletedLinks.includes(link)) {
                 deletedLinks.push(link);
                 localStorage.setItem('deletedNews', JSON.stringify(deletedLinks));
             }
-            
-            // Veriyi diziden çıkar ve ekranı yenile
             allNews = allNews.filter(haber => haber.link !== link);
             applyFilters();
         }
@@ -253,16 +264,16 @@
                 visualTab.classList.remove('hidden');
                 markdownTab.classList.add('hidden');
                 visualBtn.classList.add('tab-active');
-                visualBtn.classList.remove('text-slate-500', 'dark:text-slate-500');
+                visualBtn.classList.remove('text-slate-400', 'dark:text-slate-500');
                 markdownBtn.classList.remove('tab-active');
-                markdownBtn.classList.add('text-slate-500', 'dark:text-slate-500');
+                markdownBtn.classList.add('text-slate-400', 'dark:text-slate-500');
             } else {
                 visualTab.classList.add('hidden');
                 markdownTab.classList.remove('hidden');
                 markdownBtn.classList.add('tab-active');
-                markdownBtn.classList.remove('text-slate-500', 'dark:text-slate-500');
+                markdownBtn.classList.remove('text-slate-400', 'dark:text-slate-500');
                 visualBtn.classList.remove('tab-active');
-                visualBtn.classList.add('text-slate-500', 'dark:text-slate-500');
+                visualBtn.classList.add('text-slate-400', 'dark:text-slate-500');
             }
         }
 
@@ -302,7 +313,6 @@
             renderNews(allNews);
         }
 
-        // Modal İşlemleri
         function openSummary(index) {
             const haber = currentFilteredNews[index];
             if (!haber) return;
@@ -316,29 +326,29 @@
             const scoreColor = score >= 9 ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400';
 
             content.innerHTML = `
-                <div class="flex flex-wrap items-center gap-2 mb-4 pr-10">
-                    <span class="${scoreColor} px-2 py-1 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">PUAN: ${score}</span>
-                    <span class="bg-slate-100 text-slate-700 dark:bg-slate-700/60 dark:text-slate-200 px-2.5 py-1 rounded-md shadow-sm text-xs font-semibold">${haber.kaynak || 'Kaynak'}</span>
-                    <span class="text-slate-500 ml-auto font-medium text-[10px] uppercase tracking-wider mt-1 md:mt-0">${haber.tarih || ''}</span>
+                <div class="flex items-center gap-2 mb-4 md:mb-5 pr-8">
+                    <span class="${scoreColor} px-2 py-0.5 rounded shadow-sm text-[9px] font-black uppercase tracking-widest">PUAN: ${score}</span>
+                    <span class="bg-slate-100 text-slate-600 dark:bg-slate-700/60 dark:text-slate-300 px-2 py-0.5 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">${haber.kaynak || 'Kaynak'}</span>
+                    <span class="text-slate-400 font-semibold text-[10px] uppercase tracking-widest ml-auto">${haber.tarih || ''}</span>
                 </div>
-                <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">${haber.baslik}</h2>
+                <h2 class="text-lg md:text-2xl font-black text-slate-800 dark:text-white mb-5 leading-snug md:leading-tight">${haber.baslik}</h2>
                 
                 ${haber.ozet ? `
-                    <div class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50 mb-6 relative">
-                        <div class="absolute -top-3 -left-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-full p-1.5 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 mb-6 relative">
+                        <div class="absolute -top-3 -left-2 bg-white dark:bg-slate-700 border border-slate-100 dark:border-slate-600 rounded-full p-1.5 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-slate-400 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7" />
                             </svg>
                         </div>
-                        <p class="text-slate-700 dark:text-slate-200 text-sm leading-relaxed mt-1">${haber.ozet}</p>
+                        <p class="text-slate-600 dark:text-slate-300 text-[13px] md:text-sm leading-relaxed">${haber.ozet}</p>
                     </div>
                 ` : ''}
                 
                 <div class="flex justify-end pt-2">
-                    <a href="${haber.link}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
-                        Orijinal Haberi Oku
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <a href="${haber.link}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2">
+                        Orijinal Habere Git
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                     </a>
                 </div>
@@ -351,7 +361,6 @@
             setTimeout(() => {
                 backdrop.classList.remove('opacity-0');
                 backdrop.classList.add('opacity-100');
-                
                 contentWrapper.classList.remove('opacity-0', 'scale-95');
                 contentWrapper.classList.add('opacity-100', 'scale-100');
             }, 10);
@@ -385,13 +394,13 @@
             if (newsItems.length === 0) {
                 container.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2');
                 container.innerHTML = `
-                    <div class="text-center bg-white dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 rounded-xl py-12 px-4 w-full shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-slate-400 dark:text-slate-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="text-center bg-white dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700/50 rounded-2xl py-16 px-4 w-full shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-slate-300 dark:text-slate-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z" />
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 2v4h4" />
                         </svg>
-                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-1">Haber Bulunamadı</h3>
-                        <p class="text-sm text-slate-500">Kriterlere uygun veri yok veya tümünü gizlediniz.</p>
+                        <h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Haber Bulunamadı</h3>
+                        <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">Kriterlere uygun veri yok veya tümünü gizlediniz.</p>
                     </div>`;
                 if (markdownContainer) markdownContainer.textContent = 'Veri bulunamadı.';
                 return;
@@ -407,44 +416,46 @@
                 const scoreColor = isHighPriority ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400';
                 
                 const card = document.createElement('div');
-                card.className = 'news-card bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 p-5 rounded-xl flex flex-col justify-between cursor-pointer group relative overflow-hidden shadow-sm dark:shadow-none';
+                card.className = 'news-card bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/60 p-4 md:p-5 rounded-2xl flex flex-col cursor-pointer group shadow-sm dark:shadow-none relative';
                 
                 card.onclick = () => openSummary(index);
 
                 card.innerHTML = `
-                    <!-- Sil Butonu -->
-                    <button onclick="deleteNews('${haber.link}', event)" class="absolute top-3 right-3 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-red-600 bg-slate-100/80 hover:bg-red-100 dark:text-slate-400 dark:bg-slate-700/50 dark:hover:bg-red-500/20 dark:hover:text-red-400 rounded transition-colors z-20" title="Haberi Gizle">
-                        SİL
-                    </button>
-
-                    <div class="pr-12"> <!-- Butonun altından metin taşmasını önlemek için padding -->
-                        <div class="flex flex-wrap items-center gap-2 mb-3">
-                            <span class="${scoreColor} px-2 py-1 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">
+                    <div class="flex justify-between items-start mb-3 gap-2">
+                        <div class="flex items-center gap-1.5 flex-wrap flex-1">
+                            <span class="${scoreColor} px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-widest shadow-sm">
                                 Puan: ${score}
                             </span>
-                            <span class="bg-slate-100 text-slate-700 dark:bg-slate-700/60 dark:text-slate-200 px-2.5 py-1 rounded-md shadow-sm text-xs font-semibold">
+                            <span class="bg-slate-50 border border-slate-100 dark:border-none text-slate-500 dark:bg-slate-700/50 dark:text-slate-300 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider truncate max-w-[110px] sm:max-w-[150px]">
                                 ${haber.kaynak || 'Kaynak'}
                             </span>
-                            <span class="text-slate-500 ml-auto font-medium text-[10px] uppercase tracking-wider mt-1 md:mt-0">
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0 bg-slate-50 dark:bg-slate-900/40 px-2 py-1 rounded-md border border-slate-100 dark:border-slate-700/50">
+                            <button onclick="deleteNews('${haber.link}', event)" class="text-[9px] font-black tracking-widest text-slate-400 hover:text-red-500 dark:text-slate-500 dark:hover:text-red-400 transition-colors uppercase z-20" title="Haberi Gizle">
+                                SİL
+                            </button>
+                            <span class="w-px h-3 bg-slate-200 dark:bg-slate-700"></span>
+                            <span class="text-[9px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-400">
                                 ${haber.tarih || ''}
                             </span>
                         </div>
-                        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
-                            ${haber.baslik || 'Başlıksız Haber'}
-                        </h2>
                     </div>
                     
-                    <div class="mt-3 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-3">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <h2 class="text-[14px] md:text-[15px] font-bold text-slate-800 dark:text-slate-100 mb-4 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-3">
+                        ${haber.baslik || 'Başlıksız Haber'}
+                    </h2>
+                    
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-50 dark:border-slate-700/50 pt-3">
+                        <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center gap-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             Özeti Gör
                         </span>
                         
-                        <a href="${haber.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Orijinal Habere Git" class="p-1.5 text-slate-500 hover:text-white hover:bg-blue-600 dark:text-slate-400 dark:hover:text-white dark:hover:bg-blue-600 rounded-md transition-colors bg-slate-100 dark:bg-slate-700/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        <a href="${haber.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Orijinal Habere Git" class="p-1.5 text-slate-400 hover:text-white hover:bg-blue-600 dark:text-slate-500 dark:hover:text-white dark:hover:bg-blue-600 rounded-lg transition-colors bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         </a>
                     </div>
@@ -455,7 +466,7 @@
             if (markdownContainer) markdownContainer.textContent = plainLinks.trim();
             if (statusText) {
                 statusText.innerHTML = `
-                    <span class="text-emerald-500 dark:text-emerald-400 font-bold">${newsItems.length}</span> adet haber listeleniyor
+                    <span class="text-blue-500 dark:text-blue-400 font-black">${newsItems.length}</span> adet haber listeleniyor
                 `;
             }
         }
@@ -472,17 +483,14 @@
                 const copyBtn = document.querySelector('#tab-markdown button');
                 const originalContent = copyBtn.innerHTML;
                 copyBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     Kopyalandı!
                 `;
-                copyBtn.classList.replace('bg-white', 'bg-emerald-100');
-                copyBtn.classList.replace('text-slate-700', 'text-emerald-700');
-                copyBtn.classList.replace('dark:bg-slate-700', 'dark:bg-emerald-600');
-                copyBtn.classList.replace('dark:text-white', 'dark:text-white');
+                copyBtn.className = "absolute top-4 right-4 bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded-lg border border-emerald-200 dark:border-emerald-500/30 transition-colors flex items-center gap-1.5 shadow-sm";
                 
                 setTimeout(() => {
                     copyBtn.innerHTML = originalContent;
-                    copyBtn.className = "absolute top-3 right-3 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-white text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-none transition-colors flex items-center gap-1.5 font-medium shadow-sm";
+                    copyBtn.className = "absolute top-4 right-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-1.5 shadow-sm";
                 }, 2000);
             } catch (err) { console.error(err); }
             document.body.removeChild(textArea);
@@ -498,7 +506,7 @@
         });
 
         async function init() {
-            initTheme(); // Tema ayarını yükle
+            initTheme(); 
             
             try {
                 const response = await fetch(JSON_FILE_PATH, { cache: "no-store" });
@@ -506,7 +514,6 @@
                 const data = await response.json();
                 
                 if (data.haberler && data.haberler.length > 0) {
-                    // Silinmiş haberleri filtrele
                     allNews = data.haberler.filter(h => !deletedLinks.includes(h.link));
                 } else {
                     allNews = [];
