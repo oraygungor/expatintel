@@ -197,7 +197,8 @@
                     "kaynak": "The Local Denmark",
                     "link": "https://www.thelocal.dk/dummy-link-1",
                     "tarih": "25.03.2026",
-                    "ozet": "Expat vergi şemasının 7 yıldan daha uzun bir süreye çıkarılması meclis gündeminde. Bu yasa değişikliği, ülkede çalışan yüksek nitelikli Türk mühendisleri ve doktorları doğrudan olumlu etkileyecek.",
+                    "ozet": "Hükümet, yabancı araştırmacılar ve yüksek gelirli çalışanlar için geçerli olan özel vergi düzenlemesinin (forskerskatteordningen) süresini 7 yıldan 10 yıla çıkarmayı tartışıyor.",
+                    "ai_analiz": "Expat vergi şemasının uzatılması, ülkede çalışan yüksek nitelikli Türk mühendisleri ve doktorları doğrudan olumlu etkileyecek ve tasarruf imkanlarını artıracaktır.",
                     "expat_puani": 10
                 },
                 {
@@ -206,6 +207,7 @@
                     "link": "https://www.dr.dk/dummy-link-2",
                     "tarih": "24.03.2026",
                     "ozet": "Danimarka Vatandaşlık Sınavı (Indfødsretsprøven) 2026 müfredatı güncellendi. Adayların artık Danimarka'nın yakın siyasi tarihi hakkında daha fazla soru yanıtlaması gerekecek.",
+                    "ai_analiz": "Vatandaşlık süreçlerine hazırlanan Türk göçmenler için sınav zorluğunu artırabilecek bu gelişme, ek çalışma süreleri gerektireceğinden başvuru takvimlerinde gecikmelere yol açabilir.",
                     "expat_puani": 9
                 }
             ]
@@ -334,13 +336,25 @@
                 <h2 class="text-lg md:text-2xl font-black text-slate-800 dark:text-white mb-5 leading-snug md:leading-tight">${haber.baslik}</h2>
                 
                 ${haber.ozet ? `
-                    <div class="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 mb-6 relative">
-                        <div class="absolute -top-3 -left-2 bg-white dark:bg-slate-700 border border-slate-100 dark:border-slate-600 rounded-full p-1.5 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-slate-400 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7" />
-                            </svg>
+                    <div class="mb-5">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2 pl-1">Haber Özeti</h4>
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 relative">
+                            <p class="text-slate-600 dark:text-slate-300 text-[13px] md:text-sm leading-relaxed">${haber.ozet}</p>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-300 text-[13px] md:text-sm leading-relaxed">${haber.ozet}</p>
+                    </div>
+                ` : ''}
+
+                ${haber.ai_analiz ? `
+                    <div class="mb-6">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-2 pl-1 flex items-center gap-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Yapay Zeka Etki Analizi
+                        </h4>
+                        <div class="bg-indigo-50/50 dark:bg-indigo-500/10 p-4 md:p-5 rounded-xl border border-indigo-100 dark:border-indigo-500/20 relative shadow-inner">
+                            <p class="text-indigo-800 dark:text-indigo-200 text-[13px] md:text-sm leading-relaxed font-semibold">${haber.ai_analiz}</p>
+                        </div>
                     </div>
                 ` : ''}
                 
