@@ -131,7 +131,7 @@ def filter_with_ai(news_list):
     try:
         print("\nAI Aşama 1: Haberler filtreleniyor...")
         response_1 = client.chat.completions.create(
-            model="gpt-4o", 
+            model="gpt-5.4", 
             response_format={ "type": "json_object" },
             messages=[
                 {"role": "system", "content": "Sen profesyonel bir haber seçici ve analistisin. Sadece JSON dönersin."},
@@ -186,7 +186,7 @@ def filter_with_ai(news_list):
         
         try:
             response_2 = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-5.4",
                 messages=[
                     {"role": "system", "content": "Sen stratejik bir göçmenlik, sosyo-ekonomik etki ve politika analistisin."},
                     {"role": "user", "content": prompt_2}
