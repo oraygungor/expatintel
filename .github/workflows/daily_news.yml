@@ -2,7 +2,7 @@ name: Daily Expat News Bot
 
 on:
   schedule:
-    - cron: '0 9,21 * * *'
+    - cron: '0 9,18 * * *'
   workflow_dispatch:
 
 permissions:
