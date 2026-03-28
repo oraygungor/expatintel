@@ -1,6 +1,40 @@
 {
   "haberler": [
     {
+      "id": 12,
+      "title": "How to get legal help for rental issues in Denmark",
+      "link": "https://www.thelocal.dk/20260326/how-to-get-legal-help-for-rental-issues-in-denmark",
+      "source": "The Local Denmark",
+      "summary": "Københavns Retshjælp, Danimarka'da ikamet etmeyenler de dahil olmak üzere her bireyin ücretsiz hukuki yardım alabileceği bir hizmet sunmaktadır. Gelir sınırını karşılayanlar, hukuki masraflarının devlet tarafından karşılanmasını sağlayabilirler.",
+      "published_at": "2026-03-26T10:49:51+00:00",
+      "soft_score": 4,
+      "is_recent": false,
+      "expat_score": 9,
+      "selection_reason": "Foreigners often face difficulties with rental issues in Denmark, making this article highly relevant.",
+      "translated_title": "Kopenhag'da Ücretsiz Hukuki Yardım İmkanları",
+      "expat_impact": "Türk expatlar, Kopenhag'da fiziksel olarak bulunmasalar bile bu hizmetten yararlanabilecektir; bu, hukuki sorunlarla başa çıkmalarını kolaylaştırabilir. Ayrıca, ev sigortalarının hukuki yardımları kapsaması, expatların sorunlarına çözüm bulma yollarını çeşitlendirmektedir.",
+      "fetched_at": "2026-03-28T11:01:59.433562+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 4660
+    },
+    {
+      "id": 14,
+      "title": "Five common rental scams in Denmark and how to avoid them",
+      "link": "https://www.thelocal.dk/20231027/five-common-rental-scams-in-denmark-and-how-to-avoid-them",
+      "source": "The Local Denmark",
+      "summary": "Danimarka'daki kiralık daire dolandırıcılıkları, sahte ilanlarla dolandırıcıların haksız kazanç sağlamaya çalıştıkları yaygın bir sorundur. Potansiyel kiracıları hedef alarak para talep eden dolandırıcılara karşı dikkatli olunması gerektiği vurgulanıyor.",
+      "published_at": "2023-10-27T06:27:03+00:00",
+      "soft_score": 4,
+      "is_recent": false,
+      "expat_score": 8,
+      "selection_reason": "Awareness of common rental scams is crucial for expats navigating the Danish rental market.",
+      "translated_title": "Danimarka'da Kiralık Daire Dolandırıcılığına Dikkat",
+      "expat_impact": "Türk expatlar, Danimarka'nın kiralama sisteminde farklı hukuki ve kültürel normlarla karşılaşabilirler, bu da onları dolandırıcılara karşı daha savunmasız hale getirebilir. Dolandırıcılık vakalarında yaşanabilecek maddi kayıplar ve sosyal stres, expatriat topluluğu için önemli sorunlar oluşturabilir.",
+      "fetched_at": "2026-03-28T11:01:59.120448+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 7857
+    },
+    {
       "baslik": "Danimarka'da Yeni Koalisyon Hükümeti Kurma Çabaları Başladı",
       "ozet": "Danimarka Başbakanı Mette Frederiksen, seçimlerdeki büyük bir yenilginin ardından koalisyon hükümeti kurmak için müzakerelere başladı. Sosyal Demokratlar, hükümette kalabilmek için destek arayışına girdi.",
       "ai_analiz": "Danimarka'da yaşayan Türk expatlar, yeni hükümetin ekonomik politikaları ve sosyal hizmetlerde olabilecek değişikliklerden etkilenebilirler. Özellikle vergi politikaları ve yaşam standartları üzerindeki olası düzenlemeler, Türk topluluğu açısından önemli sonuçlar doğurabilir.",
