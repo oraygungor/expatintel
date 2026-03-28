@@ -41,7 +41,8 @@ RSS_FEEDS = [
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
-    "https://www.reddit.com/r/Denmark/.rss"
+    "https://www.reddit.com/r/Denmark/.rss",
+    "https://via.ritzau.dk/rss/short-messages/latest"
 ]
 
 def clean_html(raw_html):
