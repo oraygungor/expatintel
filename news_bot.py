@@ -41,8 +41,7 @@ RSS_FEEDS = [
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
-    "https://www.reddit.com/r/Denmark/.rss",
-    "https://via.ritzau.dk/rss/short-messages/latest"
+    "https://www.reddit.com/r/Denmark/.rss"
 ]
 
 def clean_html(raw_html):
@@ -67,11 +66,14 @@ def canonicalize_url(url):
 
 def is_quality_content(text):
     """Çekilen metnin kalitesini kontrol eder."""
-    if not text or len(text) < 400: return False
+    if not text: return False, "İçerik boş"
+    if len(text) < 400: return False, f"Metin çok kısa ({len(text)} karakter)"
+    
     bad_tokens = ["cookie", "privacy policy", "accept all", "subscribe", "newsletter", "terms of service"]
     bad_count = sum(1 for token in bad_tokens if token in text.lower())
-    if bad_count > 5: return False
-    return True
+    
+    if bad_count > 5: return False, f"Çok fazla reklam/çerez kelimesi tespit edildi ({bad_count})"
+    return True, "Geçerli içerik"
 
 def parse_date_to_utc(entry):
     """RSS tarihini UTC'ye çevirir."""
@@ -182,10 +184,11 @@ async def fetch_url_content(url):
             async with httpx.AsyncClient(follow_redirects=True, timeout=15.0) as c:
                 res = await c.get(url, headers=headers)
                 content = trafilatura.extract(res.text)
-                if is_quality_content(content):
+                is_ok, reason = is_quality_content(content)
+                if is_ok:
                     print(f"      [+] BAŞARILI: Trafilatura ile {len(content)} karakter çekildi.")
                     return content, "trafilatura"
-                print(f"      [-] Yetersiz içerik ({len(content) if content else 0} karakter).")
+                print(f"      [-] Atlandı: {reason}")
         except Exception as e:
             print(f"      [!] Hata: {type(e).__name__}")
 
@@ -200,10 +203,11 @@ async def fetch_url_content(url):
                 html = await page.content()
                 content = trafilatura.extract(html)
                 await browser.close()
-                if is_quality_content(content):
+                is_ok, reason = is_quality_content(content)
+                if is_ok:
                     print(f"      [+] BAŞARILI: Playwright ile {len(content)} karakter çekildi.")
                     return content, "playwright"
-                print(f"      [-] Yetersiz içerik.")
+                print(f"      [-] Atlandı: {reason}")
         except Exception as e:
             print(f"      [!] Hata: {str(e)[:100]}")
 
@@ -215,12 +219,16 @@ async def fetch_url_content(url):
                     response = await c.post("https://api.firecrawl.dev/v1/scrape", 
                         headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}"},
                         json={"url": url, "formats": ["markdown"]})
+                    
                     if response.status_code == 200:
                         content = response.json().get("data", {}).get("markdown")
-                        if is_quality_content(content):
+                        is_ok, reason = is_quality_content(content)
+                        if is_ok:
                             print(f"      [+] BAŞARILI: Firecrawl ile {len(content)} karakter çekildi.")
                             return content, "firecrawl"
-                    print(f"      [-] Firecrawl başarısız (Kod: {response.status_code}).")
+                        print(f"      [-] Kalite Kontrol Başarısız (200 OK geldi ancak: {reason})")
+                    else:
+                        print(f"      [-] Firecrawl API Hatası (Kod: {response.status_code}).")
             except Exception as e:
                 print(f"      [!] Hata: {type(e).__name__}")
         else:
