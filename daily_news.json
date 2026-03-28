@@ -1,6 +1,40 @@
 {
   "haberler": [
     {
+      "id": 9,
+      "title": "Lab-to-Fab Accelerators: Advanced Packaging, Heterogeneous Integration (Denmark) - fundsforNGOs",
+      "link": "https://www2.fundsforngos.org/community-development/lab-to-fab-accelerators-advanced-packaging-heterogeneous-integration-denmark",
+      "source": "\"Denmark when:12h\" - Google News",
+      "summary": "Bu metin, Avrupa için Yonga İnisiyatifi'nin, gelişmiş paketleme teknolojilerinin endüstriyel kullanıma geçişini hızlandırmayı hedefleyen projeler için başvuru çağrısını duyuruyor. Danimarkalı katılımcılar, başarılı projelerde ulusal co-finansman alabilirler. İnisiyatif, Avrupa'nın yenilik ekosistemini güçlendirmeye odaklanmakta ve kritik tedarik zincirlerinin dayanıklılığını artırmayı amaçlamakta.",
+      "published_at": "2026-03-28T15:13:09+00:00",
+      "soft_score": 3,
+      "is_recent": true,
+      "expat_score": 9,
+      "selection_reason": "The article discusses Lab-to-Fab Accelerators in Denmark, which may be of high interest to expats involved in technology and innovation sectors. It highlights advancements in packaging and integration that could attract international professionals.",
+      "translated_title": "Avrupa için Yonga İnisiyatifi: Teknolojik Kapasite ve İnovasyonun Güçlendirilmesi",
+      "expat_impact": "Danimarkalı expatlar için bu fırsat, mikroelektronik, yarı iletkenler ve endüstriyel inovasyon alanında faaliyet gösteren firmaların gelişimini desteklemek için önemli bir fırsat sunmaktadır. Proje, katılımcıların sanayiye geçiş yapabilmeleri için finansal destek almasını sağlamakta ve bu durum, iş birlikleri ve araştırma fırsatları oluşturma imkanı sunmaktadır.",
+      "fetched_at": "2026-03-28T18:39:32.962818+00:00",
+      "scrape_method": "playwright",
+      "content_length": 8078
+    },
+    {
+      "id": 100,
+      "title": "Sommeren byder på lavere elregninger",
+      "link": "https://politiken.dk/danmark/art10787809/sommeren-byder-p%c3%a5-lavere-elregninger",
+      "source": "Politiken.dk - Forsiden",
+      "summary": "1 Nisan itibarıyla Danimarka'daki elektrik şirketleri yaz tarifelerine geçiyor. Yaz tarifeleri, elektrik taşıma maliyetlerini düşürerek, tüketicilere daha düşük elektrik faturaları sunuyor. 'Kogespids' olarak bilinen yoğun saatlerdeki fiyat indirimi, birçok tüketicinin aylık elektrik harcamalarında önemli bir tasarruf sağlamalarını bekliyor.",
+      "published_at": "2026-03-28T11:10:44+00:00",
+      "soft_score": 2,
+      "is_recent": true,
+      "expat_score": 8,
+      "selection_reason": "The announcement of lower electricity bills could have significant financial implications for expats living in Denmark, as this affects cost of living and budgeting for those working or settling in the country.",
+      "translated_title": "Türkiye'deki Expatlar için Yaz Tarifeleriyle Düşen Elektrik Faturaları",
+      "expat_impact": "Türk expatların, yaz tarifeleriyle birlikte elektrik faturalarında önemli bir azalma beklemeleri mümkün. Özellikle yoğun tüketim saatlerinde, fiyatların yarı yarıya düşmesi, Türkiye'den gelen göçmen aileler için bütçe üzerinde olumlu bir etki yaratabilir. Ayrıca, elektrik vergisinin düşmesi, yıllık tasarruf sağlayarak expatların yaşam maliyetlerini daha da azaltabilir.",
+      "fetched_at": "2026-03-28T18:39:27.331738+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 1713
+    },
+    {
       "id": 30,
       "title": "How a volunteer experience on an urban farm helped me better understand Denmark and become part of a community - The Copenhagen Post",
       "link": "https://cphpost.dk/2026-03-28/life-in-denmark/how-a-volunteer-experience-on-an-urban-farm-helped-me-better-understand-denmark-and-become-part-of-a-community",
