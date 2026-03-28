@@ -10,3 +10,4 @@ openai
 googlenewsdecoder
 requests
 newspaper3k
+playwright
