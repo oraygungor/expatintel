@@ -10,7 +10,9 @@ from datetime import datetime, timedelta
 from openai import AsyncOpenAI
 
 # --- GÜVENLİK ---
+# OpenAI ve Firecrawl API anahtarlarınızı ortam değişkeni (environment variable) olarak tanımlamalısınız.
 API_KEY = os.getenv("OPENAI_API_KEY")
+FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
 
 RSS_FEEDS = [
     "https://feeds.thelocal.com/rss/dk",
@@ -70,7 +72,6 @@ def get_recent_news():
             elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
                 pub_date = datetime.fromtimestamp(time.mktime(entry.updated_parsed))
             
-            # Tarih yoksa veya son 12 saat içindeyse
             if not pub_date or pub_date >= time_limit:
                 final_link = resolve_url(entry.get("link", ""))
                 if not final_link or final_link in seen_links: continue
@@ -125,7 +126,7 @@ async def score_news_with_llm(client, news_list):
 
     try:
         response = await client.chat.completions.create(
-            model="gpt-5.4-mini", 
+            model="gpt-4o-mini",
             response_format={ "type": "json_object" },
             messages=[
                 {"role": "system", "content": "Sen profesyonel bir haber analistisin. Sadece JSON dönersin."},
@@ -150,35 +151,71 @@ async def score_news_with_llm(client, news_list):
         return []
 
 async def fetch_url_content(url):
-    """httpx ile siteye bağlanır, trafilatura ve bs4 ile ana metni çeker."""
+    """Sırasıyla: Trafilatura -> BS4 -> Playwright -> Firecrawl yöntemlerini dener."""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Referer": "https://www.google.com/"
     }
     
+    text = ""
+    
+    # Adım 1 & 2: Normal İstek (Trafilatura ve BeautifulSoup)
     try:
         async with httpx.AsyncClient(follow_redirects=True, verify=False) as http_client:
             response = await http_client.get(url, headers=headers, timeout=20.0)
             response.raise_for_status()
             html = response.text
             
-            # 1. Yöntem: Trafilatura (Menü, reklam ve yorumları temizler)
             text = trafilatura.extract(html, include_tables=False, include_comments=False)
             
-            # 2. Yöntem: BeautifulSoup (Trafilatura başarısız olursa)
-            if not text or len(text) < 50:
+            if not text or len(text) < 200:
                 soup = BeautifulSoup(html, "html.parser")
                 text = soup.get_text(separator=" ", strip=True)[:5000]
                 
-            return text if text else ""
-            
     except Exception as e:
-        print(f"İçerik çekilemedi ({url}): {e}")
-        return ""
+        print(f" -> Normal istek (Trafilatura/BS4) başarısız: {e}")
+        
+    # Adım 3: Playwright (Lokal Gerçek Tarayıcı)
+    if not text or len(text) < 200:
+        print(f" -> Playwright (Gerçek Tarayıcı) deneniyor...")
+        try:
+            from playwright.async_api import async_playwright
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=True)
+                page = await browser.new_page(user_agent=headers["User-Agent"])
+                await page.goto(url, wait_until="networkidle", timeout=30000)
+                html = await page.content()
+                await browser.close()
+                
+                text = trafilatura.extract(html, include_tables=False, include_comments=False)
+                if not text or len(text) < 200:
+                    soup = BeautifulSoup(html, "html.parser")
+                    text = soup.get_text(separator=" ", strip=True)[:5000]
+        except Exception as e:
+            print(f" -> Playwright başarısız: {e}")
+
+    # Adım 4: Firecrawl API (En Son Çare - En Güçlü Yöntem)
+    if (not text or len(text) < 200) and FIRECRAWL_API_KEY:
+        print(f" -> Firecrawl API (Son Çare) deneniyor...")
+        try:
+            async with httpx.AsyncClient(timeout=30.0) as http_client:
+                response = await http_client.post(
+                    "https://api.firecrawl.dev/v1/scrape",
+                    headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}"},
+                    json={"url": url, "formats": ["markdown"]}
+                )
+                if response.status_code == 200:
+                    data = response.json()
+                    text = data.get("data", {}).get("markdown", "")
+                else:
+                    print(f" -> Firecrawl Hatası: HTTP {response.status_code}")
+        except Exception as e:
+            print(f" -> Firecrawl Hatası: {e}")
+            
+    return text if text else ""
 
 async def analyze_full_article(client, text, link):
-    """Haberin tam metnini LLM'e atıp başlık, özet ve etki analizi üretir."""
-    # LLM'i çok yormamak için metni makul bir uzunlukta kesiyoruz
+    """Haberin tam metnini LLM'e atıp analiz üretir."""
     text = text[:8000] 
     
     prompt = f"""
@@ -186,7 +223,7 @@ async def analyze_full_article(client, text, link):
     Bu metni okuyarak aşağıdaki üç şeyi üret:
     1. Haberin içeriğini en doğru şekilde yansıtan, clickbait'ten uzak, tamamen tarafsız yepyeni bir TÜRKÇE BAŞLIK.
     2. Haberin tamamen tarafsız, sade bir dille yazılmış, net ve anlaşılır 2 CÜMLELİK ÖZETİ.
-    3. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, vb.) olası etkilerinin 2 CÜMLELİK ANALİZİ.
+    3. Bu gelişmenin Danimarka'da yaşayan Türk expatlara olası etkilerinin 2 CÜMLELİK ANALİZİ.
     
     Haber Metni:
     {text}
@@ -201,7 +238,7 @@ async def analyze_full_article(client, text, link):
     
     try:
         response = await client.chat.completions.create(
-            model="gpt-5.4-mini",
+            model="gpt-4o-mini",
             response_format={ "type": "json_object" },
             messages=[
                 {"role": "system", "content": "Sen stratejik bir haber editörü ve sosyo-ekonomik analistsin. Sadece JSON dönersin."},
@@ -235,26 +272,20 @@ def save_single_news(news_data, file_name="daily_news.json"):
     else:
         data = {"haberler": []}
         
-    data["haberler"].insert(0, news_data) # En başa ekle
-    
+    data["haberler"].insert(0, news_data)
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 async def main():
     if not API_KEY:
-        print("HATA: OPENAI_API_KEY ortam değişkeni bulunamadı!")
+        print("HATA: OPENAI_API_KEY bulunamadı!")
         return
 
     client = AsyncOpenAI(api_key=API_KEY)
     file_name = "daily_news.json"
     
-    # Adım 1: RSS'ten Son 12 Saatlik Haberleri Çek
     raw_news = get_recent_news()
-    
-    # Adım 2: Toplu Puanlama (1-10 Arası, Sadece >= 8)
     high_score_links = await score_news_with_llm(client, raw_news)
-    
-    # Adım 3: Mükerrer Kontrolü (Daha önce işlenmiş mi?)
     existing_links = get_existing_links(file_name)
     new_links_to_process = [link for link in high_score_links if link not in existing_links]
     
@@ -262,19 +293,16 @@ async def main():
         print("\nSonuç: İşlenecek yeni, yüksek puanlı bir haber bulunamadı.")
         return
         
-    print(f"\n--- 3. AŞAMA: {len(new_links_to_process)} YENİ HABERİN İÇERİĞİ ÇEKİLİP ANALİZ EDİLİYOR ---")
+    print(f"\n--- 3. AŞAMA: {len(new_links_to_process)} YENİ HABER ANALİZ EDİLİYOR ---")
     
     for link in new_links_to_process:
         print(f"\nİşleniyor: {link}")
-        
-        # Adım 4: Haberin Tam İçeriğini Çek (httpx + trafilatura/bs4)
         full_text = await fetch_url_content(link)
         
-        if len(full_text) < 100:
-            print(" -> Yeterli metin bulunamadı, bu haber atlanıyor.")
+        if not full_text or len(full_text) < 200:
+            print(" -> Yeterli metin bulunamadı, atlanıyor.")
             continue
             
-        # Adım 5: Haberi LLM'de Analiz Et
         analysis_result = await analyze_full_article(client, full_text, link)
         
         if analysis_result:
@@ -285,11 +313,8 @@ async def main():
                 "link": link,
                 "tarih": datetime.now().strftime("%d.%m.%Y")
             }
-            
-            # Adım 6: Kaydet
             save_single_news(final_news_object, file_name)
-            print(f" -> BAŞARIYLA EKLENDİ: {final_news_object['baslik']}")
+            print(f" -> EKLENDİ: {final_news_object['baslik']}")
 
 if __name__ == "__main__":
-    # Async döngüyü başlat
     asyncio.run(main())
