@@ -169,7 +169,7 @@ def filter_with_ai(news_list):
         prompt_2 = f"""
         Aşağıdaki Danimarka haberi için iki farklı metin oluştur:
         1. Haberin tamamen tarafsız, sade bir dille yazılmış, net ve anlaşılır bir özeti (En fazla 2 cümle).
-        2. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar vb.) yönelik yakın ve ileri vadeli olası etkilerinin analizi (En fazla 3 cümle, profesyonel, akıcı ve öngörüsel bir dille).
+        2. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar vb.) yönelik yakın ve ileri vadeli olası etkilerinin analizi (En fazla 2 cümle, profesyonel, akıcı ve öngörüsel bir dille).
         
         Türkçe Başlık: {haber.get('baslik')}
         Orijinal Başlık: {orijinal_baslik}
