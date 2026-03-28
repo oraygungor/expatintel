@@ -1,6 +1,23 @@
 {
   "haberler": [
     {
+      "id": 30,
+      "title": "How a volunteer experience on an urban farm helped me better understand Denmark and become part of a community - The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-28/life-in-denmark/how-a-volunteer-experience-on-an-urban-farm-helped-me-better-understand-denmark-and-become-part-of-a-community",
+      "source": "\"Denmark when:12h\" - Google News",
+      "summary": "Kiki Canuto, Kopenhag'a taşındıktan sonra yerel toplulukla bağlantı kurmak için çeşitli yollar ararken Øens Have adındaki organik kent çiftliğini keşfetti. Gönüllü olarak katıldığı bu çiftlik, yerel Danimarka ürünleri hakkında bilgi edinme, yerel halkla ve çiftçilerle etkileşimde bulunma fırsatı sundu. Gönüllü günlerinde, doğal ortamda yapılan öğle yemekleri ve paylaşılan deneyimler, yeni bir şehirde kendini evde hissetme konusunda önemli bir rol oynadı. Kopenhag'a yeni taşınan Türk expatlar, bu tür etkinliklere katılarak benzer hissiyatları yaşayabilirler.",
+      "published_at": "2026-03-28T07:30:00+00:00",
+      "soft_score": 0,
+      "is_recent": true,
+      "expat_score": 9,
+      "selection_reason": "This story about a volunteer experience on an urban farm provides insight into community integration and cultural understanding, which is important for expats seeking to connect with their new environment.",
+      "translated_title": "Kopenhag'da Toprakla Bağlantı Kurmak: Øens Have'de Gönüllülük Deneyimi",
+      "expat_impact": "Kopenhag'a yeni taşınan Türk expatlar için Øens Have'deki gönüllülük deneyimi, hem yerel toplulukla bağlantı kurma hem de Danimarka'nın tarım kültürü hakkında bilgi edinme fırsatıdır. Bu tür etkinlikler, yeni bir şehirde yalnızlık hissini hafifletmek ve sosyal bağlantılar oluşturmakta yardımcı olabilir. Üstelik, gönüllüler, doğal ortamlarda sağlıklı yemekler deneyimleyerek, hem lezzetli hem de kültürel bir deneyim yaşayabilirler.",
+      "fetched_at": "2026-03-28T11:28:57.583374+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 4247
+    },
+    {
       "id": 12,
       "title": "How to get legal help for rental issues in Denmark",
       "link": "https://www.thelocal.dk/20260326/how-to-get-legal-help-for-rental-issues-in-denmark",
