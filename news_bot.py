@@ -80,7 +80,7 @@ def get_recent_news():
                     "link": final_link,
                     "date": pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y"),
                     "source": source_name,
-                    "summary": entry.get("summary", "")[:600] # Analiz için yeterli uzunlukta özet alıyoruz
+                    "summary": entry.get("summary", "")[:600]
                 })
         
         print(f"[{source_name[:35]:<35}] Taranan: {feed_total:<3} | Yeni: {new_on_feed}")
@@ -143,7 +143,7 @@ def filter_with_ai(news_list):
         print(f"AI Aşama 1 Hatası: {e}")
         return {"haberler": []}
 
-    # --- 2. AŞAMA: HER BİR HABER İÇİN ÖZET VE ETKİ ANALİZİ ---
+    # --- 2. AŞAMA: ÖZET, ETKİ ANALİZİ VE TARAFSIZ BAŞLIK ATAMASI ---
     final_news = []
     
     valid_news = []
@@ -158,7 +158,7 @@ def filter_with_ai(news_list):
         print("AI Aşama 1: 8 puan ve üzeri expat haberi bulunamadı. 2. aşama atlanıyor.")
         return {"haberler": []}
 
-    print(f"AI Aşama 2: Kriterleri geçen {len(valid_news)} haber için özet ve etki analizi yapılıyor...")
+    print(f"AI Aşama 2: Kriterleri geçen {len(valid_news)} haber için içerik analizi ve tarafsız başlık üretimi yapılıyor...")
     
     for haber in valid_news:
         link = haber.get("link", "")
@@ -167,18 +167,19 @@ def filter_with_ai(news_list):
         orijinal_baslik = orijinal_haber.get("title", "")
         
         prompt_2 = f"""
-        Aşağıdaki Danimarka haberi için iki farklı metin oluştur:
+        Aşağıdaki Danimarka haberi için üç farklı metin oluştur:
         1. Haberin tamamen tarafsız, sade bir dille yazılmış, net ve anlaşılır bir özeti (En fazla 2 cümle).
         2. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar vb.) yönelik yakın ve ileri vadeli olası etkilerinin analizi (En fazla 2 cümle, profesyonel, akıcı ve öngörüsel bir dille).
+        3. Yukarıda yazdığın özeti ve analizi baz alarak, haberin içeriğini en doğru şekilde yansıtan, clickbait'ten tamamen uzak, tarafsız ve net yeni bir Türkçe başlık.
         
-        Türkçe Başlık: {haber.get('baslik')}
         Orijinal Başlık: {orijinal_baslik}
         Haberin Ham Özeti/İçeriği: {orijinal_ozet}
         
         Lütfen SADECE aşağıdaki JSON formatında yanıt ver:
         {{
           "ozet": "Haberin tarafsız ve sade özeti buraya yazılacak...",
-          "ai_analiz": "Türk expatlara potansiyel etkisi buraya yazılacak..."
+          "ai_analiz": "Türk expatlara potansiyel etkisi buraya yazılacak...",
+          "yeni_baslik": "Tarafsız ve içeriği yansıtan yeni Türkçe başlık..."
         }}
         """
         
@@ -187,17 +188,18 @@ def filter_with_ai(news_list):
                 model="gpt-5.4-mini",
                 response_format={ "type": "json_object" },
                 messages=[
-                    {"role": "system", "content": "Sen stratejik bir haber özetleyici ve sosyo-ekonomik etki analistisin. Sadece JSON dönersin."},
+                    {"role": "system", "content": "Sen stratejik bir haber editörü, özetleyici ve sosyo-ekonomik etki analistisin. Sadece JSON dönersin."},
                     {"role": "user", "content": prompt_2}
                 ]
             )
             analiz_sonucu = json.loads(response_2.choices[0].message.content)
             
+            haber["baslik"] = analiz_sonucu.get("yeni_baslik", haber.get("baslik"))
             haber["ozet"] = analiz_sonucu.get("ozet", "Özet oluşturulamadı.")
             haber["ai_analiz"] = analiz_sonucu.get("ai_analiz", "Etki analizi oluşturulamadı.")
             final_news.append(haber)
             
-            print(f" - Özet ve Analiz tamamlandı: {haber.get('baslik')[:30]}...")
+            print(f" - Başlık, Özet ve Analiz tamamlandı: {haber.get('baslik')[:30]}...")
         except Exception as e:
             print(f"AI Aşama 2 Hatası ({link}): {e}")
             haber["ozet"] = "Özet oluşturulurken bir hata oluştu."
