@@ -32,7 +32,7 @@ semaphore = asyncio.Semaphore(MAX_CONCURRENT_SCRAPES)
 
 # Kritik Kelimeler ve Kaynak Puanları
 EXPAT_KEYWORDS = ["skat", "tax", "visa", "permit", "residence", "immigration", "work", "job", "salary", "rent", "housing", "bolig", "integration", "turkish", "turkey", "student", "regeringen", "law", "kommune"]
-TRUSTED_SOURCES = ["dr.dk", "politiken.dk", "berlingske.dk", "thelocal.dk"]
+TRUSTED_SOURCES = ["dr.dk", "politiken.dk", "berlingske.dk", "thelocal.dk", "ritzau.dk"]
 
 RSS_FEEDS = [
     "https://feeds.thelocal.com/rss/dk",
@@ -42,8 +42,7 @@ RSS_FEEDS = [
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
     "https://www.reddit.com/r/Denmark/.rss",
-    "https://via.ritzau.dk/rss/short-messages/latest"
-
+    "https://via.ritzau.dk/rss/short-messages/latest" # Yeni eklenen kaynak
 ]
 
 def resolve_url(url: str) -> str:
@@ -194,20 +193,20 @@ async def score_news_with_llm(client, news_list):
         return []
 
 async def fetch_url_content(url, article_id):
-    """Sırasıyla yöntemleri dener. article_id ile logları ayrıştırır."""
+    """Sırasıyla yöntemleri dener. Tam link loglarda görünür."""
     async with semaphore:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
         prefix = f"    [Haber #{article_id}]"
 
         # --- 1. Yöntem: Trafilatura ---
-        print(f"{prefix} [Yöntem 1] Trafilatura deneniyor...")
+        print(f"{prefix} [Yöntem 1] Trafilatura deneniyor: {url}")
         try:
             async with httpx.AsyncClient(follow_redirects=True, timeout=15.0) as c:
                 res = await c.get(url, headers=headers)
                 content = trafilatura.extract(res.text)
                 is_ok, reason = is_quality_content(content)
                 if is_ok:
-                    print(f"{prefix}       [+] BAŞARILI: Trafilatura ile {len(content)} karakter.")
+                    print(f"{prefix}       [+] BAŞARILI: Trafilatura ile {len(content)} karakter çekildi.")
                     return content, "trafilatura"
                 else:
                     print(f"{prefix}       [-] Atlandı: {reason}")
@@ -215,7 +214,7 @@ async def fetch_url_content(url, article_id):
             print(f"{prefix}       [!] Hata: {type(e).__name__}")
 
         # --- 2. Yöntem: Playwright ---
-        print(f"{prefix} [Yöntem 2] Playwright (JS) deneniyor...")
+        print(f"{prefix} [Yöntem 2] Playwright (JS) deneniyor: {url}")
         try:
             from playwright.async_api import async_playwright
             async with async_playwright() as p:
@@ -228,16 +227,16 @@ async def fetch_url_content(url, article_id):
                 content = trafilatura.extract(html)
                 is_ok, reason = is_quality_content(content)
                 if is_ok:
-                    print(f"{prefix}       [+] BAŞARILI: Playwright ile {len(content)} karakter.")
+                    print(f"{prefix}       [+] BAŞARILI: Playwright ile {len(content)} karakter çekildi.")
                     return content, "playwright"
                 else:
                     print(f"{prefix}       [-] Kalite Yetersiz: {reason}")
         except Exception as e:
-            print(f"{prefix}       [!] Playwright Hatası: {str(e)[:50]}")
+            print(f"{prefix}       [!] Playwright Hatası: {str(e)[:100]}")
 
         # --- 3. Yöntem: Firecrawl ---
         if FIRECRAWL_API_KEY:
-            print(f"{prefix} [Yöntem 3] Firecrawl API deneniyor...")
+            print(f"{prefix} [Yöntem 3] Firecrawl API deneniyor: {url}")
             try:
                 async with httpx.AsyncClient(timeout=30.0) as http_client:
                     response = await http_client.post(
@@ -249,7 +248,7 @@ async def fetch_url_content(url, article_id):
                         content = response.json().get("data", {}).get("markdown")
                         is_ok, reason = is_quality_content(content)
                         if is_ok:
-                            print(f"{prefix}       [+] BAŞARILI: Firecrawl ile {len(content)} karakter.")
+                            print(f"{prefix}       [+] BAŞARILI: Firecrawl ile {len(content)} karakter çekildi.")
                             return content, "firecrawl"
                         else:
                             print(f"{prefix}       [-] Firecrawl Kalite Engeli: {reason}")
@@ -264,7 +263,8 @@ async def analyze_and_save(client, article, existing_urls, file_name):
     if article['link'] in existing_urls:
         return
 
-    print(f"\n--- İŞLENİYOR [ID:{article['id']}]: {article['title'][:60]}... ---")
+    print(f"\n--- HABER İŞLENİYOR [ID:{article['id']}]: {article['title'][:60]}... ---")
+    print(f"    [Link]: {article['link']}")
     
     content, method = await fetch_url_content(article['link'], article['id'])
     if not content:
@@ -328,7 +328,10 @@ async def main():
     client = AsyncOpenAI(api_key=API_KEY)
     file_name = "daily_news.json"
     
+    # 1. RSS Verilerini Topla
     raw_news = get_recent_news()
+    
+    # 2. LLM Puanlaması
     selected_news = await score_news_with_llm(client, raw_news)
     
     if not selected_news:
