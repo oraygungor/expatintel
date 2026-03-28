@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 API_KEY = os.getenv("OPENAI_API_KEY")
 FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
 
-# Global Kayıt Kilidi (Eşzamanlı yazma hatalarını önlemek için)
+# Global Kayıt Kilidi
 save_lock = asyncio.Lock()
 
 # Eşzamanlı işlem sınırı
@@ -41,16 +41,16 @@ RSS_FEEDS = [
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
-    "https://www.reddit.com/r/Denmark/.rss"
+    "https://www.reddit.com/r/Denmark/.rss",
+    "https://via.ritzau.dk/rss/short-messages/latest"
+
 ]
 
 def resolve_url(url: str) -> str:
-    """Google News redirect linklerini gerçek makale URL'sine dönüştürür."""
     if "news.google.com" not in url:
         return url
     try:
         from googlenewsdecoder import gnewsdecoder
-        # Interval=1: Google engellemesini önlemek için kısa bekleme
         result = gnewsdecoder(url, interval=1)
         if isinstance(result, dict):
             for key in ("decoded_url", "url", "original_url"):
@@ -58,11 +58,9 @@ def resolve_url(url: str) -> str:
                 if val and val.startswith("http"): return val
         return result if isinstance(result, str) and result.startswith("http") else url
     except Exception as e:
-        logger.debug(f"URL Çözme Hatası: {e}")
         return url
 
 def clean_html(raw_html):
-    """HTML etiketlerini temizler."""
     if not raw_html: return ""
     try:
         return BeautifulSoup(raw_html, "lxml").get_text(separator=" ", strip=True)
@@ -70,7 +68,6 @@ def clean_html(raw_html):
         return BeautifulSoup(raw_html, "html.parser").get_text(separator=" ", strip=True)
 
 def canonicalize_url(url):
-    """URL'yi normalize eder ve takip parametrelerini temizler."""
     try:
         u = urlparse(url)
         query = parse_qs(u.query)
@@ -82,25 +79,28 @@ def canonicalize_url(url):
         return url.lower()
 
 def is_quality_content(text):
-    """Çekilen metnin kalitesini kontrol eder."""
-    if not text: return False, "İçerik boş"
-    if len(text) < 400: return False, f"Metin çok kısa ({len(text)} karakter)"
+    if not text: 
+        return False, "İçerik boş"
+    
+    clean_text = text.strip()
+    if len(clean_text) < 400: 
+        return False, f"Metin çok kısa ({len(clean_text)} karakter)"
     
     bad_tokens = ["cookie", "privacy policy", "accept all", "subscribe", "newsletter", "terms of service"]
-    bad_count = sum(1 for token in bad_tokens if token in text.lower())
+    bad_count = sum(1 for token in bad_tokens if token in clean_text.lower())
     
-    if bad_count > 5: return False, f"Çok fazla reklam/çerez kelimesi tespit edildi ({bad_count})"
+    if bad_count > 5: 
+        return False, f"Çok fazla çöp/reklam kelimesi ({bad_count})"
+    
     return True, "Geçerli içerik"
 
 def parse_date_to_utc(entry):
-    """RSS tarihini UTC'ye çevirir."""
     for attr in ['published_parsed', 'updated_parsed', 'created_parsed']:
         if hasattr(entry, attr) and getattr(entry, attr):
             return datetime(*getattr(entry, attr)[:6], tzinfo=timezone.utc)
     return None
 
 def get_soft_score(title, source):
-    """Ön puanlama."""
     score = 0
     title_lower = title.lower()
     if any(src in source.lower() for src in TRUSTED_SOURCES): score += 2
@@ -108,7 +108,6 @@ def get_soft_score(title, source):
     return score
 
 def get_recent_news():
-    """RSS kaynaklarını tarar ve URL'leri anında çözer."""
     raw_articles = []
     seen_urls = set()
     now_utc = datetime.now(timezone.utc)
@@ -125,7 +124,6 @@ def get_recent_news():
             pub_date = parse_date_to_utc(entry)
             is_recent = pub_date and pub_date >= time_limit
             
-            # Google News linklerini hemen çözüyoruz ki deduplikasyon ve scrape doğru çalışsın
             raw_link = entry.get("link", "")
             if not raw_link: continue
             
@@ -157,7 +155,6 @@ def get_recent_news():
     return raw_articles
 
 async def score_news_with_llm(client, news_list):
-    """LLM ile puanlama yapar."""
     candidates = [n for n in news_list if n['is_recent'] or n['soft_score'] >= 3]
     if not candidates: return []
     
@@ -196,27 +193,29 @@ async def score_news_with_llm(client, news_list):
         logger.error(f"Puanlama hatası: {e}")
         return []
 
-async def fetch_url_content(url):
-    """Sırasıyla yöntemleri dener ve console'a detaylı log basar."""
+async def fetch_url_content(url, article_id):
+    """Sırasıyla yöntemleri dener. article_id ile logları ayrıştırır."""
     async with semaphore:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
-        
+        prefix = f"    [Haber #{article_id}]"
+
         # --- 1. Yöntem: Trafilatura ---
-        print(f"    [Yöntem 1] Trafilatura deneniyor: {url[:60]}...")
+        print(f"{prefix} [Yöntem 1] Trafilatura deneniyor...")
         try:
             async with httpx.AsyncClient(follow_redirects=True, timeout=15.0) as c:
                 res = await c.get(url, headers=headers)
                 content = trafilatura.extract(res.text)
                 is_ok, reason = is_quality_content(content)
                 if is_ok:
-                    print(f"      [+] BAŞARILI: Trafilatura ile {len(content)} karakter çekildi.")
+                    print(f"{prefix}       [+] BAŞARILI: Trafilatura ile {len(content)} karakter.")
                     return content, "trafilatura"
-                print(f"      [-] Atlandı: {reason}")
+                else:
+                    print(f"{prefix}       [-] Atlandı: {reason}")
         except Exception as e:
-            print(f"      [!] Hata: {type(e).__name__}")
+            print(f"{prefix}       [!] Hata: {type(e).__name__}")
 
         # --- 2. Yöntem: Playwright ---
-        print(f"    [Yöntem 2] Playwright (JS) deneniyor...")
+        print(f"{prefix} [Yöntem 2] Playwright (JS) deneniyor...")
         try:
             from playwright.async_api import async_playwright
             async with async_playwright() as p:
@@ -224,19 +223,21 @@ async def fetch_url_content(url):
                 page = await browser.new_page(user_agent=headers["User-Agent"])
                 await page.goto(url, wait_until="networkidle", timeout=30000)
                 html = await page.content()
-                content = trafilatura.extract(html)
                 await browser.close()
+                
+                content = trafilatura.extract(html)
                 is_ok, reason = is_quality_content(content)
                 if is_ok:
-                    print(f"      [+] BAŞARILI: Playwright ile {len(content)} karakter çekildi.")
+                    print(f"{prefix}       [+] BAŞARILI: Playwright ile {len(content)} karakter.")
                     return content, "playwright"
-                print(f"      [-] Atlandı: {reason}")
+                else:
+                    print(f"{prefix}       [-] Kalite Yetersiz: {reason}")
         except Exception as e:
-            print(f"      [!] Hata: {str(e)[:100]}")
+            print(f"{prefix}       [!] Playwright Hatası: {str(e)[:50]}")
 
         # --- 3. Yöntem: Firecrawl ---
         if FIRECRAWL_API_KEY:
-            print(f"    [Yöntem 3] Firecrawl API deneniyor...")
+            print(f"{prefix} [Yöntem 3] Firecrawl API deneniyor...")
             try:
                 async with httpx.AsyncClient(timeout=30.0) as http_client:
                     response = await http_client.post(
@@ -244,36 +245,33 @@ async def fetch_url_content(url):
                         headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}"},
                         json={"url": url, "formats": ["markdown"]}
                     )
-                    
                     if response.status_code == 200:
                         content = response.json().get("data", {}).get("markdown")
                         is_ok, reason = is_quality_content(content)
                         if is_ok:
-                            print(f"      [+] BAŞARILI: Firecrawl ile {len(content)} karakter çekildi.")
+                            print(f"{prefix}       [+] BAŞARILI: Firecrawl ile {len(content)} karakter.")
                             return content, "firecrawl"
-                        print(f"      [-] Kalite Kontrol Başarısız (200 OK geldi ancak: {reason})")
+                        else:
+                            print(f"{prefix}       [-] Firecrawl Kalite Engeli: {reason}")
                     else:
-                        print(f"      [-] Firecrawl API Hatası (Kod: {response.status_code}).")
+                        print(f"{prefix}       [-] Firecrawl API Hatası ({response.status_code})")
             except Exception as e:
-                print(f"      [!] Hata: {type(e).__name__}")
-        else:
-            print(f"    [!] Firecrawl API anahtarı yok, atlanıyor.")
-
+                print(f"{prefix}       [!] Firecrawl Hata: {type(e).__name__}")
+        
         return None, "failed"
 
 async def analyze_and_save(client, article, existing_urls, file_name):
-    """Haber analizini yapar ve kaydeder."""
     if article['link'] in existing_urls:
         return
 
-    print(f"\n--- HABER İŞLENİYOR: {article['title'][:70]} ---")
+    print(f"\n--- İŞLENİYOR [ID:{article['id']}]: {article['title'][:60]}... ---")
     
-    content, method = await fetch_url_content(article['link'])
+    content, method = await fetch_url_content(article['link'], article['id'])
     if not content:
-        print(f"    [X] ATLANDI: Hiçbir yöntemle içerik çekilemedi.")
+        print(f"    [ID:{article['id']}] [X] ATLANDI: İçerik çekilemedi.")
         return
 
-    print(f"    [LLM] İçerik analiz ediliyor...")
+    print(f"    [ID:{article['id']}] [LLM] İçerik analiz ediliyor...")
     prompt = f"""
     Metni Türk expatlar için analiz et. 
     JSON: {{ "translated_title": "...", "summary": "...", "expat_impact": "..." }}
@@ -298,12 +296,11 @@ async def analyze_and_save(client, article, existing_urls, file_name):
         
         async with save_lock:
             await atomic_save(final_data, file_name)
-        print(f"    [V] TAMAMLANDI: Arşive eklendi.")
+        print(f"    [ID:{article['id']}] [V] TAMAMLANDI: Arşive eklendi.")
     except Exception as e:
-        logger.error(f"Analiz hatası: {e}")
+        logger.error(f"Analiz hatası (ID:{article['id']}): {e}")
 
 async def atomic_save(new_entry, filename):
-    """Güvenli kayıt."""
     data = {"haberler": []}
     if os.path.exists(filename):
         with open(filename, 'r', encoding='utf-8') as f:
@@ -331,17 +328,13 @@ async def main():
     client = AsyncOpenAI(api_key=API_KEY)
     file_name = "daily_news.json"
     
-    # 1. RSS Verilerini Topla
     raw_news = get_recent_news()
-    
-    # 2. LLM Puanlaması
     selected_news = await score_news_with_llm(client, raw_news)
     
     if not selected_news:
         print("\nSonuç: Bugün işlenecek kritik yeni bir haber bulunamadı.")
         return
 
-    # 3. Mevcut Verileri Oku
     existing_urls = set()
     if os.path.exists(file_name):
         with open(file_name, 'r', encoding='utf-8') as f:
@@ -350,8 +343,7 @@ async def main():
                 existing_urls = {h['link'] for h in d.get('haberler', [])}
             except: pass
 
-    # 4. Paralel Analiz ve Kayıt
-    print(f"\n[3/4] İÇERİK ÇEKME VE DERİN ANALİZ BAŞLADI ({len(selected_news)} Haber)...")
+    print(f"\n[3/4] İÇERİK ÇEKME VE ANALİZ ({len(selected_news)} Haber, Max 3 Paralel)...")
     tasks = [analyze_and_save(client, article, existing_urls, file_name) for article in selected_news]
     await asyncio.gather(*tasks)
     
