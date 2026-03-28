@@ -110,7 +110,6 @@ def get_recent_news():
     raw_articles = []
     seen_urls = set()
     now_utc = datetime.now(timezone.utc)
-    # KESİN FİLTRE: Sadece son 48 saat (Bugün ve Dün)
     time_limit = now_utc - timedelta(hours=48)
     
     print(f"\n[1/4] RSS TARAMASI BAŞLATILDI (Zaman Sınırı: {time_limit.strftime('%d.%m.%Y %H:%M')})...")
@@ -123,7 +122,6 @@ def get_recent_news():
         for entry in feed.entries:
             pub_date = parse_date_to_utc(entry)
             
-            # Tarih filtresi (Tarihi olmayan veya eski olan haberler anında elenir)
             if not pub_date or pub_date < time_limit:
                 continue
             
@@ -158,7 +156,6 @@ def get_recent_news():
     return raw_articles
 
 async def score_news_with_llm(client, news_list):
-    # SADECE güncel haberler LLM'e gider (is_recent garantisi ile)
     candidates = [n for n in news_list if n['soft_score'] >= 1]
     if not candidates: return []
     
@@ -264,18 +261,20 @@ async def fetch_url_content(url, article_id):
         return None, "failed"
 
 async def analyze_and_save(client, article, existing_urls, file_name):
-    if article['link'] in existing_urls:
-        return
-
+    # Log başlığını duplicate kontrolünden önceye alıyoruz ki her haberi görebilin
     print(f"\n--- HABER İŞLENİYOR [ID:{article['id']}]: {article['title'][:60]}... ---")
     print(f"    [Link]: {article['link']}")
+
+    if article['link'] in existing_urls:
+        print(f"    [ID:{article['id']}] [-] ATLANDI: Bu haber zaten arşivde kayıtlı.")
+        return
     
     content, method = await fetch_url_content(article['link'], article['id'])
     if not content:
-        print(f"    [ID:{article['id']}] [X] ATLANDI: İçerik çekilemedi.")
+        print(f"    [ID:{article['id']}] [X] ATLANDI: Hiçbir yöntemle içerik çekilemedi.")
         return
 
-    print(f"    [ID:{article['id']}] [LLM] İçerik analiz ediliyor...")
+    print(f"    [ID:{article['id']}] [LLM] İçerik derin analiz için gönderiliyor...")
     prompt = f"""
     Metni Türk expatlar için analiz et. 
     JSON: {{ "translated_title": "...", "summary": "...", "expat_impact": "..." }}
@@ -300,7 +299,7 @@ async def analyze_and_save(client, article, existing_urls, file_name):
         
         async with save_lock:
             await atomic_save(final_data, file_name)
-        print(f"    [ID:{article['id']}] [V] TAMAMLANDI: Arşive eklendi.")
+        print(f"    [ID:{article['id']}] [V] TAMAMLANDI: Arşive başarıyla eklendi.")
     except Exception as e:
         logger.error(f"Analiz hatası (ID:{article['id']}): {e}")
 
