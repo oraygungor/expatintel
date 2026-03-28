@@ -44,6 +44,23 @@ RSS_FEEDS = [
     "https://www.reddit.com/r/Denmark/.rss"
 ]
 
+def resolve_url(url: str) -> str:
+    """Google News redirect linklerini gerçek makale URL'sine dönüştürür."""
+    if "news.google.com" not in url:
+        return url
+    try:
+        from googlenewsdecoder import gnewsdecoder
+        # Interval=1: Google engellemesini önlemek için kısa bekleme
+        result = gnewsdecoder(url, interval=1)
+        if isinstance(result, dict):
+            for key in ("decoded_url", "url", "original_url"):
+                val = result.get(key)
+                if val and val.startswith("http"): return val
+        return result if isinstance(result, str) and result.startswith("http") else url
+    except Exception as e:
+        logger.debug(f"URL Çözme Hatası: {e}")
+        return url
+
 def clean_html(raw_html):
     """HTML etiketlerini temizler."""
     if not raw_html: return ""
@@ -91,7 +108,7 @@ def get_soft_score(title, source):
     return score
 
 def get_recent_news():
-    """RSS kaynaklarını tarar."""
+    """RSS kaynaklarını tarar ve URL'leri anında çözer."""
     raw_articles = []
     seen_urls = set()
     now_utc = datetime.now(timezone.utc)
@@ -108,8 +125,14 @@ def get_recent_news():
             pub_date = parse_date_to_utc(entry)
             is_recent = pub_date and pub_date >= time_limit
             
-            link = canonicalize_url(entry.get("link", ""))
-            if not link or link in seen_urls: continue
+            # Google News linklerini hemen çözüyoruz ki deduplikasyon ve scrape doğru çalışsın
+            raw_link = entry.get("link", "")
+            if not raw_link: continue
+            
+            resolved_link = resolve_url(raw_link)
+            link = canonicalize_url(resolved_link)
+            
+            if link in seen_urls: continue
             
             title = entry.get("title", "").strip()
             summary = clean_html(entry.get("summary", ""))[:400]
@@ -215,10 +238,12 @@ async def fetch_url_content(url):
         if FIRECRAWL_API_KEY:
             print(f"    [Yöntem 3] Firecrawl API deneniyor...")
             try:
-                async with httpx.AsyncClient(timeout=30.0) as c:
-                    response = await c.post("https://api.firecrawl.dev/v1/scrape", 
+                async with httpx.AsyncClient(timeout=30.0) as http_client:
+                    response = await http_client.post(
+                        "https://api.firecrawl.dev/v1/scrape", 
                         headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}"},
-                        json={"url": url, "formats": ["markdown"]})
+                        json={"url": url, "formats": ["markdown"]}
+                    )
                     
                     if response.status_code == 200:
                         content = response.json().get("data", {}).get("markdown")
