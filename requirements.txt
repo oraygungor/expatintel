@@ -9,3 +9,4 @@ feedparser
 openai
 googlenewsdecoder
 requests
+newspaper3k
