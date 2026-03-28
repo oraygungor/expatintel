@@ -1,294 +1,230 @@
-import json
-import feedparser
-import time
+import uvicorn
 import os
-import re
-from datetime import datetime, timedelta
-from openai import OpenAI
-from googlenewsdecoder import gnewsdecoder
-from newspaper import Article
+import httpx
+import json
+from io import BytesIO
+from typing import List, Optional
+from urllib.parse import urlparse
+from collections import defaultdict
+from itertools import groupby
 
-API_KEY = os.getenv("OPENAI_API_KEY")
+import trafilatura
+from openai import AsyncOpenAI
+from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.concurrency import run_in_threadpool
+from fastapi.responses import StreamingResponse
 
-RSS_FEEDS = [
-    "https://feeds.thelocal.com/rss/dk",
-    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=en-US&gl=US&ceid=US:en",
-    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=da&gl=DK&ceid=DK:da",
-    "https://www.dr.dk/nyheder/service/feeds/allenyheder",
-    "https://politiken.dk/rss/senestenyt.rss",
-    "https://www.berlingske.dk/content/rss",
-    "https://www.information.dk/feed",
-    "https://fyens.dk/feed/danmark",
-    "https://nordjyske.dk/rss/nyheder",
-    "https://jv.dk/feed/danmark",
-    "https://hsfo.dk/feed/danmark",
-    "https://frdb.dk/feed/danmark",
-    "https://www.reddit.com/r/Denmark/.rss"
-]
+from docx import Document
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.opc.constants import RELATIONSHIP_TYPE
+from docx.shared import Pt, RGBColor
 
-def resolve_url(url: str) -> str:
-    if "news.google.com" not in url and "reddit.com" not in url:
-        return url
-    try:
-        if "news.google.com" in url:
-            result = gnewsdecoder(url, interval=1)
-            if isinstance(result, dict):
-                for key in ("decoded_url", "url", "original_url"):
-                    val = result.get(key)
-                    if val and val.startswith("http"): return val
-            return result if isinstance(result, str) and result.startswith("http") else url
-        return url
-    except:
-        return url
+# --- Configuration ---
+app = FastAPI()
 
-def get_recent_news():
-    articles = []
-    seen_links = set()
-    seen_titles = set()
-    now = datetime.now()
-    time_limit = now - timedelta(hours=24)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB
+TIMEOUT = 15.0  # Zaman aşımını biraz artırdık
+
+# --- Data Models ---
+class AnalyzeRequest(BaseModel):
+    url: str
+    api_key: str
+    model: str = "gpt-5.4"
+    raw_text: Optional[str] = None
+    available_categories: Optional[List[str]] = None
+
+
+class AnalyzeResponse(BaseModel):
+    headline: str
+    source: str
+    summary: str
+    expat_significance: str
+    score: int
+    category: str
+    final_url: Optional[str] = None
+
+
+class ExportItem(BaseModel):
+    input_url: str
+    analysis: AnalyzeResponse
+
+
+# --- Word Helpers ---
+def add_hyperlink(paragraph, text: str, url: str):
+    part = paragraph.part
+    r_id = part.relate_to(url, RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
+
+    hyperlink = OxmlElement("w:hyperlink")
+    hyperlink.set(qn("r:id"), r_id)
+
+    new_run = OxmlElement("w:r")
+    rPr = OxmlElement("w:rPr")
+
+    color = OxmlElement('w:color')
+    color.set(qn('w:val'), '0563C1')
+    rPr.append(color)
+
+    u = OxmlElement('w:u')
+    u.set(qn('w:val'), 'single')
+    rPr.append(u)
+
+    new_run.append(rPr)
     
-    print(f"\n--- HABER TARAMA BAŞLADI ({now.strftime('%H:%M:%S')}) ---")
-    
-    for url in RSS_FEEDS:
-        feed = feedparser.parse(url)
-        source_name = feed.feed.get("title", url.split('/')[2])
-        feed_total, new_on_feed = 0, 0
-        
-        for entry in feed.entries:
-            feed_total += 1
-            pub_date = None
-            
-            if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                pub_date = datetime.fromtimestamp(time.mktime(entry.published_parsed))
-            elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
-                pub_date = datetime.fromtimestamp(time.mktime(entry.updated_parsed))
-            
-            if not pub_date or pub_date >= time_limit:
-                title = entry.get("title", "").strip()
-                if not title or title.lower() in seen_titles: continue
-                
-                final_link = resolve_url(entry.get("link", ""))
-                if final_link in seen_links: continue
+    t = OxmlElement("w:t")
+    t.text = text
+    new_run.append(t)
 
-                seen_links.add(final_link)
-                seen_titles.add(title.lower())
-                new_on_feed += 1
-                
-                articles.append({
-                    "title": title,
-                    "link": final_link,
-                    "date": pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y"),
-                    "source": source_name,
-                    "summary": entry.get("summary", "")[:600]
-                })
-        
-        print(f"[{source_name[:35]:<35}] Taranan: {feed_total:<3} | Yeni: {new_on_feed}")
-    
-    return articles
+    hyperlink.append(new_run)
+    paragraph._p.append(hyperlink)
+    return hyperlink
 
-def get_full_article_text(url):
-    try:
-        article = Article(url)
-        article.download()
-        article.parse()
-        return article.text[:4000] 
-    except Exception as e:
-        return ""
 
-def filter_with_ai(news_list):
-    if not news_list: return {"haberler": []}
-    if not API_KEY:
-        print("HATA: OpenAI API Anahtarı bulunamadı!")
-        return {"haberler": []}
-        
-    client = OpenAI(api_key=API_KEY)
-    
-    news_dict = {item['link']: item for item in news_list}
-    context = ""
-    for idx, item in enumerate(news_list):
-        context += f"Kaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\nİçerik/Özet: {item['summary']}\n\n"
+def ensure_sentence_ends(text: str) -> str:
+    t = (text or "").strip()
+    if not t: return ""
+    if t[-1] in ".!?…": return t
+    return t + "."
 
-    prompt_1 = f"""
-    Aşağıdaki haberlerden Danimarka'daki expat'ları, özellikle Türk expatları ilgilendirenleri seç. 
+# --- Security & Fetching (GÜNCELLENDİ) ---
+async def fetch_url_content(url: str) -> tuple[str, str]:
+    """Haber sitesinden içeriği gerçek bir kullanıcı gibi çeker."""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Referer": "https://www.google.com/",
+    }
     
-    ÖNEMLİ KURALLAR:
-    1. Sonuçları TÜRKÇE olarak dön.
-    2. Sadece başlık, kaynak, link, tarih ve expat_puani (1-10 arası) alanlarını doldur.
-    3. Puanı sadece 8 ve üzeri olanları seç (Yasal düzenlemeler, göçmenlik, vergiler, Danimarka-Türkiye ilişkileri vb. baz alınarak).
-    4. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: {datetime.now().strftime("%d.%m.%Y")}).
+    async with httpx.AsyncClient(timeout=TIMEOUT, verify=True, headers=headers, follow_redirects=True) as client:
+        try:
+            resp = await client.get(url)
+            resp.raise_for_status()
+            return resp.text, str(resp.url)
+        except httpx.HTTPStatusError as e:
+            raise HTTPException(status_code=e.response.status_code, detail=f"Site erişimi engelledi (403/404): {str(e)}")
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Bağlantı hatası: {str(e)}")
+
+def extract_main_text(html_content: str) -> str:
+    extracted = trafilatura.extract(html_content, include_comments=False, include_tables=False)
+    return extracted[:15000] if extracted else ""
+
+# --- Analyze Endpoint ---
+@app.post("/analyze", response_model=AnalyzeResponse)
+async def analyze_news(request: AnalyzeRequest):
+    clean_text = ""
+    final_url = request.url
+
+    if request.raw_text and len(request.raw_text.strip()) > 10:
+        clean_text = request.raw_text[:15000]
+    else:
+        html_content, final_url = await fetch_url_content(request.url)
+        clean_text = await run_in_threadpool(extract_main_text, html_content)
+
+        if not clean_text or len(clean_text) < 50:
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(html_content, "html.parser")
+            clean_text = soup.get_text()[:5000]
     
-    JSON FORMATI:
-    {{
-      "haberler": [
-        {{
-          "baslik": "Türkçe Başlık",
-          "kaynak": "Kaynak",
-          "link": "Link",
-          "tarih": "{datetime.now().strftime("%d.%m.%Y")}",
-          "expat_puani": 9
-        }}
-      ]
-    }}
-    
-    HABER HAVUZU:
-    {context}
+    if len(clean_text) < 50:
+        raise HTTPException(status_code=400, detail="Anlamlı metin bulunamadı.")
+
+    categories_str = ""
+    if request.available_categories and len(request.available_categories) > 0:
+        cat_list = ", ".join([f"'{c}'" for c in request.available_categories])
+        categories_str = f"Mevcut kategoriler: [{cat_list}]. Bu listeden en uygun olanı seç."
+    else:
+        categories_str = "Kategori olarak 'Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam' seç."
+
+    client = AsyncOpenAI(api_key=request.api_key)
+
+    system_prompt = f"""
+    Sen Danimarka'daki Türk expat'lar için içerik üreten kıdemli bir haber analistisin.
+    GÖREVİN: Haberi analiz et, Türk vatandaşlarını etkileme durumuna göre 1-10 arası puan ver ve Türkçe özetle.
+    KURALLAR: 
+    1. Başlık başına mutlaka konuya uygun bir emoji ekle.
+    2. Başlık ve özet birbirini tekrar etmesin.
+    3. Kategoriyi şu listeden seç: {categories_str}
     """
 
+    news_schema = {
+        "name": "news_analysis",
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "headline": {"type": "string"},
+                "source": {"type": "string"},
+                "summary": {"type": "string"},
+                "expat_significance": {"type": "string"},
+                "score": {"type": "integer"},
+                "category": {"type": "string"}
+            },
+            "required": ["headline", "source", "summary", "expat_significance", "score", "category"],
+            "additionalProperties": False,
+        },
+    }
+
     try:
-        print("\nAI Aşama 1: Haberler filtreleniyor...")
-        response_1 = client.chat.completions.create(
-            model="gpt-4o-mini", 
-            response_format={ "type": "json_object" },
+        completion = await client.chat.completions.create(
+            model=request.model,
             messages=[
-                {"role": "system", "content": "Sen profesyonel bir haber seçici ve analistisin. Sadece JSON dönersin."},
-                {"role": "user", "content": prompt_1}
-            ]
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"URL: {final_url}\n\nMETİN:\n{clean_text}"},
+            ],
+            response_format={"type": "json_schema", "json_schema": news_schema},
         )
-        selected_data = json.loads(response_1.choices[0].message.content)
-        selected_news = selected_data.get("haberler", [])
+        data = json.loads(completion.choices[0].message.content)
+        data["final_url"] = final_url
+        return data
     except Exception as e:
-        print(f"AI Aşama 1 Hatası: {e}")
-        return {"haberler": []}
+        raise HTTPException(status_code=500, detail=f"OpenAI Hatası: {str(e)}")
 
-    final_news = []
-    valid_news = []
-    seen_ai_links = set()
+# --- Export DOCX Endpoint ---
+@app.post("/export-docx")
+async def export_docx(items: List[ExportItem]):
+    if not items:
+        raise HTTPException(status_code=400, detail="Boş liste.")
 
-    for h in selected_news:
-        try:
-            if int(h.get("expat_puani", 0)) >= 8:
-                link = h.get("link", "")
-                if link and link not in seen_ai_links:
-                    seen_ai_links.add(link)
-                    valid_news.append(h)
-        except:
-            pass
+    doc = Document()
+    sorted_items = sorted(items, key=lambda x: (x.analysis.category or "Diğer", -x.analysis.score))
 
-    if not valid_news:
-        print("AI Aşama 1: 8 puan ve üzeri benzersiz expat haberi bulunamadı. 2. aşama atlanıyor.")
-        return {"haberler": []}
-
-    print(f"AI Aşama 2: Kriterleri geçen benzersiz {len(valid_news)} haber için veri çekiliyor, özet ve etki analizi yapılıyor...")
-    
-    for haber in valid_news:
-        link = haber.get("link", "")
-        orijinal_haber = news_dict.get(link, {})
-        orijinal_baslik = orijinal_haber.get("title", "")
+    for category, group_iter in groupby(sorted_items, key=lambda x: x.analysis.category or "Diğer"):
+        h = doc.add_heading(category, level=1)
+        run = h.runs[0]
+        run.font.color.rgb = RGBColor(0, 0, 0)
         
-        print(f" - Veri işleniyor: {link}")
-        tam_metin = get_full_article_text(link)
-        kaynak_turu = "Haberin Tam Metni"
-        
-        if not tam_metin or len(tam_metin) < 100:
-            tam_metin = orijinal_haber.get("summary", "")
-            kaynak_turu = "Haberin RSS Özeti"
-
-        prompt_2 = f"""
-        Aşağıdaki Danimarka haberine ait metni ({kaynak_turu}) okuyarak şu 3 veriyi oluştur:
-        1. Bu metnin içeriğini tam yansıtan, profesyonel yeni bir "Türkçe Başlık".
-        2. Haberin tamamen tarafsız, sade bir dille yazılmış, net ve anlaşılır bir "özeti" (En fazla 2 cümle).
-        3. Bu gelişmenin Danimarka'da yaşayan Türk expatlara (beyaz yakalılar, öğrenciler, çalışanlar vb.) yönelik yakın ve ileri vadeli "olası etkilerinin analizi" (En fazla 3 cümle).
-        
-        Orijinal Başlık: {orijinal_baslik}
-        {kaynak_turu}: {tam_metin}
-        
-        Lütfen SADECE aşağıdaki JSON formatında yanıt ver:
-        {{
-          "yeni_baslik": "Yeni üretilen Türkçe başlık...",
-          "ozet": "Haberin tarafsız ve sade özeti...",
-          "ai_analiz": "Türk expatlara potansiyel etkisi..."
-        }}
-        """
-        
-        try:
-            response_2 = client.chat.completions.create(
-                model="gpt-4o-mini",
-                response_format={ "type": "json_object" },
-                messages=[
-                    {"role": "system", "content": "Sen stratejik bir haber editörü ve sosyo-ekonomik etki analistisin. Sadece JSON dönersin."},
-                    {"role": "user", "content": prompt_2}
-                ]
-            )
-            analiz_sonucu = json.loads(response_2.choices[0].message.content)
+        for item in list(group_iter):
+            a = item.analysis
+            h2 = doc.add_heading(a.headline, level=3)
+            h2.paragraph_format.space_before = Pt(12)
             
-            haber["baslik"] = analiz_sonucu.get("yeni_baslik", haber.get("baslik"))
-            haber["ozet"] = analiz_sonucu.get("ozet", "Özet oluşturulamadı.")
-            haber["ai_analiz"] = analiz_sonucu.get("ai_analiz", "Etki analizi oluşturulamadı.")
-            final_news.append(haber)
+            p = doc.add_paragraph()
+            p.add_run(ensure_sentence_ends(a.summary) + " ")
             
-            print(f"   > İşlem tamamlandı ({kaynak_turu} kullanıldı): {haber.get('baslik')[:40]}...")
-        except Exception as e:
-            print(f"   > AI Aşama 2 Hatası ({link}): {e}")
-            haber["ozet"] = "Özet oluşturulurken bir hata oluştu."
-            haber["ai_analiz"] = "Bu haberin etki analizi oluşturulurken bir hata oluştu."
-            final_news.append(haber)
+            p.add_run("(Kaynak: ")
+            link = (a.final_url or item.input_url or "").strip()
+            if link:
+                add_hyperlink(p, (a.source or "Link"), link)
+            else:
+                p.add_run(a.source or "Link")
+            p.add_run(")")
 
-    return {"haberler": final_news}
-
-def safe_date_parse(date_str):
-    try:
-        return datetime.strptime(date_str, "%d.%m.%Y")
-    except:
-        return datetime(2000, 1, 1)
-
-def save_and_merge(new_data):
-    file_name = "daily_news.json"
-    
-    if os.path.exists(file_name):
-        with open(file_name, "r", encoding="utf-8") as f:
-            try:
-                data = json.load(f)
-            except:
-                data = {"haberler": []}
-    else:
-        data = {"haberler": []}
-
-    two_weeks_ago = datetime.now() - timedelta(days=14)
-    filtered_haberler = [
-        h for h in data.get("haberler", [])
-        if safe_date_parse(h.get("tarih", "")) >= two_weeks_ago
-    ]
-    
-    silinen_sayisi = len(data.get("haberler", [])) - len(filtered_haberler)
-    data["haberler"] = filtered_haberler
-
-    existing_links = {h["link"] for h in data.get("haberler", [])}
-    added_count = 0
-    
-    for h in new_data.get("haberler", []):
-        if h["link"] not in existing_links:
-            if "tarih" not in h or not h["tarih"] or len(h["tarih"]) < 8:
-                h["tarih"] = datetime.now().strftime("%d.%m.%Y")
-            data["haberler"].append(h)
-            added_count += 1
-    
-    data["haberler"].sort(key=lambda x: safe_date_parse(x.get("tarih", "")), reverse=True)
-
-    with open(file_name, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-    
-    print(f"\n--- İŞLEM BAŞARIYLA TAMAMLANDI ---")
-    if silinen_sayisi > 0:
-        print(f"Temizlenen Eski Haber Sayısı (>14 gün): {silinen_sayisi}")
-    print(f"Yeni Eklenen Haber: {added_count} | Toplam Arşiv: {len(data['haberler'])}")
+    buf = BytesIO()
+    doc.save(buf)
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", headers={"Content-Disposition": 'attachment; filename="expat_bulten.docx"'})
 
 if __name__ == "__main__":
-    existing_links = set()
-    if os.path.exists("daily_news.json"):
-        try:
-            with open("daily_news.json", "r", encoding="utf-8") as f:
-                data = json.load(f)
-                existing_links = {h["link"] for h in data.get("haberler", [])}
-        except:
-            pass
-
-    raw_news = get_recent_news()
-    new_raw_news = [n for n in raw_news if n["link"] not in existing_links]
-    
-    if new_raw_news:
-        print(f"\nVeritabanında olmayan {len(new_raw_news)} yeni haber AI'ya gönderiliyor...")
-        ai_output = filter_with_ai(new_raw_news)
-        save_and_merge(ai_output)
-    else:
-        print("\nSon 24 saatte eklenecek yeni içerik bulunamadı.")
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
