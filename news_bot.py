@@ -42,7 +42,7 @@ RSS_FEEDS = [
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
     "https://www.reddit.com/r/Denmark/.rss",
-    "https://via.ritzau.dk/rss/short-messages/latest" # Yeni eklenen kaynak
+    "https://via.ritzau.dk/rss/short-messages/latest"
 ]
 
 def resolve_url(url: str) -> str:
@@ -110,9 +110,10 @@ def get_recent_news():
     raw_articles = []
     seen_urls = set()
     now_utc = datetime.now(timezone.utc)
-    time_limit = now_utc - timedelta(hours=12)
+    # KESİN FİLTRE: Sadece son 48 saat (Bugün ve Dün)
+    time_limit = now_utc - timedelta(hours=48)
     
-    print(f"\n[1/4] RSS TARAMASI BAŞLATILDI (Son 12 Saat)...")
+    print(f"\n[1/4] RSS TARAMASI BAŞLATILDI (Zaman Sınırı: {time_limit.strftime('%d.%m.%Y %H:%M')})...")
     
     for url in RSS_FEEDS:
         feed = feedparser.parse(url)
@@ -121,7 +122,10 @@ def get_recent_news():
         
         for entry in feed.entries:
             pub_date = parse_date_to_utc(entry)
-            is_recent = pub_date and pub_date >= time_limit
+            
+            # Tarih filtresi (Tarihi olmayan veya eski olan haberler anında elenir)
+            if not pub_date or pub_date < time_limit:
+                continue
             
             raw_link = entry.get("link", "")
             if not raw_link: continue
@@ -141,23 +145,24 @@ def get_recent_news():
                 "link": link,
                 "source": source,
                 "summary": summary,
-                "published_at": pub_date.isoformat() if pub_date else None,
+                "published_at": pub_date.isoformat(),
                 "soft_score": soft_score,
-                "is_recent": is_recent
+                "is_recent": True
             }
             raw_articles.append(article_data)
             seen_urls.add(link)
             found_on_feed += 1
             
-        print(f" -> {source[:30]:<30}: {found_on_feed} haber bulundu.")
+        print(f" -> {source[:30]:<30}: {found_on_feed} yeni haber bulundu.")
             
     return raw_articles
 
 async def score_news_with_llm(client, news_list):
-    candidates = [n for n in news_list if n['is_recent'] or n['soft_score'] >= 3]
+    # SADECE güncel haberler LLM'e gider (is_recent garantisi ile)
+    candidates = [n for n in news_list if n['soft_score'] >= 1]
     if not candidates: return []
     
-    print(f"\n[2/4] LLM PUANLAMASI: {len(candidates)} haber analiz ediliyor...")
+    print(f"\n[2/4] LLM PUANLAMASI: {len(candidates)} güncel aday haber analiz ediliyor...")
     
     context = ""
     for n in candidates:
@@ -193,7 +198,6 @@ async def score_news_with_llm(client, news_list):
         return []
 
 async def fetch_url_content(url, article_id):
-    """Sırasıyla yöntemleri dener. Tam link loglarda görünür."""
     async with semaphore:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
         prefix = f"    [Haber #{article_id}]"
