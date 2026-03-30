@@ -1,22 +1,6 @@
 {
   "haberler": [
-    {
-      "id": 3,
-      "title": "Vestas cutting 440 jobs in Denmark - EnergyWatch",
-      "link": "https://energywatch.com/energynews/wind/article19162705.ece",
-      "source": "\"Denmark when:12h\" - Google News",
-      "summary": "Bu metin, EmbedPlayerActionNonAuth başlığı altında, HTML yerel depolama kapasitesinin yönetimi zincirinde farklı olayların ve dizilerin bulunduğu bir günlüğü içermektedir. Her bir kayıt, persistent türdeki veri depolamanın belirli noktalarını temsil etmektedir. Bu depolama türü, kullanıcıların uygulamalarla etkileşimde bulunurken daha iyi bir deneyim elde etmelerine olanak tanımaktadır.",
-      "published_at": "2026-03-29T18:15:55+00:00",
-      "soft_score": 3,
-      "is_recent": true,
-      "expat_score": 9,
-      "selection_reason": "Vestas is a major player in the renewable energy sector, and job cuts in such a significant company can have a direct impact on the economy and expat workforce in Denmark.",
-      "translated_title": "HTML Yerel Depolama: Persistan Veri Yönetimi",
-      "expat_impact": "Türk expatlar için, bu bilgi dijital platformların ve uygulamaların veri yönetimi süreçlerini anlamalarına yardımcı olabilir. Özellikle uzun süreli ikamet eden ve yerelleşme sürecinde dijital çözümler kullanan bireyler, HTML yerel depolama gibi teknolojilerin avantajlarından yararlanabilir. Bu, uygulamaların daha akılda kalıcı ve kullanıcı dostu olmasını sağlayarak, dijital hizmetlere olan erişimi artırabilir.",
-      "fetched_at": "2026-03-29T18:40:43.793477+00:00",
-      "scrape_method": "playwright",
-      "content_length": 10844
-    },
+
     {
       "id": 29,
       "title": "Italy, Sweden, Turkey and Denmark one win from the World Cup as European playoff finals arrive on Tuesday - SportsAdda",
