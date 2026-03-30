@@ -96,7 +96,7 @@ def ensure_sentence_ends(text: str) -> str:
     if t[-1] in ".!?…": return t
     return t + "."
 
-# --- Security & Fetching (GÜNCELLENDİ) ---
+# --- Security & Fetching ---
 async def fetch_url_content(url: str) -> tuple[str, str]:
     """Haber sitesinden içeriği gerçek bir kullanıcı gibi çeker."""
     headers = {
@@ -147,8 +147,6 @@ async def analyze_news(request: AnalyzeRequest):
     else:
         categories_str = "Kategori olarak 'Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam' seç."
 
-    client = AsyncOpenAI(api_key=request.api_key)
-
     system_prompt = f"""
     Sen Danimarka'daki Türk expat'lar için içerik üreten kıdemli bir haber analistisin.
     GÖREVİN: Haberi analiz et, Türk vatandaşlarını etkileme durumuna göre 1-10 arası puan ver ve Türkçe özetle.
@@ -177,17 +175,23 @@ async def analyze_news(request: AnalyzeRequest):
     }
 
     try:
-        completion = await client.chat.completions.create(
-            model=request.model,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"URL: {final_url}\n\nMETİN:\n{clean_text}"},
-            ],
-            response_format={"type": "json_schema", "json_schema": news_schema},
-        )
-        data = json.loads(completion.choices[0].message.content)
-        data["final_url"] = final_url
-        return data
+        # ÖNEMLİ DEĞİŞİKLİK: 'async with' kullanılarak bağlantının temizce kapatılması sağlanıyor
+        # Ayrıca '.strip()' ile anahtardaki yanlışlıkla girilmiş boşluklar temizleniyor
+        api_key_clean = request.api_key.strip()
+        
+        async with AsyncOpenAI(api_key=api_key_clean) as client:
+            completion = await client.chat.completions.create(
+                model=request.model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"URL: {final_url}\n\nMETİN:\n{clean_text}"},
+                ],
+                response_format={"type": "json_schema", "json_schema": news_schema},
+            )
+            data = json.loads(completion.choices[0].message.content)
+            data["final_url"] = final_url
+            return data
+            
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"OpenAI Hatası: {str(e)}")
 
