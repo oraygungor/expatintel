@@ -1,6 +1,40 @@
 {
   "haberler": [
     {
+      "id": 35,
+      "title": "Vestas to cut 440 jobs at nacelle factory - Wind Power Monthly",
+      "link": "https://www.windpowermonthly.com/article/1953188/vestas-cut-440-jobs-nacelle-factory",
+      "source": "\"Denmark when:12h\" - Google News",
+      "summary": "Vestas, Danimarka'daki Lindø'deki nacelle ve hub fabrikasında yaklaşık 440 işten tasarruf edecek. Bu karar, şirketin üretim kapasitesini azaltma yönündeki çabalarının bir parçası olarak görülüyor.",
+      "published_at": "2026-03-30T11:01:20+00:00",
+      "soft_score": 3,
+      "is_recent": true,
+      "expat_score": 9,
+      "selection_reason": "Vestas'ın işten çıkarmaları, uluslararası çalışanlar için iş piyasasındaki dalgalanmaları yansıttığı için önemli bir haber. Bu durum ülkeye yeni gelen expatlar için yönlendirme ve dikkat edilmesi gereken bir durum yaratabilir.",
+      "translated_title": "Vestas, Nacelle Fabrikasında 440 İşi Kapatacak",
+      "expat_impact": "Türk expatlar için, Vestas'ın işten çıkarmaları, Danimarka'daki rüzgar enerjisi sektöründe iş olanaklarını etkileme potansiyeline sahip. Bu durum, ülkede çalışan Türk expatlar için belirsizlik yaratabilir ve ulaşım, konut gibi yan faktörleri etkileyebilir. Ayrıca, iş kaybı, topluluk içindeki sosyal dinamikleri etkileyebilir.",
+      "fetched_at": "2026-03-30T18:59:24.839338+00:00",
+      "scrape_method": "playwright",
+      "content_length": 9445
+    },
+    {
+      "id": 57,
+      "title": "Vestas expects to cut 440 jobs in Denmark - The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-30/business-education/career/vestas-expects-to-cut-440-jobs",
+      "source": "\"Denmark when:12h\" - Google News",
+      "summary": "Rüzgar türbini üreticisi Vestas, özellikle gece ve hafta sonu üretim vardiyalarında toplamda yaklaşık 440 pozisyon kesintisi bekliyor. Şirket, işten çıkarmaları artan verimlilik, optimize edilmiş süreçler ve V236-15.0W türbin nacellerinin üretim süresinin kısalmasına bağladı. Olgunlaşmış üretimin, aynı hacim ve kaliteyi sürdürmek için daha az işçi gerektirdiği belirtiliyor.",
+      "published_at": "2026-03-30T15:03:38+00:00",
+      "soft_score": 3,
+      "is_recent": true,
+      "expat_score": 8,
+      "selection_reason": "Vestas'ın işten çıkaracağı çalışan sayısı, özellikle teknik ve mühendislik alanlarında çalışan expatlar için önemli bir haber. Bu durum, Danimarka pazarındaki istihdam olanaklarına dair endişeler yaratabilir.",
+      "translated_title": "Vestas Rüzgar Türbini Üretiminde İstihdam Kesintisi",
+      "expat_impact": "Bu durum, özellikle Danimarka'daki Türk expat topluluğunu etkileyebilir, çünkü şirketin önemli pozisyonlarında çalışan birçok kişi yabancı işgücü olabilir. İşten çıkarmaların getireceği belirsizlik, iş bulma sürecini zora sokabilir ve expatların mevcut yaşam standartlarını etkileyebilir.",
+      "fetched_at": "2026-03-30T18:59:20.497794+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 413
+    },
+    {
       "id": 1,
       "title": "Danish wind turbine giant Vestas set to cut over 400 jobs",
       "link": "https://www.thelocal.dk/20260330/danish-wind-turbine-giant-vestas-set-to-cut-over-400-jobs",
