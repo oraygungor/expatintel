@@ -1,6 +1,56 @@
 {
   "haberler": [
-
+    {
+      "id": 1,
+      "title": "Danish wind turbine giant Vestas set to cut over 400 jobs",
+      "link": "https://www.thelocal.dk/20260330/danish-wind-turbine-giant-vestas-set-to-cut-over-400-jobs",
+      "source": "The Local Denmark",
+      "summary": "Vestas, Lindø tesisinde gece ve hafta sonu üretiminin azalacağını duyurdu. Şirket, etkilenen işçileri Danimarka'daki diğer Vestas tesislerine yerleştirmeye çalışacak. Üretimin optimize edilmesi ve verimliliğin artırılması gerekçesiyle yapılan bu kesintinin, yerel Kerteminde Belediyesi’nin 440 iş arayan için yardım sunma durumuna gelmesine neden olabileceği belirtiliyor.",
+      "published_at": "2026-03-30T08:26:34+00:00",
+      "soft_score": 3,
+      "is_recent": true,
+      "expat_score": 9,
+      "selection_reason": "The job cuts at Vestas could significantly impact the expat community in Denmark, particularly those working in the renewable energy sector. The news is highly relevant for expatriates as it may affect employment opportunities and job stability.",
+      "translated_title": "Vestas'ın Lindø Tesisinde Üretim Azaltımı: Çalışanlar Üzerindeki Etkiler",
+      "expat_impact": "Danimarka'da yaşayan Türk expatların iş bulma olanakları, Vestas'ın işten çıkarmaları ve diğer büyük şirketlerin yaptığı benzer kesintilerden etkilenebilir. Yerel ekonomi üzerindeki olumsuz etkiler, expatlar için daha geniş bir iş piyasası rekabetine neden olabilir. Bu durum, özellikle iş arayanların yeniden eğitilmesi ve yeni fırsatlar bulma süreçlerinde zorlanmalarına yol açabilir.",
+      "fetched_at": "2026-03-30T10:17:05.585760+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 2140
+    },
+    {
+      "id": 36,
+      "title": "Vestas expects to cut 440 jobs in Denmark - The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-03-30/news/round-up/vestas-expects-to-cut-440-jobs",
+      "source": "\"Denmark when:12h\" - Google News",
+      "summary": "Rüzgar türbini üreticisi Vestas, Lindø'de yaklaşık 440 pozisyonu kesmeyi bekliyor. Bu kesintilerin, özellikle gece ve hafta sonu üretim vardiyalarını etkilemesi öngörülüyor. Şirket, işten çıkarmaların artan verimlilik, optimize edilmiş süreçler ve V236-15.0W türbin nacellerinin üretim süresinin kısalması ile ilişkilendirildiğini belirtti. Olgunlaşmış üretim süreçleri, aynı hacim ve kaliteyi sürdürebilmek için daha az çalışana ihtiyaç duyuyor.",
+      "published_at": "2026-03-30T04:48:04+00:00",
+      "soft_score": 3,
+      "is_recent": true,
+      "expat_score": 8,
+      "selection_reason": "Similar to the other articles about Vestas, this report on potential job cuts is crucial for expats in Denmark working in related industries. Job security is an important topic for expatriates, making this news relevant for their community.",
+      "translated_title": "Vestas Rüzgar Türbini Üretiminde İşten Çıkarmalar",
+      "expat_impact": "Vestas'taki işten çıkarmalar, Türk expatlar için önemli bir etki yaratabilir. Avrupadaki Türk expat topluluğu, rüzgar enerjisi sektöründe çalışan profesyoneller arasında oldukça temsil edilmektedir. İş kayıpları, bu topluluğun ekonomik durumunu ve iş bulma fırsatlarını etkileyebilir. Ayrıca, işten çıkarılan çalışanların yeni iş arayışındaki zorlukları ve endişeleri, Türk expat topluluğunda daha geniş sosyal ve psikolojik etkilere neden olabilir.",
+      "fetched_at": "2026-03-30T10:17:05.118586+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 413
+    },
+    {
+      "id": 89,
+      "title": "Savnet lyntog vender tilbage til Danmark",
+      "link": "https://politiken.dk/rejser/togrejser/art10777540/savnet-lyntog-vender-tilbage-til-danmark",
+      "source": "Politiken.dk - Forsiden",
+      "summary": "İtalyanın devlet tren şirketi Trenitalia, sadece İtalyanlara değil, Avrupa'ya da tren seferleri sunma konusunda büyük hedefler belirlemiştir. İtalya'yı Avrupa'nın büyük şehirlerine bağlamak stratejik bir amaçtır. Şirketin yüksek hızlı trenleri ve gururu olan Frecciarossa ile Milano/Roma'dan Münih'e gidecek bir güzergah 2027'de başlaması planlanıyor. Bu güzergah boyunca Firenze, Bologna, Verona ve Innsbruck gibi şehirlerde duraklar olacak. Sonrasında, hat Napoli'den kalkıp Berlin'e kadar uzatılacak, fakat bu 2028'den itibaren gerçekleşecek.",
+      "published_at": "2026-03-30T06:19:22+00:00",
+      "soft_score": 2,
+      "is_recent": true,
+      "expat_score": 8,
+      "selection_reason": "The return of a sought-after train service to Denmark is beneficial for expats who may rely on public transportation for travel. This news highlights improvements in travel options, which is of significant interest to those living in Denmark.",
+      "translated_title": "İtalyan Süper Güç Planları",
+      "expat_impact": "Bu yeni tren seferleri, İtalya'da yaşayan Türk expatları için Avrupa'nın diğer şehirlerine seyahat etmeyi kolaylaştıracak. İş imkanları ve kültürel etkileşim açısından büyük avantajlar sunabilir. Ayrıca, expatların ailelerini ve arkadaşlarını ziyaret etme sıklığını artırabilir.",
+      "fetched_at": "2026-03-30T10:17:04.472135+00:00",
+      "scrape_method": "trafilatura",
+      "content_length": 579
+    },
     {
       "id": 29,
       "title": "Italy, Sweden, Turkey and Denmark one win from the World Cup as European playoff finals arrive on Tuesday - SportsAdda",
