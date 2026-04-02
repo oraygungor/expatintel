@@ -2,358 +2,199 @@ import json
 import feedparser
 import time
 import os
-import asyncio
-import httpx
-import trafilatura
-import logging
-import tempfile
-from bs4 import BeautifulSoup
-from datetime import datetime, timedelta, timezone
-from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
-from openai import AsyncOpenAI
+import re
+from datetime import datetime, timedelta
+from openai import OpenAI
+from googlenewsdecoder import gnewsdecoder
 
-# --- YAPILANDIRMA VE LOGGING ---
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%H:%M:%S'
-)
-logger = logging.getLogger(__name__)
-
+# --- GÜVENLİK ---
+# GitHub Secrets üzerinden "OPENAI_API_KEY" adıyla tanımladığın anahtarı çeker.
 API_KEY = os.getenv("OPENAI_API_KEY")
-FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
-
-# Global Kayıt Kilidi
-save_lock = asyncio.Lock()
-
-# Eşzamanlı işlem sınırı
-MAX_CONCURRENT_SCRAPES = 3
-semaphore = asyncio.Semaphore(MAX_CONCURRENT_SCRAPES)
-
-# Kritik Kelimeler ve Kaynak Puanları
-EXPAT_KEYWORDS = ["skat", "tax", "visa", "permit", "residence", "immigration", "work", "job", "salary", "rent", "housing", "bolig", "integration", "turkish", "turkey", "student", "regeringen", "law", "kommune"]
-TRUSTED_SOURCES = ["dr.dk", "politiken.dk", "berlingske.dk", "thelocal.dk", "ritzau.dk"]
 
 RSS_FEEDS = [
+    # Global & İngilizce Danimarka Haberleri
     "https://feeds.thelocal.com/rss/dk",
-    "https://news.google.com/rss/search?q=Denmark+when:12h&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=Denmark+when:1d&hl=da&gl=DK&ceid=DK:da",
+    
+    # Ulusal Danimarka Kaynakları (Danca)
     "https://www.dr.dk/nyheder/service/feeds/allenyheder",
     "https://politiken.dk/rss/senestenyt.rss",
     "https://www.berlingske.dk/content/rss",
     "https://www.information.dk/feed",
-    "https://www.reddit.com/r/Denmark/.rss",
-    "https://via.ritzau.dk/rss/short-messages/latest"
+    
+    # Bölgesel Danimarka Kaynakları (Danca)
+    "https://fyens.dk/feed/danmark",
+    "https://nordjyske.dk/rss/nyheder",
+    "https://jv.dk/feed/danmark",
+    "https://hsfo.dk/feed/danmark",
+    "https://frdb.dk/feed/danmark",
+    
+    # Sosyal Medya & Forum (Reddit)
+    "https://www.reddit.com/r/Denmark/.rss"
 ]
 
 def resolve_url(url: str) -> str:
-    if "news.google.com" not in url:
+    """Google News ve Reddit linklerini asıl haber sitesine çevirir."""
+    if "news.google.com" not in url and "reddit.com" not in url:
         return url
     try:
-        from googlenewsdecoder import gnewsdecoder
-        result = gnewsdecoder(url, interval=1)
-        if isinstance(result, dict):
-            for key in ("decoded_url", "url", "original_url"):
-                val = result.get(key)
-                if val and val.startswith("http"): return val
-        return result if isinstance(result, str) and result.startswith("http") else url
-    except Exception as e:
+        if "news.google.com" in url:
+            result = gnewsdecoder(url, interval=1)
+            if isinstance(result, dict):
+                for key in ("decoded_url", "url", "original_url"):
+                    val = result.get(key)
+                    if val and val.startswith("http"): return val
+            return result if isinstance(result, str) and result.startswith("http") else url
         return url
-
-def clean_html(raw_html):
-    if not raw_html: return ""
-    try:
-        return BeautifulSoup(raw_html, "lxml").get_text(separator=" ", strip=True)
     except:
-        return BeautifulSoup(raw_html, "html.parser").get_text(separator=" ", strip=True)
-
-def canonicalize_url(url):
-    try:
-        u = urlparse(url)
-        query = parse_qs(u.query)
-        blacklisted = {'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'igsh', 'feature'}
-        filtered_query = {k: v for k, v in query.items() if k.lower() not in blacklisted}
-        new_query = urlencode(filtered_query, doseq=True)
-        return urlunparse((u.scheme, u.netloc, u.path, u.params, new_query, u.fragment)).lower().rstrip('/')
-    except:
-        return url.lower()
-
-def is_quality_content(text):
-    if not text: 
-        return False, "İçerik boş"
-    
-    clean_text = text.strip()
-    if len(clean_text) < 400: 
-        return False, f"Metin çok kısa ({len(clean_text)} karakter)"
-    
-    bad_tokens = ["cookie", "privacy policy", "accept all", "subscribe", "newsletter", "terms of service"]
-    bad_count = sum(1 for token in bad_tokens if token in clean_text.lower())
-    
-    if bad_count > 5: 
-        return False, f"Çok fazla çöp/reklam kelimesi ({bad_count})"
-    
-    return True, "Geçerli içerik"
-
-def parse_date_to_utc(entry):
-    for attr in ['published_parsed', 'updated_parsed', 'created_parsed']:
-        if hasattr(entry, attr) and getattr(entry, attr):
-            return datetime(*getattr(entry, attr)[:6], tzinfo=timezone.utc)
-    return None
-
-def get_soft_score(title, source):
-    score = 0
-    title_lower = title.lower()
-    if any(src in source.lower() for src in TRUSTED_SOURCES): score += 2
-    if any(kw in title_lower for kw in EXPAT_KEYWORDS): score += 3
-    return score
+        return url
 
 def get_recent_news():
-    raw_articles = []
-    seen_urls = set()
-    now_utc = datetime.now(timezone.utc)
-    time_limit = now_utc - timedelta(hours=48)
+    articles = []
+    seen_links = set()
+    seen_titles = set()
+    now = datetime.now()
+    time_limit = now - timedelta(hours=24) # Sadece son 24 saat
     
-    print(f"\n[1/4] RSS TARAMASI BAŞLATILDI (Zaman Sınırı: {time_limit.strftime('%d.%m.%Y %H:%M')})...")
+    print(f"\n--- HABER TARAMA BAŞLADI ({now.strftime('%H:%M:%S')}) ---")
     
     for url in RSS_FEEDS:
         feed = feedparser.parse(url)
-        source = feed.feed.get("title", urlparse(url).netloc)
-        found_on_feed = 0
+        source_name = feed.feed.get("title", url.split('/')[2])
+        
+        feed_total = 0
+        new_on_feed = 0
         
         for entry in feed.entries:
-            pub_date = parse_date_to_utc(entry)
+            feed_total += 1
+            pub_date = None
             
-            if not pub_date or pub_date < time_limit:
-                continue
+            # Tarih verisini farklı RSS formatlarına göre ayıkla
+            if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                pub_date = datetime.fromtimestamp(time.mktime(entry.published_parsed))
+            elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
+                pub_date = datetime.fromtimestamp(time.mktime(entry.updated_parsed))
             
-            raw_link = entry.get("link", "")
-            if not raw_link: continue
-            
-            resolved_link = resolve_url(raw_link)
-            link = canonicalize_url(resolved_link)
-            
-            if link in seen_urls: continue
-            
-            title = entry.get("title", "").strip()
-            summary = clean_html(entry.get("summary", ""))[:400]
-            soft_score = get_soft_score(title, source)
-            
-            article_data = {
-                "id": len(raw_articles),
-                "title": title,
-                "link": link,
-                "source": source,
-                "summary": summary,
-                "published_at": pub_date.isoformat(),
-                "soft_score": soft_score,
-                "is_recent": True
-            }
-            raw_articles.append(article_data)
-            seen_urls.add(link)
-            found_on_feed += 1
-            
-        print(f" -> {source[:30]:<30}: {found_on_feed} yeni haber bulundu.")
-            
-    return raw_articles
-
-async def score_news_with_llm(client, news_list):
-    candidates = [n for n in news_list if n['soft_score'] >= 1]
-    if not candidates: return []
-    
-    print(f"\n[2/4] LLM PUANLAMASI: {len(candidates)} güncel aday haber analiz ediliyor...")
-    
-    context = ""
-    for n in candidates:
-        context += f"ID: {n['id']} | Başlık: {n['title']} | Özet: {n['summary']}\n\n"
-
-    prompt = """
-    Danimarka haberlerini expat ilgisi (1-10) açısından analiz et. Sadece 8+ olanları seç.
-    JSON ŞEMASI: { "selected_news": [ { "id": 0, "expat_score": 9, "reasoning": "..." } ] }
-    """
-
-    try:
-        response = await client.chat.completions.create(
-            model="gpt-4o-mini",
-            response_format={ "type": "json_object" },
-            messages=[{"role": "system", "content": "Haber küratörü."}, {"role": "user", "content": f"{prompt}\n\nHaberler:\n{context}"}]
-        )
-        result = json.loads(response.choices[0].message.content)
-        selection_map = {item['id']: item for item in result.get("selected_news", [])}
-        
-        final_selection = []
-        for n in candidates:
-            if n['id'] in selection_map:
-                n.update({
-                    "expat_score": selection_map[n['id']].get("expat_score"),
-                    "selection_reason": selection_map[n['id']].get("reasoning")
-                })
-                final_selection.append(n)
-        
-        print(f" -> LLM {len(final_selection)} adet yüksek öncelikli haber belirledi.")
-        return final_selection
-    except Exception as e:
-        logger.error(f"Puanlama hatası: {e}")
-        return []
-
-async def fetch_url_content(url, article_id):
-    async with semaphore:
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
-        prefix = f"    [Haber #{article_id}]"
-
-        # --- 1. Yöntem: Trafilatura ---
-        print(f"{prefix} [Yöntem 1] Trafilatura deneniyor: {url}")
-        try:
-            async with httpx.AsyncClient(follow_redirects=True, timeout=15.0) as c:
-                res = await c.get(url, headers=headers)
-                content = trafilatura.extract(res.text)
-                is_ok, reason = is_quality_content(content)
-                if is_ok:
-                    print(f"{prefix}       [+] BAŞARILI: Trafilatura ile {len(content)} karakter çekildi.")
-                    return content, "trafilatura"
-                else:
-                    print(f"{prefix}       [-] Atlandı: {reason}")
-        except Exception as e:
-            print(f"{prefix}       [!] Hata: {type(e).__name__}")
-
-        # --- 2. Yöntem: Playwright ---
-        print(f"{prefix} [Yöntem 2] Playwright (JS) deneniyor: {url}")
-        try:
-            from playwright.async_api import async_playwright
-            async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True)
-                page = await browser.new_page(user_agent=headers["User-Agent"])
-                await page.goto(url, wait_until="networkidle", timeout=30000)
-                html = await page.content()
-                await browser.close()
+            if not pub_date or pub_date >= time_limit:
+                title = entry.get("title", "").strip()
+                if not title or title.lower() in seen_titles: continue
                 
-                content = trafilatura.extract(html)
-                is_ok, reason = is_quality_content(content)
-                if is_ok:
-                    print(f"{prefix}       [+] BAŞARILI: Playwright ile {len(content)} karakter çekildi.")
-                    return content, "playwright"
-                else:
-                    print(f"{prefix}       [-] Kalite Yetersiz: {reason}")
-        except Exception as e:
-            print(f"{prefix}       [!] Playwright Hatası: {str(e)[:100]}")
+                final_link = resolve_url(entry.get("link", ""))
+                if final_link in seen_links: continue
 
-        # --- 3. Yöntem: Firecrawl ---
-        if FIRECRAWL_API_KEY:
-            print(f"{prefix} [Yöntem 3] Firecrawl API deneniyor: {url}")
-            try:
-                async with httpx.AsyncClient(timeout=30.0) as http_client:
-                    response = await http_client.post(
-                        "https://api.firecrawl.dev/v1/scrape", 
-                        headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}"},
-                        json={"url": url, "formats": ["markdown"]}
-                    )
-                    if response.status_code == 200:
-                        content = response.json().get("data", {}).get("markdown")
-                        is_ok, reason = is_quality_content(content)
-                        if is_ok:
-                            print(f"{prefix}       [+] BAŞARILI: Firecrawl ile {len(content)} karakter çekildi.")
-                            return content, "firecrawl"
-                        else:
-                            print(f"{prefix}       [-] Firecrawl Kalite Engeli: {reason}")
-                    else:
-                        print(f"{prefix}       [-] Firecrawl API Hatası ({response.status_code})")
-            except Exception as e:
-                print(f"{prefix}       [!] Firecrawl Hata: {type(e).__name__}")
+                seen_links.add(final_link)
+                seen_titles.add(title.lower())
+                new_on_feed += 1
+                
+                articles.append({
+                    "title": title,
+                    "link": final_link,
+                    "date": pub_date.strftime("%d.%m.%Y") if pub_date else now.strftime("%d.%m.%Y"),
+                    "source": source_name,
+                    "summary": entry.get("summary", "")[:350]
+                })
         
-        return None, "failed"
-
-async def analyze_and_save(client, article, existing_urls, file_name):
-    # Log başlığını duplicate kontrolünden önceye alıyoruz ki her haberi görebilin
-    print(f"\n--- HABER İŞLENİYOR [ID:{article['id']}]: {article['title'][:60]}... ---")
-    print(f"    [Link]: {article['link']}")
-
-    if article['link'] in existing_urls:
-        print(f"    [ID:{article['id']}] [-] ATLANDI: Bu haber zaten arşivde kayıtlı.")
-        return
+        print(f"[{source_name[:35]:<35}] Taranan: {feed_total:<3} | Yeni: {new_on_feed}")
     
-    content, method = await fetch_url_content(article['link'], article['id'])
-    if not content:
-        print(f"    [ID:{article['id']}] [X] ATLANDI: Hiçbir yöntemle içerik çekilemedi.")
-        return
+    return articles
 
-    print(f"    [ID:{article['id']}] [LLM] İçerik derin analiz için gönderiliyor...")
-    prompt = f"""
-    Metni Türk expatlar için analiz et. 
-    JSON: {{ "translated_title": "...", "summary": "...", "expat_impact": "..." }}
-    Metin: {content[:6000]}
-    """
-    
-    try:
-        response = await client.chat.completions.create(
-            model="gpt-4o-mini",
-            response_format={ "type": "json_object" },
-            messages=[{"role": "user", "content": prompt}]
-        )
-        analysis = json.loads(response.choices[0].message.content)
-        
-        final_data = {
-            **article,
-            **analysis,
-            "fetched_at": datetime.now(timezone.utc).isoformat(),
-            "scrape_method": method,
-            "content_length": len(content)
-        }
-        
-        async with save_lock:
-            await atomic_save(final_data, file_name)
-        print(f"    [ID:{article['id']}] [V] TAMAMLANDI: Arşive başarıyla eklendi.")
-    except Exception as e:
-        logger.error(f"Analiz hatası (ID:{article['id']}): {e}")
-
-async def atomic_save(new_entry, filename):
-    data = {"haberler": []}
-    if os.path.exists(filename):
-        with open(filename, 'r', encoding='utf-8') as f:
-            try: data = json.load(f)
-            except: pass
-    
-    if any(h['link'] == new_entry['link'] for h in data['haberler']):
-        return
-
-    data['haberler'].insert(0, new_entry)
-    
-    fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(os.path.abspath(filename)))
-    try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as tmp:
-            json.dump(data, tmp, ensure_ascii=False, indent=2)
-        os.replace(temp_path, filename)
-    except:
-        if os.path.exists(temp_path): os.remove(temp_path)
-
-async def main():
+def filter_with_ai(news_list):
+    if not news_list: return {"haberler": []}
     if not API_KEY:
-        print("HATA: OPENAI_API_KEY bulunamadı!")
-        return
+        print("HATA: OpenAI API Anahtarı bulunamadı!")
+        return {"haberler": []}
+        
+    client = OpenAI(api_key=API_KEY)
+    context = ""
+    for idx, item in enumerate(news_list):
+        context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\n\n"
 
-    client = AsyncOpenAI(api_key=API_KEY)
+    # Talep ettiğin model versiyonu talimatı eklendi
+    prompt = f"""
+    Aşağıdaki haberlerden Danimarka'daki expat'ları, hatta özellikle Türk expatları ilgilendirenleri seç. 
+    
+    ÖNEMLİ KURALLAR:
+    1. Sonuçları TÜRKÇE olarak dön.
+    2. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: 09.03.2026).
+    3. ASLA "tarih mevcut değil" gibi cümleler kurma. Eğer tarih yoksa bugünün tarihini ({datetime.now().strftime("%d.%m.%Y")}) kullan.
+    4. Puanı 8 ve üzeri olanları seç.
+
+    JSON FORMATI:
+    {{
+      "haberler": [
+        {{
+          "baslik": "Türkçe Başlık",
+          "kaynak": "Kaynak",
+          "link": "Link",
+          "tarih": "09.03.2026",
+          "sebep": "Neden önemli",
+          "expat_puani": 9
+        }}
+      ]
+    }}
+    
+    HABER HAVUZU:
+    {context}
+    """
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-5.4", 
+            response_format={ "type": "json_object" },
+            messages=[
+                {"role": "system", "content": "Sen profesyonel bir haber analiz uzmanısın. Sadece JSON dönersin."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return json.loads(response.choices[0].message.content)
+    except Exception as e:
+        print(f"AI Analiz Hatası: {e}")
+        return {"haberler": []}
+
+def safe_date_parse(date_str):
+    """Tarih hatalarını önlemek için güvenli parser."""
+    try:
+        return datetime.strptime(date_str, "%d.%m.%Y")
+    except:
+        return datetime(2000, 1, 1)
+
+def save_and_merge(new_data):
     file_name = "daily_news.json"
     
-    # 1. RSS Verilerini Topla
-    raw_news = get_recent_news()
-    
-    # 2. LLM Puanlaması
-    selected_news = await score_news_with_llm(client, raw_news)
-    
-    if not selected_news:
-        print("\nSonuç: Bugün işlenecek kritik yeni bir haber bulunamadı.")
-        return
-
-    existing_urls = set()
     if os.path.exists(file_name):
-        with open(file_name, 'r', encoding='utf-8') as f:
-            try: 
-                d = json.load(f)
-                existing_urls = {h['link'] for h in d.get('haberler', [])}
-            except: pass
+        with open(file_name, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except:
+                data = {"haberler": []}
+    else:
+        data = {"haberler": []}
 
-    print(f"\n[3/4] İÇERİK ÇEKME VE ANALİZ ({len(selected_news)} Haber, Max 3 Paralel)...")
-    tasks = [analyze_and_save(client, article, existing_urls, file_name) for article in selected_news]
-    await asyncio.gather(*tasks)
+    existing_links = {h["link"] for h in data.get("haberler", [])}
+    added_count = 0
     
-    print(f"\n[4/4] İŞLEM TAMAMLANDI. 'daily_news.json' güncellendi.\n")
+    for h in new_data.get("haberler", []):
+        if h["link"] not in existing_links:
+            if "tarih" not in h or not h["tarih"] or len(h["tarih"]) < 8:
+                h["tarih"] = datetime.now().strftime("%d.%m.%Y")
+            data["haberler"].append(h)
+            added_count += 1
+    
+    # Tüm arşivi tarihe göre yeniden sırala
+    data["haberler"].sort(key=lambda x: safe_date_parse(x.get("tarih", "")), reverse=True)
+
+    with open(file_name, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    print(f"\n--- İŞLEM BAŞARIYLA TAMAMLANDI ---")
+    print(f"Yeni Haber Sayısı: {added_count} | Toplam Arşiv: {len(data['haberler'])}")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    raw_news = get_recent_news()
+    if raw_news:
+        print(f"\n{len(raw_news)} benzersiz haber AI'ya gönderiliyor...")
+        ai_output = filter_with_ai(raw_news)
+        save_and_merge(ai_output)
+    else:
+        print("\nSon 24 saatte yeni içerik bulunamadı.")
