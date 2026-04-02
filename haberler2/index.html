@@ -261,18 +261,8 @@
             }
         }
 
-        /**
-         * Yeni ISO tarih formatı veya eski GG.AA.YYYY formatını parse eder
-         */
-        function parseFlexibleDate(dateStr) {
+        function parseTurkishDate(dateStr) {
             if (!dateStr) return new Date();
-            
-            // Eğer ISO formatındaysa (Python botu yeni çıktıları ISO kaydediyor)
-            if (dateStr.includes('T') || dateStr.includes('-')) {
-                return new Date(dateStr);
-            }
-            
-            // Eğer eski Türk usulü GG.AA.YYYY formatındaysa
             const parts = dateStr.split('.');
             if (parts.length === 3) {
                 return new Date(parts[2], parts[1] - 1, parts[0]);
@@ -285,7 +275,7 @@
             const endDate = document.getElementById('end-date').value;
 
             const filtered = allNews.filter(haber => {
-                const haberDate = parseFlexibleDate(haber.published_at || haber.tarih);
+                const haberDate = parseTurkishDate(haber.tarih);
                 if (startDate) {
                     const start = new Date(startDate);
                     start.setHours(0,0,0,0);
@@ -311,10 +301,12 @@
             const haber = currentFilteredNews[index];
             if (!haber) return;
 
+            // Okundu olarak işaretle ve kaydet
             if (!readLinks.includes(haber.link)) {
                 readLinks.push(haber.link);
                 localStorage.setItem('readNews', JSON.stringify(readLinks));
                 
+                // Performans için sadece tıklanan kartın stilini dinamik olarak güncelle
                 const cardElement = container.children[index];
                 if (cardElement) {
                     cardElement.classList.add('is-read', 'opacity-40', 'grayscale-[80%]', 'bg-slate-100/50', 'dark:bg-slate-900/50');
@@ -332,34 +324,27 @@
             const contentWrapper = document.getElementById('modal-content-wrapper');
             const content = document.getElementById('modal-content');
             
-            // Yeni ve eski şema uyumluluğu
-            const score = haber.expat_score ?? haber.expat_puani ?? 0;
-            const source = haber.source ?? haber.kaynak ?? 'Kaynak';
-            const displayDate = haber.published_at ? new Date(haber.published_at).toLocaleDateString('tr-TR') : (haber.tarih || '');
-            const summary = haber.ai_summary ?? haber.summary ?? haber.ozet;
-            const impact = haber.expat_impact ?? haber.ai_analiz;
-            const title = haber.translated_title ?? haber.baslik ?? 'Başlıksız Haber';
-
+            const score = haber.expat_puani !== undefined ? haber.expat_puani : (haber.puan || 0);
             const scoreColor = score >= 9 ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400' : 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400';
 
             content.innerHTML = `
                 <div class="flex items-center gap-2 mb-4 md:mb-5 pr-8">
                     <span class="${scoreColor} px-2 py-0.5 rounded shadow-sm text-[9px] font-black uppercase tracking-widest">PUAN: ${score}</span>
-                    <span class="bg-slate-100 text-slate-600 dark:bg-slate-700/60 dark:text-slate-300 px-2 py-0.5 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">${source}</span>
-                    <span class="text-slate-400 font-semibold text-[10px] uppercase tracking-widest ml-auto">${displayDate}</span>
+                    <span class="bg-slate-100 text-slate-600 dark:bg-slate-700/60 dark:text-slate-300 px-2 py-0.5 rounded shadow-sm text-[10px] font-bold uppercase tracking-wider">${haber.kaynak || 'Kaynak'}</span>
+                    <span class="text-slate-400 font-semibold text-[10px] uppercase tracking-widest ml-auto">${haber.tarih || ''}</span>
                 </div>
-                <h2 class="text-lg md:text-2xl font-black text-slate-800 dark:text-white mb-5 leading-snug md:leading-tight">${title}</h2>
+                <h2 class="text-lg md:text-2xl font-black text-slate-800 dark:text-white mb-5 leading-snug md:leading-tight">${haber.baslik}</h2>
                 
-                ${summary ? `
+                ${haber.ozet ? `
                     <div class="mb-5">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2 pl-1">Haber Özeti</h4>
                         <div class="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 relative">
-                            <p class="text-slate-600 dark:text-slate-300 text-[13px] md:text-sm leading-relaxed">${summary}</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-[13px] md:text-sm leading-relaxed">${haber.ozet}</p>
                         </div>
                     </div>
                 ` : ''}
 
-                ${impact ? `
+                ${haber.ai_analiz ? `
                     <div class="mb-6">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-2 pl-1 flex items-center gap-1.5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -368,7 +353,7 @@
                             Yapay Zeka Etki Analizi
                         </h4>
                         <div class="bg-indigo-50/50 dark:bg-indigo-500/10 p-4 md:p-5 rounded-xl border border-indigo-100 dark:border-indigo-500/20 relative shadow-inner">
-                            <p class="text-indigo-800 dark:text-indigo-200 text-[13px] md:text-sm leading-relaxed font-semibold">${impact}</p>
+                            <p class="text-indigo-800 dark:text-indigo-200 text-[13px] md:text-sm leading-relaxed font-semibold">${haber.ai_analiz}</p>
                         </div>
                     </div>
                 ` : ''}
@@ -438,11 +423,7 @@
             container.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2');
 
             newsItems.forEach((haber, index) => {
-                const score = haber.expat_score ?? haber.expat_puani ?? 0;
-                const source = haber.source ?? haber.kaynak ?? 'Kaynak';
-                const displayDate = haber.published_at ? new Date(haber.published_at).toLocaleDateString('tr-TR') : (haber.tarih || '');
-                const title = haber.translated_title ?? haber.baslik ?? 'Başlıksız Haber';
-
+                const score = haber.expat_puani !== undefined ? haber.expat_puani : (haber.puan || 0);
                 plainLinks += `${haber.link}\n`;
                 
                 const isHighPriority = score >= 9;
@@ -463,7 +444,7 @@
                                 Puan: ${score}
                             </span>
                             <span class="bg-slate-50 border border-slate-100 dark:border-none text-slate-500 dark:bg-slate-700/50 dark:text-slate-300 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider truncate max-w-[110px] sm:max-w-[150px]">
-                                ${source}
+                                ${haber.kaynak || 'Kaynak'}
                             </span>
                             <div class="read-badge-container flex items-center">
                                 ${isRead ? `<span class="bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 border border-emerald-200/50 dark:border-emerald-500/20"><svg class="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Okundu</span>` : ''}
@@ -471,7 +452,7 @@
                         </div>
                         <div class="flex items-center gap-2 shrink-0 bg-slate-50 dark:bg-slate-900/40 px-2 py-1 rounded-md border border-slate-100 dark:border-slate-700/50">
                             <span class="text-[9px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-400">
-                                ${displayDate}
+                                ${haber.tarih || ''}
                             </span>
                             <span class="w-px h-3 bg-slate-200 dark:bg-slate-700"></span>
                             <button onclick="deleteNews('${haber.link}', event)" class="text-[9px] font-black tracking-widest text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors uppercase z-20" title="Haberi Gizle">
@@ -481,7 +462,7 @@
                     </div>
                     
                     <h2 class="text-[14px] md:text-[15px] font-bold text-slate-800 dark:text-slate-100 mb-4 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-3">
-                        ${title}
+                        ${haber.baslik || 'Başlıksız Haber'}
                     </h2>
                     
                     <div class="mt-auto flex items-center justify-between border-t border-slate-50 dark:border-slate-700/50 pt-3">
