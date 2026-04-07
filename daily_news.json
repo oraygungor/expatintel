@@ -1,3 +1,92 @@
 {
-  "haberler": []
+  "haberler": [
+    {
+      "baslik": "Danimarka’nın Avnstrup dönüş merkezinde yabancılar belirsizlik içinde yaşıyor",
+      "kaynak": "InfoMigrants",
+      "link": "https://www.infomigrants.net/en/post/70721/denmarks-avnstrup-return-center-where-foreigners-live-in-a-state-of-limbo",
+      "tarih": "07.04.2026",
+      "sebep": "Yabancı statüsündeki kişiler için geri gönderme ve oturum süreçlerindeki belirsizliği anlattığı için Danimarka’daki expat’ları doğrudan ilgilendiriyor. Özellikle göçmenlik ve ikamet güvenliği açısından kritik.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da en yüksek ve en düşük maaşlı sektörler açıklandı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-07/business-education/career/these-are-the-highest-and-lowest-paying-industries-in-denmark/",
+      "tarih": "07.04.2026",
+      "sebep": "İş arayan veya kariyer planlayan expat’lar için maaş beklentisi ve sektör seçimi açısından çok faydalı. Türk expat’ların da iş piyasasını karşılaştırmasına yardımcı olur.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da networking: Beklemediğiniz o iş",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-07/business-education/career/networking-in-denmark-the-job-you-did-not-expect-to-want/",
+      "tarih": "07.04.2026",
+      "sebep": "İş bulma, kariyer geliştirme ve profesyonel çevre kurma konuları expat topluluğu için doğrudan önem taşır. Yerel iş kültürünü anlamak özellikle yeni gelen Türk expat’lar için değerlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’da bir yıl sonra: Bu uluslararasılar başkent dışındaki yaşamda daha iyi bir hayat buldu",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-07/life-in-denmark/after-a-year-copenhagen-becomes-just-like-any-other-city-these-internationals-discovered-a-better-life-outside-the-capital/",
+      "tarih": "07.04.2026",
+      "sebep": "Danimarka’da şehir seçimi, yaşam maliyeti ve yaşam kalitesi konusunda expat deneyimi sunuyor. Başkent dışında yaşam düşünen Türk expat’lar için özellikle ilgili.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, Alman savaş gemisi ve İngiltere ile yaşanan küresel jeopolitik gerilim nedeniyle askeri hazırlıklarını artırıyor",
+      "kaynak": "The Local Denmark / Bloomberg",
+      "link": "https://www.bloomberg.com/news/articles/2026-04-07/trump-s-greenland-push-adds-urgency-to-denmark-government-talks",
+      "tarih": "07.04.2026",
+      "sebep": "Doğrudan günlük expat hayatını etkilemese de güvenlik, siyasi istikrar ve kamu politikaları açısından ülkedeki genel ortamı etkileyebilir. Ancak expat etkisi daha dolaylıdır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’dan Avrupa’da büyük uçuş kaosu: Binlerce yolcu etkilendi",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/thousands-of-passengers-grounded-in-europe-as-germany-uk-denmark-spain-france-and-more-cancel-154-and-delay-1691-flights-affecting-british-airways-swiss-virgin-atlantic-klm-and-others-in-paris-london-oslo-amsterdam-and-beyond/",
+      "tarih": "07.04.2026",
+      "sebep": "Seyahat kısıtları ve uçuş iptalleri expat’ların aile ziyareti, iş seyahati ve Türkiye bağlantılı yolculuklarını doğrudan etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Avrupa’da 2.497 uçuş gecikmesi ve 152 iptal: Danimarka da etkilenen ülkeler arasında",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/hundreds-of-travellers-stranded-in-europe-as-denmark-netherlands-uk-and-others-delay-2497-and-cancelled-152-flights-impacting-easyjet-klm-lufthansa-and-others-in-london-paris-and-more/",
+      "tarih": "07.04.2026",
+      "sebep": "Danimarka çıkışlı veya Danimarka aktarmalı seyahat eden expat’lar için önemli operasyonel bilgi içeriyor. Özellikle Türkiye’ye gidiş-geliş planlarını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Avrupa seyahat acil durumu: Danimarka da Orta Doğu kaynaklı kısıtlamalardan etkilendi",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/denmark-joins-germany-uk-italy-france-ireland-portugal-turkey-and-more-european-nations-in-facing-a-major-travel-emergency-as-restrictions-from-uae-qatar-bahrain-and-other-nations-disrupt-ap/",
+      "tarih": "07.04.2026",
+      "sebep": "Uçuş ve rota kısıtlamaları, uluslararası seyahat eden expat’ların özellikle de Türkiye bağlantılı yolculuklarını doğrudan etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da diesel fiyatları yükselmeye devam ediyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/dieselprisen-i-danmark-fortsaetter-opad",
+      "tarih": "07.04.2026",
+      "sebep": "Ulaşım maliyetleri expat bütçesini etkileyen temel unsurlardan biridir. Araç kullanan Türk expat’lar için günlük yaşam maliyetine doğrudan yansır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da S-tren hat çalışmaları yeniden uzatıldı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/s-togs-sporarbejde-forlaenges-igen",
+      "tarih": "07.04.2026",
+      "sebep": "Toplu taşıma kullanan expat’lar için işe gidiş-geliş ve şehir içi ulaşımda önemli etkiler yaratabilir. Özellikle Kopenhag çevresinde yaşayanlar için pratik bir haber.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da yabancılar için yüksek maaşlı ve düşük maaşlı sektörler",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-07/business-education/career/these-are-the-highest-and-lowest-paying-industries-in-denmark/",
+      "tarih": "07.04.2026",
+      "sebep": "İşgücü piyasasını değerlendiren expat’lar için maaş ve sektör karşılaştırması doğrudan karar verdirici olabilir. Türk expat’ların iş arama stratejisini etkiler.",
+      "expat_puani": 9
+    }
+  ]
 }
