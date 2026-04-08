@@ -1,6 +1,62 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da havaalanı tarihinin en yoğun mart ayı yaşandı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/koebenhavns-lufthavn-har-haft-travleste-maaned-nogensinde",
+      "tarih": "08.04.2026",
+      "sebep": "Kopenhag Havalimanı’ndaki yoğunluk, Danimarka’ya giriş-çıkış yapan expat’ların ve sık seyahat eden Türklerin uçuş planlarını, aktarmaları ve havalimanı operasyonlarını doğrudan etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da akaryakıt fiyatları yükselirken ülkenin konumu ve yeşil enerjinin rolü karşılaştırıldı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-08/life-in-denmark/heres-how-denmark-compares-to-other-countries-as-fuel-prices-rise-and-what-role-green-energy-plays/",
+      "tarih": "08.04.2026",
+      "sebep": "Yakıt fiyatlarındaki artış; ulaşım, araç kullanımı ve günlük yaşam maliyetlerini etkileyerek expat bütçesi üzerinde doğrudan baskı oluşturabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da gelir-gider dengesi: Enflasyon ve geçim maliyeti tartışmaları yeniden gündemde",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/oekonomi/art10796634/%C2%BBDet-er-sp%C3%B8rgsm%C3%A5let-om-nogen-har-lyst-til-at-sejle-ind-i-Golfen-igen-de-n%C3%A6ste-14-dage%C2%AB",
+      "tarih": "08.04.2026",
+      "sebep": "Ekonomik belirsizlik ve fiyat artışlarına dair analiz, Danimarka’da yaşayan expat’ların maaş, kira ve yaşam maliyeti planlaması için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, savaş tehdidine karşı savunmasını güçlendiriyor: Prenses Isabella’nın askeri rotası gündemde",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/India/princess-isabella-18-to-finish-high-school-and-join-the-army-as-denmark-responds-to-threat-of-war/ar-AA1ZS1QT",
+      "tarih": "08.04.2026",
+      "sebep": "Güvenlik ve savunma gündemi, özellikle ülkedeki yabancı topluluklar için kamu politikalarının sertleşmesi ve toplumsal atmosfer açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Grönland üzerindeki gerilim ve Danimarka’nın savunma mesajları dikkat çekiyor",
+      "kaynak": "The Guardian",
+      "link": "https://www.theguardian.com/world/2026/apr/08/mp-greenland-danish-parliament-self-governance",
+      "tarih": "08.04.2026",
+      "sebep": "Danimarka’nın dış politika ve güvenlik gündemi, ülkede yaşayan expat’ların genel siyasi iklimi ve olası policy değişimlerini takip etmesi açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’da aileleri ilgilendiren yeni anonim destek hizmeti: Şiddet uygulayan ebeveynlere yardım",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-08/life-in-denmark/fact-first-anonymous-help-for-violent-parents/",
+      "tarih": "08.04.2026",
+      "sebep": "Aile ve çocuk güvenliğiyle ilgili bu tür sosyal hizmetler, Danimarka’da yaşayan expat aileler için doğrudan fayda sağlayabilir; Türk aileler açısından da önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka uçuşlarında jet yakıtı krizi nedeniyle hizmet kesintileri ve bilet fiyat artışları gündemde",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/lufthansa-joins-united-air-new-zealand-sas-klm-vietnam-airasia-and-more-airlines-in-reducing-flights-to-the-u-s-new-zealand-netherlands-malaysia-and-denmark-amid-rising-fuel-costs-and-airsp/",
+      "tarih": "08.04.2026",
+      "sebep": "Uçuş azaltmaları ve fiyat artışları, Danimarka ile Türkiye arasında seyahat eden expat’ların planlarını, tatil ve aile ziyareti bütçelerini etkileyebilir.",
+      "expat_puani": 9
+    },
+    {
       "baslik": "Danimarka’nın Avnstrup dönüş merkezinde yabancılar belirsizlik içinde yaşıyor",
       "kaynak": "InfoMigrants",
       "link": "https://www.infomigrants.net/en/post/70721/denmarks-avnstrup-return-center-where-foreigners-live-in-a-state-of-limbo",
