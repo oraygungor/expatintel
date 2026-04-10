@@ -1,6 +1,70 @@
 {
   "haberler": [
     {
+      "baslik": "Kopenhag’daki Wolt kuryeleri, göçmenlerin sömürüldüğünü söyleyerek greve gidiyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260410/exploiting-immigrants-copenhagens-wolt-drivers-to-go-on-strike",
+      "tarih": "10.04.2026",
+      "sebep": "Göçmen çalışanları doğrudan ilgilendiren bir işçi eylemi; kurye gelirleri, çalışma koşulları ve platform ekonomisinde çalışan expatlar için çok önemli.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka’daki Lufthansa grevi uçuşları vuruyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/lufthansa-strejke-rammer-flyafgange-i-danmark",
+      "tarih": "10.04.2026",
+      "sebep": "Danimarka’dan yapılan uçuşları ve seyahat planlarını etkiliyor; hem expat’ların hem de Türkiye-Danimarka hattında seyahat edenlerin günlük hayatını doğrudan etkileyebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da bazı uçuşlar Lufthansa kabin ekibi grevinden etkileniyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260410/which-danish-flights-are-affected-by-lufthansas-cabin-crew-strike",
+      "tarih": "10.04.2026",
+      "sebep": "Uçuş iptali ve gecikmeleri Danimarka’daki yabancılar için kritik bir ulaşım sorunu yaratır; özellikle aktarmalı seyahat eden expatlar için önemli.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da yeni Avrupa sınır kontrolü havalimanlarında devreye giriyor",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/danmark/politiet-indvier-fredag-ny-europaeisk-graensekontrol-i-lufthavne?referrer=RSS",
+      "tarih": "10.04.2026",
+      "sebep": "Havalimanı giriş süreçleri değişebilir; AB dışı pasaport sahipleri ve Türkiye vatandaşları için bekleme süreleri, belge kontrolü ve seyahat deneyimi açısından önemli.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka’da yeni Avrupa sınır kontrolü havalimanlarında başlıyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260410/moderate-leader-refuses-further-government-talks-with-danish-pm",
+      "tarih": "10.04.2026",
+      "sebep": "Siyasi gündem doğrudan expat yaşamını etkilemese de sınır ve göç politikalarına yansıyabilecek kararların arka planını oluşturabilir; ancak ana etkiyi yaratmıyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da enflasyon martta yüzde 1,2’ye yükseldi",
+      "kaynak": "TradingView",
+      "link": "https://www.tradingview.com/news/te_news:540844:0-denmark-inflation-rises-to-1-2-in-march/",
+      "tarih": "10.04.2026",
+      "sebep": "Enflasyon, kira, gıda ve hizmet fiyatlarını etkiler; Danimarka’da yaşayan expatlar ve Türk aileler için doğrudan satın alma gücü konusu.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da benzin ve enerji fiyatlarının etkisiyle enflasyon yükseliyor",
+      "kaynak": "Anadolu Ajansı",
+      "link": "https://www.aa.com.tr/en/economy/denmark-inflation-rises-to-12-in-march-on-fuel-costs-amid-iran-war-energy-crisis/3900445",
+      "tarih": "10.04.2026",
+      "sebep": "Yakıt ve enerji maliyetleri günlük yaşam masraflarını artırabilir; özellikle araç kullanan expatlar için önemli bir mali haber.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da Storebælt Köprüsü gelecek hafta kısa süreli kapanacak",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/kortvarige-lukninger-af-storebaeltsbroen-i-naeste-uge",
+      "tarih": "10.04.2026",
+      "sebep": "Ülke içi ulaşım ve şehirlerarası seyahat planlarını etkiler; çalışan expatlar ve aileler için rota/işe gidiş geliş açısından kritik olabilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka’da Alışverişte Para Tasarrufu Yapmanın Altı Yolu",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260409/six-ways-to-save-money-on-shopping-in-denmark",
