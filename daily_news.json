@@ -1,6 +1,46 @@
 {
   "haberler": [
     {
+      "baslik": "Oturum kartı gecikmeleri Avrupa genelinde yabancıları vuruyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260411/a-nightmare-lives-of-foreigners-across-europe-hit-by-residency-card-delays",
+      "tarih": "11.04.2026",
+      "sebep": "Danimarka'da yaşayan expat'ların oturum kartı, kimlik doğrulama ve bürokratik işlemlerinde yaşanan gecikmeler doğrudan oturum, çalışma ve seyahat planlarını etkileyebilir. Türk expat'lar için de yenileme ve resmi belge süreçleri açısından kritik.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Avrupa'da seyahat kaosu: Havayolu aksamaları Danimarka'yı da etkiliyor",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/travel-chaos-hits-europe-as-sas-easyjet-lufthansa-and-more-airlines-cause-79-delays-and-9-cancellations-stranding-passengers-across-spain-greece-germany-and-denmark/",
+      "tarih": "11.04.2026",
+      "sebep": "Danimarka çıkışlı ve varışlı uçuşlarda gecikme/iptal riskini artırır. Expat'ların iş seyahati, tatil ve aile bağlantıları açısından önemli; Türk expat'ların aktarmalı uçuş planlarını da etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Avrupa genelinde yeni uçuş aksamaları dalgası Danimarka'yı da vuruyor",
+      "kaynak": "thetraveler.org",
+      "link": "https://www.thetraveler.org/travel-chaos-sweeps-europe-with-fresh-wave-of-flight-disruptions/",
+      "tarih": "11.04.2026",
+      "sebep": "Seyahat planı yapan expat'lar için uçuş iptali ve gecikme riskine dair pratik önem taşıyor. Türkiye-Danimarka hattı üzerinden seyahat eden Türk expat'lar için de bağlantılı bir etki yaratabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da giyimle ilgili toplumsal kurallara dair önemli notlar",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-11/life-in-denmark/a-couple-of-social-rules-about-how-to-dress-in-denmark/",
+      "tarih": "11.04.2026",
+      "sebep": "Kültürel uyum ve günlük hayata entegrasyon açısından expat'lar için pratik bir konu. Türk expat'ların sosyal uyum ve yanlış anlaşılmaları azaltması açısından yararlı.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da enflasyon yüzde 1,2'ye yükseldi",
+      "kaynak": "Mena FN",
+      "link": "https://menafn.com/1110969661/Denmark-Inflation-Climbs-to-12-Percent-on-Higher-Transport-Costs",
+      "tarih": "11.04.2026",
+      "sebep": "Enflasyon, kira, ulaşım ve günlük yaşam maliyetlerini doğrudan etkiler. Danimarka'da yaşayan expat'lar ve özellikle bütçe planı yapan Türk aileler için önemli bir ekonomik gösterge.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Kopenhag’daki Wolt kuryeleri, göçmenlerin sömürüldüğünü söyleyerek greve gidiyor",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260410/exploiting-immigrants-copenhagens-wolt-drivers-to-go-on-strike",
@@ -118,6 +158,14 @@
       "link": "https://cphpost.dk/2026-04-10/life-in-denmark/10-things-internationals-need-to-know-before-studying-in-denmark/",
       "tarih": "10.04.2026",
       "sebep": "Eğitim amaçlı gelen expat’lar için kayıt, uyum ve yaşam düzeni hakkında doğrudan fayda sağlar.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Avrupa genelinde EES sistemi tamamen uygulanmaya başladı",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/portugal-joins-denmark-luxembourg-romania-spain-switzerland-and-more-in-the-full-implementation-of-the-eus-entry-exit-system-ees-marking-a-new-era-of-seamless-secure-border-control-f/",
+      "tarih": "10.04.2026",
+      "sebep": "Danimarka dahil Schengen bölgesine giriş yapan AB dışı yolcular için yeni sınır kontrol altyapısını anlatıyor. Türk expat'lar, sık seyahat edenler ve aile ziyareti yapanlar için doğrudan operasyonel etkisi var.",
       "expat_puani": 9
     },
     {
