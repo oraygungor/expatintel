@@ -1,6 +1,54 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka, İsveç ve Norveç arasında yeni dijital tarama ve biyometrik sınır kontrolü geliyor",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/poland-joins-italy-denmark-iceland-germany-france-hungary-and-more-than-twenty-nations-in-europe-tightening-schengen-travel-regulations-with-implementation-of-new-digital-screening-and-biometric/",
+      "tarih": "12.04.2026",
+      "sebep": "Schengen seyahat kuralları ve biyometrik kontrollerde sıkılaşma, Danimarka'daki expatların aile ziyareti, iş seyahati ve Türkiye bağlantılı yolculuklarını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da 41 yaşındaki kadının öldürülmesi sonrası 19 yaşındaki zanlı tutuklandı",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10801357/41-%C3%A5rig-kvinde-blev-dr%C3%A6bt-med-knivstik-%E2%80%93-19-%C3%A5rig-n%C3%A6gter-sig-skyldig",
+      "tarih": "12.04.2026",
+      "sebep": "Yerel güvenlik ve kamu düzeniyle ilgili bu tür olaylar, özellikle büyük şehirlerde yaşayan expat topluluklarının günlük güvenlik algısını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’daki bir cinayet soruşturmasında aranan 28 yaşındaki şüpheli Türkiye’de yakalandı",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10801359/28-%C3%A5rig-mist%C3%A6nkt-i-dansk-drabssag-er-anholdt-i-Tyrkiet",
+      "tarih": "12.04.2026",
+      "sebep": "Türkiye bağlantısı nedeniyle Türk expat topluluğunun ilgisini çeker; ayrıca Danimarka-Türkiye adli işbirliği ve güvenlik gündemi açısından dikkat çekicidir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka kraliçesi Mary’nin 84 yaşındaki babası hayatını kaybetti",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/kultur/art10801303/Dronning-Marys-84-%C3%A5rige-far-er-d%C3%B8d",
+      "tarih": "12.04.2026",
+      "sebep": "Doğrudan günlük yaşamı etkilemese de Danimarka kamuoyunda geniş yer bulan bir olaydır; ülke gündemini takip eden expatlar için kültürel/politik bağlam sunar.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da yol çalışmaları nedeniyle E45 otoyolunda kısıtlamalar ve trafik düzenlemeleri",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/spaerringer-og-trafikomlaegninger-paa-e45-frem-til-juli",
+      "tarih": "12.04.2026",
+      "sebep": "Ulaşım ve işe gidiş-geliş düzenini doğrudan etkiler; araç kullanan expatlar ve özellikle şehirler arası seyahat eden Türk expatlar için pratik öneme sahiptir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da yurt dışı/AB seyahati yapanları ilgilendiren yeni sınır kontrolleri ve Schengen sıkılaşması",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/poland-joins-italy-denmark-iceland-germany-france-hungary-and-more-than-twenty-nations-in-europe-tightening-schengen-travel-regulations-with-implementation-of-new-digital-screening-and-biometric/",
+      "tarih": "12.04.2026",
+      "sebep": "Danimarka üzerinden Avrupa içi ve dışı seyahat eden expat'lar için pasaport/biyometri süreçlerinde ek zaman ve belge ihtiyacı yaratabilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Oturum kartı gecikmeleri Avrupa genelinde yabancıları vuruyor",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260411/a-nightmare-lives-of-foreigners-across-europe-hit-by-residency-card-delays",
@@ -102,6 +150,14 @@
       "link": "https://www.travelandtourworld.com/news/article/france-joins-germany-italy-norway-poland-portugal-denmark-and-more-eu-countries-in-ushering-in-the-era-of-seamless-travel-with-the-fully-operational-ees-system-preparing-for-the-highly-anticipa/",
       "tarih": "11.04.2026",
       "sebep": "AB dışı pasaport sahipleri ve sık seyahat eden expat’lar için sınır ve vize süreçlerindeki değişiklikler kritik olabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Trump’ın Grönland hamlesi Danimarka kabine görüşmelerine aciliyet kattı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-us/news/world/trump-s-greenland-push-adds-urgency-to-denmark-cabinet-talks/ar-AA20jRvf?uxmode=ruby",
+      "tarih": "11.04.2026",
+      "sebep": "Danimarka'nın Grönland politikası ve dış ilişkilerindeki gelişmeler ülke gündemini ve ekonomik/politik ortamı etkileyebilir; Danimarka'da yaşayan expat'lar için genel ülke risk ve haber takibi açısından önemli.",
       "expat_puani": 8
     },
     {
