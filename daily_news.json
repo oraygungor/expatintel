@@ -1,6 +1,30 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’nın Amsterdam doğumlu Kraliçe Mary’sinin babası 84 yaşında öldü",
+      "kaynak": "AP News",
+      "link": "https://apnews.com/article/denmark-queen-mary-father-john-donaldson-australia-62becc4377cdbd2b5d3a3a8852ed9792",
+      "tarih": "13.04.2026",
+      "sebep": "Doğrudan gündelik yaşamı etkilemese de Danimarka kamuoyunda geniş yer bulan ulusal bir haber; expat’lar için ülke gündemini takip etmede yüksek görünürlük taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’nın Kralı Frederik ve Kraliçesi Mary’nin ailesinde yas",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/internationalt/trump-jeg-er-ligeglad-med-irans-deltagelse-i-forhandlinger?referrer=RSS",
+      "tarih": "13.04.2026",
+      "sebep": "Kraliyet ailesine ilişkin geniş çaplı haberler Danimarka’daki toplumsal gündemi belirler; expat’ların yerel haber akışını anlaması için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da gençler için Youth Fest etkinliği düzenleniyor",
+      "kaynak": "The Albany Advertiser",
+      "link": "https://www.albanyadvertiser.com.au/news/albany-advertiser/denmark-youth-fest-aims-to-bring-young-people-to-the-fore-with-strength-in-our-stories-theme-and-a-dunk-tank-c-22116436",
+      "tarih": "13.04.2026",
+      "sebep": "Genç expat’lar ve aileler için yerel sosyal etkinlikler, topluma uyum ve ağ kurma açısından faydalıdır.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka, İsveç ve Norveç arasında yeni dijital tarama ve biyometrik sınır kontrolü geliyor",
       "kaynak": "Travel And Tour World",
       "link": "https://www.travelandtourworld.com/news/article/poland-joins-italy-denmark-iceland-germany-france-hungary-and-more-than-twenty-nations-in-europe-tightening-schengen-travel-regulations-with-implementation-of-new-digital-screening-and-biometric/",
@@ -47,6 +71,54 @@
       "tarih": "12.04.2026",
       "sebep": "Danimarka üzerinden Avrupa içi ve dışı seyahat eden expat'lar için pasaport/biyometri süreçlerinde ek zaman ve belge ihtiyacı yaratabilir.",
       "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka Başbakanı Mette Frederiksen, hükümet görüşmeleri hakkında açıklama yaptı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/mette-frederiksen-melder-ud-om-regeringsforhandlinger",
+      "tarih": "12.04.2026",
+      "sebep": "Danimarka’daki siyasi gelişmeler, oturum/ikamet, vergi, iş piyasası ve kamu hizmetleri gibi konuları doğrudan etkileyebilir. Expat’lar için ülkenin yönetim yönü önemli olduğu için yüksek önemdedir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’daki Rus Kilisesi açıldığında içeri ilk giren Ukraynalı kadın oldu",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/art10798214/Da-d%C3%B8rene-til-den-russiske-kirke-i-K%C3%B8benhavn-%C3%A5bner-g%C3%A5r-ukrainsk-kvinde-ind-som-den-f%C3%B8rste",
+      "tarih": "12.04.2026",
+      "sebep": "Kopenhag’daki toplumsal ve diplomatik hassasiyetleri yansıtır; çok uluslu expat toplulukları için yerel toplumsal iklimi anlamada önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da maliye politikası: Benzin ve dizel vergileri düşerse ülke yeniden düşük vergili bir cazibe merkezi olabilir",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/klima/art10795842/Danmark-bliver-igen-et-sort-skattely-hvis-Folketinget-s%C3%A6nker-skat-p%C3%A5-benzin-og-diesel",
+      "tarih": "12.04.2026",
+      "sebep": "Yakıt vergileri, ulaşım ve yaşam maliyetlerini etkilediği için özellikle araç sahibi expat’lar ve aileler açısından kritik olabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Bir çift, tek maaş ve öğrenci desteğiyle hayalindeki evi alabildi",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/oekonomi/privatoekonomi/art10786006/K%C3%A6restepar-har-%C3%A9n-l%C3%B8n-og-SU-men-har-alligevel-kunnet-k%C3%B8be-deres-dr%C3%B8mmebolig",
+      "tarih": "12.04.2026",
+      "sebep": "Konut piyasası ve satın alma gücü, Danimarka’da yerleşmeyi planlayan expat’lar için en önemli gündemlerden biridir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da trafik kazalarında bir günde neredeyse ocak ayının tamamı kadar can kaybı yaşandı",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/art10801505/%C2%BBVi-er-mange-der-h%C3%A5ber-p%C3%A5-en-mere-rolig-vagt-i-aften%C2%AB",
+      "tarih": "12.04.2026",
+      "sebep": "Yol güvenliği ve trafik koşulları, özellikle yeni gelen expat’ların araç kullanımı ve şehir içi/şehirlerarası hareketliliği açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’daki profesyonellerin geleceğini güvence altına almaya yardımcı olan akassedenmark.dk tanıtıldı",
+      "kaynak": "TechBullion",
+      "link": "https://techbullion.com/how-akassedenmark-dk-helps-professionals-in-denmark-secure-their-future/",
+      "tarih": "12.04.2026",
+      "sebep": "İşsizlik sigortası ve kariyer güvencesi, Danimarka’da çalışan expat’lar için çok kritik bir konudur; Türk expatlar da doğrudan fayda sağlar.",
+      "expat_puani": 9
     },
     {
       "baslik": "Oturum kartı gecikmeleri Avrupa genelinde yabancıları vuruyor",
