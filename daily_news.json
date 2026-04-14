@@ -1,6 +1,14 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka'nın ihracat kredi ajansı EIFO, 170 milyon Euro’ya kadar garanti için niyet mektubu yayımladı",
+      "kaynak": "NAI500",
+      "link": "https://nai500.com/blog/press_releases/eifo-denmarks-export-credit-agency-issues-letter-of-intent-for-a-guarantee-of-up-to-eur-170-million-for-the-first-phosphate-igneous-phosphate-mining-project/",
+      "tarih": "14.04.2026",
+      "sebep": "Ekonomik aktivite, yatırım ve istihdam açısından genel piyasa güvenini etkileyebilecek bir gelişme; Danimarka’da çalışan expat'lar için dolaylı önem taşır.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka’nın Amsterdam doğumlu Kraliçe Mary’sinin babası 84 yaşında öldü",
       "kaynak": "AP News",
       "link": "https://apnews.com/article/denmark-queen-mary-father-john-donaldson-australia-62becc4377cdbd2b5d3a3a8852ed9792",
@@ -55,6 +63,78 @@
       "tarih": "13.04.2026",
       "sebep": "İnternasyonalleri hedef alan kira dolandırıcılığı, özellikle yeni taşınan Türk expat'lar için doğrudan finansal risk oluşturur.",
       "expat_puani": 10
+    },
+    {
+      "baslik": "Kopenhag’da tüm toplu taşımanın tamamen elektriğe geçmesi",
+      "kaynak": "inkorr.com",
+      "link": "https://inkorr.com/en/amp/kopengagen-povnistu-perejsov-lise-na-eletricnij-gromadskij-transport-316834",
+      "tarih": "13.04.2026",
+      "sebep": "Şehir içi ulaşım, günlük yaşam ve çevresel uyum açısından expat'ların hareketliliğini ve yaşam kalitesini etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "İşsizlik son 3 yılın en yüksek seviyesine çıktı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-13/business-education/career/unemployment-has-never-been-this-high-over-the-last-3-years/",
+      "tarih": "13.04.2026",
+      "sebep": "İş arayan expat'lar, özellikle de Türk expat'lar için iş piyasasının daraldığına işaret eden önemli bir gösterge.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da seyahat kaosu: 79 gecikme ve 9 iptal Avrupa’yı sarstı",
+      "kaynak": "thetraveler.org",
+      "link": "https://www.thetraveler.org/travel-chaos-sweeps-europe-with-79-delays-and-9-cancellations/",
+      "tarih": "13.04.2026",
+      "sebep": "Uçuş ve bağlantı sorunları, Danimarka’dan Avrupa’ya seyahat eden expat'ların planlarını ve iş seyahatlerini etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da kara vergi cenneti tartışması: benzin ve dizel vergileri düşerse",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/nyhedsbreve/mine/nyhedsbrev_politiken_edition/art10801814/Denmark-will-once-again-become-a-black-tax-haven-if-Parliament-cuts-taxes-on-gasoline-and-diesel",
+      "tarih": "13.04.2026",
+      "sebep": "Yakıt vergileri ve enerji maliyetleri, araç kullanan expat'ların yaşam giderlerini ve ulaşım tercihlerinin maliyetini doğrudan etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag'da yeni doğum hasarları için hızlı yardım garantisi getirildi",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/sundhed/art10802942/Ny-garanti-i-K%C3%B8benhavn-%C2%BBVi-ved-at-det-g%C3%A6lder-om-at-f%C3%A5-hj%C3%A6lp-s%C3%A5-hurtigt-som-muligt-hvis-man-har-de-her-f%C3%B8dselsskader%C2%AB",
+      "tarih": "13.04.2026",
+      "sebep": "Sağlık hizmetlerine erişim ve doğum sonrası destek, aile sahibi expat'lar için kritik önemdedir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kiralık bisiklet park alanı Aarhus tren istasyonu yakınında kapatıldı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/rust-lukker-cykelparkering-ved-aarhus-banegaard",
+      "tarih": "13.04.2026",
+      "sebep": "Günlük ulaşım ve şehir içi hareketlilik açısından özellikle öğrenci ve çalışan expat'ların rutinini etkileyebilecek yerel bir değişikliktir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Havayolu şirketindeki grev büyüyor",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/rejser/art10803019/Strejke-hos-flyselskab-griber-om-sig",
+      "tarih": "13.04.2026",
+      "sebep": "Uçuş iptalleri ve gecikmeler, Danimarka ile Türkiye arasında sık seyahat eden expat'ları doğrudan etkileyebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da 2026 FIFA Dünya Kupası play-off'larında Türkiye de ilerledi",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/money/technology/italy-sweden-t%C3%BCrkiye-and-denmark-advance-in-fifa-world-cup-play-offs-as-final-berths-beckon/ar-AA1ZwgHr?gemSnapshotKey=GM86E64A75-snapshot-6&uxmode=ruby&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "13.04.2026",
+      "sebep": "Türkiye ve Danimarka'nın aynı turnuva bağlamında öne çıkması, özellikle Türk expat topluluğunun ilgisini çekebilecek spor haberi niteliğindedir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da elektrikli toplu taşıma tamamen yaygınlaştı",
+      "kaynak": "inkorr.com",
+      "link": "https://inkorr.com/en/amp/kopengagen-povnistu-perejsov-lise-na-eletricnij-gromadskij-transport-316834",
+      "tarih": "13.04.2026",
+      "sebep": "Ulaşım altyapısındaki dönüşüm, şehirde yaşayan expat'ların günlük yaşam kalitesini ve çevreci ulaşım seçeneklerini etkiler.",
+      "expat_puani": 8
     },
     {
       "baslik": "Danimarka, İsveç ve Norveç arasında yeni dijital tarama ve biyometrik sınır kontrolü geliyor",
