@@ -1,6 +1,78 @@
 {
   "haberler": [
     {
+      "baslik": "Nisan 2026'da Danimarka'da değişecek başlıca kurallar ve uygulamalar",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260415/key-points-what-changes-in-denmark-in-may-2026",
+      "tarih": "15.04.2026",
+      "sebep": "Oturum, çalışma, vergi, ulaşım veya günlük yaşamı etkileyebilecek düzenlemeleri topluca içerdiği için Danimarka'daki tüm expat'lar, özellikle yeni gelen Türk expat'lar için doğrudan önem taşır.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka'da treniniz gecikirse paranızı nasıl geri alabilirsiniz?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260415/how-can-you-get-money-back-in-denmark-if-your-train-is-delayed",
+      "tarih": "15.04.2026",
+      "sebep": "Toplu taşıma kullanan expat'lar için pratik ve doğrudan faydalı bir rehber. İşe gidiş-geliş, şehirler arası ulaşım ve gecikme tazminatı açısından özellikle önemlidir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Zelandiya'daki büyük tren aksaması sonrası seferlerin yarısı hâlâ yapılamıyor",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-15/life-in-denmark/zealand-train-issues-to-continue-until-wednesday/",
+      "tarih": "15.04.2026",
+      "sebep": "Zelanda bölgesinde yaşayan expat'lar için ulaşım ve işe/okula erişim açısından doğrudan etkili. Tren hatlarındaki sorunlar günlük hayatı sekteye uğratabilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka, Alman sınır kontrollerini yeniden uzattı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-15/news/round-up/denmark-extends-german-border-controls-again/",
+      "tarih": "15.04.2026",
+      "sebep": "Almanya üzerinden Danimarka'ya giriş-çıkış yapan expat'ları ve sık seyahat edenleri etkileyebilir; sınır geçişlerinde gecikme ve ek kontrol anlamına gelir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da emeklilik yaşı dünyanın en yükseğine çıkarıldı",
+      "kaynak": "MSN",
+      "link": "http://www.msn.com/en-us/money/retirement/denmark-raises-retirement-age-to-highest-in-the-world/ar-AA1Fltkj?cvid=F84148A8F02C44A981278EC2C35059A9&ocid=hpmsn&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "15.04.2026",
+      "sebep": "Danimarka'da uzun vadeli kalan expat'lar, özellikle Türk expat'lar için emeklilik planlamasını ve iş hayatının süresini doğrudan etkileyen önemli bir reform.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka, Almanya sınırında kontrolleri tekrar uzattı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/danmark-og-en-raekke-andre-i-faelles-erklaering-vaabenhvile-i-libanon-nu",
+      "tarih": "15.04.2026",
+      "sebep": "Sınır ve seyahat prosedürleriyle ilgili olduğu için düzenli seyahat eden expat'ları etkileyebilir. Sınır geçişlerinde zaman ve planlama açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ile Güney Kore maçına ilişkin haberler ve ilgi artışı",
+      "kaynak": "Google News",
+      "link": "https://www.msn.com/en-xl/news/other/south-korea-s-first-opponent-denmark-or-czech-republic/ar-AA1ZGz6m?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "15.04.2026",
+      "sebep": "Doğrudan yaşam etkisi düşük olsa da Danimarka'da yaşayan spor takipçisi expat'lar için dikkat çekici olabilir. Ancak göçmen gündemi açısından ikincil önemdedir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'dan Türkiye'ye yönelik okul saldırısı haberi",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/tyrkiet-ramt-af-skoleskyderi-anden-dag-i-traek",
+      "tarih": "15.04.2026",
+      "sebep": "Türkiye ile bağlantılı haberler, özellikle Türk expat topluluğu için duygusal ve toplumsal açıdan önem taşıyabilir. Ancak Danimarka'daki günlük yaşamı doğrudan etkilemez.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Türkiye'de bir okul saldırısı daha: dört ölü, 20 yaralı",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/internationalt/art10805970/Fire-dr%C3%A6bt-og-20-s%C3%A5ret-i-endnu-et-skoleskyderi-i-Tyrkiet",
+      "tarih": "15.04.2026",
+      "sebep": "Türkiye bağlantılı olması nedeniyle Türk expat'ların ilgisini çekebilir; ancak Danimarka'daki yaşam ve haklarla doğrudan ilişkisi sınırlıdır.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'nın ihracat kredi ajansı EIFO, 170 milyon Euro’ya kadar garanti için niyet mektubu yayımladı",
       "kaynak": "NAI500",
       "link": "https://nai500.com/blog/press_releases/eifo-denmarks-export-credit-agency-issues-letter-of-intent-for-a-guarantee-of-up-to-eur-170-million-for-the-first-phosphate-igneous-phosphate-mining-project/",
