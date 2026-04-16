@@ -1,6 +1,102 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka'dan bu ilkbahar ve yaz yeni uçuşlar açıklandı",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260416/listed-the-new-flights-from-denmark-this-spring-and-summer-2",
+      "tarih": "16.04.2026",
+      "sebep": "Danimarka’dan yeni direkt uçuşlar, özellikle sık seyahat eden expat’lar ve Türkiye ile bağlantı kuranlar için ulaşım seçeneklerini artırır; planlama ve bütçe açısından doğrudan etki eder.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da Kopenhag Havalimanı'nda mallar haftalardır gümrükte takılı kaldı: büyük gümrük kaosu",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/virksomheder/kaempe-toldkaos--varer-har-siddet-fast-i-koebenhavns-lufthavn-i-flere-uger?referrer=RSS",
+      "tarih": "16.04.2026",
+      "sebep": "Gümrük tıkanıklığı, ithalat yapan, e-ticaret kullanan veya Türkiye’den ürün getiren expat’lar için teslimat gecikmeleri ve ek maliyet anlamına gelir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Tüketiciler için önemli: IKEA Danimarka'da fiyatları düşürdü",
+      "kaynak": "InteriorDaily",
+      "link": "https://www.interiordaily.com/article/9829788/ikea-cuts-prices-in-denmark-to-revive-growth/",
+      "tarih": "16.04.2026",
+      "sebep": "Günlük yaşam maliyetleri Danimarka’daki expat’lar için kritik; özellikle ev kuran veya yeni taşınan kişiler için doğrudan bütçe etkisi vardır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da 600 bin elektrikli araç yollarda",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/nu-koerer-der-600.000-elbiler-paa-de-danske-veje",
+      "tarih": "16.04.2026",
+      "sebep": "Ulaşım, şarj altyapısı ve şehir içi yaşam açısından expat’ları ilgilendirir; araç sahibi olanlar ve çevreci ulaşım planlayanlar için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da bazı belediyelerde grev sonrası çöpler yeniden toplanmaya başladı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/efter-strejke-faar-randrusianerne-igen-toemt-skraldespande",
+      "tarih": "16.04.2026",
+      "sebep": "Yerel hizmet aksamaları, özellikle şehirde yaşayan expat’ların günlük yaşam kalitesini ve belediye hizmetlerine erişimini etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag'da bahar etkinlikleri, açık hava aktiviteleri ve kültür rehberi yayımlandı",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-16/life-in-denmark/spring-events-outdoor-activities-and-culture-heres-your-guide-to-enjoying-copenhagen-this-weekend/",
+      "tarih": "16.04.2026",
+      "sebep": "Yeni gelen veya sosyalleşmek isteyen expat’lar için yerel entegrasyon, sosyal çevre ve şehir yaşamına uyum açısından doğrudan faydalıdır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Yalnızlıkla mücadele için Kopenhag’da yürüyüş kulübü kuran uluslararası bir kişi ve topluluk hikâyesi",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-16/life-in-denmark/helping-strangers-find-connection-in-copenhagen-through-a-simple-walk/",
+      "tarih": "16.04.2026",
+      "sebep": "Expat topluluklarının aidiyet ve sosyal bağ kurma ihtiyacına odaklanıyor; yeni gelen yabancılar için güçlü bir topluluk sinyali veriyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ve Türkiye bağlantılı yolcuları etkileyebilecek: Orta Doğu'da sıkışan yolcular için ülkeler arası destek ağı",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/israel-joins-uae-saudi-arabia-qatar-kuwait-egypt-bahrain-oman-jordan-turkey-and-others-in-providing-vital-support-to-trapped-travellers-from-denmark-us-uk-germany-spain-canada-france-au/",
+      "tarih": "16.04.2026",
+      "sebep": "Türkiye’nin de geçtiği uluslararası yolcu destek haberleri, Danimarka’daki expat’ların bölgesel seyahat planları ve bağlantılı uçuş güvenliği açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ile Mumbai arasında SAS direkt uçuş başlattı",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/sas-connects-india-and-denmark-launching-direct-flights-between-mumbai-and-copenhagen-revolutionizing-long-haul-travel-for-business-and-leisure-travelers-alike/",
+      "tarih": "16.04.2026",
+      "sebep": "Doğrudan uzun mesafe bağlantıları, Danimarka’daki uluslararası topluluklar ve aktarmalı seyahat eden expat’lar için ulaşımı kolaylaştırır; küresel bağlantı açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da çocuklar ve gençler için psikiyatride yeni bir hak getirildi; bekleme süresi hâlâ uzun",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/sundhed/art10804420/B%C3%B8rn-og-unge-i-psykiatrien-har-f%C3%A5et-ny-rettighed.-Men-ventetiden-er-stadig-lang",
+      "tarih": "16.04.2026",
+      "sebep": "Aile sahibi expat’lar için sağlık hizmetlerine erişim kritik; çocuk ve genç ruh sağlığı alanındaki değişiklikler doğrudan hane planlamasını etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da Q8 satışa çıkarılıyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/q8-i-danmark-skal-saelges",
+      "tarih": "16.04.2026",
+      "sebep": "Akaryakıt ve perakende altyapısındaki değişiklikler, araç kullanan expat’lar için maliyet ve hizmet sürekliliği açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka Crown Aalborg fabrikasını kapatıyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/danish-crown-lukker-fabrik-i-aalborg",
+      "tarih": "16.04.2026",
+      "sebep": "İstihdam ve yerel ekonomi üzerinde etkili bir karar; iş güvencesi, tedarik zinciri ve bölgesel ekonomik dalgalanmalar expat’ları da etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Nisan 2026'da Danimarka'da değişecek başlıca kurallar ve uygulamalar",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260415/key-points-what-changes-in-denmark-in-may-2026",
