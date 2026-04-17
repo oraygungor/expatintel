@@ -1,6 +1,110 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da yüksek jet yakıtı arzı sıkıntısı Avrupa uçuşlarını etkileyebilir",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260417/how-soon-could-jet-fuel-shortages-ground-flights-in-europe",
+      "tarih": "17.04.2026",
+      "sebep": "Uçuş iptalleri, gecikmeler ve bilet fiyatları üzerinden Danimarka’daki expatların seyahat planlarını doğrudan etkileyebilir; özellikle Türkiye-Danimarka hattı kullananlar için kritik.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Yaz tatilleri için yakıt sıkıntısı tehdidi yok deniyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260417/danish-travel-companies-fuel-shortages-no-threat-to-summer-holidays",
+      "tarih": "17.04.2026",
+      "sebep": "Danimarka’dan yaz tatili planlayan expatlar için seyahat güveni ve rezervasyon kararlarını etkileyen bir haber; özellikle aile ziyaretleri yapan Türk expatlar için önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’daki dairelerin beşte biri Mart ayında istenen fiyatın üzerinde satıldı",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260417/one-in-five-apartments-in-denmark-sold-above-asking-price-in-march",
+      "tarih": "17.04.2026",
+      "sebep": "Konut piyasasındaki ısınma, kira ve ev satın alma maliyetlerini etkileyebilir; Danimarka’da yaşayan expatlar ve taşınmayı düşünen Türkler için doğrudan mali sonuçlar doğurur.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka, Grönland operasyonu nedeniyle ABD elçisini çağırdı",
+      "kaynak": "AOL.com",
+      "link": "https://www.aol.com/denmark-summons-u-envoy-over-140147421.html",
+      "tarih": "17.04.2026",
+      "sebep": "Küresel diplomatik gerginlik, AB ve NATO çerçevesinde Danimarka’da yaşayan expatların gündemini ve güvenlik algısını etkileyebilir; iş ve seyahat planlarında da yankı bulabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "ABD yetkilileri Grönland konusunda Danimarkalı yetkililerle görüşecek",
+      "kaynak": "AOL.com",
+      "link": "https://www.aol.com/articles/u-officials-meet-danish-officials-234031351.html",
+      "tarih": "17.04.2026",
+      "sebep": "Danimarka-ABD ilişkilerindeki gelişmeler, ülkedeki yabancı çalışanlar ve aileleri için siyasi belirsizlik ve medya takibi açısından önem taşıyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Yalnızca yaklaşık yüzde 4’lük nüfus kripto para sahibi; benimseme neden düşük?",
+      "kaynak": "AMBCrypto",
+      "link": "https://ambcrypto.com/only-4-of-denmarks-population-owns-crypto-whats-slowing-adoption/",
+      "tarih": "17.04.2026",
+      "sebep": "Finansal teknoloji ve yatırım tercihleri açısından Danimarka’daki expatların, özellikle Türk girişimci ve yatırımcıların ilgisini çekebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "DSB bugün trenlerin normal çalışmasını bekliyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/dsb-forventer-togene-koerer-normalt-i-dag",
+      "tarih": "17.04.2026",
+      "sebep": "Toplu taşıma normalleşmesi, Danimarka’daki günlük yaşamı doğrudan etkiler; işe gidiş geliş yapan expatlar ve öğrenciler için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Øresund üzerindeki tren otobüsleri hafta sonu boyunca devam edecek",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/togbusser-over-oeresund-hele-weekenden",
+      "tarih": "17.04.2026",
+      "sebep": "Kopenhag-Malmö hattını kullanan expatlar için ulaşım aksaması anlamına gelir; özellikle sınır ötesi çalışan Türk expatlar için önemlidir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Üç günlük tren kaosunun ardından DSB bugün normal sefer bekliyor",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10808464/DSB-forventer-normal-togdrift-i-dag",
+      "tarih": "17.04.2026",
+      "sebep": "Ulaşım sorunlarının çözülmesi, şehir içi ve banliyö yaşamını etkilediği için expatlar açısından günlük hayatla doğrudan bağlantılı.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da ilk yeni mpox varyantı vakası doğrulandı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/ssi-bekraefter-foerste-tilfaelde-af-ny-mpox-variant-i-danmark",
+      "tarih": "17.04.2026",
+      "sebep": "Sağlık riski ve seyahat/izolasyon politikaları açısından expatlar için kritik; aileler, öğrenciler ve sağlık hizmeti kullanan yabancılar etkilenebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da yabani memelilerde kuş gribi bulundu",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/fugleinfluenza-fundet-hos-vilde-pattedyr-i-danmark",
+      "tarih": "17.04.2026",
+      "sebep": "Halk sağlığı ve evcil hayvan/çocuk güvenliği açısından önemli; özellikle kırsalda yaşayan expatlar ve Türk aileler için dikkat çekici.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Struer’de elektrikli otobüs yangını toksik duman yaydı, bölge sakinlerine içeride kalın çağrısı",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/elbus-brand-i-struer-udvikler-giftig-roeg-beboere-opfordres-til-blive-inde",
+      "tarih": "17.04.2026",
+      "sebep": "Yerel çevre ve sağlık uyarısıdır; olay bölgesindeki expatlar için acil önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Sınırda artan güvenlik için AB, Akdeniz Paktı ile güney sınırını güçlendirmek istiyor",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/internationalt/eu-vil-styrke-sikkerheden-paa-den-sydlige-graense-gennem-Middelhavspagt?referrer=RSS",
+      "tarih": "17.04.2026",
+      "sebep": "AB göç ve güvenlik politikaları, Danimarka’daki AB vatandaşı olmayan expatların oturum ve seyahat beklentilerini dolaylı etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'dan bu ilkbahar ve yaz yeni uçuşlar açıklandı",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260416/listed-the-new-flights-from-denmark-this-spring-and-summer-2",
@@ -198,6 +302,30 @@
       "link": "https://www.nationalbanken.dk/en/news-and-knowledge/publications-and-speeches/staff-paper/2026/citizens-exposure-to-crypto-assets-remains-low",
       "tarih": "16.04.2026",
       "sebep": "Banka ve finans sisteminin kriptoya yaklaşımını anlamak, yatırım yapan expat’lar için kritik. Türk expat’lar dahil olmak üzere yerel finansal uyum açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, Trump’ın Grönland baskısı sürerken Amerikalı yolculara mesaj verdi",
+      "kaynak": "AOL.com",
+      "link": "https://www.aol.com/articles/denmark-shares-candid-message-american-233428018.html",
+      "tarih": "16.04.2026",
+      "sebep": "Jeopolitik gerilimler seyahat algısını ve bazı uluslararası bağlantıları etkileyebilir; Danimarka’daki yabancı topluluk için ülkenin dış ilişkilerindeki dalgalanmaları anlamak açısından önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da kripto sahipliği küresel ilgiye rağmen yüzde 4’te takıldı",
+      "kaynak": "Bitcoin News",
+      "link": "https://news.bitcoin.com/crypto-ownership-in-denmark-flat-at-4-despite-global-hype/",
+      "tarih": "16.04.2026",
+      "sebep": "Kripto yatırımcıları ve fintech alanında çalışan expatlar için yerel piyasanın benimseme düzeyi önemli bir gösterge sunuyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag ile Vilnius arasında günlük sefer",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/tag/copenhagen-vilnius-daily-service/",
+      "tarih": "16.04.2026",
+      "sebep": "Ulaşım bağlantıları, Avrupa içi seyahat eden expatlar için önemlidir; iş, aile ve tatil planlamasını kolaylaştırabilir.",
       "expat_puani": 8
     },
     {
