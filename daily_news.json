@@ -1,6 +1,14 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da ilk kez görülen güvenlik/şiddet olayı: Kopenhag’da polis aracı kazasında birden fazla kişi hastanede",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/flere-er-paa-hospitalet-efter-ulykke-med-politibil-i-koebenhavn",
+      "tarih": "18.04.2026",
+      "sebep": "Kopenhag’daki güvenlik ve trafik durumuna dair güncel bir haber. Şehirde yaşayan expat’lar için günlük hareketlilik ve güvenlik algısı açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka’da yüksek jet yakıtı arzı sıkıntısı Avrupa uçuşlarını etkileyebilir",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260417/how-soon-could-jet-fuel-shortages-ground-flights-in-europe",
@@ -102,6 +110,38 @@
       "link": "https://www.berlingske.dk/internationalt/eu-vil-styrke-sikkerheden-paa-den-sydlige-graense-gennem-Middelhavspagt?referrer=RSS",
       "tarih": "17.04.2026",
       "sebep": "AB göç ve güvenlik politikaları, Danimarka’daki AB vatandaşı olmayan expatların oturum ve seyahat beklentilerini dolaylı etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "DSB, kesinti sonrası tazminat başvurularının sayısına hâlâ netlik getiremedi",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/dsb-har-ikke-overblik-over-antallet-af-kompensationsansoegninger-efter-nedbrud",
+      "tarih": "17.04.2026",
+      "sebep": "Toplu taşıma kullanan expat’lar için pratik önem taşır. İşe gidiş, şehir içi ulaşım ve olası tazminat süreçleri açısından özellikle şehirde yaşayan Türk expat’ları etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Motorstyrelsen’den 73.000 kişiye olası veri sızıntısı bildirimi",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10809572/73.000-har-f%C3%A5et-besked-af-Motorstyrelsen-om-muligt-datal%C3%A6k",
+      "tarih": "17.04.2026",
+      "sebep": "Kişisel veri güvenliği ve resmi kurumlarla işlem yapan herkes için kritik. Danimarka’da araç, vergi veya kayıt işlemleri bulunan expat’lar açısından doğrudan önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da evrensel kabul gören emeklilik hakları sınır ötesinde çökmeye başlıyor",
+      "kaynak": "Nordic Labour Journal",
+      "link": "https://www.nordiclabourjournal.org/new-nordic-report-when-pensions-cross-borders-things-fall-apart/",
+      "tarih": "17.04.2026",
+      "sebep": "Sınır aşan emeklilik ve sosyal güvenlik konuları expat’lar için çok önemlidir. Türk expat’lar dahil, farklı ülkelerde çalışmış kişilerin emeklilik haklarını doğrudan etkileyebilir.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Kopenhag’da uluslararası bir kişi başarılı bir etkinlik kurdu: güven, istikrar ve topluluk vurgusu",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-17/life-in-denmark/an-international-created-one-of-the-most-successful-events-in-copenhagen-today-denmark-allows-you-to-try-to-fail-and-to-rebuild-but-it-also-teaches-you-that-trust-consistency-and-commun/",
+      "tarih": "17.04.2026",
+      "sebep": "Expat yaşamı, uyum süreci ve ağ kurma açısından ilham verici bir içerik. Özellikle Kopenhag’da yaşayan Türk expat’lar için sosyal ve profesyonel entegrasyon açısından anlamlıdır.",
       "expat_puani": 8
     },
     {
