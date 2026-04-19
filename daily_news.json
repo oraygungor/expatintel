@@ -1,6 +1,46 @@
 {
   "haberler": [
     {
+      "baslik": "Avrupa, biyometrik sınır kontrol sistemini devreye alıyor; Danimarka da listede",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/austria-joins-forces-with-belgium-bulgaria-croatia-czechia-denmark-estonia-finland-france-germany-greece-hungary-iceland-italy-latvia-liechtenstein-and-lithuania-as-europe-rolls-out-its/",
+      "tarih": "19.04.2026",
+      "sebep": "Schengen/AB sınır geçişlerinde biyometrik kontrolün yaygınlaşması; Danimarka'da yaşayan ve seyahat eden expatlar için pasaport kontrolü, giriş-çıkış süresi ve belge hazırlığı açısından doğrudan etkili olabilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Yakıt fiyatlarındaki artış Danimarka’da elektrikli araç talebini yükseltiyor",
+      "kaynak": "Myanmar International TV",
+      "link": "https://www.myanmaritv.com/news/surging-fuel-prices-drive-denmark%E2%80%99s-ev-demand",
+      "tarih": "19.04.2026",
+      "sebep": "Ulaşım maliyetleri ve araç piyasasındaki değişim, Danimarka'da yaşayan expatlar için günlük yaşam giderlerini ve araç tercihlerini etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da elektrikli araç patlaması: Yükselen petrol fiyatları talebi artırıyor",
+      "kaynak": "Bitget",
+      "link": "https://www.bitget.com/amp/news/detail/12560605373631",
+      "tarih": "19.04.2026",
+      "sebep": "Ulaşım ve enerji maliyetlerine dair bu gelişme, özellikle araç sahibi expat'lar için bütçe planlaması ve şehir içi hareketlilik açısından önem taşıyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da 800.000 kaçak sigara ele geçirildi",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/indland/to-maend-faengslet-i-sag-om-800000-ulovlige-cigaretter?referrer=RSS",
+      "tarih": "19.04.2026",
+      "sebep": "Kaçakçılık ve kamu güvenliğiyle ilgili bu tür haberler, özellikle sınır ticareti veya küçük işletme sahipliği yapan expatlar için önem taşıyabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Yolculara yakıt sıkıntısı uyarısı: Havayolu şirketi destek olmak zorunda kalacak",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/rejser/art10810070/Flyselskabet-skal-hj%C3%A6lpe-dig-hvis-der-mangler-br%C3%A6ndstof-til-flyet",
+      "tarih": "19.04.2026",
+      "sebep": "Uçuş planları ve seyahat güvenliği üzerinde doğrudan etkisi var; Türkiye’ye gidip gelen Türk expatlar için özellikle kritik.",
+      "expat_puani": 9
+    },
+    {
       "baslik": "Danimarka’da ilk kez görülen güvenlik/şiddet olayı: Kopenhag’da polis aracı kazasında birden fazla kişi hastanede",
       "kaynak": "DR",
       "link": "https://www.dr.dk/nyheder/seneste/flere-er-paa-hospitalet-efter-ulykke-med-politibil-i-koebenhavn",
@@ -111,6 +151,22 @@
       "tarih": "18.04.2026",
       "sebep": "Danimarka’nın AB dönem başkanlığı göç, çalışma izni, regülasyon ve Avrupa politikalarını etkileyebilir; bu da expat toplulukları için önemli dolaylı sonuçlar doğurur.",
       "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, İtalya ile golsüz berabere kaldı; Dünya Kupası hedefinde kritik durum",
+      "kaynak": "TribalFootball",
+      "link": "https://www.tribalfootball.com/article/soccer-world-cup-women-denmark-remain-in-pole-position-to-qualify-for-world-cup-after-goalless-draw-with-italy-28c0b24b-fb98-4b2f-9833-9b8e274fb684",
+      "tarih": "18.04.2026",
+      "sebep": "Danimarka'daki spor gündemi ve büyük turnuva heyecanı, özellikle yerel etkinlikleri takip eden expatlar ve Türk topluluğu için ilgi çekici olabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’da yaz seyahatleri öncesi hava yolu yakıt eksikliği uyarısı yolcuları tedirgin etti",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/rejser/art10809945/%C2%BBDer-er-store-f%C3%B8lelser-i-det%C2%AB-Rejseselskaber-kimes-ned-efter-advarsel-om-br%C3%A6ndstofmangel",
+      "tarih": "18.04.2026",
+      "sebep": "Yaz tatili planlayan expatlar ve Türkiye-Danimarka hattında sık uçan Türk expatlar için uçuş aksamaları ve rezervasyon riskleri açısından önemli.",
+      "expat_puani": 9
     },
     {
       "baslik": "Danimarka’da yüksek jet yakıtı arzı sıkıntısı Avrupa uçuşlarını etkileyebilir",
