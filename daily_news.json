@@ -1,6 +1,22 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da enerji dönüşümü: Rüzgâr enerjisindeki başarı öne çıkıyor",
+      "kaynak": "Editorialge",
+      "link": "https://editorialge.com/denmark-wind-energy/",
+      "tarih": "20.04.2026",
+      "sebep": "Enerji fiyatları ve sürdürülebilir yaşam politikaları, özellikle Danimarka’da yaşayan expat’ların yaşam maliyetleri ve çevre politikaları açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka Futbol Ligi: FC Midtjylland - AGF Aarhus maçına bahis ilgisi",
+      "kaynak": "Football.com",
+      "link": "https://www.football.com/ng/m/sport/football/Denmark/Superliga/FC_Midtjylland_vs_AGF_Aarhus/sr:match:69653738",
+      "tarih": "20.04.2026",
+      "sebep": "Danimarka’daki spor ve etkinlik gündemi açısından sınırlı da olsa expat topluluğunun ilgisini çekebilir; ancak etkisi daha çok sosyal yaşamla sınırlıdır.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Avrupa, biyometrik sınır kontrol sistemini devreye alıyor; Danimarka da listede",
       "kaynak": "Travel And Tour World",
       "link": "https://www.travelandtourworld.com/news/article/austria-joins-forces-with-belgium-bulgaria-croatia-czechia-denmark-estonia-finland-france-germany-greece-hungary-iceland-italy-latvia-liechtenstein-and-lithuania-as-europe-rolls-out-its/",
@@ -39,6 +55,30 @@
       "tarih": "19.04.2026",
       "sebep": "Uçuş planları ve seyahat güvenliği üzerinde doğrudan etkisi var; Türkiye’ye gidip gelen Türk expatlar için özellikle kritik.",
       "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka, İtalya ile golsüz berabere kaldı",
+      "kaynak": "ESPN",
+      "link": "https://www.espn.com/soccer/match/_/gameId/761213/italy-denmark",
+      "tarih": "19.04.2026",
+      "sebep": "Danimarka futbol gündemini etkileyen bir milli maç sonucu; ülkede yaşayan expat’ların spor ve sosyal gündemini doğrudan ilgilendirir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, savaş tehdidine karşı hazırlık olarak Prenses Isabella’nın orduya katılacağı haberleriyle gündemde",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/India/princess-isabella-18-to-finish-high-school-and-join-the-army-as-denmark-responds-to-threat-of-war/ar-AA1ZS1QT?gemSnapshotKey=GM245D6337-snapshot-1&uxmode=ruby",
+      "tarih": "19.04.2026",
+      "sebep": "Danimarka’nın güvenlik algısı ve savunma politikalarındaki değişim, ülkede yaşayan yabancıların uzun vadeli yaşam ve güvenlik planlamasını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da veri merkezleri elektrik şebekesi kuyruğunu domine ediyor",
+      "kaynak": "Digi.no",
+      "link": "https://www.digi.no/artikler/datasentre-dominerer-i-koen-til-det-danske-stromnettet/570880",
+      "tarih": "19.04.2026",
+      "sebep": "Elektrik şebekesi yükü ve enerji altyapısı, konut maliyetleri ve hizmet sürekliliği üzerinden expat’ları etkileyebilir.",
+      "expat_puani": 8
     },
     {
       "baslik": "Danimarka’da ilk kez görülen güvenlik/şiddet olayı: Kopenhag’da polis aracı kazasında birden fazla kişi hastanede",
