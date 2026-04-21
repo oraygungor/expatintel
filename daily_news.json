@@ -1,6 +1,78 @@
 {
   "haberler": [
     {
+      "baslik": "Avrupa’daki eski usul bilet sistemi yolcuların trenle seyahatini zorlaştırıyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260421/stone-age-ticket-system-preventing-travellers-in-europe-from-taking-trains",
+      "tarih": "21.04.2026",
+      "sebep": "Avrupa içinde trenle seyahat eden expat’ları doğrudan etkileyen biletleme ve ulaşım erişimi sorunu anlatılıyor; Danimarka’dan çevre ülkelere seyahat edenler için de önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag bölgesi yeraltı suyu kirliliğine karşı mobil laboratuvarlar kuruyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260421/copenhagen-region-launches-mobile-labs-to-tackle-groundwater-pollution",
+      "tarih": "21.04.2026",
+      "sebep": "Konut, içme suyu ve çevre sağlığı açısından Danimarka’da yaşayan herkes için önemli; özellikle aileli expat’lar için gündelik yaşamı etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da tren seferlerinde büyük aksama: elektrik arızaları raylı sistemi vurdu",
+      "kaynak": "International Railway Journal",
+      "link": "https://www.railjournal.com/passenger/main-line/electrical-faults-cause-major-rail-disruption-in-denmark/",
+      "tarih": "21.04.2026",
+      "sebep": "Toplu taşıma kullanan expat’ları ve işe gidiş geliş düzenini etkileyen doğrudan bir ulaşım kesintisi haberi.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’ya 2025’te gelen göçmenlerin çoğu iş veya eğitim için geldi",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-21/news/politics/most-immigrants-to-denmark-in-2025-came-for-work-or-study-these-were-the-countries-of-origin-with-the-highest-number-of-people-according-to-the-different-visa-types/",
+      "tarih": "21.04.2026",
+      "sebep": "İş ve eğitim amaçlı gelen expat’lar için göç trendlerini, vize türlerini ve hangi ülkelerden daha fazla insan geldiğini göstermesi açısından çok ilgili.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka’da büyük demiryolu aksaması: elektrik arızaları yolcuları mağdur etti",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260421/stone-age-ticket-system-preventing-travellers-in-europe-from-taking-trains",
+      "tarih": "21.04.2026",
+      "sebep": "Ulaşım altyapısındaki sorunlar, özellikle şehirler arası günlük hareketlilikte expat yaşamını doğrudan etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, hava savunma sistemi SAMP/T NG’yi seçti",
+      "kaynak": "Thales Group",
+      "link": "https://www.thalesgroup.com/en/news-centre/press-releases/denmark-has-selected-the-european-sampt-ng-most-advanced-mobile-ground-air",
+      "tarih": "21.04.2026",
+      "sebep": "NATO ve güvenlik gündemi açısından önemli; özellikle Türk expat’lar dahil ülkede yaşayan yabancılar için ülkenin savunma önceliklerini ve güvenlik ortamını etkileyen bir gelişme.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da FCM oyuncusuna bıçaklı saldırı sonrası polis şüpheliyi arıyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/politiet-efterlyser-formodet-gerningsmand-bag-knivstikkeri-mod-fcm-spiller",
+      "tarih": "21.04.2026",
+      "sebep": "Güvenlik algısını etkileyen bir olay; özellikle büyük şehirlerde yaşayan expat’lar için kamu güvenliği ve gece yaşamı açısından dikkat çekici.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da oteller ve kiralık konutlar büyük şehirlerde daha hızlı kiralanıyor",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/lejeboliger-udlejes-hurtigere-i-stoerre-danske-byer",
+      "tarih": "21.04.2026",
+      "sebep": "Ev arayan expat’lar için doğrudan önemli; kira piyasasındaki hareketlilik, taşınma ve bütçe planlamasını etkiler.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da yabancılar arasında kimler öne çıkıyor? Ülkeye gelenlerin kökenleri ve çalışma/öğrenim profili",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-04-21/news/politics/most-immigrants-to-denmark-in-2025-came-for-work-or-study-these-were-the-countries-of-origin-with-the-highest-number-of-people-according-to-the-different-visa-types/",
+      "tarih": "21.04.2026",
+      "sebep": "Türk expat’lar açısından da göçmen profillerini anlamaya yardımcı olur; iş, eğitim ve topluluk oluşumu hakkında değerli veri sunar.",
+      "expat_puani": 10
+    },
+    {
       "baslik": "Danimarka’da enerji dönüşümü: Rüzgâr enerjisindeki başarı öne çıkıyor",
       "kaynak": "Editorialge",
       "link": "https://editorialge.com/denmark-wind-energy/",
