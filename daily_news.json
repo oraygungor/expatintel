@@ -1,6 +1,62 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka'da gece yarısını etkileyen tren hattı kesintisi ulaşım ve seyahat planlarını bozabilir",
+      "kaynak": "Google News / Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/denmark-rail-network-disruption-highlights-infrastructure-risks-and-their-growing-impact-on-travel-tourism-and-regional-mobility-check-it-out-now/",
+      "tarih": "22.04.2026",
+      "sebep": "Danimarka içi ve şehirler arası tren ulaşımındaki aksama, işe gidiş-geliş yapan expat'ları, aileleri ve özellikle toplu taşıma kullananları doğrudan etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da Audi, olası fren arızası nedeniyle 2500 aracı geri çağırıyor",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/art10813640/Audi-tilbagekalder-2500-biler-i-Danmark-med-mulig-bremsefejl",
+      "tarih": "22.04.2026",
+      "sebep": "Araç sahipleri için ciddi güvenlik konusu; Danimarka'da yaşayan Türk expatlar dahil otomobil kullanan herkesin servis kontrolü yapması gerekebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da drone alarmı havalimanını geçici olarak kapattı",
+      "kaynak": "Google News / MSN",
+      "link": "https://www.msn.com/en-in/news/world/drone-alert-temporarily-shuts-danish-airport/ar-AA1QAauM?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "22.04.2026",
+      "sebep": "Hava yolu ile seyahat eden expat'ların uçuşlarında gecikme, iptal ve bağlantı kaçırma riski yaratır; aile ziyareti ve iş seyahatlerini etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Ryanair check-in süresini 20 dakika kısalttı",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/rejser/art10814143/Ryanair-forkorter-periode-for-check-in-med-20-minutter",
+      "tarih": "22.04.2026",
+      "sebep": "Danimarka'dan sık uçan expat'lar ve Türkiye-Danimarka hattında düşük maliyetli havayolu kullananlar için seyahat planlamasını doğrudan değiştirir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "AB, evcil hayvanla Avrupa'ya seyahat eden Britanyalılar için kuralları sıkılaştırdı",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260422/eu-tightens-rules-for-brits-travelling-to-europe-with-pets",
+      "tarih": "22.04.2026",
+      "sebep": "Danimarka'da yaşayan ve AB içinde evcil hayvanla seyahat eden expat'ları etkileyen düzenleme değişikliklerini işaret eder; sınır ve belge süreçleri açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka, hava savunma sistemi için Avrupa'nın Patriot rakibini seçti",
+      "kaynak": "Anadolu Ajansı",
+      "link": "https://www.aa.com.tr/en/europe/denmark-chooses-europes-patriot-rival-for-its-air-defense-system/3914070",
+      "tarih": "22.04.2026",
+      "sebep": "Savunma ve güvenlik alanındaki bu gelişme, Danimarka'daki expat topluluklarının ülkenin risk algısını değerlendirmesi açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da mülteci olmayanlar için de kapsayıcı olabilir: trafik aksaması ve ulaşım güvenliği riski",
+      "kaynak": "Google News / Nomad Lawyer",
+      "link": "https://www.nomadlawyer.org/disruption-denmark-line-april-2026",
+      "tarih": "22.04.2026",
+      "sebep": "Hat kesintisi ve altyapı sorunu, günlük yaşamını toplu taşıma ile sürdüren expat'ları doğrudan etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Avrupa’daki eski usul bilet sistemi yolcuların trenle seyahatini zorlaştırıyor",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260421/stone-age-ticket-system-preventing-travellers-in-europe-from-taking-trains",
@@ -142,6 +198,22 @@
       "link": "https://www.marketscreener.com/quote/stock/THALES-4715/news/Thales-Lands-Ground-Fire-Radar-Supply-Order-for-Denmark-s-Air-Defense-System-53006958/",
       "tarih": "21.04.2026",
       "sebep": "Savunma yatırımları ve jeopolitik güvenlik ortamı, ülkede uzun süreli yaşam planı yapan expatlar için önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka 2028'de ilk SAMP/T NG hava savunma sistemini alacak",
+      "kaynak": "Defense News",
+      "link": "https://www.defensenews.com/global/europe/2026/04/21/denmark-to-receive-first-sampt-ng-air-defense-system-in-2028/",
+      "tarih": "21.04.2026",
+      "sebep": "Güvenlik ve savunma kapasitesindeki değişim, ülkede yaşayan expat'lar için uzun vadeli ülke güvenliği algısını etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da Alamara Djabi'nin bıçaklanması sonrası ameliyat haberi",
+      "kaynak": "USA Today",
+      "link": "https://www.usatoday.com/story/sports/soccer/2026/04/21/midtjylland-alamara-djabi-stabbing-denmark/89716186007/",
+      "tarih": "21.04.2026",
+      "sebep": "Doğrudan bir ekspat politikası haberi olmasa da Danimarka'daki güvenlik algısı ve toplumsal olaylar açısından dikkat çekicidir; expat'ların gündeminde yer alabilir.",
       "expat_puani": 8
     },
     {
