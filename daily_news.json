@@ -1,6 +1,86 @@
 {
   "haberler": [
     {
+      "baslik": "Kopenhag Havalimanı’nda EES başlangıcından altı ay sonra uzun bekleyişler sürüyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260423/resigned-to-it-long-waits-at-copenhagen-airport-six-months-after-ees-start",
+      "tarih": "23.04.2026",
+      "sebep": "Danimarka’ya giriş-çıkış yapan expat’lar için doğrudan seyahat süresi, pasaport kontrolü ve bağlantılı uçuş risklerini etkiliyor; özellikle sık seyahat eden Türk expat’lar için önemli.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da iki tren kafa kafaya çarpıştı: 17 yaralı, 5’i kritik",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260423/multiple-injuries-after-two-trains-collide-near-hillerod",
+      "tarih": "23.04.2026",
+      "sebep": "Toplu taşımada ciddi aksama, işe gidiş-geliş ve günlük ulaşımı etkileyebilir; Kopenhag ve çevresinde yaşayan expat’lar için yüksek önem taşıyor.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Sürücülere uyarı: Tren kazası sonrası Danimarka’da gecikmeler yaşanıyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260423/find-other-routes-drivers-in-denmark-warned-of-delays-after-train-crash",
+      "tarih": "23.04.2026",
+      "sebep": "Karayolu ve çevre ulaşımında alternatif rota ihtiyacı doğuruyor; araba kullanan expat’lar ve günlük ulaşım planı yapanlar için önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da iki yolcu treni çarpıştı, 17 kişi yaralandı",
+      "kaynak": "Euronews.com",
+      "link": "https://www.euronews.com/my-europe/2026/04/23/two-passenger-trains-collide-in-denmark-leaving-17-injured",
+      "tarih": "23.04.2026",
+      "sebep": "Ulaşım güvenliği ve sefer iptalleri nedeniyle expat’ların işe, okula ve havalimanına erişimini etkileyebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Kopenhag yakınında tren çarpışması büyük acil durum müdahalesi başlattı",
+      "kaynak": "France 24",
+      "link": "https://www.france24.com/en/europe/20260423-train-collision-in-denmark-prompts-massive-emergency-response-near-copenhagen",
+      "tarih": "23.04.2026",
+      "sebep": "Kopenhag çevresindeki büyük ölçekli acil durum ve ulaşım kesintileri, bölgede yaşayan ve çalışan expat’ları doğrudan etkiler.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka tren kazası Kopenhag yakınında büyük acil durum müdahalesi gerektirdi",
+      "kaynak": "Reuters",
+      "link": "https://www.reuters.com/world/several-people-injured-danish-train-crash-local-emergency-service-says-2026-04-23/",
+      "tarih": "23.04.2026",
+      "sebep": "Güvenilir ve geniş çaplı haber akışı; ulaşım altyapısındaki aksama nedeniyle expat’lar için pratik önem taşıyor.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da kafa kafaya tren çarpışması: çok sayıda yaralı",
+      "kaynak": "DW.com",
+      "link": "https://www.dw.com/en/denmark-train-crash/a-76904246",
+      "tarih": "23.04.2026",
+      "sebep": "Yabancı toplulukların da yoğun kullandığı demiryolu ağındaki sorunlar, şehir içi ve şehirler arası hareketliliği etkiliyor.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Nordsjælland’daki büyük tren kazasında 18 yolcu yaralandı, beşi ağır",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10814959/18-passagerer-kommet-til-skade-efter-stor-togulykke-i-Nordsj%C3%A6lland-%E2%80%93-heraf-fem-alvorligt-kv%C3%A6stet",
+      "tarih": "23.04.2026",
+      "sebep": "Kuzey Sjælland’da yaşayan veya çalışan expat’lar için doğrudan ulaşım ve güvenlik etkisi var; bölgesel toplu taşıma aksamalarını işaret ediyor.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danmarks travl� hattındaki tren kazası otomatik güvenlik sistemi olmadan gerçekleşti",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10815182/Togulykke-skete-p%C3%A5-Danmarks-travleste-str%C3%A6kning-uden-automatisk-sikkerhedssystem",
+      "tarih": "23.04.2026",
+      "sebep": "Demiryolu güvenliği ve altyapı eksikleri, düzenli toplu taşıma kullanan expat’lar açısından kritik bir konu.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Nordsjælland’da büyük tren kazası: personel de ağır yaralandı",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/indland/stoerre-togulykke-i-nordsjaelland-melding-om-personskade?referrer=RSS",
+      "tarih": "23.04.2026",
+      "sebep": "İş gücü ve ulaşım hattındaki yoğun aksama, kuzey Kopenhag çevresindeki expat yaşamını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'da gece yarısını etkileyen tren hattı kesintisi ulaşım ve seyahat planlarını bozabilir",
       "kaynak": "Google News / Travel And Tour World",
       "link": "https://www.travelandtourworld.com/news/article/denmark-rail-network-disruption-highlights-infrastructure-risks-and-their-growing-impact-on-travel-tourism-and-regional-mobility-check-it-out-now/",
