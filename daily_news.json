@@ -1,6 +1,118 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’nın son yıl göçmenleri nereden geldi?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260424/in-data-where-did-denmarks-immigrants-come-from-last-year",
+      "tarih": "24.04.2026",
+      "sebep": "Danimarka’daki göçmen nüfusun köken dağılımını gösterir; expat toplulukları ve özellikle Türk expatların ülkeye giriş eğilimlerini anlamak için doğrudan faydalıdır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Avrupa uçuşunuz jet yakıtı sıkıntısı nedeniyle iptal edilirse tazminat alır mısınız?",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260424/will-you-be-compensated-if-your-european-flight-is-cancelled-due-to-jet-fuel-shortages",
+      "tarih": "24.04.2026",
+      "sebep": "Seyahat planları, aktarmalar ve iş/göçmenlik bağlantılı uçuşlar için önemli; Danimarka’dan Avrupa içi sık uçan expatlar için doğrudan etkili.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Kopenhag Belediye Meclisi şehir merkezinde yeni otelleri yasaklamayı planlıyor",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260424/copenhagen-council-to-ban-new-hotels-in-city-centre",
+      "tarih": "24.04.2026",
+      "sebep": "Konut ve turizm dengesi üzerinde etkili olabilir; şehir merkezinde yaşayan veya iş yapan expatların yaşam maliyeti ve ziyaretçi trafiği açısından önem taşır.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka vergi dairesi fazla ödenen vergilerden 26,7 milyar kron iade edecek",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260424/danish-tax-authority-to-repay-26-7-billion-kroner-in-overpaid-tax-from-friday",
+      "tarih": "24.04.2026",
+      "sebep": "Vergi iadesi doğrudan çalışan expatları ilgilendirir; özellikle maaşlı çalışan Türk expatlar için bütçe ve nakit akışı açısından kritik olabilir.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "İki tren Danimarka’da çarpıştı, 5 kişi kritik yaralandı",
+      "kaynak": "AP News",
+      "link": "https://apnews.com/article/denmark-train-collision-258a8ca0bcfdbe6b9c9b787abf5db7dc",
+      "tarih": "24.04.2026",
+      "sebep": "Toplu taşıma güvenliği ve hatlarda aksama yaratabilir; işe gidiş-geliş yapan expatlar için günlük ulaşımı etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Trump’ın Grönland için askeri seçeneği gündemde tutuluyor",
+      "kaynak": "ABC News",
+      "link": "https://abcnews.com/Politics/us-military-option-acquiring-greenland-white-house-official/story?id=128960041",
+      "tarih": "24.04.2026",
+      "sebep": "Danimarka’nın egemenlik gündemini ve güvenlik algısını etkileyen bir konu; özellikle ülkedeki yabancıların siyasi ve ekonomik risk değerlendirmesi için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Trump’ın Grönland hamlesi Danimarka’yı ABD’yi güvenlik riski olarak tanımlamaya itti",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-gb/news/world/trump-s-greenland-pursuit-leads-denmark-to-label-us-a-security-risk/ss-AA1SdLWV?ocid=mailmignout",
+      "tarih": "24.04.2026",
+      "sebep": "Jeopolitik gerilimler Danimarka’daki yaşam ve iş ortamını etkileyebilir; expatlar için ülkenin güvenlik ve dış politika atmosferini okumada önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka hükümet görüşmeleri seçimden bir ay sonra tıkandı",
+      "kaynak": "The Straits Times",
+      "link": "https://www.straitstimes.com/world/europe/danish-government-talks-deadlocked-one-month-after-election",
+      "tarih": "24.04.2026",
+      "sebep": "Siyasi istikrar, vergi, konut ve göç politikalarını etkileyebilir; Danimarka’da yaşayan expatlar için orta vadeli politika riskleri açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da otomatik trenler çarpıştı, 5 kişi kritik yaralandı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-us/news/insight/danish-commuter-trains-collide-five-critically-injured/gm-GME805B1E9?gemSnapshotKey=GME805B1E9-snapshot-1&uxmode=ruby",
+      "tarih": "24.04.2026",
+      "sebep": "İşe gidiş-geliş yapan expatlar için ulaşım güvenliği ve gecikmeler açısından önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "İki tren Danimarka’da kafa kafaya çarpıştı, çok sayıda kişi yaralandı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-head-on-in-denmark-leaving-multiple-injured/ar-AA21xz6M?gemSnapshotKey=GME4A79345-snapshot-1&uxmode=ruby&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "24.04.2026",
+      "sebep": "Toplu taşıma güvenliği ve acil durum etkileri nedeniyle Danimarka’daki expatlar için önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’nın pahalı otel arzını sınırlamak için şehir merkezinde yeni otelleri durdurma hamlesi",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/hovedstaden/art10816501/Flertal-vil-stoppe-nye-hoteller-i-centrum-af-K%C3%B8benhavn",
+      "tarih": "24.04.2026",
+      "sebep": "Kopenhag’daki yaşam ve ziyaret maliyetlerini etkileyebilir; özellikle yeni taşınan expatlar ve aile ziyaretleri açısından önemlidir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Vergi dairesi iadesi: Skat’tan gelen parayı yanlış kullanan çok kişi var",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/oekonomi/privatoekonomi/art10811060/Mange-bruger-pengene-fra-Skat-forkert-%E2%80%93-her-er-fem-bedre-alternativer",
+      "tarih": "24.04.2026",
+      "sebep": "Vergi iadesi alan çalışan expatlar için kişisel finans planlaması açısından doğrudan yararlı olabilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "İki tren çarpışmasında yaralananların tamamı hayati tehlikeyi atlattı",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10816531/Alle-tilskadekomne-efter-togulykke-er-uden-for-livsfare",
+      "tarih": "24.04.2026",
+      "sebep": "Tren kazasının ardından ulaşım hatlarının durumu ve güvenlik endişeleri expatların günlük yaşamını ilgilendirir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag merkezinde yeni otellerin önüne geçilmesi için çoğunluk oluştu",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/hovedstaden/art10816501/Flertal-vil-stoppe-nye-hoteller-i-centrum-af-K%C3%B8benhavn",
+      "tarih": "24.04.2026",
+      "sebep": "Konut/turizm baskısı expatlar için yaşam kalitesini ve şehir merkezindeki fiyatları etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Kopenhag Havalimanı’nda EES başlangıcından altı ay sonra uzun bekleyişler sürüyor",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260423/resigned-to-it-long-waits-at-copenhagen-airport-six-months-after-ees-start",
@@ -150,6 +262,22 @@
       "link": "https://www.berlingske.dk/business/meta-vil-afskedige-ti-procent-af-sine-medarbejdere?referrer=RSS",
       "tarih": "23.04.2026",
       "sebep": "Teknoloji sektöründeki iş gücü daralması expat çalışanları doğrudan etkileyebilir. Danimarka’da uluslararası ekiplerde çalışan Türk expat’lar için kariyer ve iş güvenliği açısından önemli.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da iki tren kafa kafaya çarpıştı",
+      "kaynak": "Al Jazeera",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/4/23/two-trains-crash-head-on-in-denmark",
+      "tarih": "23.04.2026",
+      "sebep": "Ulaşım kesintileri ve güvenlik endişesi yaratır; Danimarka’daki expatların şehirler arası ve banliyö yolculuklarını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da iki tren kafa kafaya çarpıştı, 17 kişi yaralandı",
+      "kaynak": "Taipei Times",
+      "link": "https://www.taipeitimes.com/News/world/archives/2026/04/24/2003856166",
+      "tarih": "23.04.2026",
+      "sebep": "Toplu taşıma aksaması ve güvenlik nedeniyle expatların günlük ulaşımını doğrudan etkileyebilir.",
       "expat_puani": 8
     },
     {
