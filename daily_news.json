@@ -1,6 +1,86 @@
 {
   "haberler": [
     {
+      "baslik": "Kopenhag yakınlarında iki tren çarpıştı: çok sayıda yaralı var",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/denmark-rail-accident-two-trains-collide-head-on-near-copenhagen-several-injured/ar-AA21wUgJ?uxmode=ruby&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-c",
+      "tarih": "26.04.2026",
+      "sebep": "Kopenhag ve çevresinde yaşayan expat’lar için doğrudan ulaşımı etkileyen ciddi bir tren kazası. Toplu taşıma, işe gidiş-geliş ve günlük planlar üzerinde anlık aksama yaratabilir.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka’da tren çarpışması: acil müdahale başlatıldı, yaralılar var",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/trains-collide-in-denmark-resulting-in-injuries-and-emergency-response/ar-AA21xrNY?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-c",
+      "tarih": "26.04.2026",
+      "sebep": "Acil durum müdahalesi ve demiryolu aksaması, Danimarka’daki tüm expat’ların ulaşım güvenliği ve seyahat planları açısından önemli. Özellikle şehirlerarası tren kullananlar için kritik.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da trenler kafa kafaya çarpıştı, birkaç kişi yaralandı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/denmark-crash-two-trains-collide-head-on-near-copenhagen-several-injured/ar-AA21xhhW?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "26.04.2026",
+      "sebep": "Kopenhag hattındaki bu olay, günlük ulaşımda tren kullanan expat’lar için doğrudan etkili. Gecikmeler, iptaller ve alternatif ulaşım ihtiyacı doğurabilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka demiryolu kazası: Kopenhag yakınında iki tren çarpıştı, yaralılar var",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-in-denmark-leaving-five-people-critically-injured/ar-AA21xQSv?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-c",
+      "tarih": "26.04.2026",
+      "sebep": "Bu haber de aynı demiryolu kazasının farklı bir yayını olarak, Danimarka’daki ulaşım güvenliği açısından önemli. Türk expat’lar dahil tüm yerleşikler için tren hattı kullanımı etkilenebilir.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da iki tren çarpıştı, beş kişi kritik yaralı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-in-denmark-resulting-in-five-critical-injuries/ar-AA21xPud?apiversion=v2&domshim=1&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-c",
+      "tarih": "26.04.2026",
+      "sebep": "Ciddi yaralanmalar içeren bu kaza, özellikle trenle işe gidip gelen expat’lar için güvenlik ve ulaşım sürekliliği açısından önem taşıyor.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da iki tren çarpıştı, beş kişi ağır yaralı",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-in-denmark-resulting-in-critical-injuries/ar-AA21AfRs",
+      "tarih": "26.04.2026",
+      "sebep": "Ağır yaralıların olduğu bu demiryolu kazası, Danimarka’da yaşayan expat’lar için ulaşım aksamaları ve güvenlik endişesi yaratır.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da iki tren çarpıştı, ciddi yaralanmalar oldu",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-my/news/other/czechs-beat-denmark-on-penalties-to-book-world-cup-spot/ar-AA1ZQPhi?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-t",
+      "tarih": "26.04.2026",
+      "sebep": "Ulaşım güvenliği açısından önemli olan bu haber, özellikle Danimarka’daki büyük şehirlerde yaşayan expat’ların tren planlarını etkileyebilir.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’daki tren kazasında yaralanmalar ve acil müdahale",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/trains-collide-in-denmark-resulting-in-injuries-and-emergency-response/ar-AA21xrNY?apiversion=v2&domshim=1&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1&bundles=feat-es2020-c",
+      "tarih": "26.04.2026",
+      "sebep": "Toplu taşıma kullanan expat’lar için güzergâh değişiklikleri ve gecikmeler anlamına gelebilir. Günlük yaşam ve işe ulaşım üzerinde etkisi yüksek.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’dan Antalya’ya yeni uçuş hattı açılıyor",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/amsterdam-joins-newcastle-london-cologne-nantes-eindhoven-aalborg-helsinki-and-more-cities-in-netherlands-uk-france-denmark-finland-estonia-in-new-flight-route-to-turkish-tourist-hotspot-an/",
+      "tarih": "26.04.2026",
+      "sebep": "Türk expat’lar ve Türkiye’ye seyahat eden Danimarka’daki topluluk için çok önemli. Antalya bağlantısı, hem aile ziyareti hem turizm hem de direkt uçuş seçenekleri açısından avantaj sağlar.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka, Amsterdam ve diğer şehirlerle birlikte yeni uçuş rotasında yer alıyor",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/france-denmark-spain-and-more-faces-travel-disruption-as-london-heathrow-berlin-brandenburg-airport-and-others-delay-1085-and-cancelled-21-flights-impacting-lufthansa-ryanair-and-others-in-madrid/",
+      "tarih": "26.04.2026",
+      "sebep": "Hava yolu bağlantıları ve olası seyahat aksamaları expat’lar için önemli. Özellikle iş ve aile seyahatleri yapanlar için uçuş planları etkilenebilir.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Kopenhag’da iki tren çarpıştı, ağır yaralılar var",
       "kaynak": "The Local Denmark",
       "link": "https://www.thelocal.dk/20260425/revealed-the-countries-in-europe-that-will-buck-the-trend-and-grow-in-population",
@@ -134,6 +214,22 @@
       "link": "https://scandasia.com/i-feel-like-a-criminal-soren-hides-in-thailand-to-secure-pension-income/",
       "tarih": "25.04.2026",
       "sebep": "Emeklilik, vergi ve gelir planlaması gibi konular Danimarka'da yaşayan yabancılar için kritik önemdedir. Özellikle uzun vadeli finansal plan yapan Türk expat'lar için dikkat çekici bir örnek sunar.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da tren çarpışması: beş kişi kritik durumda",
+      "kaynak": "AOL.com",
+      "link": "https://www.aol.com/articles/two-denmark-trains-collide-sparking-095922101.html",
+      "tarih": "25.04.2026",
+      "sebep": "Bu olay, Danimarka’daki toplu taşıma kullanıcılarını doğrudan etkileyen önemli bir güvenlik ve ulaşım haberi. Özellikle şehir içi ve banliyö hattı kullanan expat’lar için kritik.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da büyük tren kazası: beş kişi kritik yaralı",
+      "kaynak": "AOL.com",
+      "link": "https://www.aol.com/articles/two-trains-collide-head-denmark-081113329.html",
+      "tarih": "25.04.2026",
+      "sebep": "Trenle seyahat eden expat’lar için ciddi güvenlik ve ulaşım etkisi var. Kaza sonrası sefer iptalleri ve gecikmeler günlük hayatı doğrudan etkileyebilir.",
       "expat_puani": 8
     },
     {
