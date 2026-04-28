@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB
-TIMEOUT = 15.0  # Zaman aşımını biraz artırdık
+TIMEOUT = 15.0  
 
 # --- Data Models ---
 class AnalyzeRequest(BaseModel):
@@ -43,6 +43,7 @@ class AnalyzeRequest(BaseModel):
     model: str = "gpt-5.4"
     raw_text: Optional[str] = None
     available_categories: Optional[List[str]] = None
+    language: str = "tr"  # YENİ EKLENEN DİL PARAMETRESİ
 
 
 class AnalyzeResponse(BaseModel):
@@ -98,7 +99,6 @@ def ensure_sentence_ends(text: str) -> str:
 
 # --- Security & Fetching ---
 async def fetch_url_content(url: str) -> tuple[str, str]:
-    """Haber sitesinden içeriği gerçek bir kullanıcı gibi çeker."""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
@@ -138,22 +138,31 @@ async def analyze_news(request: AnalyzeRequest):
             clean_text = soup.get_text()[:5000]
     
     if len(clean_text) < 50:
-        raise HTTPException(status_code=400, detail="Anlamlı metin bulunamadı.")
+        raise HTTPException(status_code=400, detail="Anlamlı metin bulunamadı / No meaningful text found.")
 
+    # DİL TERCİHİNİ BELİRLE
+    target_language = "Turkish" if request.language == "tr" else "English"
+    target_audience = "Türk expat'lar" if request.language == "tr" else "expats"
+
+    # KATEGORİLERİ DİNAMİK AL
     categories_str = ""
     if request.available_categories and len(request.available_categories) > 0:
         cat_list = ", ".join([f"'{c}'" for c in request.available_categories])
-        categories_str = f"Mevcut kategoriler: [{cat_list}]. Bu listeden en uygun olanı seç."
+        categories_str = f"[{cat_list}]"
     else:
-        categories_str = "Kategori olarak 'Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam' seç."
+        categories_str = "['Genel', 'Ekonomi', 'Politika', 'Vize', 'Sosyal Yaşam']"
 
+    # YENİ DİNAMİK PROMPT (Çift dilli sisteme uyumlu)
     system_prompt = f"""
-    Sen Danimarka'daki Türk expat'lar için içerik üreten kıdemli bir haber analistisin.
-    GÖREVİN: Haberi analiz et, Türk vatandaşlarını etkileme durumuna göre 1-10 arası puan ver ve Türkçe özetle.
-    KURALLAR: 
-    1. Başlık başına mutlaka konuya uygun bir emoji ekle.
-    2. Başlık ve özet birbirini tekrar etmesin.
-    3. Kategoriyi şu listeden seç: {categories_str}
+    You are a senior news analyst creating content for {target_audience} living in Denmark.
+    YOUR TASK: Analyze the news, give it a score from 1-10 based on how much it affects expats, and summarize it.
+    
+    CRITICAL INSTRUCTION: You MUST write your ENTIRE response (headline, source, summary, expat_significance, category) strictly in {target_language}.
+    
+    RULES: 
+    1. Add a highly relevant emoji at the very beginning of the headline.
+    2. The headline and summary must not repeat each other; provide distinct value.
+    3. You must select the most appropriate category ONLY from this exact list: {categories_str}
     """
 
     news_schema = {
@@ -175,8 +184,6 @@ async def analyze_news(request: AnalyzeRequest):
     }
 
     try:
-        # ÖNEMLİ DEĞİŞİKLİK: 'async with' kullanılarak bağlantının temizce kapatılması sağlanıyor
-        # Ayrıca '.strip()' ile anahtardaki yanlışlıkla girilmiş boşluklar temizleniyor
         api_key_clean = request.api_key.strip()
         
         async with AsyncOpenAI(api_key=api_key_clean) as client:
@@ -184,7 +191,7 @@ async def analyze_news(request: AnalyzeRequest):
                 model=request.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"URL: {final_url}\n\nMETİN:\n{clean_text}"},
+                    {"role": "user", "content": f"URL: {final_url}\n\nTEXT:\n{clean_text}"},
                 ],
                 response_format={"type": "json_schema", "json_schema": news_schema},
             )
@@ -193,13 +200,13 @@ async def analyze_news(request: AnalyzeRequest):
             return data
             
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"OpenAI Hatası: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"OpenAI Error: {str(e)}")
 
 # --- Export DOCX Endpoint ---
 @app.post("/export-docx")
 async def export_docx(items: List[ExportItem]):
     if not items:
-        raise HTTPException(status_code=400, detail="Boş liste.")
+        raise HTTPException(status_code=400, detail="Boş liste / Empty list.")
 
     doc = Document()
     sorted_items = sorted(items, key=lambda x: (x.analysis.category or "Diğer", -x.analysis.score))
@@ -217,7 +224,8 @@ async def export_docx(items: List[ExportItem]):
             p = doc.add_paragraph()
             p.add_run(ensure_sentence_ends(a.summary) + " ")
             
-            p.add_run("(Kaynak: ")
+            # Word çıktısını iki dile de uyumlu olması adına "Kaynak / Source:" yaptık
+            p.add_run("(Kaynak / Source: ")
             link = (a.final_url or item.input_url or "").strip()
             if link:
                 add_hyperlink(p, (a.source or "Link"), link)
@@ -228,7 +236,7 @@ async def export_docx(items: List[ExportItem]):
     buf = BytesIO()
     doc.save(buf)
     buf.seek(0)
-    return StreamingResponse(buf, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", headers={"Content-Disposition": 'attachment; filename="expat_bulten.docx"'})
+    return StreamingResponse(buf, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", headers={"Content-Disposition": 'attachment; filename="expat_intel_export.docx"'})
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
