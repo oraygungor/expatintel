@@ -69,19 +69,15 @@
             border-color: #00F0FF;
             outline: none;
         }
-        /* Disabled state styles */
         .disabled-area {
             opacity: 0.5;
             pointer-events: none;
             filter: grayscale(100%);
         }
-        /* Scrollbar styling */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; rounded: 4px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
-
-        /* Yeni Tab Stilleri */
         .tab-btn { border-bottom: 2px solid transparent; color: #666; padding-bottom: 0.5rem; font-size: 0.875rem; font-weight: bold; transition: all 0.3s; }
         .tab-btn.active { border-bottom: 2px solid #00F0FF; color: #fff; }
         .tag-item:hover { border-color: #00F0FF; color: #fff; }
@@ -89,41 +85,40 @@
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 relative overflow-x-hidden">
 
-    <!-- Background -->
+    <div class="absolute top-4 right-4 flex gap-2 bg-gray-900 border border-gray-800 rounded-lg p-1 z-50">
+        <button onclick="setLanguage('tr')" id="btnLangTR" class="px-3 py-1 text-xs font-bold rounded bg-gray-700 text-white transition-colors">TR</button>
+        <button onclick="setLanguage('en')" id="btnLangEN" class="px-3 py-1 text-xs font-bold rounded text-gray-500 hover:text-white transition-colors">EN</button>
+    </div>
+
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-neon-purple opacity-10 blur-[100px] rounded-full"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-neon-blue opacity-10 blur-[100px] rounded-full"></div>
     </div>
 
-    <!-- Main Container -->
     <main class="w-full max-w-6xl animate-fade-in mb-20">
         
-        <!-- Header -->
         <div class="text-center mb-10 mt-10">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
                 Expat<span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple">Intel</span>
             </h1>
             <p class="text-gray-500 font-light flex items-center justify-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
-                Server-Side Scraping Edition
+                <span id="subtitleText">Server-Side Scraping Edition</span>
             </p>
         </div>
 
-        <!-- Configuration Panel -->
         <div class="glass-panel rounded-2xl p-6 md:p-8 shadow-2xl mb-8">
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <!-- API Key -->
                 <div class="md:col-span-2">
-                    <label class="block text-xs font-mono text-gray-400 mb-2">OPENAI API KEY</label>
+                    <label id="lblApiKey" class="block text-xs font-mono text-gray-400 mb-2">OPENAI API KEY</label>
                     <div class="relative">
                         <i class="fas fa-key absolute left-3 top-3.5 text-gray-600 text-sm"></i>
                         <input type="password" id="apiKey" placeholder="sk-..." class="input-dark w-full rounded-lg py-3 pl-10 pr-4 text-sm font-mono placeholder-gray-700">
                     </div>
                 </div>
-                <!-- Server URL (Connection Check Added) -->
                 <div>
-                    <label class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
+                    <label id="lblBackend" class="block text-xs font-mono text-gray-400 mb-2">BACKEND URL</label>
                     <div class="relative flex gap-2">
                         <div class="relative flex-1">
                             <i class="fas fa-server absolute left-3 top-3.5 text-gray-600 text-sm"></i>
@@ -137,63 +132,56 @@
                 </div>
             </div>
 
-            <!-- YENİ: Kategori Alanı -->
             <div class="mb-6 border-t border-gray-800 pt-4">
-                <label class="block text-xs font-mono text-neon-blue mb-2">KATEGORİLER / ETİKETLER</label>
+                <label id="lblCategories" class="block text-xs font-mono text-neon-blue mb-2">KATEGORİLER / ETİKETLER</label>
                 <div class="flex gap-2 mb-3">
                     <input type="text" id="newCategoryInput" placeholder="Örn: Ekonomi, Vize, Sağlık..." class="input-dark flex-1 rounded-lg py-2 px-3 text-sm font-mono" onkeypress="if(event.key==='Enter') addCategory()">
-                    <button onclick="addCategory()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-xs font-bold transition border border-gray-700">EKLE</button>
+                    <button id="btnAddCat" onclick="addCategory()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-xs font-bold transition border border-gray-700">EKLE</button>
                 </div>
                 <div id="categoryList" class="flex flex-wrap gap-2 min-h-[28px]"></div>
             </div>
 
-            <!-- YENİ: Tabs (URL Listesi / Manuel Giriş) -->
             <div class="flex gap-4 mb-4 border-b border-gray-800">
                 <button onclick="switchTab('url')" id="tabUrl" class="tab-btn active">URL LİSTESİ</button>
                 <button onclick="switchTab('manual')" id="tabManual" class="tab-btn">MANUEL GİRİŞ</button>
             </div>
 
-            <!-- URL Input Area (Wrapped for Disabling) -->
             <div id="analysisSection" class="mb-6 transition-all duration-500 disabled-area">
                 
-                <!-- View: URL Listesi -->
                 <div id="viewUrl" class="block">
-                    <label class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
+                    <label id="lblUrls" class="block text-xs font-mono text-gray-400 mb-2">HABER KAYNAKLARI (HER SATIRA BİR LİNK)</label>
                     <textarea id="newsUrls" rows="6" placeholder="https://nyidanmark.dk/en-GB/News/...\nhttps://skat.dk/..." class="input-dark w-full rounded-lg px-4 py-3 text-sm placeholder-gray-700 font-mono resize-y"></textarea>
                 </div>
 
-                <!-- View: Manuel Giriş -->
                 <div id="viewManual" class="hidden flex-col gap-3">
                     <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-2">KAYNAK LİNKİ (OPSİYONEL - REFERANS İÇİN)</label>
+                        <label id="lblManLink" class="block text-xs font-mono text-gray-400 mb-2">KAYNAK LİNKİ (OPSİYONEL - REFERANS İÇİN)</label>
                         <input type="text" id="manualSourceLink" placeholder="https://..." class="input-dark w-full rounded-lg px-4 py-2 text-sm font-mono">
                     </div>
                     <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-2">HABER İÇERİĞİ (METNİ YAPIŞTIRIN)</label>
-                        <textarea id="manualContent" rows="6" placeholder="Haber metnini buraya yapıştırın..." class="input-dark w-full rounded-lg px-4 py-3 text-sm font-mono resize-y"></textarea>
+                        <label id="lblManContent" class="block text-xs font-mono text-gray-400 mb-2">HABER İÇERİĞİ (METNİ YAPIŞTIRIN)</label>
+                        <textarea id="manualContent" rows="6" placeholder="..." class="input-dark w-full rounded-lg px-4 py-3 text-sm font-mono resize-y"></textarea>
                     </div>
                 </div>
                 
                 <div class="flex justify-between items-center mt-4">
                     <span id="statusText" class="text-xs font-mono text-neon-blue hidden"></span>
                     
-                    <!-- Utility Buttons for Input -->
                     <div class="flex gap-2">
-                        <button onclick="clearInputs()" class="text-xs text-gray-500 hover:text-white underline">Temizle</button>
+                        <button id="btnClear" onclick="clearInputs()" class="text-xs text-gray-500 hover:text-white underline">Temizle</button>
                     </div>
 
                     <div class="ml-auto flex gap-3 items-center">
-                        <!-- Model Select Mini (ORİJİNAL LİSTE) -->
                         <select id="modelSelect" class="bg-gray-900 border border-gray-700 text-gray-400 text-xs rounded px-2 py-1 max-w-[150px]">
-       <option value="gpt-5.4">GPT-5.4</option>
-    <option value="gpt-5-mini">GPT-5 mini</option>
-    <option value="gpt-5-nano">GPT-5 nano</option>
-    <option value="gpt-5">GPT-5</option>
-    <option value="gpt-5.2">GPT-5.2</option>
+                            <option value="gpt-5.4">GPT-5.4</option>
+                            <option value="gpt-5-mini">GPT-5 mini</option>
+                            <option value="gpt-5-nano">GPT-5 nano</option>
+                            <option value="gpt-5">GPT-5</option>
+                            <option value="gpt-5.2">GPT-5.2</option>
                         </select>
                         
                         <button onclick="startBatchAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-neon-purple to-neon-blue hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-purple-900/30 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                            <span>LİSTEYE EKLE VE ANALİZ ET</span>
+                            <span id="btnAnalyzeText">LİSTEYE EKLE VE ANALİZ ET</span>
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
@@ -201,35 +189,29 @@
             </div>
         </div>
 
-        <!-- Results Toolbar -->
         <div id="resultsToolbar" class="flex justify-between items-center mb-4 hidden px-2">
-            <h2 class="text-xl font-bold text-white">Sonuçlar <span id="resultCount" class="text-sm font-normal text-gray-500 ml-2">(0)</span></h2>
+            <h2 id="titleResults" class="text-xl font-bold text-white">Sonuçlar <span id="resultCount" class="text-sm font-normal text-gray-500 ml-2">(0)</span></h2>
             
             <div class="flex gap-3">
-                <!-- Export to Word Button -->
-                <button id="exportBtn" onclick="exportToDocx()" class="text-xs text-neon-blue hover:text-white flex items-center gap-2 border border-neon-blue/30 bg-neon-blue/10 hover:bg-neon-blue/20 px-4 py-2 rounded-md transition font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">
+                <button id="btnExport" onclick="exportToDocx()" class="text-xs text-neon-blue hover:text-white flex items-center gap-2 border border-neon-blue/30 bg-neon-blue/10 hover:bg-neon-blue/20 px-4 py-2 rounded-md transition font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">
                     <i class="fas fa-file-word"></i> Word'e Aktar
                 </button>
-                
-                <!-- Clear All Button -->
-                <button onclick="clearAllResults()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 border border-red-900/30 bg-red-900/10 hover:bg-red-900/20 px-4 py-2 rounded-md transition">
+                <button id="btnClearAll" onclick="clearAllResults()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 border border-red-900/30 bg-red-900/10 hover:bg-red-900/20 px-4 py-2 rounded-md transition">
                     <i class="fas fa-trash-alt"></i> Tümünü Temizle
                 </button>
             </div>
         </div>
 
-        <!-- Results Grid -->
         <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"></div>
 
-        <!-- JSON Output -->
         <div id="jsonSection" class="hidden">
             <div class="glass-panel rounded-xl overflow-hidden border border-gray-800">
                 <div class="bg-black/40 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
                     <div class="flex items-center gap-2 text-xs text-neon-green font-mono">
                         <i class="fas fa-database"></i>
-                        <span>BİRLEŞTİRİLMİŞ JSON</span>
+                        <span id="titleJson">BİRLEŞTİRİLMİŞ JSON</span>
                     </div>
-                    <button onclick="copyCombinedJson()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-white transition font-mono flex items-center gap-2">
+                    <button id="btnCopy" onclick="copyCombinedJson()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-white transition font-mono flex items-center gap-2">
                         <i class="far fa-copy"></i> Kopyala
                     </button>
                 </div>
@@ -242,41 +224,124 @@
     </main>
 
     <script>
-        // Global state
         let globalResults = [];
-        let categories = ["Ekonomi", "Vize", "Politika", "Sosyal Yaşam"]; // Varsayılan kategoriler
+        let categories = ["Ekonomi", "Vize", "Politika", "Sosyal Yaşam"]; 
         let currentMode = 'url';
+        let currentLang = 'tr';
         const CONCURRENCY_LIMIT = 3; 
+
+        const i18n = {
+            tr: {
+                subtitle: "Server-Side Scraping Sürümü",
+                apiKeyLabel: "OPENAI API KEY",
+                backendLabel: "BACKEND URL",
+                connect: "Bağlan",
+                connecting: "Bağlanıyor...",
+                connected: "Bağlı",
+                categoriesLabel: "KATEGORİLER / ETİKETLER",
+                addCategory: "EKLE",
+                urlTab: "URL LİSTESİ",
+                manualTab: "MANUEL GİRİŞ",
+                urlLabel: "HABER KAYNAKLARI (HER SATIRA BİR LİNK)",
+                manualLink: "KAYNAK LİNKİ (OPSİYONEL - REFERANS İÇİN)",
+                manualContent: "HABER İÇERİĞİ (METNİ YAPIŞTIRIN)",
+                clear: "Temizle",
+                addBtn: "LİSTEYE EKLE VE ANALİZ ET",
+                results: "Sonuçlar",
+                exportWord: "Word'e Aktar",
+                clearAll: "Tümünü Temizle",
+                jsonTitle: "BİRLEŞTİRİLMİŞ JSON",
+                copy: "Kopyala",
+                defaultCategories: ["Ekonomi", "Vize", "Politika", "Sosyal Yaşam"]
+            },
+            en: {
+                subtitle: "Server-Side Scraping Edition",
+                apiKeyLabel: "OPENAI API KEY",
+                backendLabel: "BACKEND URL",
+                connect: "Connect",
+                connecting: "Connecting...",
+                connected: "Connected",
+                categoriesLabel: "CATEGORIES / TAGS",
+                addCategory: "ADD",
+                urlTab: "URL LIST",
+                manualTab: "MANUAL ENTRY",
+                urlLabel: "NEWS SOURCES (ONE LINK PER LINE)",
+                manualLink: "SOURCE LINK (OPTIONAL - FOR REFERENCE)",
+                manualContent: "NEWS CONTENT (PASTE TEXT)",
+                clear: "Clear",
+                addBtn: "ADD TO LIST & ANALYZE",
+                results: "Results",
+                exportWord: "Export to Word",
+                clearAll: "Clear All",
+                jsonTitle: "COMBINED JSON",
+                copy: "Copy",
+                defaultCategories: ["Economy", "Visa", "Politics", "Social Life"]
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+
+            document.getElementById('btnLangTR').className = lang === 'tr' ? "px-3 py-1 text-xs font-bold rounded bg-gray-700 text-white transition-colors" : "px-3 py-1 text-xs font-bold rounded text-gray-500 hover:text-white transition-colors";
+            document.getElementById('btnLangEN').className = lang === 'en' ? "px-3 py-1 text-xs font-bold rounded bg-gray-700 text-white transition-colors" : "px-3 py-1 text-xs font-bold rounded text-gray-500 hover:text-white transition-colors";
+
+            document.getElementById('subtitleText').innerText = t.subtitle;
+            document.getElementById('lblApiKey').innerText = t.apiKeyLabel;
+            document.getElementById('lblBackend').innerText = t.backendLabel;
+            
+            const btnText = document.getElementById('connectBtnText').innerText;
+            if(btnText !== i18n.tr.connected && btnText !== i18n.en.connected && btnText !== i18n.tr.connecting && btnText !== i18n.en.connecting && btnText !== "Tekrar Dene" && btnText !== "Try Again") {
+                document.getElementById('connectBtnText').innerText = t.connect;
+            } else if (btnText === i18n.tr.connected || btnText === i18n.en.connected) {
+                document.getElementById('connectBtnText').innerText = t.connected;
+            } else if (btnText === i18n.tr.connecting || btnText === i18n.en.connecting) {
+                document.getElementById('connectBtnText').innerText = t.connecting;
+            }
+            
+            document.getElementById('lblCategories').innerText = t.categoriesLabel;
+            document.getElementById('btnAddCat').innerText = t.addCategory;
+            document.getElementById('tabUrl').innerText = t.urlTab;
+            document.getElementById('tabManual').innerText = t.manualTab;
+            document.getElementById('lblUrls').innerText = t.urlLabel;
+            document.getElementById('lblManLink').innerText = t.manualLink;
+            document.getElementById('lblManContent').innerText = t.manualContent;
+            document.getElementById('btnClear').innerText = t.clear;
+            document.getElementById('btnAnalyzeText').innerText = t.addBtn;
+            document.getElementById('titleResults').childNodes[0].nodeValue = t.results + " ";
+            document.getElementById('btnExport').innerHTML = `<i class="fas fa-file-word"></i> ${t.exportWord}`;
+            document.getElementById('btnClearAll').innerHTML = `<i class="fas fa-trash-alt"></i> ${t.clearAll}`;
+            document.getElementById('titleJson').innerText = t.jsonTitle;
+            document.getElementById('btnCopy').innerHTML = `<i class="far fa-copy"></i> ${t.copy}`;
+        }
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedKey = localStorage.getItem('openai_api_key');
             if (savedKey) document.getElementById('apiKey').value = savedKey;
 
-            // Load Categories
             const savedCats = localStorage.getItem('user_categories');
             if(savedCats) categories = JSON.parse(savedCats);
             renderCategories();
             
-            // Check Server URL
             const savedUrl = localStorage.getItem('backend_url');
             if(savedUrl) document.getElementById('serverUrl').value = savedUrl;
+            
+            setLanguage('tr'); 
         });
 
-        // --- Category Logic ---
         function renderCategories() {
             const container = document.getElementById('categoryList');
             container.innerHTML = '';
             categories.forEach(cat => {
                 const tag = document.createElement('span');
                 tag.className = "tag-item bg-gray-800 text-gray-300 text-[10px] px-2 py-1 rounded border border-gray-700 flex items-center gap-2 cursor-default select-none";
-                
                 const text = document.createTextNode(cat);
                 tag.appendChild(text);
 
                 const btn = document.createElement('button');
                 btn.className = "hover:text-red-400 text-gray-500 font-bold ml-1";
                 btn.innerHTML = '×';
-                btn.onclick = function() { removeCategory(cat); }; // Güvenli silme
+                btn.onclick = function() { removeCategory(cat); }; 
 
                 tag.appendChild(btn);
                 container.appendChild(tag);
@@ -299,7 +364,6 @@
             renderCategories();
         }
 
-        // --- Tabs Logic ---
         function switchTab(mode) {
             currentMode = mode;
             const tabUrl = document.getElementById('tabUrl');
@@ -331,13 +395,13 @@
             }
         }
 
-        // --- Connection Logic (ORİJİNAL) ---
         async function connectToServer() {
             const serverUrlInput = document.getElementById('serverUrl');
             const connectBtn = document.getElementById('connectBtn');
             const btnText = document.getElementById('connectBtnText');
             const statusEl = document.getElementById('connectionStatus');
             const analysisSection = document.getElementById('analysisSection');
+            const t = i18n[currentLang];
             
             const url = serverUrlInput.value.replace(/\/$/, '');
             if (!url) {
@@ -346,25 +410,23 @@
                 return;
             }
 
-            // UI Loading State
             connectBtn.disabled = true;
-            btnText.textContent = "Bağlanıyor...";
-            statusEl.textContent = "Sunucu uyandırılıyor (50-60sn sürebilir)...";
+            btnText.textContent = t.connecting;
+            statusEl.textContent = currentLang === 'tr' ? "Sunucu uyandırılıyor (50-60sn sürebilir)..." : "Waking up server (may take 50-60s)...";
             statusEl.className = "text-[10px] mt-2 font-mono h-4 text-yellow-500 pl-1 animate-pulse";
             
             try {
-                // Fetch FastAPI openapi.json as a health check
                 const response = await fetch(`${url}/openapi.json`, { 
                     method: 'GET',
                     signal: AbortSignal.timeout(60000) 
                 });
 
                 if (response.ok) {
-                    statusEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Sunucu Aktif ve Hazır!';
+                    statusEl.innerHTML = currentLang === 'tr' ? '<i class="fas fa-check-circle mr-1"></i> Sunucu Aktif ve Hazır!' : '<i class="fas fa-check-circle mr-1"></i> Server Active and Ready!';
                     statusEl.className = "text-[10px] mt-2 font-mono h-4 text-neon-green pl-1";
                     
                     connectBtn.className = "bg-green-900/30 border border-green-700 text-green-400 px-4 rounded-lg text-xs font-mono transition whitespace-nowrap flex items-center gap-2 cursor-default";
-                    btnText.textContent = "Bağlı";
+                    btnText.textContent = t.connected;
                     
                     analysisSection.classList.remove('disabled-area');
                     localStorage.setItem('backend_url', url);
@@ -373,32 +435,28 @@
                 }
             } catch (error) {
                 console.error(error);
-                statusEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin.';
+                statusEl.innerHTML = currentLang === 'tr' ? '<i class="fas fa-times-circle mr-1"></i> Bağlanılamadı. URL\'i kontrol edin.' : '<i class="fas fa-times-circle mr-1"></i> Connection failed. Check URL.';
                 statusEl.className = "text-[10px] mt-2 font-mono h-4 text-red-500 pl-1";
                 connectBtn.disabled = false;
-                btnText.textContent = "Tekrar Dene";
+                btnText.textContent = currentLang === 'tr' ? "Tekrar Dene" : "Try Again";
             }
         }
 
-        // --- Core Logic ---
-
         async function startBatchAnalysis() {
             const apiKey = document.getElementById('apiKey').value;
-            if (!apiKey) { alert("Lütfen API Key giriniz."); return; }
+            if (!apiKey) { alert(currentLang === 'tr' ? "Lütfen API Key giriniz." : "Please enter API Key."); return; }
             localStorage.setItem('openai_api_key', apiKey);
 
             let newItems = [];
 
             if (currentMode === 'url') {
                 const textInput = document.getElementById('newsUrls').value;
-                if (!textInput.trim()) { alert("Lütfen en az bir URL giriniz."); return; }
+                if (!textInput.trim()) { alert(currentLang === 'tr' ? "Lütfen en az bir URL giriniz." : "Please enter at least one URL."); return; }
 
                 const rawUrls = textInput.split('\n').filter(u => u.trim() !== '').map(u => u.trim());
-                
-                // Filter duplicates
                 const uniqueUrls = rawUrls.filter(url => !globalResults.some(item => item.url === url));
                 if (uniqueUrls.length === 0 && rawUrls.length > 0) {
-                    alert("Girdiğiniz linklerin hepsi zaten listede mevcut.");
+                    alert(currentLang === 'tr' ? "Girdiğiniz linklerin hepsi zaten listede mevcut." : "All entered links are already in the list.");
                     return;
                 }
 
@@ -412,15 +470,13 @@
                         errorMsg: null
                     });
                 });
-                
                 document.getElementById('newsUrls').value = '';
             
             } else {
-                // Manuel Mod
-                const source = document.getElementById('manualSourceLink').value.trim() || "Manuel Giriş";
+                const source = document.getElementById('manualSourceLink').value.trim() || (currentLang === 'tr' ? "Manuel Giriş" : "Manual Entry");
                 const content = document.getElementById('manualContent').value.trim();
                 
-                if (!content) { alert("Lütfen haber içeriğini yapıştırın."); return; }
+                if (!content) { alert(currentLang === 'tr' ? "Lütfen haber içeriğini yapıştırın." : "Please paste news content."); return; }
 
                 newItems.push({
                     id: 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
@@ -435,18 +491,12 @@
                 document.getElementById('manualContent').value = '';
             }
 
-            // UI Güncelleme: Prepend (En başa ekle)
-            // Reverse loop so first item ends up at top
             for (let i = newItems.length - 1; i >= 0; i--) {
                 globalResults.unshift(newItems[i]);
             }
             
-            // Render (Re-render entire list is safer or prepend individually)
-            // Let's prepend individually in render function logic
             newItems.forEach(item => renderItem(item, true));
-
             updateUIHeader();
-            
             await processQueue(newItems);
         }
 
@@ -456,24 +506,19 @@
             const model = document.getElementById('modelSelect').value;
             const statusText = document.getElementById('statusText');
             
-            statusText.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i> İşleniyor...';
+            statusText.innerHTML = currentLang === 'tr' ? '<i class="fas fa-sync fa-spin mr-2"></i> İşleniyor...' : '<i class="fas fa-sync fa-spin mr-2"></i> Processing...';
             statusText.classList.remove('hidden');
 
             const executing = new Set();
             
             for (const item of itemsToProcess) {
-                const p = processSingleItem(item, apiKey, model, serverUrl)
-                    .finally(() => executing.delete(p));
-                
+                const p = processSingleItem(item, apiKey, model, serverUrl).finally(() => executing.delete(p));
                 executing.add(p);
-                
                 if (executing.size >= CONCURRENCY_LIMIT) {
                     await Promise.race(executing);
                 }
             }
-            
             await Promise.all(executing);
-            
             statusText.innerHTML = '';
             statusText.classList.add('hidden');
             updateCombinedJson();
@@ -481,25 +526,20 @@
 
         async function processSingleItem(item, apiKey, model, serverUrl) {
             try {
-                // Re-render as pending
                 item.status = 'pending';
-                renderItem(item); // Update existing
-
+                renderItem(item); 
                 const data = await analyzeViaServer(item, apiKey, model, serverUrl);
-                
                 item.status = 'success';
                 item.data = data;
                 item.errorMsg = null;
             } catch (error) {
-                console.error(`Error processing ${item.url}:`, error);
                 item.status = 'error';
                 item.data = null;
-                
                 let msg = error.message;
-                if(msg.includes('Failed to fetch')) msg = "Sunucuya erişilemedi.";
+                if(msg.includes('Failed to fetch')) msg = currentLang === 'tr' ? "Sunucuya erişilemedi." : "Server unreachable.";
                 item.errorMsg = msg;
             } finally {
-                renderItem(item); // Update with final state
+                renderItem(item); 
                 updateCombinedJson();
             }
         }
@@ -509,14 +549,12 @@
                 url: item.url,
                 api_key: apiKey,
                 model: model,
-                available_categories: categories // Backend'e kategorileri gönder
+                available_categories: categories,
+                language: currentLang
             };
-
             if(item.manualText) {
                 payload.raw_text = item.manualText;
             }
-
-            // URL Validation (Client side basic check skipped for manual/flexibility)
 
             const response = await fetch(`${serverUrl}/analyze`, {
                 method: 'POST',
@@ -533,15 +571,12 @@
                 } catch(e) {}
                 throw new Error(errMsg);
             }
-
             return await response.json();
         }
 
-        // --- Render Logic (ORİJİNAL) ---
         function renderItem(item, isNew = false) {
             const grid = document.getElementById('resultsGrid');
             let card = document.getElementById(item.id);
-            
             let contentHTML = '';
             let className = "glass-panel rounded-xl overflow-hidden border border-gray-800 relative group p-6 animate-fade-in transition-all duration-300";
 
@@ -562,10 +597,11 @@
                 `;
             } else if (item.status === 'error') {
                 className += " border-red-900/50";
+                let errTitle = currentLang === 'tr' ? 'Hata' : 'Error';
                 contentHTML = `
                     <div class="flex items-center gap-2 mb-2 text-red-500">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <h3 class="font-bold text-sm">Hata</h3>
+                        <h3 class="font-bold text-sm">${errTitle}</h3>
                     </div>
                     <p class="text-xs text-gray-500 break-all mb-4 font-mono">${item.url}</p>
                     <p class="text-xs text-red-400 font-mono mb-4 bg-red-900/10 p-2 rounded">${item.errorMsg}</p>
@@ -573,12 +609,11 @@
                 `;
             } else if (item.status === 'success' && item.data) {
                 const data = item.data;
-                const category = data.category || 'Genel'; // Kategori gösterimi
+                const category = data.category || (currentLang === 'tr' ? 'Genel' : 'General'); 
                 let scoreVal = Math.max(1, Math.min(10, parseInt(data.score) || 0));
                 let color = scoreVal >= 8 ? "#FF0055" : (scoreVal >= 5 ? "#Facc15" : "#00F0FF");
                 let borderColor = scoreVal >= 8 ? "border-neon-red" : (scoreVal >= 5 ? "border-yellow-400" : "border-neon-blue");
                 let textColor = scoreVal >= 8 ? "text-neon-red" : (scoreVal >= 5 ? "text-yellow-400" : "text-neon-blue");
-
                 const circumference = 2 * Math.PI * 26;
                 const offset = circumference - (scoreVal / 10) * circumference;
 
@@ -605,7 +640,7 @@
                     <p class="text-gray-400 text-sm mb-4 leading-relaxed">${data.summary}</p>
                     
                     <div class="bg-gray-900/50 border-l-2 ${borderColor} p-3 rounded-r-md mb-4">
-                        <span class="${textColor} font-bold text-[10px] uppercase block mb-1">Expat Notu:</span>
+                        <span class="${textColor} font-bold text-[10px] uppercase block mb-1">Expat ${currentLang === 'tr' ? 'Notu' : 'Note'}:</span>
                         <p class="text-xs text-gray-300 italic">${data.expat_significance}</p>
                     </div>
 
@@ -616,60 +651,41 @@
             if (!card) {
                 card = document.createElement('div');
                 card.id = item.id;
-                // YENİ: En başa ekle (prepend)
                 if(isNew) grid.prepend(card);
                 else grid.appendChild(card);
-            } else {
-                // Update existing content
-                card.innerHTML = contentHTML;
-                card.className = className;
-            }
-            
-            // If creating for first time
-            if (card.innerHTML === "") {
-                card.innerHTML = contentHTML;
-                card.className = className;
-            }
+            } 
+            card.innerHTML = contentHTML;
+            card.className = className;
         }
 
         function getToolbarHTML(id) {
+            let refreshLabel = currentLang === 'tr' ? 'Yenile' : 'Refresh';
+            let deleteLabel = currentLang === 'tr' ? 'Sil' : 'Delete';
             return `
                 <div class="flex justify-end gap-2 border-t border-gray-800 pt-3 mt-auto">
                     <button onclick="retryItem('${id}')" class="text-xs text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded transition flex items-center gap-1">
-                        <i class="fas fa-sync-alt"></i> Yenile
+                        <i class="fas fa-sync-alt"></i> ${refreshLabel}
                     </button>
                     <button onclick="deleteItem('${id}')" class="text-xs text-red-400 hover:text-red-200 bg-red-900/10 hover:bg-red-900/30 px-3 py-1.5 rounded transition flex items-center gap-1">
-                        <i class="fas fa-trash"></i> Sil
+                        <i class="fas fa-trash"></i> ${deleteLabel}
                     </button>
                 </div>
             `;
         }
 
-        // --- Helpers ---
         async function retryItem(id) {
             const item = globalResults.find(r => r.id === id);
             if (!item) return;
             const apiKey = document.getElementById('apiKey').value;
             const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
             const model = document.getElementById('modelSelect').value;
-            await processSingleItem(item, apiKey, model, serverUrl);
+            processSingleItem(item, apiKey, model, serverUrl);
         }
 
         function deleteItem(id) {
             globalResults = globalResults.filter(r => r.id !== id);
-            const el = document.getElementById(id);
-            if (el) {
-                el.style.opacity = '0';
-                setTimeout(() => el.remove(), 300);
-            }
-            updateUIHeader();
-            updateCombinedJson();
-        }
-
-        function clearAllResults() {
-            if(!confirm("Tüm sonuçlar silinecek. Emin misiniz?")) return;
-            globalResults = [];
-            document.getElementById('resultsGrid').innerHTML = '';
+            const card = document.getElementById(id);
+            if(card) card.remove();
             updateUIHeader();
             updateCombinedJson();
         }
@@ -677,73 +693,49 @@
         function updateUIHeader() {
             const count = globalResults.length;
             document.getElementById('resultCount').textContent = `(${count})`;
+            
             const toolbar = document.getElementById('resultsToolbar');
-            if (count > 0) toolbar.classList.remove('hidden');
-            else toolbar.classList.add('hidden');
+            const jsonSec = document.getElementById('jsonSection');
+
+            if (count > 0) {
+                toolbar.classList.remove('hidden');
+                toolbar.classList.add('flex');
+                jsonSec.classList.remove('hidden');
+            } else {
+                toolbar.classList.add('hidden');
+                toolbar.classList.remove('flex');
+                jsonSec.classList.add('hidden');
+            }
+        }
+
+        function clearAllResults() {
+            let confirmMsg = currentLang === 'tr' ? 'Tüm sonuçları silmek istediğinize emin misiniz?' : 'Are you sure you want to clear all results?';
+            if(!confirm(confirmMsg)) return;
+            globalResults = [];
+            document.getElementById('resultsGrid').innerHTML = '';
+            updateUIHeader();
+            updateCombinedJson();
         }
 
         function updateCombinedJson() {
-            const successItems = globalResults
-                .filter(r => r.status === 'success' && r.data)
-                .map(r => ({ input_url: r.url, analysis: r.data }));
+            const validData = globalResults
+                .filter(item => item.status === 'success' && item.data)
+                .map(item => item.data);
             
-            const jsonSection = document.getElementById('jsonSection');
-            if (successItems.length > 0) {
-                document.getElementById('combinedJsonOutput').textContent = JSON.stringify(successItems, null, 4);
-                jsonSection.classList.remove('hidden');
-            } else {
-                jsonSection.classList.add('hidden');
-            }
+            document.getElementById('combinedJsonOutput').textContent = JSON.stringify(validData, null, 2);
         }
-        
+
         function copyCombinedJson() {
-            navigator.clipboard.writeText(document.getElementById('combinedJsonOutput').textContent)
-                .then(() => alert('Kopyalandı!'));
+            const text = document.getElementById('combinedJsonOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                let alertMsg = currentLang === 'tr' ? 'JSON kopyalandı!' : 'JSON copied!';
+                alert(alertMsg);
+            });
         }
 
-        // --- EXPORT FUNCTION ---
-        async function exportToDocx() {
-            const successItems = globalResults
-                .filter(r => r.status === 'success' && r.data)
-                .map(r => ({ input_url: r.url, analysis: r.data }));
-
-            if (successItems.length === 0) {
-                alert("Dışa aktarılacak başarılı sonuç bulunamadı.");
-                return;
-            }
-
-            const exportBtn = document.getElementById('exportBtn');
-            const originalText = exportBtn.innerHTML;
-            exportBtn.disabled = true;
-            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...';
-
-            try {
-                const serverUrl = document.getElementById('serverUrl').value.replace(/\/$/, '');
-                const response = await fetch(`${serverUrl}/export-docx`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(successItems)
-                });
-
-                if (!response.ok) throw new Error(await response.text());
-
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `expatintel_grouped_${new Date().toISOString().slice(0,10)}.docx`;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                a.remove();
-
-            } catch (error) {
-                console.error("Export Error:", error);
-                alert("Word hatası: " + error.message);
-            } finally {
-                exportBtn.disabled = false;
-                exportBtn.innerHTML = originalText;
-            }
+        function exportToDocx() {
+            let alertMsg = currentLang === 'tr' ? 'Word aktarma (docx) işlemi için kütüphane eklenebilir veya backend üzerinden yapılabilir.' : 'Word export feature can be implemented using a client library or via backend.';
+            alert(alertMsg);
         }
     </script>
 </body>
