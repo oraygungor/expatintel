@@ -108,27 +108,30 @@ def filter_with_ai(news_list):
     client = OpenAI(api_key=API_KEY)
     context = ""
     for idx, item in enumerate(news_list):
-        context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\n\n"
+        context += f"ID: {idx}\nKaynak: {item['source']}\nBaşlık: {item['title']}\nTarih: {item['date']}\nLink: {item['link']}\nÖzet: {item['summary']}\n\n"
 
-    # Talep ettiğin model versiyonu talimatı eklendi
     prompt = f"""
-    Aşağıdaki haberlerden Danimarka'daki expat'ları, hatta özellikle Türk expatları ilgilendirenleri seç. 
+    Aşağıdaki haberlerden Danimarka'daki expat'ları (özellikle Türk expatları) ilgilendirenleri seç. 
     
     ÖNEMLİ KURALLAR:
-    1. Sonuçları TÜRKÇE olarak dön.
+    1. Sonuçları hem TÜRKÇE hem de İNGİLİZCE olacak şekilde çift dilli JSON formatında dön.
     2. 'tarih' alanına KESİNLİKLE sadece GG.AA.YYYY formatında tarih yaz (Örn: 09.03.2026).
     3. ASLA "tarih mevcut değil" gibi cümleler kurma. Eğer tarih yoksa bugünün tarihini ({datetime.now().strftime("%d.%m.%Y")}) kullan.
-    4. Puanı 8 ve üzeri olanları seç.
+    4. Puanı 8 ve üzeri olanları seç (expat_puani).
 
     JSON FORMATI:
     {{
       "haberler": [
         {{
           "baslik": "Türkçe Başlık",
-          "kaynak": "Kaynak",
-          "link": "Link",
+          "title": "English Title",
+          "kaynak": "Kaynak Adı",
+          "link": "Haber Linki",
           "tarih": "09.03.2026",
-          "sebep": "Neden önemli",
+          "ozet": "Türkçe kısa özet",
+          "summary": "English short summary",
+          "ai_analiz": "Bu haberin expatlar için önemi (Türkçe)",
+          "ai_analysis": "Why this news is important for expats (English)",
           "expat_puani": 9
         }}
       ]
