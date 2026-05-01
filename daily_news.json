@@ -1,6 +1,42 @@
 {
   "haberler": [
     {
+      "baslik": "Kopenhag’da Vesterbrogade’nin merkezi bölümü 7 ay kapatılıyor",
+      "title": "A central part of Vesterbrogade is closing today for seven months",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/hovedstaden/art10825779/I-dag-lukkes-en-central-del-af-Vesterbrogade.-De-kommende-7-m%C3%A5neder-vil-omr%C3%A5det-blive-fyldt-ud-med-planter-og-b%C3%A6nke",
+      "tarih": "01.05.2026",
+      "ozet": "Kopenhag’daki Vesterbrogade’nin merkezi kısmı geçici olarak kapatılıyor; trafik azalacak ve alan yeşil kamusal mekâna dönüştürülecek.",
+      "summary": "A central section of Vesterbrogade in Copenhagen is being temporarily closed and converted into a greener public space.",
+      "ai_analiz": "Kopenhag’da yaşayan expatlar için trafik, ulaşım ve günlük rota değişiklikleri açısından doğrudan etkili. İşe gidiş, teslimatlar ve şehir içi hareketlilik zorlaşabilir. Özellikle merkezde yaşayan Türk expatlar için önemli bir pratik güncelleme.",
+      "ai_analysis": "Directly affects expats living in Copenhagen in terms of traffic, commuting and daily route changes. It may complicate getting to work, deliveries and movement around the city. A practical update, especially for Turkish expats in the city center.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’daki büyük çocuk gruplarında hukuki koruma baskı altında",
+      "title": "The rule of law for Denmark’s most vulnerable children is under massive pressure",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/kronikker/retssikkerheden-for-de-mest-saarbare-boern-i-danmark-er-under-massivt-pres?referrer=RSS",
+      "tarih": "01.05.2026",
+      "ozet": "Çocuk koruma ve yerleştirme süreçlerindeki sorunların Danimarka’daki en savunmasız grupları etkilediği belirtiliyor.",
+      "summary": "The article says legal protection for vulnerable children in Denmark is under severe strain.",
+      "ai_analiz": "Aile sahibi expatlar için çocuk refahı sistemine dair önemli bir uyarı niteliğinde. Okul, sosyal hizmetler ve çocuk koruma kurumlarıyla temas eden Türk expatlar bu tür tartışmaları yakından izlemeli. Çocuğu olan aileler için güven ve sistem algısını etkiler.",
+      "ai_analysis": "An important warning for expat families about the child welfare system. Turkish expats who interact with schools, social services or child protection agencies should pay attention to such debates. It affects trust and perceptions of the system for parents.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Göçmen çocukların şiddet vakalarında aşırı temsil edildiği uyarısı yapıldı",
+      "title": "He usually speaks for children. Now he warns against hesitation when immigrant children are exposed to violence",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/samfund/han-er-vant-til-at-tale-boernenes-sag-nu-advarer-han-mod-beroeringsangst-naar-indvandrerboern-udsaettes-for-vold?referrer=RSS",
+      "tarih": "01.05.2026",
+      "ozet": "Göçmen kökenli çocukların aile içi şiddet vakalarında orantısız biçimde temsil edildiği ve bunun nedenlerinin tartışıldığı aktarılıyor.",
+      "summary": "The piece warns that children with immigrant backgrounds are overrepresented in child abuse cases and discusses the causes.",
+      "ai_analiz": "Türk expat topluluğu dahil göçmen aileler için çok hassas ve önemli bir haber. Sosyal hizmetler, okul bildirimi ve çocuk koruma süreçleri açısından bilinç oluşturabilir. Ayrımcılık ve destek mekanizmaları bağlamında dikkatle izlenmeli.",
+      "ai_analysis": "A very sensitive and important story for immigrant families, including Turkish expats. It can raise awareness about social services, school reporting and child protection processes. It should be followed closely in the context of discrimination and support mechanisms.",
+      "expat_puani": 9
+    },
+    {
       "baslik": "Danimarka’nın yeni Basiskort seyahat kartı nasıl çalışıyor?",
       "title": "How does Denmark's new Basiskort travel card system work?",
       "kaynak": "The Local Denmark",
@@ -166,6 +202,78 @@
       "summary": "Denmark is among several countries fast-tracking biometric digital ID wallets and phasing out legacy systems for travel and public services.",
       "ai_analiz": "Dijital kimlik sistemleri expatlar için çok kritik olabilir; seyahat, banka işlemleri, sınır geçişleri ve kamu hizmetlerine erişimi etkiler. Türk expatlar yeni dijital doğrulama süreçlerini yakından takip etmelidir.",
       "ai_analysis": "Digital ID systems can be crucial for expats because they affect travel, banking, border crossings, and access to public services. Turkish expats should closely follow new verification processes.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da İngilizce hizmete karşı çıkan restoran tavrı tartışılıyor",
+      "title": "He refuses to be served in English when he goes to a restaurant in Denmark",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/kultur/art10821839/Han-n%C3%A6gter-at-lade-sig-betjene-p%C3%A5-engelsk-n%C3%A5r-han-g%C3%A5r-p%C3%A5-restaurant-i-Danmark",
+      "tarih": "30.04.2026",
+      "ozet": "Danimarka’da bazı çevrelerin restoranlarda İngilizce hizmete mesafeli yaklaşımı tartışma konusu oluyor.",
+      "summary": "The debate highlights attitudes in Denmark toward being served in English at restaurants.",
+      "ai_analiz": "Günlük yaşamda expat’ların en çok temas ettiği konulardan biri dil kullanımıdır. Restoran, kafe ve hizmet sektöründe İngilizceye bakış, özellikle yeni gelen Türk expatlar için rahatlık ve dışlanmışlık hissini etkileyebilir.",
+      "ai_analysis": "Language use is one of the most immediate everyday issues for expats. Attitudes toward English in restaurants and service settings can affect comfort and feelings of inclusion, especially for newly arrived Turkish expats.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "DMI, yüksek yangın riski konusunda uyardı",
+      "title": "DMI warns of a high fire danger index",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/dmi-advarer-om-hoejt-brandfareindeks",
+      "tarih": "30.04.2026",
+      "ozet": "DMI, Danimarka’da bazı bölgeler için yüksek yangın riski uyarısı yayımladı.",
+      "summary": "DMI has issued a warning about a high fire danger index in parts of Denmark.",
+      "ai_analiz": "Yaz dönemine yaklaşırken açık alanlarda yaşayan, seyahat eden veya çocuklarıyla dışarıda vakit geçiren expatlar için güvenlik açısından önemli. Barbekü, kamp ve doğa etkinliklerinde ekstra dikkat gerektiriyor. Türk expatlar için özellikle hafta sonu planlarını etkileyebilir.",
+      "ai_analysis": "Important for expats as summer approaches, especially those spending time outdoors, traveling, or with children. It calls for extra caution with barbecues, camping and outdoor activities. It may also affect weekend plans for Turkish expats.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'nın Avrupa'daki kara rüzgâr türbini satışları tamamlandı",
+      "title": "Ørsted completes divestment of its onshore wind turbines in Europe",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/oekonomi/virksomheder/art10825606/%C3%98rsted-afslutter-frasalg-af-sine-landvindm%C3%B8ller-i-Europa",
+      "tarih": "30.04.2026",
+      "ozet": "Ørsted’in Avrupa’daki kara rüzgâr türbinleri satış süreci tamamlandı ve işlem onaylandı.",
+      "summary": "Ørsted has completed the divestment of its onshore wind turbines in Europe.",
+      "ai_analiz": "Enerji sektöründe çalışan expatlar, yatırımcılar ve iş arayanlar için önemli bir kurumsal gelişme. Danimarka’daki yeşil enerji iş piyasasını ve şirket stratejilerini etkileyebilir. Türk expatlar için enerji ve mühendislik alanlarında fırsat sinyali olabilir.",
+      "ai_analysis": "An important corporate development for expats working in energy, investors and job seekers. It may affect Denmark's green energy job market and company strategy. It could signal opportunities for Turkish expats in energy and engineering fields.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ve ABD arasındaki güvenlik algısı değişiyor",
+      "title": "Danes’ perceptions of allies are changing dramatically",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/internationalt/art10824406/Ny-m%C3%A5ling-Danskernes-tillid-til-%C3%A9t-europ%C3%A6isk-land-er-femdoblet",
+      "tarih": "30.04.2026",
+      "ozet": "Yeni bir ankete göre Danimarkalıların müttefiklere bakışı hızla değişiyor ve Avrupa’ya yönelim güçleniyor.",
+      "summary": "A new poll shows Danes’ views of allies are changing rapidly, with a stronger shift toward Europe.",
+      "ai_analiz": "Dış politika ve güvenlik algısındaki değişimler expatlar için dolaylı ama önemli. Kamu tartışmaları, toplumsal atmosferi ve siyasal öncelikleri etkiler. Türk expatlar açısından Danimarka toplumunun genel yönelimini anlamak için faydalı.",
+      "ai_analysis": "Changes in foreign policy and security perceptions matter indirectly but meaningfully for expats. Public debates shape the social atmosphere and political priorities. Useful for Turkish expats trying to understand Denmark’s broader direction.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da iki tren çarpıştı, kritik yaralılar var",
+      "title": "Two trains collide in Denmark, resulting in five critical injuries",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-in-denmark-resulting-in-five-critical-injuries/ar-AA21xUDN?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "30.04.2026",
+      "ozet": "Danimarka’da iki trenin çarpışması sonucu ağır yaralananlar olduğu bildirildi.",
+      "summary": "A train collision in Denmark left several people critically injured.",
+      "ai_analiz": "Toplu taşıma kullanan expatlar için güvenlik ve seyahat planı açısından önemli. Özellikle günlük işe gidiş-geliş yapanlar alternatif güzergâhları takip etmeli. Türk expatlar için ulaşım kesintileri doğrudan etkili olabilir.",
+      "ai_analysis": "Important for expats who rely on public transport, both for safety and travel planning. Daily commuters should monitor alternative routes. Service disruptions can directly affect Turkish expats as well.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag'dan Berlin ve Prag'a ilk direkt tren biletleri ve sefer bilgileri",
+      "title": "First direct train from Copenhagen to Prague to depart Friday",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1szrnz6/første_directe_tog_fra_københavn_til_prag_kører/",
+      "tarih": "30.04.2026",
+      "ozet": "Kullanıcılar yeni direkt tren hattının seyahat kolaylığı yaratacağını tartışıyor.",
+      "summary": "Users discuss the new direct train route and its travel convenience.",
+      "ai_analiz": "Topluluk düzeyinde olsa da ulaşım açısından expat’lar için önemli bir gündem. Seyahat sürelerini ve planlarını etkileyen güncel bir gelişme. Türk expatlar için özellikle Avrupa içi seyahatlerde pratik önem taşıyor.",
+      "ai_analysis": "Although community-based, it is still an important transport topic for expats. It affects travel times and planning. It is practically relevant for Turkish expats traveling within Europe.",
       "expat_puani": 8
     },
     {
