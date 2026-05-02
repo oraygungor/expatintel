@@ -1,6 +1,66 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da maaş kayboluyor: yeni dolandırıcılık türüne karşı uyarı",
+      "title": "Warning about a new scam: your salary disappears",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/danmark/art10826951/Advarsel-om-ny-type-svindel-Din-l%C3%B8n-forsvinder",
+      "tarih": "02.05.2026",
+      "ozet": "Polis, banka hesabı değişmiş gibi davranan dolandırıcılara karşı uyarıyor.",
+      "summary": "Police warn about scammers pretending to be employees who have changed bank accounts.",
+      "ai_analiz": "Expatlar için çok kritik; yeni gelenler ve Danimarka sistemini daha az tanıyanlar, maaş ödeme ve banka bilgisi değişikliği gibi süreçlerde daha kolay hedef olabilir. İşveren ve banka doğrulaması yapmadan ödeme bilgisi değiştirilmeli.",
+      "ai_analysis": "Highly important for expats; newcomers and those unfamiliar with Danish processes can be easier targets in salary and bank-details fraud. Payment details should only be changed after proper employer and bank verification.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’dan başlayıp Copenaghen’e uzanan yeni doğrudan tren hattı",
+      "title": "New direct train service connects Prague, Germany, and Denmark to Copenhagen",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/czech-republic-germany-and-denmark-connect-with-new-direct-train-service-from-prague-to-copenhagen/",
+      "tarih": "02.05.2026",
+      "ozet": "Prag’dan Kopenhag’a yeni doğrudan tren hizmeti duyuruldu.",
+      "summary": "A new direct train service from Prague to Copenhagen has been announced.",
+      "ai_analiz": "Expatlar için faydalı; Avrupa içi seyahat, aile ziyareti ve iş seyahatleri daha kolay hale gelebilir. Özellikle Türkiye’den Avrupa’ya yerleşmiş expatlar için kıtalararası aktarmalı yolculuk planlamasında ek bir seçenek sunar.",
+      "ai_analysis": "Useful for expats because it makes intra-Europe travel, family visits, and business trips easier. It also adds another option for those already living in Europe who plan multi-country travel.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da Norlys kullananlara hatırlatma: toplu indirim bu ay faturanıza eklendi",
+      "title": "FYI for Norlys customers: collective discount was added to the bill this month",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1t1j98a/fyi_i_tilf%C3%A6lde_af_at_du_har_norlys_har_de_i_denne/",
+      "tarih": "02.05.2026",
+      "ozet": "Norlys aboneleri için toplu indirimin fatura düzeninde değişiklik olduğu bildiriliyor.",
+      "summary": "Norlys users report that the collective discount was added to the bill instead of being deducted.",
+      "ai_analiz": "Expatlar için önemli; enerji, internet ve hizmet faturalarında beklenmedik muhasebe değişiklikleri bütçeyi etkileyebilir. Özellikle yeni gelenler, faturalarını ve otomatik ödeme kayıtlarını kontrol etmelidir.",
+      "ai_analysis": "Important for expats because billing changes in utilities and telecom can affect budgets. Newcomers in particular should check invoices and automatic payment settings carefully.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Büyük veri sızıntısı sonrası Motorstyrelsen’den hâlâ yanıt yok",
+      "title": "Still no answer from Motorstyrelsen after major data leak",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1t1gnac/stadig_intet_svar_fra_motorstyrelsen_hvordan/",
+      "tarih": "02.05.2026",
+      "ozet": "On binlerce kişinin verisinin yıllarca sızdırılmış olabileceği tartışılıyor.",
+      "summary": "A discussion highlights a possible long-running data leak affecting tens of thousands of people.",
+      "ai_analiz": "Expatlar için kritik; Danimarka’da araç kaydı, ehliyet ve resmi verilerle çalışan herkes veri güvenliği riskinden etkilenebilir. Türk expatlar da kişisel kimlik ve kayıt bilgilerinin korunmasına dikkat etmelidir.",
+      "ai_analysis": "Critical for expats because anyone dealing with vehicle registration, licenses, or official data in Denmark may be affected by data-security risks. Turkish expats should also pay attention to the protection of personal identity and registration data.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Aarhus’taki ani elektrik kesintisi sonrası elektrik geri geldi",
+      "title": "Power restored in Aarhus after an unscheduled outage",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/dele-af-det-centrale-aarhus-er-uden-stroem",
+      "tarih": "02.05.2026",
+      "ozet": "Aarhus’un merkezi bölümlerinde yaşanan elektrik kesintisi giderildi.",
+      "summary": "Power has been restored after an unexpected outage in central Aarhus.",
+      "ai_analiz": "Expatlar için önemli; özellikle büyük şehirlerde altyapı kesintileri günlük yaşamı, uzaktan çalışmayı ve güvenliği etkileyebilir. Bu tür haberler, alternatif iletişim ve acil durum hazırlığının önemini gösterir.",
+      "ai_analysis": "Important for expats because infrastructure outages in major cities can affect daily life, remote work, and safety. Such news highlights the need for backup communication and emergency preparedness.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Kopenhag’da Vesterbrogade’nin merkezi bölümü 7 ay kapatılıyor",
       "title": "A central part of Vesterbrogade is closing today for seven months",
       "kaynak": "Politiken",
@@ -274,6 +334,18 @@
       "summary": "Denmark’s public broadcaster DR has appointed a BBC alum as content chief.",
       "ai_analiz": "Medya ve iletişim sektöründe çalışan expat'lar için sektörel sinyal verir. Uluslararası yeteneklere açık bir iş ortamını da gösterebilir.",
       "ai_analysis": "A sector signal for expats working in media and communications. It may also indicate an openness to international talent.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’ya doğru yol alan sıkışmış balina Timmy",
+      "title": "Boat carrying stranded whale 'Timmy' reaches Denmark",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-us/news/world/boat-carrying-stranded-whale-timmy-reaches-denmark/ar-AA220Kri",
+      "tarih": "01.05.2026",
+      "ozet": "Strandalan balina Timmy’yi taşıyan tekne Danimarka’ya ulaştı.",
+      "summary": "A boat carrying the stranded whale Timmy has reached Denmark.",
+      "ai_analiz": "Bu haber expatlar için doğrudan yaşam etkisi taşımıyor; daha çok çevre ve kamu ilgisiyle ilgili. Ancak Danimarka’nın deniz ekosistemi ve sahil güvenliği farkındalığını gösterdiği için kıyı bölgelerinde yaşayanlar için dolaylı ilgi çekebilir.",
+      "ai_analysis": "This news has limited direct impact on expat daily life and is mainly of environmental/public interest. Still, it reflects Denmark’s marine ecosystem awareness and may interest those living near the coast.",
       "expat_puani": 8
     },
     {
