@@ -1,6 +1,78 @@
 {
   "haberler": [
     {
+      "baslik": "Kopenhag'da satıştaki daire sayısı üst üste dördüncü ay arttı",
+      "title": "Number of apartments on sale in Copenhagen rises for fourth consecutive month",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260506/number-of-apartments-on-sale-in-copenhagen-rises-for-fourth-consecutive-month",
+      "tarih": "06.05.2026",
+      "ozet": "Kopenhag konut piyasasında satılık daire sayısı artmaya devam ediyor; bu durum fiyat artışlarını yavaşlatabilir.",
+      "summary": "The number of apartments on the market in Copenhagen keeps rising, which may cool further price increases.",
+      "ai_analiz": "Kopenhag’da yaşayan veya ev arayan expat’lar için bu haber doğrudan önemli. Arz artışı, kira ve satın alma fiyatlarında denge oluşturabilir; taşınma, yatırım ve uzun vadeli yerleşim planlarını etkiler. Özellikle ilk kez ev almayı düşünen Türk expatlar için pazarlık gücü artabilir.",
+      "ai_analysis": "This is directly relevant for expats living in or looking to buy in Copenhagen. Rising supply can ease price pressure and affect rental and purchase decisions, long-term settlement plans, and mobility. It may also improve bargaining power for Turkish expats considering a home purchase.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Kopenhag'da satılık daire sayısı yeniden artıyor",
+      "title": "The number of apartments for sale in Copenhagen rises again",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10831148/Antal-lejligheder-til-salg-i-K%C3%B8benhavn-stiger-igen",
+      "tarih": "06.05.2026",
+      "ozet": "Satılık daire arzındaki artış devam ederse, fiyat yükselişlerini baskılayabilir.",
+      "summary": "If apartment supply continues to rise, it could help dampen price increases.",
+      "ai_analiz": "Konut maliyetleri expat yaşamının en kritik kalemlerinden biridir. Kopenhag’da kiradan satın almaya geçmeyi düşünen expatlar için piyasanın yumuşaması olumlu olabilir. Türk expatlar açısından özellikle aile yerleşimi ve uzun dönem planlarda daha erişilebilir seçenekler doğurabilir.",
+      "ai_analysis": "Housing costs are one of the biggest factors for expat life. A softer Copenhagen market could benefit expats considering moving from renting to buying. For Turkish expats, this may create more accessible options for family settlement and long-term planning.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "200.000 ev sahibine hata sonrası yeni ön vergi değerlendirmesi gönderiliyor",
+      "title": "200,000 homeowners receive new preliminary tax assessments after error",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/art10832037/200.000-boligejere-f%C3%A5r-ny-forskudsopg%C3%B8relse-efter-fejl",
+      "tarih": "06.05.2026",
+      "ozet": "Grundskyld eksikliği nedeniyle çok sayıda ev sahibine yeni ön vergi hesaplaması gönderiliyor.",
+      "summary": "Due to missing property tax amounts, many homeowners will receive updated preliminary tax assessments.",
+      "ai_analiz": "Danimarka’da ev sahibi olan expatlar için vergi hataları doğrudan maddi sonuç doğurabilir. Özellikle Türk expatlar mülk sahibi ise, ön vergi ve belediye vergisi güncellemelerini kontrol etmelidir. Bütçe planlaması ve geri ödeme/ek ödeme riski açısından kritik bir haber.",
+      "ai_analysis": "For expats who own property in Denmark, tax errors can have direct financial consequences. Turkish expat homeowners in particular should check their preliminary tax and municipal tax updates. This is critical for budgeting and for avoiding underpayment or unexpected additional bills.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Novo Nordisk hissesi yükseldi; şirket beklentilerini yukarı çekti",
+      "title": "Novo Nordisk shares rise after earnings and upgraded outlook",
+      "kaynak": "Politiken.dk - Forsiden",
+      "link": "https://politiken.dk/danmark/oekonomi/virksomheder/art10831179/Novo-aktien-stiger-efter-regnskab-med-opjustering",
+      "tarih": "06.05.2026",
+      "ozet": "Novo Nordisk’in finansal sonuçları ve beklenti artırımı sonrası hisseleri yükseldi.",
+      "summary": "Novo Nordisk shares jumped after the company raised expectations and reported pill sales.",
+      "ai_analiz": "Danimarka’da çalışan expatlar için bu şirket, maaş piyasası ve istihdam fırsatları açısından önem taşır. Ayrıca Novo’nun performansı Danimarka ekonomisi ve emeklilik fonları üzerinde etkili olabilir. Türk expatlar için özellikle sağlık, biyoteknoloji ve kurumsal iş fırsatları açısından takip edilmeye değer.",
+      "ai_analysis": "For expats working in Denmark, Novo Nordisk matters for wages, job opportunities, and broader economic momentum. Its performance also affects the Danish economy and pension funds. Turkish expats should follow this especially for opportunities in healthcare, biotech, and corporate roles.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag konut piyasasında satılık daire sayısı artıyor",
+      "title": "Number of apartments on sale in Copenhagen rises for fourth consecutive month",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260506/number-of-apartments-on-sale-in-copenhagen-rises-for-fourth-consecutive-month",
+      "tarih": "06.05.2026",
+      "ozet": "Konut arzındaki artışın fiyat artışlarını frenleyebileceği belirtiliyor.",
+      "summary": "Growing apartment supply in Copenhagen could slow down price increases.",
+      "ai_analiz": "Konut piyasasındaki değişimler expat’lar için kira, taşınma ve uzun dönem yerleşim kararlarını etkiler. Kopenhag’da yaşayan Türk expatlar için bu haber, uygun konut bulma ihtimalinin artabileceğine işaret ediyor.",
+      "ai_analysis": "Changes in the housing market affect rent, relocation, and long-term settlement decisions for expats. For Turkish expats in Copenhagen, this suggests there may be better chances of finding affordable housing.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da yeni veri merkezi bağlantıları durduruldu",
+      "title": "Denmark presses pause on new data center grid connections",
+      "kaynak": "Tom's Hardware",
+      "link": "https://www.tomshardware.com/tech-industry/artificial-intelligence/denmark-presses-pause-on-new-data-center-grid-connections-as-total-requests-hit-60-gw-nordic-nation-is-the-latest-to-put-the-brakes-on-ai-buildouts",
+      "tarih": "06.05.2026",
+      "ozet": "Artan enerji talebi nedeniyle yeni veri merkezi şebeke bağlantıları askıya alındı.",
+      "summary": "Denmark has paused new data center grid connections amid a surge in power demand.",
+      "ai_analiz": "Bu karar özellikle teknoloji sektöründe çalışan expatlar için önemli. Veri merkezi ve AI yatırımlarındaki yavaşlama, iş ilanları ve yatırım ortamını etkileyebilir. Türk expatlar için teknoloji, bulut ve altyapı alanlarındaki kariyer fırsatlarını doğrudan etkileyen bir gelişme.",
+      "ai_analysis": "This matters particularly for expats working in tech. A slowdown in data center and AI buildouts can affect hiring and the investment climate. For Turkish expats, it directly impacts career opportunities in tech, cloud, and infrastructure roles.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "SAS, Hormuz Boğazı krizi nedeniyle Mayıs ayında 1.200 uçuşu iptal ediyor",
       "title": "SAS cancels 1,200 flights in May due to fuel shortages",
       "kaynak": "The Local Denmark",
@@ -142,6 +214,54 @@
       "summary": "Even after major investments, Denmark’s rail system may remain vulnerable during crises.",
       "ai_analiz": "Bu tür altyapı değerlendirmeleri, toplu taşıma kullanan expatlar için uzun vadeli önem taşır. Ulaşım ağındaki kırılganlıklar iş, okul ve şehirler arası hareketliliği etkileyebilir. Türk expatlar alternatif ulaşım planları bulundurmalı.",
       "ai_analysis": "Infrastructure issues matter to expats who depend on public transport. Vulnerabilities in the rail network can affect work, school and intercity mobility. Turkish expats should have backup travel options.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Prag-Kopenhag direkt treni yeniden geri döndü",
+      "title": "Direct Prague–Copenhagen train returns after more than a decade",
+      "kaynak": "Travel And Tour World",
+      "link": "https://www.travelandtourworld.com/news/article/europe-restores-cross-border-rail-as-direct-prague-copenhagen-train-returns-after-more-than-a-decade-boosting-sustainable-travel-in-2026/",
+      "tarih": "05.05.2026",
+      "ozet": "Uzun bir aradan sonra Prag ile Kopenhag arasında doğrudan tren hattı yeniden başladı.",
+      "summary": "A direct Prague–Copenhagen train has returned after more than a decade, improving sustainable travel options.",
+      "ai_analiz": "Seyahat eden expat’lar için ulaşım seçeneklerinin artması önemli. Kopenhag’dan Orta Avrupa’ya gidiş-geliş yapan Türk expatlar için bu, daha kolay ve sürdürülebilir seyahat anlamına gelir. Aile ziyareti, tatil ve iş seyahatlerinde faydalı olabilir.",
+      "ai_analysis": "More transport options matter for traveling expats. For Turkish expats commuting between Copenhagen and Central Europe, this means easier and more sustainable travel. It can help with family visits, holidays, and business trips.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka-Almanya tünel projesi kurulum aşamasına geçti",
+      "title": "Denmark-Germany tunnel project enters installation phase",
+      "kaynak": "Yahoo",
+      "link": "https://www.yahoo.com/news/articles/denmark-germany-tunnel-project-enters-152327171.html",
+      "tarih": "05.05.2026",
+      "ozet": "Danimarka ile Almanya arasındaki büyük ulaşım projesinde kurulum aşamasına geçildi.",
+      "summary": "The Denmark-Germany tunnel project has moved into the installation phase.",
+      "ai_analiz": "Bu altyapı projesi, Danimarka’nın Avrupa ile bağlantısını güçlendirerek ulaşım ve lojistikte kolaylık sağlayacak. Almanya’ya sık giden expat’lar ve sınır ötesi çalışanlar için önemli. Türk expatlar açısından da seyahat ve ticaret bağlantıları açısından olumlu bir gelişme.",
+      "ai_analysis": "This infrastructure project strengthens Denmark’s links to Europe and may improve travel and logistics. It is important for expats who frequently travel to Germany or work across borders. Turkish expats may also benefit from better travel and trade connectivity.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag'daki veri merkezi patlaması enerji sınırlarına takılıyor",
+      "title": "Data center boom meets energy limits as Denmark halts new projects",
+      "kaynak": "Sahm",
+      "link": "https://www.sahmcapital.com/news/content/data-center-boom-meets-energy-limits-as-denmark-halts-new-projects-amid-ai-driven-power-crisis-2026-05-04",
+      "tarih": "05.05.2026",
+      "ozet": "Yapay zekâ kaynaklı enerji krizinin ardından yeni projeler durduruldu.",
+      "summary": "Denmark is pausing new data center projects due to power constraints driven by AI growth.",
+      "ai_analiz": "Enerji kısıtları teknoloji iş piyasasını ve maliyetleri etkileyebilir. Danimarka’daki expat profesyoneller, özellikle mühendisler ve IT çalışanları için sektör yönü değişebilir. Türk expatlar için de iş güvenliği ve büyüme alanlarının değerlendirilmesi açısından önemli.",
+      "ai_analysis": "Energy constraints can affect the tech job market and costs. For expat professionals in Denmark, especially engineers and IT workers, this may shift sector dynamics. Turkish expats should view this as relevant for job security and growth opportunities.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ve Almanya arasındaki tünelde önemli ilerleme",
+      "title": "Denmark-Germany tunnel project enters installation phase",
+      "kaynak": "Yahoo",
+      "link": "https://www.yahoo.com/news/articles/denmark-germany-tunnel-project-enters-152327171.html",
+      "tarih": "05.05.2026",
+      "ozet": "Büyük altyapı projesi kurulum aşamasına geçti.",
+      "summary": "A major cross-border tunnel project between Denmark and Germany has entered installation.",
+      "ai_analiz": "Ulaşım altyapısındaki gelişmeler, Danimarka’daki expat’lar için seyahat ve bağlantı kolaylığı sağlar. Almanya ile iş yapan veya orada ailesi olan Türk expatlar için özellikle yararlı olabilir.",
+      "ai_analysis": "Developments in transport infrastructure make travel and connectivity easier for expats in Denmark. This can be especially useful for Turkish expats who work with Germany or have family there.",
       "expat_puani": 8
     },
     {
