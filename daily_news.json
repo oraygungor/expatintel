@@ -1,6 +1,78 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka’da su fiyatları Avrupa’nın en pahalısı; artış sürecek",
+      "title": "Denmark’s water is the most expensive in Europe and prices are set to rise",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260507/report-denmarks-water-most-expensive-in-europe-and-price-set-to-rise",
+      "tarih": "07.05.2026",
+      "ozet": "Danimarka’da hane halkı suyu Avrupa’nın en pahalıları arasında ve fiyatların önümüzdeki yıllarda daha da artması bekleniyor.",
+      "summary": "Household water in Denmark is already the most expensive in Europe, and prices are expected to rise further.",
+      "ai_analiz": "Danimarka’da yaşayan expat’lar için doğrudan yaşam maliyetini artıran bir haber. Özellikle kira, enerji ve temel giderleri zaten yüksek olan hanelerde su faturaları bütçeyi daha fazla zorlayabilir. Türk expatlar için de aylık sabit gider planlamasında dikkate alınması gereken önemli bir maliyet kalemi.",
+      "ai_analysis": "This directly affects the cost of living for expats in Denmark. With already high rents and utilities, rising water bills can further strain household budgets. It is especially relevant for Turkish expats planning monthly expenses.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Yeni AB kararları uçuş iptallerinde yolcu haklarını koruyor",
+      "title": "EU says flight tickets still must be refunded",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/dine-penge/eu-afviser-ekstraordinaer-omstaendighed-flybilletter-skal-stadig-refunderes?referrer=RSS",
+      "tarih": "07.05.2026",
+      "ozet": "AB Komisyonu, çok sayıda uçuş iptal edilse bile bunun otomatik olarak 'olağanüstü durum' sayılmayacağını ve havayollarının tazminat/refund yükümlülüğünün sürebileceğini açıkladı.",
+      "summary": "The European Commission says flight cancellations do not automatically count as extraordinary circumstances, so airlines may still owe refunds and compensation.",
+      "ai_analiz": "Danimarka’dan sık seyahat eden expatlar için çok önemli. Özellikle Türkiye’ye gidiş-dönüş yapanlar, iptal edilen uçuşlarda para iadesi ve tazminat hakkını daha net kullanabilir. Bilet satın alırken ve hak ararken işlerine yarayacak pratik bir tüketici koruma haberi.",
+      "ai_analysis": "Very important for expats who travel frequently from Denmark, especially to and from Turkey. It clarifies refund and compensation rights when flights are cancelled, which can save money and help passengers assert their rights.",
+      "expat_puani": 10
+    },
+    {
+      "baslik": "Danimarka demiryolu kazasında iki tren çarpıştı, ağır yaralılar var",
+      "title": "Two trains collide in Denmark, causing critical injuries",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/two-trains-collide-in-denmark-resulting-in-critical-injuries/ar-AA21AfRs?ocid=BingNewsVerp&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "07.05.2026",
+      "ozet": "Danimarka’da iki trenin çarpıştığı ve ciddi yaralanmaların olduğu bildirildi.",
+      "summary": "Two trains collided in Denmark, resulting in critical injuries.",
+      "ai_analiz": "Toplu taşıma kullanan expatlar için güvenlik ve seyahat planlaması açısından önemli. Özellikle işe gidiş-gelişte tren kullananlar, hatlardaki aksaklıkları ve güvenlik duyurularını takip etmeli. Türk expatlar için günlük ulaşım düzenini etkileyebilecek bir gelişme.",
+      "ai_analysis": "Important for expats who rely on public transport for daily commuting. It may affect train schedules, safety perceptions, and travel planning. Turkish expats should monitor service updates and disruptions.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da 12.000 öğrenci her dört okul gününden birini kaçırıyor",
+      "title": "NGO warns: 12,000 students miss every fourth school day in Denmark",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-05-07/news/round-up/ngo-warns-12000-students-miss-every-fourth-school-day/",
+      "tarih": "07.05.2026",
+      "ozet": "Bir STK, Danimarka’da 12.000 öğrencinin düzenli olarak çok yüksek oranda okul devamsızlığı yaşadığı konusunda uyardı.",
+      "summary": "An NGO warns that 12,000 students in Denmark miss school at a worrying rate, indicating a growing education issue.",
+      "ai_analiz": "Çocuklu expat aileler için okul uyumu, devamsızlık ve eğitim desteği açısından önemli bir işaret. Danimarka eğitim sistemine yeni alışan Türk aileler, çocuklarının okul takibini ve destek mekanizmalarını daha yakından izlemesi gerektiğini gösterebilir.",
+      "ai_analysis": "Relevant for expat families with children, as it highlights school attendance and student support issues. Turkish families adapting to the Danish education system may need to pay closer attention to school engagement and support services.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da çalışan yabancılar bilgi yoğun işlerde daha fazla istihdam ediliyor",
+      "title": "Foreign workers are employed in knowledge-intensive jobs to a greater extent than before",
+      "kaynak": "Danmarks Nationalbank",
+      "link": "https://www.nationalbanken.dk/en/news-and-knowledge/publications-and-speeches/analysis/2026/foreign-workers-are-employed-in-knowledge-intensive-jobs-to-a-greater-extent-than-before",
+      "tarih": "07.05.2026",
+      "ozet": "Merkez Bankası analizine göre, yabancı çalışanlar Danimarka’da giderek daha fazla bilgi yoğun ve nitelikli işlerde çalışıyor.",
+      "summary": "According to Danmarks Nationalbank, foreign workers in Denmark are increasingly employed in knowledge-intensive jobs.",
+      "ai_analiz": "Expat profesyoneller için olumlu bir gösterge. Danimarka iş piyasasında yabancıların nitelikli pozisyonlara erişiminin arttığını gösteriyor; bu da özellikle mühendislik, IT, finans ve sağlık gibi alanlarda çalışan Türk expatlar için motivasyon verici olabilir.",
+      "ai_analysis": "A positive signal for expat professionals. It suggests stronger access for foreigners to skilled roles in Denmark, which is encouraging for Turkish expats working in IT, engineering, finance, healthcare, and similar sectors.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka’da yeni bakım evi anlaşması imzalandı",
+      "title": "Ambea signs agreement for new care home in Denmark",
+      "kaynak": "marketscreener.com",
+      "link": "https://www.marketscreener.com/news/ambea-signs-agreement-for-new-care-home-in-denmark-ce7f58d3da8cff27",
+      "tarih": "07.05.2026",
+      "ozet": "Danimarka’da yeni bir bakım evi için anlaşma imzalandı; yaşlı bakımı kapasitesinin artması bekleniyor.",
+      "summary": "A new care home agreement has been signed in Denmark, adding to elderly care capacity.",
+      "ai_analiz": "Yaşlı aile bireyleri olan expatlar için faydalı olabilir. Danimarka’da uzun süreli bakım, yaşlı hizmetleri ve yaşlı yakınlarının gelecekteki ihtiyaçlarını planlayan aileler açısından önem taşıyor. Türk expat ailelerinde ebeveyn bakımı konusunda bilgi arayanlar için de anlamlı.",
+      "ai_analysis": "Useful for expats with elderly family members. It points to developments in long-term care capacity and may matter for families planning future eldercare needs in Denmark. Relevant for Turkish expats thinking about parents’ care options.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Kopenhag'da satıştaki daire sayısı üst üste dördüncü ay arttı",
       "title": "Number of apartments on sale in Copenhagen rises for fourth consecutive month",
       "kaynak": "The Local Denmark",
