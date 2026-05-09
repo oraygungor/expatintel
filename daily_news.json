@@ -1,6 +1,90 @@
 {
   "haberler": [
     {
+      "baslik": "AB uçuş tazminatı hakları seyahat aksaklıkları sırasında netleştirildi",
+      "title": "EU Commission clarifies flight compensation rights amid travel disruption",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260509/eu-commission-clarifies-flight-compensation-rights-amid-travel-disruption",
+      "tarih": "09.05.2026",
+      "ozet": "AB Komisyonu, Orta Doğu’daki çatışma nedeniyle oluşabilecek yakıt sıkıntısı ve seyahat aksaklıkları karşısında hava yolcu haklarını netleştirdi.",
+      "summary": "The European Commission clarified air passenger rights amid possible fuel shortages and travel disruption linked to Middle East conflict.",
+      "ai_analiz": "Danimarka’daki expatlar için bu haber, iptal/gecikme yaşayan uçuşlarda iade ve tazminat haklarını doğrudan etkiler. Özellikle Türkiye’ye veya Avrupa içi seyahat edenler, bu kuralları bilerek hak kaybı yaşamadan işlem yapabilir.",
+      "ai_analysis": "This matters to expats in Denmark because it directly affects refund and compensation rights for delayed or cancelled flights. Turkish expats traveling to Türkiye or within Europe can use these rules to avoid losing their rights.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da yeni hükümet kurulması için görüşmeler tekrar başlıyor",
+      "title": "Talks to form new government in Denmark after hung polls fail",
+      "kaynak": "The Local Denmark",
+      "link": "https://www.thelocal.dk/20260509/talks-to-form-new-government-in-denmark-after-hung-polls-fail",
+      "tarih": "09.05.2026",
+      "ozet": "Mart seçimlerinin ardından sonuçsuz kalan görüşmeler yeniden başlıyor; kral yeni bir müzakereci atadı.",
+      "summary": "Following inconclusive March elections, new talks to form a government in Denmark are starting again after the king appointed a new negotiator.",
+      "ai_analiz": "Hükümet kurma süreci; vergi, göç, oturum, çalışma izni ve sosyal yardım politikalarında değişim ihtimalini artırır. Expatlar için özellikle düzenleyici belirsizlik ve kamu hizmetlerinde olası yön değişikliği açısından önemlidir.",
+      "ai_analysis": "The government formation process could change tax, immigration, residence, work permit, and welfare policies. For expats, this means regulatory uncertainty and possible shifts in public services.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka’da koalisyon görüşmeleri çöktü, yeni müzakere lideri Troels Lund Poulsen oldu",
+      "title": "Danish deputy PM to lead coalition talks after Frederiksen’s effort fails",
+      "kaynak": "Politico Europe",
+      "link": "https://www.politico.eu/article/denmark-deputy-pm-lead-coalition-talks-frederiksen-effort-fails/",
+      "tarih": "09.05.2026",
+      "ozet": "Başbakan Frederiksen’in hükümet kurma girişimi başarısız oldu; görüşmeleri yürütme görevi Troels Lund Poulsen’e verildi.",
+      "summary": "Prime Minister Frederiksen failed to form a government, and Troels Lund Poulsen has been tasked with leading the next round of talks.",
+      "ai_analiz": "Bu gelişme, yeni hükümetin ekonomi, konut, ulaşım ve göç alanlarında farklı öncelikler getirebileceğine işaret eder. Danimarka’da yaşayan Türk expatlar için günlük yaşamı ve uzun vadeli planları etkileyebilecek siyasi yön değişikliği anlamına gelir.",
+      "ai_analysis": "This signals possible changes in priorities on the economy, housing, transport, and immigration. For Turkish expats in Denmark, it may affect daily life and long-term planning through a shift in political direction.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag Maratonu nedeniyle yollar kapanacak ve park yasağı uygulanacak",
+      "title": "Copenhagen Marathon to close roads and impose parking restrictions",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/maraton-i-koebenhavn-betyder-lukkede-veje-og-parkeringsforbud",
+      "tarih": "09.05.2026",
+      "ozet": "Kopenhag Maratonu nedeniyle şehir merkezinde yol kapanmaları ve park yasağı uygulanacak.",
+      "summary": "Road closures and parking bans will be in place in Copenhagen because of the marathon.",
+      "ai_analiz": "Şehir içi ulaşım, araç kullanımı ve park planları olan expatlar için doğrudan etkili. Özellikle işe gidiş, havaalanı bağlantıları ve hafta sonu planları açısından dikkat gerektirir.",
+      "ai_analysis": "This directly affects expats who drive or rely on city transport. It is important for commuting, airport connections, and weekend planning.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka ile Norveç arasında doğrudan tren hattı geliyor",
+      "title": "Direct train service between Denmark and Norway to begin in 2028",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/i-2028-kommer-der-direkte-tog-mellem-danmark-og-norge",
+      "tarih": "09.05.2026",
+      "ozet": "2028’de Danimarka ve Norveç arasında doğrudan tren seferleri başlayacak.",
+      "summary": "Direct train services between Denmark and Norway are planned to start in 2028.",
+      "ai_analiz": "Uzun vadede bölgesel seyahati kolaylaştıracak bir ulaşım yatırımı. Danimarka’daki expatlar için hem iş hem tatil amaçlı İskandinav seyahatlerinde daha pratik bir seçenek sunabilir.",
+      "ai_analysis": "A long-term transport improvement that will make regional travel easier. For expats in Denmark, it could provide a more convenient option for work and leisure travel across Scandinavia.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag’da trafik ve toplu ulaşımı etkileyen maraton uyarısı",
+      "title": "Copenhagen Marathon will disrupt traffic and parking",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/hovedstaden/art10836445/Maraton-betyder-sp%C3%A6rrede-veje-og-parkeringsforbud-i-K%C3%B8benhavn",
+      "tarih": "09.05.2026",
+      "ozet": "Pazar günü düzenlenecek Kopenhag Maratonu nedeniyle trafikte kapanmalar ve park yasakları olacak.",
+      "summary": "Sunday’s Copenhagen Marathon will bring road closures and parking restrictions.",
+      "ai_analiz": "Kopenhag’da yaşayan expatlar için günlük hareketliliği, işe gidişi ve araç kullanımını etkiler. Şehirde plan yapan herkesin önceden güzergâh kontrolü yapması gerekir.",
+      "ai_analysis": "This affects daily mobility, commuting, and car use for expats living in Copenhagen. Anyone planning to travel in the city should check routes in advance.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Köy yolları ve park düzeni değil, ulusal ölçekli ulaşım: Danimarka ve Norveç arasında doğrudan tren",
+      "title": "Direct train between Denmark and Norway announced",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/i-2028-kommer-der-direkte-tog-mellem-danmark-og-norge",
+      "tarih": "09.05.2026",
+      "ozet": "2028’de başlayacak doğrudan tren hattı, İskandinav ülkeleri arası ulaşımı güçlendirecek.",
+      "summary": "A direct train link starting in 2028 will strengthen travel between Denmark and Norway.",
+      "ai_analiz": "Seyahat seven expatlar ve aile ziyaretleri yapanlar için önemli bir kolaylık. Türkiye’den gelen expatlar için de İskandinav içi bağlantılar açısından daha fazla seçenek anlamına gelir.",
+      "ai_analysis": "Important for expats who travel ხშირად or visit family. It may also provide more regional travel options for Turkish expats in Scandinavia.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'da yeni ulusal yapay zekâ süper bilgisayarı tanıtıldı",
       "title": "Denmark launches new national AI supercomputer",
       "kaynak": "W.Media",
