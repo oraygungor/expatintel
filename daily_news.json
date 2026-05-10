@@ -1,6 +1,66 @@
 {
   "haberler": [
     {
+      "baslik": "Udenlandsk arbejdskraft contributes record amount to Denmark's GDP",
+      "title": "Foreign labour contributes a record amount to Denmark’s GDP",
+      "kaynak": "DR",
+      "link": "https://www.dr.dk/nyheder/seneste/udenlandsk-arbejdskraft-bidrager-med-rekordhoejt-beloeb-til-danmarks-bnp",
+      "tarih": "10.05.2026",
+      "ozet": "Yabancı iş gücünün Danimarka ekonomisine katkısının rekor seviyeye çıktığı belirtiliyor.",
+      "summary": "Foreign workers are contributing a record-high amount to Denmark’s GDP.",
+      "ai_analiz": "Bu haber expatlar için doğrudan önemli çünkü Danimarka'daki yabancı çalışanların ekonomik değerinin arttığını gösteriyor. Bu durum iş piyasasında yabancıların rolünü güçlendirir ve oturma/çalışma tartışmalarında olumlu bir çerçeve yaratabilir.",
+      "ai_analysis": "This is directly relevant for expats because it shows the rising economic value of foreign workers in Denmark. It strengthens the role of internationals in the labour market and can positively influence public and policy debates about residency and work permits.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Udlændinge bidrager stadigt mere til dansk økonomi",
+      "title": "Foreigners contribute increasingly more to the Danish economy",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/oekonomi/art10836757/Udl%C3%A6ndinge-bidrager-med-stadigt-mere-til-dansk-%C3%B8konomi",
+      "tarih": "10.05.2026",
+      "ozet": "Haberde, Danimarka iş piyasasındaki yabancı sayısının arttığı ve verimliliğin yükseldiği vurgulanıyor.",
+      "summary": "The article highlights that more foreigners are entering the Danish labour market while productivity is rising.",
+      "ai_analiz": "Bu haber expatlar için önemli; çünkü yabancıların Danimarka ekonomisine katkısının artması, toplumdaki algıyı ve çalışma hayatındaki kabulü güçlendirebilir. Özellikle Türk expatlar için bu, istihdam ve entegrasyon açısından pozitif bir sinyal.",
+      "ai_analysis": "This matters for expats because the growing contribution of foreigners can improve public perception and workplace acceptance. For Turkish expats in particular, it is a positive signal for employment and integration prospects.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da trenler kafa kafaya çarpıştı",
+      "title": "Trains collide head-on in Denmark",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-us/news/world/trains-collide-head-on-in-denmark/ar-AA21znuP?ocid=TobArticle",
+      "tarih": "10.05.2026",
+      "ozet": "İki trenin kafa kafaya çarpıştığı ve acil müdahale başlatıldığı aktarılıyor.",
+      "summary": "Two trains collided head-on in Denmark, prompting an emergency response.",
+      "ai_analiz": "Toplu taşıma güvenliği ve ulaşım planlaması açısından expatlar için kritik bir haber. Trenle işe giden ya da şehirler arası seyahat eden yabancılar, güzergâh değişiklikleri ve güvenlik uyarılarını takip etmelidir.",
+      "ai_analysis": "A critical update for expats in terms of transit safety and travel planning. Foreign residents commuting by train or traveling intercity should monitor route changes and safety notices.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da yabancıların etkisi ve yerel ekonomi",
+      "title": "Foreigners’ impact on Denmark’s economy grows",
+      "kaynak": "Berlingske",
+      "link": "https://www.berlingske.dk/danmark/fakta-her-er-anbefalingerne-til-hjemmeberedskab?referrer=RSS",
+      "tarih": "10.05.2026",
+      "ozet": "Yabancı çalışanların ve ailelerin Danimarka ekonomisindeki payına ilişkin değerlendirmeler öne çıkıyor.",
+      "summary": "The article discusses the increasing role of foreign workers and families in Denmark’s economy.",
+      "ai_analiz": "Bu haber expatlar için önemlidir çünkü yabancı nüfusun ekonomik görünürlüğünü artırır. Çalışma izni, vergi katkısı ve uzun vadeli yerleşim tartışmalarında yabancıların önemini destekleyen bir çerçeve sunar.",
+      "ai_analysis": "This is relevant for expats because it increases the economic visibility of the foreign population. It supports a narrative that strengthens the importance of foreigners in debates on work permits, taxes, and long-term settlement.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Yabancılar Danimarka ekonomisine giderek daha fazla katkı sağlıyor",
+      "title": "Foreigners contribute more and more to the Danish economy",
+      "kaynak": "Politiken",
+      "link": "https://politiken.dk/danmark/oekonomi/art10836757/Udl%C3%A6ndinge-bidrager-med-stadigt-mere-til-dansk-%C3%B8konomi",
+      "tarih": "10.05.2026",
+      "ozet": "Danimarka'da yabancı iş gücünün ekonomideki ağırlığının arttığı vurgulanıyor.",
+      "summary": "The growing importance of foreign labour in Denmark’s economy is highlighted.",
+      "ai_analiz": "Bu haber expat topluluğu için olumlu ve önemlidir; çünkü yabancı emeğin ekonomik katkısı siyasi ve toplumsal destek açısından güçlendirici olabilir. Özellikle Türk expatlar için iş piyasasında daha güçlü bir konum anlamına gelebilir.",
+      "ai_analysis": "This is positive and important for the expat community because the economic contribution of foreign labour can strengthen political and social support. For Turkish expats, it may mean a stronger position in the job market.",
+      "expat_puani": 9
+    },
+    {
       "baslik": "AB uçuş tazminatı hakları seyahat aksaklıkları sırasında netleştirildi",
       "title": "EU Commission clarifies flight compensation rights amid travel disruption",
       "kaynak": "The Local Denmark",
