@@ -1,6 +1,54 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka'da çalışan uluslararası işçiler iş yerinde zorbalığı anlattı",
+      "title": "International workers on bullying in the workplace",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-05-12/business-education/career/international-workers-on-bullying-in-the-workplace/",
+      "tarih": "12.05.2026",
+      "ozet": "Uluslararası çalışanlar, Danimarka iş hayatında zorbalık ve çalışma ortamındaki sorunlara dair deneyimlerini paylaşıyor.",
+      "summary": "International workers share their experiences with bullying and workplace issues in Denmark.",
+      "ai_analiz": "Bu haber expatlar için önemli çünkü iş yerindeki kültür, haklar ve şikayet mekanizmaları hakkında doğrudan farkındalık sağlıyor. Özellikle Türk expatlar için ekip içi iletişim ve çalışma ortamındaki sınırlar açısından yol gösterici olabilir.",
+      "ai_analysis": "This matters to expats because it raises awareness about workplace culture, rights, and complaint channels in Denmark. It can be especially useful for Turkish expats in understanding team dynamics and workplace boundaries.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da sonbahar öncesi takvim: tatiller, yarım tatiller ve yaz arasının yönetimi",
+      "title": "This is the calendar for the period leading up to the summer: holidays, half holidays, the summer break, and a couple of tips on how to handle them",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-05-12/life-in-denmark/this-is-the-calendar-for-the-period-leading-up-to-the-summer-holidays-half-holidays-the-summer-break-and-a-couple-of-tips-on-how-to-handle-them/",
+      "tarih": "12.05.2026",
+      "ozet": "Yaz tatiline kadar olan dönemdeki resmi tatiller, yarım günler ve okul/yaz tatili planlaması özetleniyor.",
+      "summary": "The article outlines holidays, half-holidays, and summer break planning in the run-up to the Danish summer.",
+      "ai_analiz": "Bu içerik expatlar için günlük yaşam ve aile planlaması açısından çok faydalı. Özellikle çocuklu Türk expatlar için okul tatilleri, izin planı ve iş-yaşam dengesi konusunda doğrudan pratik bilgi sunuyor.",
+      "ai_analysis": "This is very useful for expats in terms of daily life and family planning. For Turkish expats with children, it provides practical guidance on school holidays, leave planning, and work-life balance.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da yabancı çalışanlar için iş yeri zorbalığına dikkat çekildi",
+      "title": "International workers on bullying in the workplace",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-05-12/business-education/career/international-workers-on-bullying-in-the-workplace/",
+      "tarih": "12.05.2026",
+      "ozet": "Uluslararası iş gücünün iş yerinde karşılaştığı zorbalık örnekleri ve uyum sorunları ele alınıyor.",
+      "summary": "The piece examines bullying experiences and adjustment challenges faced by international workers.",
+      "ai_analiz": "Expatlar için iş yaşamında psikolojik güvenlik ve hak arama yolları açısından kritik bir konu. Türk expatlar, özellikle yeni iş ortamlarına uyum sürecinde bu tür riskleri daha erken fark edebilir.",
+      "ai_analysis": "This is a critical issue for expats in terms of psychological safety at work and knowing how to seek help. Turkish expats may especially benefit from recognizing these risks early during adaptation to a new workplace.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da yaz öncesi takvim ve izin planlaması rehberi",
+      "title": "This is the calendar for the period leading up to the summer: holidays, half holidays, the summer break, and a couple of tips on how to handle them",
+      "kaynak": "The Copenhagen Post",
+      "link": "https://cphpost.dk/2026-05-12/life-in-denmark/this-is-the-calendar-for-the-period-leading-up-to-the-summer-holidays-half-holidays-the-summer-break-and-a-couple-of-tips-on-how-to-handle-them/",
+      "tarih": "12.05.2026",
+      "ozet": "Danimarka'daki tatil ve yarım tatil dönemleri ile bunları yönetmeye dair ipuçları veriliyor.",
+      "summary": "The article provides guidance on holidays, half-holidays, and summer break timing in Denmark.",
+      "ai_analiz": "Bu haber expatlar için özellikle seyahat, izin ve çocuk bakım planlamasında önemlidir. Türk expatlar için aile ziyaretleri, uçuşlar ve okul takvimiyle uyum sağlama konusunda yardımcı olur.",
+      "ai_analysis": "This news is particularly important for expats when planning travel, leave, and childcare. For Turkish expats, it helps with arranging family visits, flights, and aligning with school schedules.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka enflasyonu 4 aylık zirveye çıktı",
       "title": "Denmark inflation rises to 4-month high",
       "kaynak": "TradingView",
