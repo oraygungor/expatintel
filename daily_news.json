@@ -1,6 +1,30 @@
 {
   "haberler": [
     {
+      "baslik": "Danimarka tren kazası: En az 4 kişi kritik, çok sayıda yaralı",
+      "title": "Train collision in Denmark leaves 4 critical, 13 injured",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-in/news/world/train-collision-leaves-four-people-critical-and-13-others-injured-in-denmark/ar-AA21xoXc?gemSnapshotKey=GME4A79345-snapshot-1",
+      "tarih": "13.05.2026",
+      "ozet": "Danimarka'da iki trenin çarpıştığı kazada dört kişi ağır yaralandı, 13 kişi de yaralandı. Demiryolu ulaşımında ciddi aksama bekleniyor.",
+      "summary": "A train collision in Denmark left four people critical and 13 others injured. Major rail disruptions are likely.",
+      "ai_analiz": "Bu haber expatlar için doğrudan önem taşıyor; özellikle işe gidiş-geliş ve şehirler arası seyahatlerde DSB hatlarında gecikme, iptal ve alternatif ulaşım ihtiyacı yaratabilir. Türk expatlar için de planlı yolculukları etkileyebilecek günlük ulaşım riski anlamına gelir.",
+      "ai_analysis": "This is directly relevant for expats because it can affect commuting and intercity travel through delays, cancellations, and rerouting on Danish rail lines. For Turkish expats, it means a practical day-to-day transport disruption risk.",
+      "expat_puani": 9
+    },
+    {
+      "baslik": "Danimarka'da toplu taşıma ve günlük yaşamı etkileyecek tren güvenliği tartışmaları büyüyor",
+      "title": "Danish rail safety concerns grow after train collision and network scrutiny",
+      "kaynak": "MSN / OkDiario",
+      "link": "https://www.msn.com/en-in/news/world/train-collision-leaves-four-people-critical-and-13-others-injured-in-denmark/ar-AA21xoXc?gemSnapshotKey=GME4A79345-snapshot-1",
+      "tarih": "13.05.2026",
+      "ozet": "Tren kazasının ardından demiryolu ağındaki güvenlik incelemeleri, toplu taşıma kullananlar için yeni belirsizlikler yaratıyor.",
+      "summary": "Following the train crash, security scrutiny of Denmark’s rail network is creating uncertainty for public transport users.",
+      "ai_analiz": "Expatlar için hem güvenlik hem de ulaşım planlaması açısından önemli. Özellikle şehirler arası iş yapanlar ve öğrenciler için tren hatlarında yaşanabilecek aksaklıklar günlük yaşamı doğrudan etkiler.",
+      "ai_analysis": "Important for expats in terms of both safety and transport planning. Any disruption on rail routes can directly affect daily life, especially for students and professionals who travel between cities.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'da çalışan uluslararası işçiler iş yerinde zorbalığı anlattı",
       "title": "International workers on bullying in the workplace",
       "kaynak": "The Copenhagen Post",
@@ -46,6 +70,66 @@
       "summary": "The article provides guidance on holidays, half-holidays, and summer break timing in Denmark.",
       "ai_analiz": "Bu haber expatlar için özellikle seyahat, izin ve çocuk bakım planlamasında önemlidir. Türk expatlar için aile ziyaretleri, uçuşlar ve okul takvimiyle uyum sağlama konusunda yardımcı olur.",
       "ai_analysis": "This news is particularly important for expats when planning travel, leave, and childcare. For Turkish expats, it helps with arranging family visits, flights, and aligning with school schedules.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "DSB ve demiryolu ağında güvenlik baskısı: NATO silah trenleri sistemi inceleme altında",
+      "title": "Denmark's rail network under scrutiny after NATO weapons trains were logged in a compromised system",
+      "kaynak": "OkDiario",
+      "link": "https://okdiario.com/techy/en/nato-weapons-trains-were-logged-in-a-system-touched-by-a-moscow-linked-company-and-denmarks-rail-network-is-now-under-scrutiny/4110/",
+      "tarih": "12.05.2026",
+      "ozet": "NATO silah trenlerinin kaydedildiği sistemde Moskova bağlantılı bir şirketin izi bulunması, Danimarka demiryolu ağında güvenlik endişelerini artırdı.",
+      "summary": "Denmark's rail network is under scrutiny after NATO weapons trains were logged in a system linked to a Moscow-connected company.",
+      "ai_analiz": "Bu gelişme expatlar için ulaşım altyapısının güvenliği ve hizmet sürekliliği açısından önemli. Özellikle trenle seyahat edenler için ek kontroller, olası gecikmeler ve güvenlik prosedürlerinde artış anlamına gelebilir.",
+      "ai_analysis": "This matters to expats because it raises questions about transport infrastructure security and service reliability. Train travelers may see extra checks, delays, or tighter security procedures.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "ABD, Grönland'da yeni üsler için Danimarka ile görüşüyor",
+      "title": "US in talks with Denmark to open new bases in Greenland",
+      "kaynak": "Anadolu Ajansı",
+      "link": "https://www.aa.com.tr/en/world/us-in-talks-with-denmark-to-open-new-bases-in-greenland-report/3934995",
+      "tarih": "12.05.2026",
+      "ozet": "ABD ile Danimarka arasında Grönland'da yeni askeri üsler kurulmasına yönelik görüşmeler yürütülüyor. Karar, bölgesel güvenlik dengelerini etkileyebilir.",
+      "summary": "The US and Denmark are holding talks about opening new military bases in Greenland, which could affect regional security dynamics.",
+      "ai_analiz": "Danimarka ve Grönland'ın stratejik konumunu etkileyen bu haber, expatlar için dış politika, güvenlik ve jeopolitik belirsizlik açısından önemlidir. Türk expatlar açısından özellikle bölgesel tansiyonun artması halinde haber akışı ve kamuoyu gündemini yakından takip etmeyi gerektirir.",
+      "ai_analysis": "This is important for expats because it affects Denmark and Greenland’s strategic position and may increase geopolitical uncertainty. Turkish expats, in particular, may want to monitor how rising regional tensions could shape the news cycle and public debate.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "ABD ve Danimarka, Grönland askeri üs anlaşmasını ocaktan beri müzakere ediyor",
+      "title": "US and Denmark have been negotiating a Greenland base deal since January",
+      "kaynak": "thecanary.co",
+      "link": "https://www.thecanary.co/global/world-analysis/2026/05/12/us-denmark-negotiating-greenland-deal/",
+      "tarih": "12.05.2026",
+      "ozet": "ABD ile Danimarka'nın Grönland'da üs anlaşması için aylardır görüştüğü bildiriliyor. Bu durum Danimarka'nın güvenlik politikalarında etkili olabilir.",
+      "summary": "The US and Denmark have reportedly been negotiating a Greenland base deal since January, which could influence Denmark’s security policy.",
+      "ai_analiz": "Bu haber, Danimarka'nın savunma ve dış politika çizgisini etkilediği için expatlar açısından önemlidir. Uzun vadede kamu harcamaları, güvenlik gündemi ve Kuzey Atlantik'teki gelişmeler, Danimarka'da yaşayan yabancıların takip etmesi gereken konular arasında yer alır.",
+      "ai_analysis": "This matters to expats because it may influence Denmark’s defense and foreign policy direction. In the longer term, public spending, security priorities, and developments in the North Atlantic are all issues foreigners living in Denmark should follow.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "AB, çocuk ve gençlerin sosyal medya kullanımını yasaklamayı tartışıyor",
+      "title": "European Union may ban social media for children and teens",
+      "kaynak": "upi.com",
+      "link": "https://www.upi.com/amp/Top_News/US/2026/05/12/denmark-eu-social-media-ban/2961778594746/",
+      "tarih": "12.05.2026",
+      "ozet": "Danimarka'nın da destek verdiği iddia edilen girişimde AB içinde çocuk ve gençlerin sosyal medya kullanımına sınırlama ya da yasak gündeme gelebilir.",
+      "summary": "The EU may consider restricting or banning social media for children and teens, with Denmark reportedly involved in the debate.",
+      "ai_analiz": "Aileler için çok önemli bir düzenleme başlığıdır. Danimarka'da yaşayan Türk expat aileler, çocukların dijital alışkanlıkları, okul politikaları ve ebeveyn kontrolü açısından bu tartışmayı yakından izlemelidir.",
+      "ai_analysis": "This is a very important policy issue for families. Turkish expat parents in Denmark should watch this closely because it could affect children’s digital habits, school-related expectations, and parental controls.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da enflasyon, Hürmüz krizi nedeniyle yükseldi",
+      "title": "Denmark inflation rises as Hormuz blockade fuels price concerns",
+      "kaynak": "InteriorDaily",
+      "link": "https://www.interiordaily.com/article/9837218/denmark-inflation-rises-as-hormuz-blockade-fuels-price-concerns/",
+      "tarih": "12.05.2026",
+      "ozet": "Hürmüz Boğazı'ndaki gelişmelerin etkisiyle Danimarka'da fiyat baskılarının arttığı ve enflasyonun yükseldiği bildirildi.",
+      "summary": "Inflation in Denmark is rising as concerns over the Hormuz blockade push prices higher.",
+      "ai_analiz": "Bu haber expatlar için doğrudan yaşam maliyeti anlamına gelir. Kiradan market alışverişine ve enerji faturalarına kadar günlük harcamaların artması, özellikle bütçe planı yapan Türk expatlar için kritik bir gelişmedir.",
+      "ai_analysis": "This is directly relevant to expats because it affects the cost of living. Higher prices for groceries, rent, and energy bills are especially important for Turkish expats who are budgeting carefully.",
       "expat_puani": 8
     },
     {
