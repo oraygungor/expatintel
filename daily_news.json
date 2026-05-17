@@ -1,6 +1,102 @@
 {
   "haberler": [
     {
+      "baslik": "WHO, Ebola salgını sonrası kamu sağlığı krizi ilan etti",
+      "title": "WHO declares public health emergency after Ebola outbreak",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/internationalt/art10845135/WHO-erkl%C3%A6rer-offentlig-sundhedskrise-efter-udbrud-af-ebola",
+      "tarih": "17.05.2026",
+      "ozet": "DR Kongo ve Uganda'da görülen Ebola vakaları sonrası WHO kamu sağlığı krizi ilan etti.",
+      "summary": "WHO has declared a public health emergency after Ebola cases were reported in DR Congo and Uganda.",
+      "ai_analiz": "Bu gelişme, uluslararası seyahat eden expatlar için sağlık ve seyahat riskleri açısından önemlidir. Aşı, seyahat kısıtlamaları ve küresel sağlık gündemi Danimarka’daki yabancı çalışanları ve ailelerini dolaylı olarak etkileyebilir.",
+      "ai_analysis": "This matters for expats because it affects travel health risks, vaccination considerations, and potential restrictions. Global health alerts can indirectly impact foreign workers and their families in Denmark.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag Üniversitesi araştırması sosyal medya algoritmalarındaki büyük soruna çözüm buldu",
+      "title": "University of Copenhagen researchers say they found a solution to social media's big problem",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/kultur/medier/art10832481/Forskere-mener-at-have-fundet-en-l%C3%B8sning-p%C3%A5-de-sociale-mediers-store-problem",
+      "tarih": "17.05.2026",
+      "ozet": "Yeni bir çalışma, sosyal medya algoritmalarının inanç ve ilişkiler üzerindeki etkisini azaltabilecek bir yöntem öneriyor.",
+      "summary": "A new study suggests a way to reduce the harmful effects of social media algorithms on beliefs and relationships.",
+      "ai_analiz": "Expatlar için dijital medya ve bilgi akışı çok önemlidir; özellikle yeni bir ülkede sosyal bağlantılar kurarken algoritmaların etkisi gündelik hayatı etkileyebilir. Bu tür akademik gelişmeler, medya okuryazarlığı ve dijital davranış açısından ilgi çekicidir.",
+      "ai_analysis": "For expats, digital media and information flows matter a lot, especially when building social connections in a new country. This kind of research is relevant for media literacy and online behavior.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'nın en güvenli ülkeler arasında gösterilmesi expatlar için dikkat çekici",
+      "title": "Denmark ranked among the safest countries for expats",
+      "kaynak": "The Economic Times",
+      "link": "https://m.economictimes.com/nri/migrate/7-safest-countries-for-expats-in-2026/denmark/slideshow/131151252.cms",
+      "tarih": "17.05.2026",
+      "ozet": "Danimarka, 2026'da expatlar için en güvenli ülkeler listesinde yer aldı.",
+      "summary": "Denmark was listed among the safest countries for expats in 2026.",
+      "ai_analiz": "Bu haber doğrudan expat yaşamı için önemlidir çünkü güvenlik algısı taşınma, aile yerleşimi ve uzun vadeli planlama kararlarında belirleyicidir. Türk expatlar için de Danimarka'nın yaşam kalitesini değerlendirmede olumlu bir işaret sunar.",
+      "ai_analysis": "This is directly important for expat life because safety perception influences relocation, family settlement, and long-term planning decisions. For Turkish expats, it is a positive signal when assessing Denmark’s livability.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Femern Bælt bağlantısında otomobil trafiği en erken 2032'de başlayacak",
+      "title": "Car traffic on the Fehmarn Belt link will not begin until at least 2032",
+      "kaynak": "Politiken.dk",
+      "link": "https://politiken.dk/rejser/art10845271/Bilister-kan-tidligst-benyttte-Femern-B%C3%A6lt-forbindelsen-i-2032-%E2%80%93-jernbanen-udskudt-p%C3%A5-ubestemt-tid",
+      "tarih": "17.05.2026",
+      "ozet": "Femern Bælt bağlantısında otomobil geçişi ertelendi, tren hattı içinse takvim belirsizliğe bırakıldı.",
+      "summary": "The opening of car traffic on the Fehmarn Belt link has been delayed, and the rail timetable has been postponed indefinitely.",
+      "ai_analiz": "Bu haber, Almanya, Danimarka ve Avrupa arasında sık seyahat eden expatlar için önemlidir. Ulaşım planları, taşınma lojistiği ve bölgesel bağlantılar üzerinde etkisi olabilir; Türk expatlar için de Avrupa içi yolculuklarda dikkate değerdir.",
+      "ai_analysis": "This matters for expats who travel frequently between Germany, Denmark, and the rest of Europe. It can affect travel planning, relocation logistics, and regional connectivity; it is also relevant for Turkish expats moving around Europe.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'nın Orta Doğu ticaretindeki belirsizlik şirketleri yavaşlamaya zorluyor",
+      "title": "Uncertainty in the Middle East is forcing Danish companies to slow down",
+      "kaynak": "r/Denmark / Dansk Industri üzerinden haber",
+      "link": "https://www.reddit.com/r/Denmark/comments/1tfhly9/stor_usikkerhed_f%C3%A5r_danske_virksomheder_til_at/",
+      "tarih": "17.05.2026",
+      "ozet": "İş dünyasında artan belirsizlik, bazı Danimarka şirketlerinin Orta Doğu'daki faaliyetlerini azaltmasına yol açıyor.",
+      "summary": "Growing uncertainty is causing some Danish companies to scale back operations in the Middle East.",
+      "ai_analiz": "Danimarka'da çalışan expatlar için bu gelişme kariyer, ihracat, taşeronluk ve sektör bazlı istihdam açısından önemlidir. Özellikle Türk expatlar, uluslararası şirketlerdeki daralmanın etkisini iş piyasasında hissedebilir.",
+      "ai_analysis": "For expats working in Denmark, this is important for careers, exports, subcontracting, and sector-specific employment. Turkish expats in international firms may feel the impact of any slowdown in the job market.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Mærsk'ün İsrail'e silah sevkiyatlarıyla ilgili tartışma Danimarka gündemini etkiliyor",
+      "title": "Controversy over Maersk weapons shipments to Israel is affecting the Danish debate",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1tfn3cu/danske_medier_fortier_m%C3%A6rsks_v%C3%A5benleverancer_til/",
+      "tarih": "17.05.2026",
+      "ozet": "Danimarka medyasında Mærsk'ün İsrail'e silah sevkiyatı iddiası üzerine tartışma sürüyor.",
+      "summary": "A controversy over alleged Maersk weapons shipments to Israel is drawing attention in Danish media.",
+      "ai_analiz": "Mærsk, Danimarka ekonomisinin en önemli aktörlerinden biri olduğu için bu tür tartışmalar expatlar için şirket itibarı, iş ortamı ve toplumsal iklim açısından önem taşır. Türk expatlar açısından da uluslararası iş dünyasındaki etik ve siyasi baskıları anlamak açısından değerlidir.",
+      "ai_analysis": "Because Maersk is a major player in the Danish economy, this kind of controversy matters for expats in terms of corporate reputation, work environment, and social climate. For Turkish expats, it also helps explain ethical and political pressures in international business.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da şiddet tanımı tartışması gündemi etkiliyor",
+      "title": "Debate over the definition of violence is making headlines in Denmark",
+      "kaynak": "r/Denmark",
+      "link": "https://www.reddit.com/r/Denmark/comments/1tfnkfz/definitionen_af_vold/",
+      "tarih": "17.05.2026",
+      "ozet": "Danimarka kamuoyunda şiddetin nasıl tanımlandığına dair bir tartışma öne çıkıyor.",
+      "summary": "A public debate in Denmark is focusing on how violence should be defined.",
+      "ai_analiz": "Bu tür toplumsal ve hukuki tartışmalar expatların yerel normları anlaması açısından önemlidir. Özellikle uyum, çocuk yetiştirme, okul ve sosyal çevreyle ilgili konularda farklı kültürel beklentileri etkileyebilir.",
+      "ai_analysis": "Such social and legal debates are important for expats to understand local norms. They can influence expectations around integration, parenting, schools, and social life in a new cultural setting.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Avrupa'nın önde gelen geçim maliyeti listelerinde Danimarka öne çıkıyor",
+      "title": "Denmark stands out in rankings of living costs in top EU countries",
+      "kaynak": "Visit Ukraine",
+      "link": "https://visitukraine.today/blog/8458/the-cost-of-living-in-the-top-5-best-eu-countries-in-2026-monthly-budget-and-expenses",
+      "tarih": "17.05.2026",
+      "ozet": "Avrupa'da yaşam maliyetlerini özetleyen bir analizde Danimarka, üst sıralarda yer alan ülkeler arasında değerlendiriliyor.",
+      "summary": "A cost-of-living analysis highlights Denmark among the top EU countries.",
+      "ai_analiz": "Expatlar için yaşam maliyeti en kritik konulardan biridir. Bu tür bir haber, kira, günlük harcama ve aile bütçesi planlaması yapan özellikle Türk expatlar için çok faydalıdır.",
+      "ai_analysis": "Cost of living is one of the most important issues for expats. This kind of report is very useful for Turkish expats planning rent, daily expenses, and household budgets.",
+      "expat_puani": 8
+    },
+    {
       "baslik": "Danimarka'da tuberküloz enfeksiyonu vakası: bakım evi çalışanları ve sakinleri etkilendi",
       "title": "13 employees and residents at a care home infected with tuberculosis",
       "kaynak": "Politiken",
@@ -178,6 +274,42 @@
       "summary": "If Denmark wins, public broadcaster DR says it is ready to host Eurovision 2027 in Denmark.",
       "ai_analiz": "Eurovision gibi büyük organizasyonlar şehir içi hareketlilik, konaklama fiyatları ve etkinlik yoğunluğu yaratabilir. Kopenhag ve çevresinde yaşayan expatlar için bu tür etkinlikler planlama açısından önemlidir.",
       "ai_analysis": "Large events like Eurovision can affect local mobility, accommodation prices, and city congestion. This matters for expats living in Copenhagen and nearby areas when planning ahead.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Kopenhag Havalimanı üzerindeki dron uçuşu Rusya kaynaklı olabilir endişesi yarattı",
+      "title": "Drone flyover above Copenhagen Airport sparks concerns Russia may be behind it",
+      "kaynak": "The Local Denmark / MSN",
+      "link": "https://www.msn.com/en-us/news/world/a-drone-flyover-above-copenhagen-airport-prompts-concerns-that-russia-was-behind-it/ar-AA1N6z6Z?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "16.05.2026",
+      "ozet": "Kopenhag Havalimanı üzerindeki bir dron uçuşu, güvenlik endişelerini artırdı ve olayın arkasında Rusya olabileceği ihtimali gündeme geldi.",
+      "summary": "A drone flyover above Copenhagen Airport raised security concerns, with speculation that Russia may have been involved.",
+      "ai_analiz": "Bu haber expatlar için önemli çünkü havalimanı güvenliği, uçuş iptalleri, gecikmeler ve genel güvenlik algısı doğrudan seyahat eden yabancıları etkiler. Özellikle iş ve aile ziyaretleri için sık uçan expatlar açısından takip edilmesi gereken bir gelişme.",
+      "ai_analysis": "This is important for expats because airport security issues can affect flights, delays, cancellations, and overall safety perceptions. It is especially relevant for expats who travel often for work or family visits.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'nın eski kraliçesi Margrethe hastaneye kaldırıldı",
+      "title": "Denmark's former Queen Margrethe hospitalized",
+      "kaynak": "Berlingske / MSN / IceNews",
+      "link": "https://www.msn.com/en-us/health/other/queen-margrethe-of-denmark-86-admitted-to-hospital-after-health-scare/ar-AA23cvAu?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "16.05.2026",
+      "ozet": "Eski Kraliçe Margrethe'nin sağlık sorunu nedeniyle hastaneye kaldırıldığı bildirildi.",
+      "summary": "Former Queen Margrethe was hospitalized after a health scare.",
+      "ai_analiz": "Bu haber, Danimarka’nın kraliyet gündemi ve ulusal haber akışı açısından dikkat çekicidir; ancak expatlar için doğrudan yaşam etkisi sınırlıdır. Yine de ülkedeki önemli bir kamu figürünün sağlık durumu gündem yaratabilir.",
+      "ai_analysis": "This news is notable for Denmark’s public and media agenda, though its direct impact on expat daily life is limited. Still, it can shape national attention and public discussion.",
+      "expat_puani": 8
+    },
+    {
+      "baslik": "Danimarka'da başkent havaalanı çevresinde dron güvenlik endişesi büyüyor",
+      "title": "Security concerns grow after drone activity near Copenhagen Airport",
+      "kaynak": "MSN",
+      "link": "https://www.msn.com/en-us/news/world/a-drone-flyover-above-copenhagen-airport-prompts-concerns-that-russia-was-behind-it/ar-AA1N6z6Z?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+      "tarih": "16.05.2026",
+      "ozet": "Kopenhag Havalimanı üzerindeki dron olayı nedeniyle güvenlik tedbirleri ve olası dış müdahale ihtimali tartışılıyor.",
+      "summary": "Drone activity near Copenhagen Airport triggered security concerns and speculation about possible foreign involvement.",
+      "ai_analiz": "Havalimanı ve ulaşım altyapısına ilişkin güvenlik haberleri expatlar için doğrudan önem taşır; seyahat planlarını, iş bağlantılarını ve aile ziyaretlerini etkileyebilir. Özellikle sık uçan yabancılar için operasyonel belirsizlik yaratabilir.",
+      "ai_analysis": "Security news involving airports and transport infrastructure is directly relevant to expats, as it can affect travel plans, business connections, and family visits. It may create operational uncertainty for frequent travelers.",
       "expat_puani": 8
     },
     {
